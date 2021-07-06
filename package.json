@@ -10,6 +10,7 @@
     "start:static": "npx serve -s out"
   },
   "dependencies": {
+    "classnames": "^2.3.1",
     "next": "10.2.3",
     "next-compose-plugins": "^2.2.1",
     "next-svgr": "^0.0.2",
