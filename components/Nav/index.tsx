@@ -10,8 +10,8 @@ export default function Nav(): ReactElement {
   };
   const mobileNavToggleClasses = 'w-5 h-5 fill-current';
   return (
-    <nav className="container relative flex flex-wrap items-center justify-between max-w-5xl mx-auto lg:h-28">
-      <div className="flex items-center justify-between w-full px-4 pt-7 lg:w-1/3 lg:p-0">
+    <nav className="container relative flex flex-wrap items-center justify-between max-w-6xl px-4 mx-auto lg:h-28 lg:px-10">
+      <div className="flex items-center justify-between w-full px-5 pt-7 lg:w-1/3 lg:p-0">
         <Link href="/">
           <a>
             <Image
@@ -22,7 +22,7 @@ export default function Nav(): ReactElement {
             />
           </a>
         </Link>
-        <div className={classNames('inline-block lg:hidden')}>
+        <div className={classNames('block ml-4 lg:hidden')}>
           <button
             className="z-10 flex items-center py-2 text-gray"
             onClick={toggleNav}
@@ -63,13 +63,13 @@ export default function Nav(): ReactElement {
           )}
         >
           <Link href="/whitepaper">
-            <a className="w-full px-5 pt-3 pb-5 uppercase lg:px-2 lg:py-0 lg:w-auto bg-gray-dark lg:bg-transparent">
+            <a className="w-full px-5 py-2 uppercase transition-colors duration-300 border-transparent border-b-3 lg:px-2 lg:w-auto bg-gray-dark lg:bg-transparent lg:hover:border-primary lg:hover:text-primary hover:bg-gray-light lg:hover:bg-transparent">
               whitepaper
             </a>
           </Link>
           <Link href="https://docs.oxen.io/products-built-on-oxen/session">
             <a
-              className="w-full px-5 pb-5 uppercase lg:px-2 lg:w-auto bg-gray-dark lg:bg-transparent lg:py-0"
+              className="w-full px-5 py-2 uppercase transition-colors duration-300 border-transparent lg:px-2 lg:w-auto bg-gray-dark lg:bg-transparent border-b-3 lg:hover:border-primary lg:hover:text-primary hover:bg-gray-light lg:hover:bg-transparent"
               target="_blank"
             >
               technicals
@@ -77,25 +77,25 @@ export default function Nav(): ReactElement {
           </Link>
           <Link href="https://github.com/oxen-io">
             <a
-              className="w-full px-5 pb-5 uppercase lg:px-2 lg:w-auto bg-gray-dark lg:bg-transparent lg:py-0"
+              className="w-full px-5 py-2 uppercase transition-colors duration-300 border-transparent lg:px-2 lg:w-auto bg-gray-dark lg:bg-transparent border-b-3 lg:hover:border-primary lg:hover:text-primary hover:bg-gray-light lg:hover:bg-transparent"
               target="_blank"
             >
               github
             </a>
           </Link>
           <Link href="/blog">
-            <a className="w-full px-5 pb-5 uppercase lg:px-2 lg:w-auto bg-gray-dark lg:bg-transparent lg:py-0">
+            <a className="w-full px-5 py-2 uppercase transition-colors duration-300 border-transparent lg:px-2 lg:w-auto bg-gray-dark lg:bg-transparent border-b-3 lg:hover:border-primary lg:hover:text-primary hover:bg-gray-light lg:hover:bg-transparent">
               blog
             </a>
           </Link>
           <Link href="/faq">
-            <a className="w-full px-5 pb-3 uppercase lg:px-2 lg:w-auto bg-gray-dark lg:bg-transparent lg:py-0">
+            <a className="w-full px-5 py-2 uppercase transition-colors duration-300 border-transparent lg:px-2 lg:w-auto bg-gray-dark lg:bg-transparent border-b-3 lg:hover:border-primary lg:hover:text-primary hover:bg-gray-light lg:hover:bg-transparent">
               faq
             </a>
           </Link>
           <Link href="/download">
             <a className="hidden lg:inline">
-              <button className="py-2 ml-6 font-semibold text-black transition-colors px-7 bg-primary rounded-3xl hover:bg-black hover:text-primary">
+              <button className="py-2 ml-6 font-semibold text-black transition-colors duration-300 px-7 bg-primary rounded-3xl hover:bg-black hover:text-primary">
                 Download
               </button>
             </a>

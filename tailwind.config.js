@@ -3,9 +3,13 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      borderWidth: {
+        3: '3px',
+      },
       colors: {
         primary: '#00f782',
         gray: {
+          light: '#55595c',
           DEFAULT: '#3a3a3a',
           dark: '#333132',
         },

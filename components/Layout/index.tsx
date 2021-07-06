@@ -1,4 +1,5 @@
 import { ReactElement, ReactNode } from 'react';
+import Head from 'next/head';
 import Nav from '@components/Nav';
 
 interface Props {
@@ -14,7 +15,11 @@ export default function Layout({
 }: Props): ReactElement {
   return (
     <>
-      <title>{title}</title>
+      <Head>
+        <title>{title}</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta charSet="utf-8" />
+      </Head>
       <Nav />
       {children}
     </>
