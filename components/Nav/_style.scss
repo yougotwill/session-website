@@ -1,0 +1,99 @@
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 100%;
+  max-height: 40px;
+  background: $nav-color;
+  font-size: 1.33rem;
+  padding-top: 8px;
+  ul {
+    list-style-type: none;
+    display: none;
+    padding: 2rem 0 0 0;
+    li {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      a {
+        @extend .button;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        font-weight: bold;
+      }
+    }
+  }
+  .logo {
+    display: block;
+    width: 24px;
+    height: 24px;
+    img {
+      position: absolute;
+      top: 12px;
+      left: 0.5rem;
+      width: 24px;
+      height: 24px;
+    }
+    .dark {
+      display: block;
+    }
+    .light {
+      display: none;
+    }
+    .close {
+      display: none;
+    }
+  }
+  &.active {
+    max-height: 100%;
+    ul {
+      display: block;
+      height: 100vh;
+    }
+    .logo {
+      .close {
+        display: block;
+      }
+      .open {
+        display: none;
+      }
+    }
+  }
+  @include screen($tablet) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
+    ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: unset;
+      padding-top: 0;
+      li {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+    .logo {
+      display: none;
+    }
+  }
+}
+
+body.dark-theme {
+  nav {
+    background: $nav-color--dark;
+    border-bottom: none;
+    .logo {
+      .dark {
+        display: none;
+      }
+      .light {
+        display: block;
+      }
+    }
+  }
+}
