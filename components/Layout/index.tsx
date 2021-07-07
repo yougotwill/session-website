@@ -1,5 +1,7 @@
 import { ReactElement, ReactNode } from 'react';
 import Head from 'next/head';
+import classNames from 'classnames';
+
 import Nav from '@components/Nav';
 
 interface Props {
@@ -21,7 +23,15 @@ export default function Layout({
         <meta charSet="utf-8" />
       </Head>
       <Nav />
-      {children}
+      <main
+        className={classNames(
+          'container max-w-6xl p-6 mx-auto',
+          'md:p-12',
+          'lg:px-10'
+        )}
+      >
+        {children}
+      </main>
     </>
   );
 }

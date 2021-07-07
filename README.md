@@ -40,9 +40,14 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ```jsx
   <div className={classNames(
-    "general classes here - colors, fonts, padding, margin etc", // split up screen sizes
+    "general classes here - colors, fonts, padding, margin etc",
+    "repsonsive class changes should have it's own string md: lg: etc."
     "animations, transforms, effect",
     "pseudo classes i.e hover, focus, active, etc.
     "toggling classes i.e. NavMenu isExpanded"
   )}></div>
 ```
+
+## Attributions
+
+‘Android robot head’ by Google available at https://commons.wikimedia.org/wiki/File:Android_robot_head.svg under a Creative Commons Attribution Generic 2.5. Full terms at https://creativecommons.org/licenses/by/2.5/deed.en.
