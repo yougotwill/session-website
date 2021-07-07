@@ -36,8 +36,8 @@ export default function Nav(): ReactElement {
             <Image
               src="/assets/images/logo.png"
               alt="session logo"
-              width={'196px'}
-              height={'40px'}
+              width="196px"
+              height="40px"
             />
           </a>
         </Link>
