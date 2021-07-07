@@ -32,3 +32,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Developer Notes
+
+- Use the [Headwind](https://github.com/heybourn/headwind) VSCode extension for sorting TailWindCSS classes.
+- Using the [classnames](https://www.npmjs.com/package/classnames) package we can organise our classes into groups that combine at build time.
+
+```jsx
+  <div className={classNames(
+    "general classes here - colors, fonts, padding, margin etc", // split up screen sizes
+    "animations, transforms, effect",
+    "pseudo classes i.e hover, focus, active, etc.
+    "toggling classes i.e. NavMenu isExpanded"
+  )}></div>
+```
