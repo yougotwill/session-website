@@ -19,6 +19,7 @@ module.exports = {
   variants: {
     extend: {
       backgroundColor: ['selection'],
+      transitionDuration: ['group-hover'],
     },
   },
   plugins: [require('tailwindcss-selection-variant')],

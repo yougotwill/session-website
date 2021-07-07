@@ -4,8 +4,8 @@ import classNames from 'classnames';
 export default function About(): ReactElement {
   const redactedClasses = classNames(
     'bg-primary text-primary rounded-3xl p-1',
-    'transition-colors duration-300',
-    'group-hover:bg-gray-dark group-hover:text-white'
+    'transition-colors duration-1000',
+    'group-hover:bg-transparent group-hover:text-white group-hover:duration-100'
   );
   return (
     <section
