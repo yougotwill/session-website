@@ -17,8 +17,9 @@ export default function Hero(): ReactElement {
   return (
     <section
       className={classNames(
-        'mt-12',
-        'lg:flex lg:justify-between lg:items-center lg:mt-8'
+        'container max-w-6xl p-6 mx-auto mt-12',
+        'md:p-12',
+        'lg:flex lg:justify-between lg:items-center lg:px-10 lg:mt-8'
       )}
     >
       <div className={'lg:-mt-16'}>

@@ -23,15 +23,7 @@ export default function Layout({
         <meta charSet="utf-8" />
       </Head>
       <Nav />
-      <main
-        className={classNames(
-          'container max-w-6xl p-6 mx-auto',
-          'md:p-12',
-          'lg:px-10'
-        )}
-      >
-        {children}
-      </main>
+      <main>{children}</main>
     </>
   );
 }
