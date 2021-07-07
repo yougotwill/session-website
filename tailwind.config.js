@@ -17,7 +17,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ['selection'],
+    },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-selection-variant')],
 };

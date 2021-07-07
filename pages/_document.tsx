@@ -16,7 +16,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head />
-        <body>
+        <body className="selection:bg-primary">
           <Main />
           <NextScript />
         </body>
