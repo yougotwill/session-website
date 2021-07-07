@@ -8,20 +8,22 @@ export default function About(): ReactElement {
     'group-hover:bg-gray-dark group-hover:text-white'
   );
   return (
-    <section className={classNames('bg-gray-dark text-white')}>
-      <div
-        className={classNames(
-          'container max-w-6xl p-6 mx-auto',
-          'md:p-12',
-          'lg:px-10'
-        )}
-      >
+    <section
+      className={classNames('bg-gray-dark text-white', 'lg:min-h-screen')}
+    >
+      <div className={classNames('container p-6 mx-auto', 'md:p-12')}>
         <div
-          className={classNames('flex mt-8 mb-20 pr-4 text-lg font-semibold')}
+          className={classNames(
+            'flex mt-8 mb-20 pr-4 text-lg font-medium',
+            'md:mb-16',
+            'lg:mt-4'
+          )}
         >
           <span
             className={classNames(
-              'w-1/2 border-primary border-t mt-2 mr-5 -ml-3'
+              'w-36 border-primary border-t mt-2 mr-5 -ml-3',
+              'md:-ml-9',
+              'lg:-ml-28'
             )}
           ></span>
           <span className={classNames('w-1/2 text-primary')}>
@@ -31,7 +33,8 @@ export default function About(): ReactElement {
         <p
           className={classNames(
             'group text-xl font-light leading-10 my-12',
-            'lg:text-4xl'
+            'md:text-4xl md:leading-relaxed md:ml-16',
+            'lg:mt-48 lg:mb-10 lg:ml-14, lg:max-w-2xl'
           )}
         >
           Session is an <span className={redactedClasses}>end-to-end</span>{' '}
