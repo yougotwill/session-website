@@ -21,7 +21,7 @@ export default function Hero(): ReactElement {
         'lg:flex lg:justify-between lg:items-center lg:mt-8'
       )}
     >
-      <div className={classNames('lg:-mt-16')}>
+      <div className={'lg:-mt-16'}>
         <h2 className={headingClasses}>Send</h2>
         <h2 className={headingClasses}>Messages,</h2>
         <h2 className={headingClasses}>Not Metadata.</h2>
@@ -100,7 +100,7 @@ export default function Hero(): ReactElement {
         <div className={classNames('-mr-8 mt-14')}>
           <Image
             src="/assets/images/mockup-groups.png"
-            alt="mobile app screenshot"
+            alt="mobile app screenshot groups"
             width="220px"
             height="474px"
           />
@@ -108,7 +108,7 @@ export default function Hero(): ReactElement {
         <div className={classNames('z-10')}>
           <Image
             src="/assets/images/mockup-landing.png"
-            alt="mobile app screenshot"
+            alt="mobile app screenshot landing page"
             width="280px"
             height="590px"
           />
@@ -116,7 +116,7 @@ export default function Hero(): ReactElement {
         <div className={classNames('-ml-8 mt-16')}>
           <Image
             src="/assets/images/mockup-attachments.png"
-            alt="mobile app screenshot"
+            alt="mobile app screenshot attachments"
             width="220px"
             height="446px"
           />
