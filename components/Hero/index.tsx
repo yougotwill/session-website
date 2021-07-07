@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import classNames from 'classnames';
 
+import Button from '@components/Button';
 import AndroidSVG from '@assets/svgs/android_robot_head.svg';
 import AppleSVG from '@assets/svgs/apple.svg';
 import DesktopSVG from '@assets/svgs/desktop.svg';
@@ -72,15 +73,9 @@ export default function Hero(): ReactElement {
         </div>
         <Link href="/download">
           <a className="hidden lg:block">
-            <button
-              className={classNames(
-                'py-2 mt-4 blur-2xlfont-semibold text-black px-10 bg-primary rounded-sm',
-                'transition-colors duration-300',
-                'hover:bg-black hover:text-primary'
-              )}
-            >
+            <Button classes="mt-4 px-10" shape="square">
               Download
-            </button>
+            </Button>
           </a>
         </Link>
       </div>

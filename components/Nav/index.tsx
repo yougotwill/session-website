@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'classnames';
 
+import Button from '@components/Button';
 import MenuSVG from '@assets/svgs/hamburger.svg';
 import CloseSVG from '@assets/svgs/close.svg';
 
@@ -98,15 +99,7 @@ export default function Nav(): ReactElement {
           </Link>
           <Link href="/download">
             <a className="hidden lg:inline">
-              <button
-                className={classNames(
-                  'py-2 ml-6 font-semibold text-black  px-7 bg-primary rounded-3xl',
-                  'transition-colors duration-300',
-                  'hover:bg-black hover:text-primary'
-                )}
-              >
-                Download
-              </button>
+              <Button classes="ml-6">Download</Button>
             </a>
           </Link>
         </div>
