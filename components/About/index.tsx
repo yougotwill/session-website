@@ -8,6 +8,7 @@ export default function About(): ReactElement {
   const redactedClasses = redact({
     redactColor: 'primary',
     textColor: 'white',
+    animate: true,
   });
   return (
     <section
