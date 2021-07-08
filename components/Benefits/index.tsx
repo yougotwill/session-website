@@ -30,7 +30,10 @@ export default function Benefits(): ReactElement {
               'Session accounts are completely anonymous.',
               'No phone number or email required.',
             ]}
-            image="/assets/images/no-phone.png"
+            image={[
+              '/assets/images/no-phone.png',
+              '/assets/images/no-phone-redacted.png',
+            ]}
             imageAlt="crossed out telephone"
             imageWidth="152px"
             imageHeight="152px"
@@ -42,7 +45,10 @@ export default function Benefits(): ReactElement {
               'Session doesn’t collect data,',
               'so there’s nothing to leak.',
             ]}
-            image="/assets/images/no-data.png"
+            image={[
+              '/assets/images/no-data.png',
+              '/assets/images/no-data-redacted.png',
+            ]}
             imageAlt="restricted lock"
             imageWidth="174px"
             imageHeight="155px"
@@ -54,7 +60,10 @@ export default function Benefits(): ReactElement {
               'Send messages through our onion',
               ' routing network and leave no trace.',
             ]}
-            image="/assets/images/no-footprint.png"
+            image={[
+              '/assets/images/no-footprint.png',
+              '/assets/images/no-footprint-redacted.png',
+            ]}
             imageAlt="footprint stop sign"
             imageWidth="159px"
             imageHeight="159px"
@@ -66,7 +75,10 @@ export default function Benefits(): ReactElement {
               'Session’s code has nothing to hide. Anyone can',
               'view, audit, and contribute.',
             ]}
-            image="/assets/images/open-source.png"
+            image={[
+              '/assets/images/open-source.png',
+              '/assets/images/open-source-redacted.png',
+            ]}
             imageAlt="open source logo"
             imageWidth="159px"
             imageHeight="159px"
@@ -78,7 +90,10 @@ export default function Benefits(): ReactElement {
               'With no central point of failure,',
               'it’s harder to shut Session down.',
             ]}
-            image="/assets/images/censorship-resistant.png"
+            image={[
+              '/assets/images/censorship-resistant.png',
+              '/assets/images/censorship-resistant-redacted.png',
+            ]}
             imageAlt="silenced person"
             imageWidth="160px"
             imageHeight="159px"

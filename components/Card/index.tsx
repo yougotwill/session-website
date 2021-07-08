@@ -6,7 +6,7 @@ import redact from '@utils/redact';
 interface Props {
   title: string;
   description?: string[];
-  image: string;
+  image: string | string[]; // toggle images on hover [original, redacted]
   imageAlt: string;
   imageWidth: string;
   imageHeight: string;
@@ -27,10 +27,46 @@ export default function Card(props: Props): ReactElement {
     redactColor: 'gray-dark',
     textColor: 'gray-dark',
   });
-  const renderDescription = (() => {
-    return description?.map((line) => {
+  const renderImages = (() => {
+    if (typeof image === 'string') {
       return (
-        <p className={classNames('text-sm leading-loose -mx-3 mb-1')}>
+        <Image
+          src={image}
+          alt={imageAlt}
+          width={imageWidth}
+          height={imageHeight}
+          layout="responsive"
+        />
+      );
+    }
+    return image.map((img, index) => {
+      return (
+        <div
+          key={index}
+          className={classNames(
+            index === 0
+              ? 'block group-hover:hidden'
+              : 'hidden group-hover:block'
+          )}
+        >
+          <Image
+            src={img}
+            alt={imageAlt}
+            width={imageWidth}
+            height={imageHeight}
+            layout="responsive"
+          />
+        </div>
+      );
+    });
+  })();
+  const renderDescription = (() => {
+    return description?.map((line, index) => {
+      return (
+        <p
+          key={index}
+          className={classNames('text-sm leading-loose -mx-3 mb-1')}
+        >
           <span className={classNames(redactedClasses)}>{line}</span>
         </p>
       );
@@ -40,22 +76,18 @@ export default function Card(props: Props): ReactElement {
   return (
     <div
       className={classNames(
-        'text-center text-2xl font-semibold leading-none p-3',
+        'group text-center text-2xl font-semibold leading-none p-3',
         'lg:text-3xl',
         classes
       )}
     >
       <div className={classNames('mb-5', 'md:px-16', 'lg:px-20')}>
-        <Image
-          src={image}
-          alt={imageAlt}
-          width={imageWidth}
-          height={imageHeight}
-          layout="responsive"
-        />
+        {renderImages}
       </div>
       <p className={classNames('md:mb-5')}>{title}</p>
-      <div className={classNames('group')}>{renderDescription}</div>
+      <div className={classNames('hidden', 'md:block')}>
+        {renderDescription}
+      </div>
     </div>
   );
 }

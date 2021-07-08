@@ -19,6 +19,7 @@ module.exports = {
   variants: {
     extend: {
       backgroundColor: ['selection'],
+      display: ['hover', 'group-hover'],
       transitionDuration: ['group-hover'],
     },
   },
