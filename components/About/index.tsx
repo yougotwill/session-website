@@ -1,11 +1,11 @@
 import { ReactElement } from 'react';
 import classNames from 'classnames';
-import redacted from '@utils/redacted';
+import redact from '@utils/redact';
 
 import Headline from '@components/Headline';
 
 export default function About(): ReactElement {
-  const redactedClasses = redacted({
+  const redactedClasses = redact({
     redactColor: 'primary',
     textColor: 'white',
   });
@@ -14,7 +14,9 @@ export default function About(): ReactElement {
       className={classNames('bg-gray-dark text-white', 'lg:min-h-screen')}
     >
       <div className={classNames('container p-6 mx-auto', 'md:p-12')}>
-        <Headline>What is Session?</Headline>
+        <Headline classes={classNames('mt-8 mb-20 ', 'md:mb-16', 'lg:mt-4')}>
+          What is Session?
+        </Headline>
         <p
           className={classNames(
             'group text-xl font-light leading-10 my-12',

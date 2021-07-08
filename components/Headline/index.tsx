@@ -12,9 +12,7 @@ export default function Headline(props: Props): ReactElement {
   return (
     <div
       className={classNames(
-        `flex mt-8 mb-20 pr-4 text-${color} text-lg font-medium`,
-        'md:mb-16',
-        'lg:mt-4',
+        `flex mr-4 text-${color} text-lg font-medium`,
         classes
       )}
     >

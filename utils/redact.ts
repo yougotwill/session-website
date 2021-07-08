@@ -5,7 +5,7 @@ interface Props {
   textColor: string;
 }
 
-export default function redacted({ redactColor, textColor }: Props) {
+export default function redact({ redactColor, textColor }: Props) {
   // parent container must have 'group' class
   return classNames(
     `bg-${redactColor} text-${redactColor} rounded-3xl p-1`,
