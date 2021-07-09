@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: PublicSans;
+  font-display: swap;
+  src: url('../public/assets/fonts/PublicSans/PublicSans-VariableFont_wght.ttf')
+    format('truetype');
+}
+
+@font-face {
+  font-family: PublicSans;
+  font-display: swap;
+  font-style: italic;
+  src: url('../public/assets/fonts/PublicSans/PublicSans-Italic-VariableFont_wght.ttf')
+    format('truetype');
+}
