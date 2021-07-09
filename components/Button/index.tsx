@@ -2,32 +2,57 @@ import { ReactElement } from 'react';
 import classNames from 'classnames';
 
 interface Props {
-  color?: 'primary' | 'inverted' | 'minimal';
+  bgColor?: 'primary' | 'black' | 'none';
+  textColor?: 'primary' | 'black';
+  size?: 'small' | 'medium' | 'large';
+  shape?: 'round' | 'semiround' | 'square';
+  fontWeight?: 'light' | 'semibold';
+  hoverEffect?: boolean;
   classes?: string;
-  shape?: 'round' | 'square';
   children?: string;
   onClick?(): any;
 }
 
 export default function Button(props: Props): ReactElement {
   const {
-    color = 'primary',
+    bgColor = 'primary',
+    textColor = 'black',
+    fontWeight = 'semibold',
+    size = 'medium',
     shape = 'round',
+    hoverEffect = true,
     classes,
     children,
     onClick,
   } = props;
   const btnClasses = classNames(
-    `py-2 text-black px-7 bg-${color}`,
-    'transition-colors duration-300',
-    `hover:bg-black hover:text-${color}`
+    `text-${textColor} bg-${bgColor}`,
+    hoverEffect ? 'transition-colors duration-300' : '',
+    hoverEffect ? `hover:bg-black hover:text-${bgColor}` : ''
   );
-  const shapeClasses =
-    shape === 'round' ? 'rounded-3xl font-semibold' : 'rounded-sm';
+  const sizeClasses = [
+    size === 'small' && 'text-sm py-1 px-7',
+    size === 'medium' && 'py-2 px-7',
+  ];
+  const shapeClasses = [
+    shape === 'round' && 'rounded-3xl',
+    shape === 'semiround' && 'rounded-lg',
+    shape === 'square' && 'rounded-sm',
+  ];
+  const fontClasses = [
+    fontWeight === 'light' && 'font-light',
+    fontWeight === 'semibold' && 'font-semibold',
+  ];
 
   return (
     <button
-      className={classNames(btnClasses, shapeClasses, classes)}
+      className={classNames(
+        btnClasses,
+        sizeClasses,
+        shapeClasses,
+        fontClasses,
+        classes
+      )}
       onClick={onClick}
     >
       {children}

@@ -28,5 +28,8 @@ module.exports = {
       transitionDuration: ['group-hover'],
     },
   },
-  plugins: [require('tailwindcss-selection-variant')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('tailwindcss-selection-variant'),
+  ],
 };
