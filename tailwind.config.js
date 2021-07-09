@@ -3,7 +3,8 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      sans: ['PublicSans, sans-serif'],
+      sans: ['PublicSans', 'sans-serif'],
+      helvetica: ['Helvetica', 'Arial', 'sans-serif'],
     },
     extend: {
       borderWidth: {
