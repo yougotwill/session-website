@@ -42,8 +42,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
   <div className={classNames(
     "general classes here - colors, fonts, padding, margin etc",
     "repsonsive class changes should have it's own string md: lg: etc."
+    "placeholder classes",
     "animations, transforms, effect",
-    "pseudo classes i.e hover, focus, active, etc.
+    "pseudo classes i.e hover, focus, active, etc.",
     "toggling classes i.e. NavMenu isExpanded"
   )}></div>
 ```

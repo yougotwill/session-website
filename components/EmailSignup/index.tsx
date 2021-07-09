@@ -35,7 +35,9 @@ export default function EmailSignup(): ReactElement {
           type="email"
           className={classNames(
             'block w-5/6 mb-3 text-sm border border-black rounded-sm bg-primary',
-            'md:w-1/2'
+            'md:w-1/2',
+            'lg:w-2/5',
+            'placeholder-black placeholder-opacity-60'
           )}
           name="email"
           placeholder="Your Email"
