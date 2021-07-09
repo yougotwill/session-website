@@ -12,17 +12,22 @@ export default function About(): ReactElement {
   });
   return (
     <section
-      className={classNames('bg-gray-dark text-white', 'lg:min-h-screen')}
+      className={classNames(
+        'bg-gray-dark text-white',
+        'lg:min-h-screen lg:pb-4'
+      )}
     >
-      <div className={classNames('container p-6 mx-auto', 'md:p-12')}>
+      <div
+        className={classNames('container pt-6 pb-20 px-7 mx-auto', 'md:p-12')}
+      >
         <Headline classes={classNames('mt-8 mb-20 ', 'md:mb-16', 'lg:mt-4')}>
           What is Session?
         </Headline>
         <p
           className={classNames(
-            'group text-xl font-light leading-10 my-12',
+            'group text-lg font-light leading-10 my-12',
             'md:text-4xl md:leading-relaxed md:ml-16',
-            'lg:mt-48 lg:mb-10 lg:ml-14, lg:max-w-2xl'
+            'lg:mt-48 lg:mb-10 lg:ml-14 lg:max-w-2xl'
           )}
         >
           Session is an <span className={redactedClasses}>end-to-end</span>{' '}

@@ -8,6 +8,10 @@ export default function Features(): ReactElement {
   const headingClasses = classNames(
     'font-helvetica text-4xl font-semibold text-gray-dark mb-1'
   );
+  const paragraphClasses = classNames(
+    'text-gray-lighter font-light leading-6 mb-8',
+    'md:mb-12'
+  );
   return (
     <section className={classNames(' text-gray-dark', 'lg:min-h-screen')}>
       <div className={classNames('container p-6 mx-auto', 'md:p-12')}>
@@ -45,35 +49,20 @@ export default function Features(): ReactElement {
             )}
           >
             <h3 className={headingClasses}>Group chats</h3>
-            <p
-              className={classNames(
-                'text-gray-lighter font-light leading-6 mb-7',
-                'md:mb-12'
-              )}
-            >
+            <p className={paragraphClasses}>
               Talk to your friends or talk to the world. You decide. Closed
               groups let you talk to up to 100 friends at once, with the same
               encrypted protections as one-on-one chats. Got a bigger crowd? Use
               an open group to connect with as many people as you want.
             </p>
             <h3 className={headingClasses}>Voice messages</h3>
-            <p
-              className={classNames(
-                'text-gray-lighter font-light leading-6 mb-7',
-                'md:mb-12'
-              )}
-            >
+            <p className={paragraphClasses}>
               Sometimes, a text just isn’t enough. Voice messages let you send
               something a little more personal, so nothing gets lost in
               translation.
             </p>
             <h3 className={headingClasses}>Attachments</h3>
-            <p
-              className={classNames(
-                'text-gray-lighter font-light leading-6 mb-7',
-                'md:mb-12'
-              )}
-            >
+            <p className={paragraphClasses}>
               Don’t leak those docs. Send all your files, images, and
               attachments through a network that takes your privacy seriously.
             </p>
