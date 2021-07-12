@@ -2,11 +2,18 @@ import { ReactElement } from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
 
-export default function GroupNotice(): ReactElement {
+interface Props {
+  classes?: string;
+}
+
+export default function GroupNotice(props: Props): ReactElement {
+  const { classes } = props;
   return (
     <div
       className={classNames(
-        'bg-gray-dark text-white font-helvetica px-10 py-16 border-b border-primary border-dashed'
+        'bg-gray-dark text-white font-helvetica px-10 py-16 border-b border-primary border-dashed',
+        'md:py-12',
+        classes
       )}
     >
       <h4 className={classNames('text-xl font-bold leading-none mb-2')}>
