@@ -9,6 +9,7 @@ export default function About(): ReactElement {
     redactColor: 'primary',
     textColor: 'white',
     animate: true,
+    classes: 'p-1',
   });
   return (
     <section
@@ -25,7 +26,7 @@ export default function About(): ReactElement {
         </Headline>
         <p
           className={classNames(
-            'group text-lg font-light leading-10 my-12',
+            'group text-white text-lg font-light leading-10 my-12',
             'md:text-4xl md:leading-relaxed md:ml-16',
             'lg:mt-48 lg:mb-10 lg:ml-14 lg:max-w-2xl'
           )}

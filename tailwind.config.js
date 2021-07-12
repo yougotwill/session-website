@@ -7,11 +7,14 @@ module.exports = {
       helvetica: ['Helvetica', 'Arial', 'sans-serif'],
     },
     extend: {
+      animation: {
+        push: 'push 0.3s linear 1',
+      },
       borderWidth: {
         3: '3px',
       },
       colors: {
-        primary: '#00f782',
+        primary: { DEFAULT: '#00f782', dark: '#00b35f' },
         gray: {
           lighter: '#7A7A7A',
           light: '#55595c',
@@ -19,10 +22,16 @@ module.exports = {
           dark: '#333132',
         },
       },
+      keyframes: {
+        push: {
+          '50%': { transform: 'scale(0.8)' },
+        },
+      },
     },
   },
   variants: {
     extend: {
+      animation: ['hover'],
       backgroundColor: ['selection'],
       display: ['hover', 'group-hover'],
       transitionDuration: ['group-hover'],
