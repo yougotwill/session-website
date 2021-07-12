@@ -14,7 +14,8 @@ export default function TermsOfService(): ReactElement {
         <div
           className={classNames(
             'container pt-6 pb-24 px-4 mx-auto',
-            'lg:pb-32'
+            'md:p-12',
+            'lg:pt-0 lg:pb-32'
           )}
         >
           <Headline
@@ -25,7 +26,7 @@ export default function TermsOfService(): ReactElement {
               'lg:mt-4'
             )}
           >
-            Terms of Service
+            Session Legal
           </Headline>
           <div
             className={classNames(
@@ -35,7 +36,7 @@ export default function TermsOfService(): ReactElement {
           >
             <h1
               className={classNames(
-                'text-gray text-3xl font-medium',
+                'text-gray text-3xl font-medium mb-2',
                 'lg:text-5xl'
               )}
             >

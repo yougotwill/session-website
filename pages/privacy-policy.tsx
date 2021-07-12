@@ -10,7 +10,13 @@ export default function PrivacyPolicy(): ReactElement {
   return (
     <Layout title="Privacy Policy - Session">
       <section>
-        <div className={classNames('container pt-6 pb-20 px-4 mx-auto')}>
+        <div
+          className={classNames(
+            'container pt-6 pb-24 px-4 mx-auto',
+            'md:p-12',
+            'lg:pt-0 lg:pb-32'
+          )}
+        >
           <Headline
             color="gray-dark"
             classes={classNames(
