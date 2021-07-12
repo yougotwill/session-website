@@ -78,8 +78,10 @@ export default function Nav(): ReactElement {
             isExpanded ? 'translate-y-0' : '-translate-y-full lg:translate-y-0'
           )}
         >
-          <Link href="/whitepaper">
-            <a className={navLinkClasses}>whitepaper</a>
+          <Link href="/assets/downloads/Session-Whitepaper.pdf">
+            <a className={navLinkClasses} target="_blank">
+              whitepaper
+            </a>
           </Link>
           <Link href="https://docs.oxen.io/products-built-on-oxen/session">
             <a className={navLinkClasses} target="_blank">

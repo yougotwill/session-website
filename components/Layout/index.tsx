@@ -1,8 +1,9 @@
 import { ReactElement, ReactNode } from 'react';
 import Head from 'next/head';
-import classNames from 'classnames';
 
 import Nav from '@components/Nav';
+import EmailSignup from '@components/EmailSignup';
+import Footer from '@components/Footer';
 
 interface Props {
   title: string;
@@ -24,6 +25,8 @@ export default function Layout({
       </Head>
       <Nav />
       <main>{children}</main>
+      <EmailSignup />
+      <Footer />
     </>
   );
 }
