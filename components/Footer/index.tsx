@@ -17,6 +17,23 @@ export default function Footer(): ReactElement {
     animate: true,
     classes: 'py-0.5 py-1',
   });
+  const headingClasses = classNames(
+    'text-white uppercase text-xl font-semibold mb-2'
+  );
+  const linkClasses = classNames(
+    'text-sm font-light',
+    'transition-colors duration-300',
+    'hover:text-white'
+  );
+  const socialLinkClasses = classNames(
+    'text-primary',
+    'transition duration-300',
+    'hover:text-white'
+  );
+  const svgClasses = classNames(
+    'fill-current w-7 h-7 mr-1',
+    'hover:animate-push'
+  );
   return (
     <div className={classNames('bg-gray-dark')}>
       <div
@@ -46,68 +63,23 @@ export default function Footer(): ReactElement {
                 'lg:w-1/3'
               )}
             >
-              <h3
-                className={classNames(
-                  'text-white uppercase text-xl font-semibold mb-2'
-                )}
-              >
-                About
-              </h3>
+              <h3 className={headingClasses}>About</h3>
               <Link href="/assets/downloads/Session-Whitepaper.pdf">
-                <a
-                  className={classNames(
-                    'text-sm font-light',
-                    'transition-colors duration-300',
-                    'hover:text-white'
-                  )}
-                  target="_blank"
-                >
+                <a className={linkClasses} target="_blank">
                   Whitepaper
                 </a>
               </Link>
               <Link href="/privacy-policy">
-                <a
-                  className={classNames(
-                    'text-sm font-light',
-                    'transition-colors duration-300',
-                    'hover:text-white'
-                  )}
-                >
-                  Privacy Policy
-                </a>
+                <a className={linkClasses}>Privacy Policy</a>
               </Link>
               <Link href="/terms-of-service">
-                <a
-                  className={classNames(
-                    'text-sm font-light',
-                    'transition-colors duration-300',
-                    'hover:text-white'
-                  )}
-                >
-                  Terms of Service
-                </a>
+                <a className={linkClasses}>Terms of Service</a>
               </Link>
               <Link href="/blog">
-                <a
-                  className={classNames(
-                    'text-sm font-light',
-                    'transition-colors duration-300',
-                    'hover:text-white'
-                  )}
-                >
-                  Blog
-                </a>
+                <a className={linkClasses}>Blog</a>
               </Link>
               <Link href="/faq">
-                <a
-                  className={classNames(
-                    'text-sm font-light',
-                    'transition-colors duration-300',
-                    'hover:text-white'
-                  )}
-                >
-                  FAQ
-                </a>
+                <a className={linkClasses}>FAQ</a>
               </Link>
             </div>
             <div
@@ -117,69 +89,27 @@ export default function Footer(): ReactElement {
                 'lg:w-1/3'
               )}
             >
-              <h3
-                className={classNames(
-                  'text-white uppercase text-xl font-semibold mb-2'
-                )}
-              >
-                Company
-              </h3>
+              <h3 className={headingClasses}>Company</h3>
               <Link href="https://optf.ngo/">
-                <a
-                  className={classNames(
-                    'text-sm font-light',
-                    'transition-colors duration-300',
-                    'hover:text-white'
-                  )}
-                  target="_blank"
-                >
+                <a className={linkClasses} target="_blank">
                   OPTF
                 </a>
               </Link>
               <Link href="https://oxen.io/">
-                <a
-                  className={classNames(
-                    'text-sm font-light',
-                    'transition-colors duration-300',
-                    'hover:text-white'
-                  )}
-                  target="_blank"
-                >
+                <a className={linkClasses} target="_blank">
                   Oxen
                 </a>
               </Link>
               <Link href="https://lokinet.org/">
-                <a
-                  className={classNames(
-                    'text-sm font-light',
-                    'transition-colors duration-300',
-                    'hover:text-white'
-                  )}
-                  target="_blank"
-                >
+                <a className={linkClasses} target="_blank">
                   Lokinet
                 </a>
               </Link>
               <Link href="/assets/downloads/Session-Brandmarks.zip">
-                <a
-                  className={classNames(
-                    'text-sm font-light',
-                    'transition-colors duration-300',
-                    'hover:text-white'
-                  )}
-                >
-                  Media Kit
-                </a>
+                <a className={linkClasses}>Media Kit</a>
               </Link>
               <Link href="https://optf.ngo/transparency/">
-                <a
-                  className={classNames(
-                    'text-sm font-light',
-                    'transition-colors duration-300',
-                    'hover:text-white'
-                  )}
-                  target="_blank"
-                >
+                <a className={linkClasses} target="_blank">
                   Transparency Report
                 </a>
               </Link>
@@ -192,86 +122,32 @@ export default function Footer(): ReactElement {
               )}
             >
               <div className={classNames('w-1/2 mb-4')}>
-                <h3
-                  className={classNames(
-                    'text-white uppercase text-xl font-semibold mb-2'
-                  )}
-                >
-                  Socials
-                </h3>
+                <h3 className={headingClasses}>Socials</h3>
                 <div className={classNames('flex')}>
                   <Link href="https://optf.ngo/transparency/">
-                    <a
-                      className={classNames(
-                        'text-primary',
-                        'transition duration-300',
-                        'hover:text-white'
-                      )}
-                      target="_blank"
-                    >
+                    <a className={socialLinkClasses} target="_blank">
                       <FacebookSVG
-                        className={classNames(
-                          'fill-current w-7 h-7 mr-1',
-                          'hover:animate-push'
-                        )}
+                        className={svgClasses}
                         title="facebook logo"
                       />
                     </a>
                   </Link>
                   <Link href="https://optf.ngo/transparency/">
-                    <a
-                      className={classNames(
-                        'text-primary',
-                        'transition duration-300',
-                        'hover:text-white'
-                      )}
-                      target="_blank"
-                    >
-                      <TwitterSVG
-                        className={classNames(
-                          'fill-current w-7 h-7 mr-1',
-                          'hover:animate-push'
-                        )}
-                        title="twitter logo"
-                      />
+                    <a className={socialLinkClasses} target="_blank">
+                      <TwitterSVG className={svgClasses} title="twitter logo" />
                     </a>
                   </Link>
                   <Link href="https://optf.ngo/transparency/">
-                    <a
-                      className={classNames(
-                        'text-primary',
-                        'transition duration-300',
-                        'hover:text-white'
-                      )}
-                      target="_blank"
-                    >
-                      <GithubSVG
-                        className={classNames(
-                          'fill-current w-7 h-7 mr-1',
-                          'hover:animate-push'
-                        )}
-                        title="github logo"
-                      />
+                    <a className={socialLinkClasses} target="_blank">
+                      <GithubSVG className={svgClasses} title="github logo" />
                     </a>
                   </Link>
                 </div>
               </div>
               <div className={classNames('flex flex-col w-1/2 mb-4')}>
-                <h3
-                  className={classNames(
-                    'text-white uppercase text-xl font-semibold mb-2'
-                  )}
-                >
-                  Contact
-                </h3>
+                <h3 className={headingClasses}>Contact</h3>
                 <Link href="mailto:support@getsession.org">
-                  <a
-                    className={classNames(
-                      'text-primary text-sm font-light',
-                      'transition-colors duration-300',
-                      'hover:text-white'
-                    )}
-                  >
+                  <a className={classNames(linkClasses, 'text-primary')}>
                     support@getsession.org
                   </a>
                 </Link>
