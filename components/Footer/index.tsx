@@ -19,10 +19,11 @@ export default function Footer(): ReactElement {
     <footer className={classNames('bg-gray-dark text-primary-dark')}>
       <div
         className={classNames(
-          'flex flex-wrap pt-6 pb-4 px-8 border-b border-primary border-dashed'
+          'flex flex-wrap pt-6 pb-4 px-8 border-b border-primary border-dashed',
+          'md:pb-8'
         )}
       >
-        <div className={classNames('flex flex-col w-1/2 mb-4')}>
+        <div className={classNames('flex flex-col w-1/2 mb-4', 'md:w-1/4')}>
           <h3
             className={classNames(
               'text-white uppercase text-xl font-semibold mb-2'
@@ -87,7 +88,7 @@ export default function Footer(): ReactElement {
             </a>
           </Link>
         </div>
-        <div className={classNames('flex flex-col w-1/2 mb-4')}>
+        <div className={classNames('flex flex-col w-1/2 mb-4', 'md:w-1/4')}>
           <h3
             className={classNames(
               'text-white uppercase text-xl font-semibold mb-2'
@@ -155,7 +156,7 @@ export default function Footer(): ReactElement {
             </a>
           </Link>
         </div>
-        <div className={classNames('w-1/2 mb-4')}>
+        <div className={classNames('w-1/2 mb-4', 'md:w-1/4')}>
           <h3
             className={classNames(
               'text-white uppercase text-xl font-semibold mb-2'
@@ -220,7 +221,7 @@ export default function Footer(): ReactElement {
             </Link>
           </div>
         </div>
-        <div className={classNames('flex flex-col w-1/2 mb-4')}>
+        <div className={classNames('flex flex-col w-1/2 mb-4', 'md:w-1/4')}>
           <h3
             className={classNames(
               'text-white uppercase text-xl font-semibold mb-2'
@@ -241,7 +242,9 @@ export default function Footer(): ReactElement {
           </Link>
         </div>
       </div>
-      <div className={classNames('py-6 px-8')}>
+      <div
+        className={classNames('py-6 px-8', 'md:p-10 md:w-full md:max-w-3xl')}
+      >
         <Image
           src="/assets/images/logo-white.png"
           alt="session logo"
@@ -250,14 +253,17 @@ export default function Footer(): ReactElement {
         />
         <p
           className={classNames(
-            'group text-white text-sm font-extralight leading-6 tracking-wide'
+            'group text-white text-sm font-extralight leading-6 tracking-wide',
+            'md:text-md'
           )}
         >
           Session is an <span className={redactedClasses}>end-to-end</span>{' '}
           encrypted messenger that removes{' '}
           <span className={redactedClasses}>sensitive</span> metadata
-          collection, <span className={redactedClasses}>and is designed</span>{' '}
-          for people who want privacy and freedom from{' '}
+          collection,
+          <br className={classNames('hidden', 'md:inline')} />{' '}
+          <span className={redactedClasses}>and is designed</span> for people
+          who want privacy and freedom from{' '}
           <span className={redactedClasses}>any forms of</span> surveillance.
         </p>
       </div>
