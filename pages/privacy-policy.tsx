@@ -6,6 +6,7 @@ import Layout from '@components/Layout';
 import Headline from '@components/Headline';
 
 export default function PrivacyPolicy(): ReactElement {
+  const headingClasses = classNames('text-gray text-2xl font-medium mt-6');
   return (
     <Layout title="Privacy Policy - Session">
       <section>
@@ -40,9 +41,7 @@ export default function PrivacyPolicy(): ReactElement {
               privacy of your communications at all times.
             </p>
             <br />
-            <h2 className={classNames('text-gray text-2xl font-medium mt-6')}>
-              1.0 Session App
-            </h2>
+            <h2 className={headingClasses}>1.0 Session App</h2>
             <p>
               The Session App is designed to never know who you are, who you are
               talking to, or the contents of your communications (text messages,
@@ -68,9 +67,7 @@ export default function PrivacyPolicy(): ReactElement {
               private. Session is preservices your privacy by default.
             </p>
             <br />
-            <h2 className={classNames('text-gray text-2xl font-medium mt-6')}>
-              2.0 Session Website
-            </h2>
+            <h2 className={headingClasses}>2.0 Session Website</h2>
             <p>
               The Session Website never attempts to link your usage of the
               website to your real identity or create a user profile based on
@@ -107,9 +104,7 @@ export default function PrivacyPolicy(): ReactElement {
               which can be stored for up to 7 days.
             </p>
             <br />
-            <h2 className={classNames('text-gray text-2xl font-medium mt-6')}>
-              3.0 Other Privacy Issues
-            </h2>
+            <h2 className={headingClasses}>3.0 Other Privacy Issues</h2>
             <p>
               You should be aware that the Google Play and the App Store may
               collect information and share information about you when you
@@ -138,9 +133,7 @@ export default function PrivacyPolicy(): ReactElement {
               section of Google’s Developer Policy Center.
             </p>
             <br />
-            <h2 className={classNames('text-gray text-2xl font-medium mt-6')}>
-              Any more questions?
-            </h2>
+            <h2 className={headingClasses}>Any more questions?</h2>
             <p>
               This is the way the Session app and website treat your privacy. If
               you would like more information, have suggestions about how we can
