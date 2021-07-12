@@ -17,7 +17,7 @@ export default function Features(): ReactElement {
       <div className={classNames('container p-6 mx-auto', 'md:p-12')}>
         <Headline
           color="gray-dark"
-          classes={classNames('mt-8 mb-5', 'lg:mt-4')}
+          classes={classNames('text-lg font-semibold mt-8 mb-5', 'lg:mt-4')}
         >
           Features
         </Headline>

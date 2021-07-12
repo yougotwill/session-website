@@ -13,7 +13,11 @@ export default function Benefits(): ReactElement {
       <div className={classNames('container py-6 px-4 mx-auto', 'md:p-12')}>
         <Headline
           color="gray-dark"
-          classes={classNames('ml-2 mt-8 mb-5', 'md:mb-16', 'lg:mt-4')}
+          classes={classNames(
+            'text-lg font-semibold ml-2 mt-8 mb-5',
+            'md:mb-16',
+            'lg:mt-4'
+          )}
         >
           Benefits
         </Headline>

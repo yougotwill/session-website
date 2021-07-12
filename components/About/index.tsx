@@ -21,7 +21,13 @@ export default function About(): ReactElement {
       <div
         className={classNames('container pt-6 pb-20 px-7 mx-auto', 'md:p-12')}
       >
-        <Headline classes={classNames('mt-8 mb-20 ', 'md:mb-16', 'lg:mt-4')}>
+        <Headline
+          classes={classNames(
+            'text-lg font-semibold mt-8 mb-20 ',
+            'md:mb-16',
+            'lg:mt-4'
+          )}
+        >
           What is Session?
         </Headline>
         <p
