@@ -124,7 +124,7 @@ export default function Footer(): ReactElement {
               <div className={classNames('w-1/2 mb-4')}>
                 <h3 className={headingClasses}>Socials</h3>
                 <div className={classNames('flex')}>
-                  <Link href="https://optf.ngo/transparency/">
+                  <Link href="https://www.facebook.com/SessionMessenger/">
                     <a className={socialLinkClasses} target="_blank">
                       <FacebookSVG
                         className={svgClasses}
@@ -132,12 +132,12 @@ export default function Footer(): ReactElement {
                       />
                     </a>
                   </Link>
-                  <Link href="https://optf.ngo/transparency/">
+                  <Link href="https://twitter.com/session_app">
                     <a className={socialLinkClasses} target="_blank">
                       <TwitterSVG className={svgClasses} title="twitter logo" />
                     </a>
                   </Link>
-                  <Link href="https://optf.ngo/transparency/">
+                  <Link href="https://github.com/oxen-io">
                     <a className={socialLinkClasses} target="_blank">
                       <GithubSVG className={svgClasses} title="github logo" />
                     </a>
