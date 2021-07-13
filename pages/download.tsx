@@ -11,11 +11,6 @@ import LinuxSVG from '@assets/svgs/linux.svg';
 import WindowsSVG from '@assets/svgs/windows.svg';
 
 export default function Download(): ReactElement {
-  const downloadLinkClasses = classNames(
-    'text-lg font-semibold mr-4',
-    'md:text-3xl',
-    'lg:py-2'
-  );
   const panelClasses = classNames(
     'mx-auto text-center',
     'lg:w-1/2 lg:flex lg:flex-col'
@@ -24,7 +19,15 @@ export default function Download(): ReactElement {
   const linkContainerClasses = classNames(
     'flex flex-wrap justify-center items-center pb-12'
   );
-  const linkBorderClasses = classNames('lg:pr-4 lg:border-r lg:border-dashed');
+  const downloadContainerClasses = classNames(
+    'lg:py-2 lg:border-r lg:border-dashed'
+  );
+  const downloadLinkClasses = classNames(
+    'text-lg font-semibold rounded-3xl py-1 mr-4',
+    'md:text-3xl',
+    'lg:pr-2 lg:ml-2',
+    'transition-colors duration-300'
+  );
   const downloadSVGClasses = 'inline-block mx-3 -mt-2 fill-current';
   return (
     <Layout title="Download - Session Private Messenger">
@@ -53,57 +56,76 @@ export default function Download(): ReactElement {
               />
             </div>
             <div className={classNames(linkContainerClasses)}>
-              <Link href="/android">
-                <a
-                  className={classNames(
-                    downloadLinkClasses,
-                    linkBorderClasses,
-                    'lg:border-gray-dark'
-                  )}
-                >
-                  <AndroidSVG
+              <div
+                className={classNames(
+                  downloadContainerClasses,
+                  'lg:border-gray-dark'
+                )}
+              >
+                <Link href="/android">
+                  <a
                     className={classNames(
-                      downloadSVGClasses,
-                      'w-6 h-6',
-                      'md:w-8 md:h-8'
+                      downloadLinkClasses,
+                      'lg:hover:bg-gray-dark lg:hover:text-primary'
                     )}
-                    title="Android logo"
-                  />
-                  <span>Android</span>
-                </a>
-              </Link>
-              <Link href="https://github.com/loki-project/session-android/releases">
-                <a
-                  className={classNames(
-                    downloadLinkClasses,
-                    linkBorderClasses,
-                    'lg:border-gray-dark'
-                  )}
-                >
-                  <AndroidSVG
+                  >
+                    <AndroidSVG
+                      className={classNames(
+                        downloadSVGClasses,
+                        'w-6 h-6',
+                        'md:w-8 md:h-8'
+                      )}
+                      title="Android logo"
+                    />
+                    <span>Android</span>
+                  </a>
+                </Link>
+              </div>
+              <div
+                className={classNames(
+                  downloadContainerClasses,
+                  'lg:border-gray-dark'
+                )}
+              >
+                <Link href="https://github.com/loki-project/session-android/releases">
+                  <a
                     className={classNames(
-                      downloadSVGClasses,
-                      'w-6 h-6',
-                      'md:w-8 md:h-8'
+                      downloadLinkClasses,
+                      'lg:hover:bg-gray-dark lg:hover:text-primary'
                     )}
-                    title="Android logo"
-                  />
-                  <span>APK</span>
-                </a>
-              </Link>
-              <Link href="/iphone">
-                <a className={downloadLinkClasses}>
-                  <AppleSVG
+                  >
+                    <AndroidSVG
+                      className={classNames(
+                        downloadSVGClasses,
+                        'w-6 h-6',
+                        'md:w-8 md:h-8'
+                      )}
+                      title="Android logo"
+                    />
+                    <span>APK</span>
+                  </a>
+                </Link>
+              </div>
+              <div>
+                <Link href="/iphone">
+                  <a
                     className={classNames(
-                      downloadSVGClasses,
-                      'w-4 h-4',
-                      'md:w-6 md:h-6'
+                      downloadLinkClasses,
+                      'lg:hover:bg-gray-dark lg:hover:text-primary'
                     )}
-                    title="Apple logo"
-                  />
-                  <span>iPhone</span>
-                </a>
-              </Link>
+                  >
+                    <AppleSVG
+                      className={classNames(
+                        downloadSVGClasses,
+                        'w-4 h-4',
+                        'md:w-6 md:h-6'
+                      )}
+                      title="Apple logo"
+                    />
+                    <span>iPhone</span>
+                  </a>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -140,58 +162,83 @@ export default function Download(): ReactElement {
                 layout="responsive"
               />
             </div>
-            <div className={classNames(linkContainerClasses, 'md:pb-32')}>
-              <Link href="/mac">
-                <a
-                  className={classNames(
-                    downloadLinkClasses,
-                    linkBorderClasses,
-                    'lg:border-white'
-                  )}
-                >
-                  <AppleSVG
+            <div
+              className={classNames(
+                linkContainerClasses,
+                'md:pb-32',
+                'lg:mt-1'
+              )}
+            >
+              <div
+                className={classNames(
+                  downloadContainerClasses,
+                  'lg:border-white'
+                )}
+              >
+                <Link href="/mac">
+                  <a
                     className={classNames(
-                      downloadSVGClasses,
-                      'w-4 h-4',
-                      'md:w-6 md:h-6'
+                      downloadLinkClasses,
+                      'lg:hover:bg-white lg:hover:text-gray-dark'
                     )}
-                    title="Apple logo"
-                  />
-                  <span>Mac</span>
-                </a>
-              </Link>
-              <Link href="/windows">
-                <a
-                  className={classNames(
-                    downloadLinkClasses,
-                    linkBorderClasses,
-                    'lg:border-white'
-                  )}
-                >
-                  <WindowsSVG
+                  >
+                    <AppleSVG
+                      className={classNames(
+                        downloadSVGClasses,
+                        'w-4 h-4',
+                        'md:w-6 md:h-6'
+                      )}
+                      title="Apple logo"
+                    />
+                    <span>Mac</span>
+                  </a>
+                </Link>
+              </div>
+              <div
+                className={classNames(
+                  downloadContainerClasses,
+                  'lg:border-white'
+                )}
+              >
+                <Link href="/windows">
+                  <a
                     className={classNames(
-                      downloadSVGClasses,
-                      'w-4 h-4',
-                      'md:w-6 md:h-6'
+                      downloadLinkClasses,
+                      'lg:hover:bg-white lg:hover:text-gray-dark'
                     )}
-                    title="Windows logo"
-                  />
-                  <span>Windows</span>
-                </a>
-              </Link>
-              <Link href="/linux">
-                <a className={downloadLinkClasses}>
-                  <LinuxSVG
+                  >
+                    <WindowsSVG
+                      className={classNames(
+                        downloadSVGClasses,
+                        'w-4 h-4',
+                        'md:w-6 md:h-6'
+                      )}
+                      title="Windows logo"
+                    />
+                    <span>Windows</span>
+                  </a>
+                </Link>
+              </div>
+              <div>
+                <Link href="/linux">
+                  <a
                     className={classNames(
-                      downloadSVGClasses,
-                      'w-5 h-5',
-                      'md:w-7 md:h-7'
+                      downloadLinkClasses,
+                      'lg:hover:bg-white lg:hover:text-gray-dark'
                     )}
-                    title="Linux logo"
-                  />
-                  <span>Linux</span>
-                </a>
-              </Link>
+                  >
+                    <LinuxSVG
+                      className={classNames(
+                        downloadSVGClasses,
+                        'w-5 h-5',
+                        'md:w-7 md:h-7'
+                      )}
+                      title="Linux logo"
+                    />
+                    <span>Linux</span>
+                  </a>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

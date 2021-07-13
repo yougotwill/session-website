@@ -17,7 +17,7 @@ export default function Nav(): ReactElement {
     'w-full px-5 py-2 uppercase border-transparent border-b-3',
     'lg:px-2 lg:w-auto bg-gray-dark lg:bg-transparent',
     'transition-colors duration-300',
-    'lg:hover:border-primary lg:hover:text-primary hover:bg-gray-light lg:hover:bg-transparent'
+    'hover:bg-gray-light lg:hover:border-primary lg:hover:text-primary lg:hover:bg-transparent'
   );
   return (
     <nav
