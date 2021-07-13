@@ -1,7 +1,17 @@
 const withPlugins = require('next-compose-plugins');
 const withSvgr = require('next-svgr');
 
-const appVersion = 'v1.6.7';
+const fetchLatest = async (repo) => {
+  const res = await fetch(
+    `https://api.github.com/repos/oxen-io/${repo}/releases/latest`
+  );
+  const data = await res.json();
+  if (!data) return;
+  return data['tag_name'].split('v')[1];
+};
+
+const desktopVersion = fetchLatest('session-desktop');
+
 const config = {
   target: 'serverless',
   async redirects() {
@@ -13,6 +23,11 @@ const config = {
         permanent: true,
       },
       {
+        source: '/apk',
+        destination: 'https://github.com/oxen-io/session-android/releases',
+        permanent: true,
+      },
+      {
         source: '/iphone',
         destination:
           'https://apps.apple.com/app/session-private-messenger/id1470168868?ls=1',
@@ -20,17 +35,17 @@ const config = {
       },
       {
         source: '/linux',
-        destination: `https://github.com/oxen-io/session-desktop/releases/download/${appVersion}/session-desktop-linux-x86_64-1.6.7.AppImage`,
+        destination: `https://github.com/oxen-io/session-desktop/releases/download/v${desktopVersion}/session-desktop-linux-x86_64-${desktopVersion}.AppImage`,
         permanent: true,
       },
       {
         source: '/mac',
-        destination: `https://github.com/oxen-io/session-desktop/releases/download/${appVersion}/session-desktop-mac-1.6.7.dmg`,
+        destination: `https://github.com/oxen-io/session-desktop/releases/download/v${desktopVersion}/session-desktop-mac-${desktopVersion}.dmg`,
         permanent: true,
       },
       {
         source: '/windows',
-        destination: `https://github.com/oxen-io/session-desktop/releases/download/${appVersion}/session-desktop-win-1.6.7.exe`,
+        destination: `https://github.com/oxen-io/session-desktop/releases/download/v${desktopVersion}/session-desktop-win-${desktopVersion}.exe`,
         permanent: true,
       },
       {

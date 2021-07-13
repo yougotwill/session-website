@@ -87,7 +87,7 @@ export default function Download(): ReactElement {
                   'lg:border-gray-dark'
                 )}
               >
-                <Link href="https://github.com/loki-project/session-android/releases">
+                <Link href="/apk">
                   <a
                     className={classNames(
                       downloadLinkClasses,

@@ -43,7 +43,7 @@ export default function Hero(): ReactElement {
               <span>Android</span>
             </a>
           </Link>
-          <Link href="https://github.com/loki-project/session-android/releases">
+          <Link href="/apk">
             <a className={downloadLinkClasses}>
               <AndroidSVG
                 className={classNames(downloadSVGClasses, 'w-8 h-8')}
