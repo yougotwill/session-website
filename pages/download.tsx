@@ -13,141 +13,187 @@ import WindowsSVG from '@assets/svgs/windows.svg';
 export default function Download(): ReactElement {
   const downloadLinkClasses = classNames(
     'text-lg font-semibold mr-4',
-    'md:text-3xl'
+    'md:text-3xl',
+    'lg:py-2'
   );
   const downloadSVGClasses = 'inline-block mx-3 -mt-2 fill-current';
   return (
     <Layout title="Download - Session Private Messenger">
-      <section>
+      <section className={classNames('lg:flex lg:mb-4 lg:min-h-screen')}>
         <div
           className={classNames(
-            'bg-primary text-gray-dark mx-auto text-center'
+            'bg-primary text-gray-dark mx-auto text-center',
+            'lg:w-1/2 lg:mr-2 lg:flex lg:flex-col lg:items-end'
           )}
         >
-          <p className={classNames('text-2xl font-light pt-20')}>
-            Download Session for
-          </p>
-          <h2 className={classNames('text-5xl font-semibold my-4')}>Mobile</h2>
-          <div className={classNames('px-28 mb-6', 'md:px-56', 'lg:hidden')}>
-            <Image
-              src="/assets/images/mockup-landing.png"
-              alt="mobile app screenshot"
-              width="150px"
-              height="315px"
-              layout="responsive"
-            />
-          </div>
-          <div
-            className={classNames(
-              'flex flex-wrap justify-center items-center pb-12',
-              'lg:hidden'
-            )}
-          >
-            <Link href="/android">
-              <a className={downloadLinkClasses}>
-                <AndroidSVG
+          <div className={classNames('lg:w-1/2 lg:mr-8')}>
+            <p
+              className={classNames('text-2xl font-light pt-20', 'lg:text-3xl')}
+            >
+              Download Session for
+            </p>
+            <h2 className={classNames('text-5xl font-semibold my-4')}>
+              Mobile
+            </h2>
+            <div className={classNames('px-28 mb-6', 'md:px-56', 'lg:px-20')}>
+              <Image
+                src="/assets/images/mockup-landing.png"
+                alt="mobile app screenshot"
+                width="150px"
+                height="315px"
+                layout="responsive"
+              />
+            </div>
+            <div
+              className={classNames(
+                'flex flex-wrap justify-center items-center pb-12'
+              )}
+            >
+              <Link href="/android">
+                <a
                   className={classNames(
-                    downloadSVGClasses,
-                    'w-6 h-6',
-                    'md:w-8 md:h-8'
+                    downloadLinkClasses,
+                    'lg:pr-4 lg:border-r lg:border-gray-dark lg:border-dashed'
                   )}
-                  title="Android logo"
-                />
-                <span>Android</span>
-              </a>
-            </Link>
-            <Link href="https://github.com/loki-project/session-android/releases">
-              <a className={downloadLinkClasses}>
-                <AndroidSVG
+                >
+                  <AndroidSVG
+                    className={classNames(
+                      downloadSVGClasses,
+                      'w-6 h-6',
+                      'md:w-8 md:h-8'
+                    )}
+                    title="Android logo"
+                  />
+                  <span>Android</span>
+                </a>
+              </Link>
+              <Link href="https://github.com/loki-project/session-android/releases">
+                <a
                   className={classNames(
-                    downloadSVGClasses,
-                    'w-6 h-6',
-                    'md:w-8 md:h-8'
+                    downloadLinkClasses,
+                    'lg:pr-4 lg:border-r lg:border-gray-dark lg:border-dashed'
                   )}
-                  title="Android logo"
-                />
-                <span>APK</span>
-              </a>
-            </Link>
-            <Link href="/iphone">
-              <a className={downloadLinkClasses}>
-                <AppleSVG
-                  className={classNames(
-                    downloadSVGClasses,
-                    'w-4 h-4',
-                    'md:w-6 md:h-6'
-                  )}
-                  title="Apple logo"
-                />
-                <span>iPhone</span>
-              </a>
-            </Link>
+                >
+                  <AndroidSVG
+                    className={classNames(
+                      downloadSVGClasses,
+                      'w-6 h-6',
+                      'md:w-8 md:h-8'
+                    )}
+                    title="Android logo"
+                  />
+                  <span>APK</span>
+                </a>
+              </Link>
+              <Link href="/iphone">
+                <a className={downloadLinkClasses}>
+                  <AppleSVG
+                    className={classNames(
+                      downloadSVGClasses,
+                      'w-4 h-4',
+                      'md:w-6 md:h-6'
+                    )}
+                    title="Apple logo"
+                  />
+                  <span>iPhone</span>
+                </a>
+              </Link>
+            </div>
           </div>
         </div>
         <div
-          className={classNames('bg-gray-dark text-white mx-auto text-center')}
+          className={classNames(
+            'bg-gray-dark text-white mx-auto text-center',
+            'lg:w-1/2 lg:ml-2 lg:flex lg:flex-col lg:items-start'
+          )}
         >
-          <p className={classNames('text-2xl font-light pt-32')}>
-            Download Session for
-          </p>
-          <h2 className={classNames('text-5xl font-semibold mt-4 mb-6')}>
-            Desktop
-          </h2>
-          <div className={classNames('px-3 mb-6', 'md:mb-10', 'lg:hidden')}>
-            <Image
-              src="/assets/images/mockup-desktop.png"
-              alt="desktop app screenshot"
-              width="1600px"
-              height="858px"
-              layout="responsive"
-            />
-          </div>
           <div
             className={classNames(
-              'flex flex-wrap justify-center items-center pb-12',
-              'md:pb-32',
-              'lg:hidden'
+              'lg:w-1/2 lg:ml-8 lg:h-full lg:flex lg:flex-col lg:justify-between'
             )}
           >
-            <Link href="/mac">
-              <a className={downloadLinkClasses}>
-                <AppleSVG
+            <p
+              className={classNames(
+                'text-2xl font-light pt-32',
+                'lg:pt-20 lg:text-3xl'
+              )}
+            >
+              Download Session for
+            </p>
+            <h2 className={classNames('text-5xl font-semibold mt-4 mb-6')}>
+              Desktop
+            </h2>
+            <div
+              className={classNames(
+                'px-3 mb-6',
+                'md:mb-10',
+                'lg:px-0 lg:pt-24 lg:pb-20 lg:-mx-4'
+              )}
+            >
+              <Image
+                src="/assets/images/mockup-desktop.png"
+                alt="desktop app screenshot"
+                width="1600px"
+                height="858px"
+                layout="responsive"
+              />
+            </div>
+            <div
+              className={classNames(
+                'flex flex-wrap justify-center items-center pb-12',
+                'md:pb-32'
+              )}
+            >
+              <Link href="/mac">
+                <a
                   className={classNames(
-                    downloadSVGClasses,
-                    'w-4 h-4',
-                    'md:w-6 md:h-6'
+                    downloadLinkClasses,
+                    'lg:pr-4 lg:border-r lg:border-white lg:border-dashed'
                   )}
-                  title="Apple logo"
-                />
-                <span>Mac</span>
-              </a>
-            </Link>
-            <Link href="/windows">
-              <a className={downloadLinkClasses}>
-                <WindowsSVG
+                >
+                  <AppleSVG
+                    className={classNames(
+                      downloadSVGClasses,
+                      'w-4 h-4',
+                      'md:w-6 md:h-6'
+                    )}
+                    title="Apple logo"
+                  />
+                  <span>Mac</span>
+                </a>
+              </Link>
+              <Link href="/windows">
+                <a
                   className={classNames(
-                    downloadSVGClasses,
-                    'w-4 h-4',
-                    'md:w-6 md:h-6'
+                    downloadLinkClasses,
+                    'lg:pr-4 lg:border-r lg:border-white lg:border-dashed'
                   )}
-                  title="Windows logo"
-                />
-                <span>Windows</span>
-              </a>
-            </Link>
-            <Link href="/linux">
-              <a className={downloadLinkClasses}>
-                <LinuxSVG
-                  className={classNames(
-                    downloadSVGClasses,
-                    'w-5 h-5',
-                    'md:w-7 md:h-7'
-                  )}
-                  title="Linux logo"
-                />
-                <span>Linux</span>
-              </a>
-            </Link>
+                >
+                  <WindowsSVG
+                    className={classNames(
+                      downloadSVGClasses,
+                      'w-4 h-4',
+                      'md:w-6 md:h-6'
+                    )}
+                    title="Windows logo"
+                  />
+                  <span>Windows</span>
+                </a>
+              </Link>
+              <Link href="/linux">
+                <a className={downloadLinkClasses}>
+                  <LinuxSVG
+                    className={classNames(
+                      downloadSVGClasses,
+                      'w-5 h-5',
+                      'md:w-7 md:h-7'
+                    )}
+                    title="Linux logo"
+                  />
+                  <span>Linux</span>
+                </a>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
