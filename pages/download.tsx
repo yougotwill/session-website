@@ -16,20 +16,28 @@ export default function Download(): ReactElement {
     'md:text-3xl',
     'lg:py-2'
   );
+  const panelClasses = classNames(
+    'mx-auto text-center',
+    'lg:w-1/2 lg:flex lg:flex-col'
+  );
+  const subtitleClasses = classNames('text-2xl font-light', 'lg:text-3xl');
+  const linkContainerClasses = classNames(
+    'flex flex-wrap justify-center items-center pb-12'
+  );
+  const linkBorderClasses = classNames('lg:pr-4 lg:border-r lg:border-dashed');
   const downloadSVGClasses = 'inline-block mx-3 -mt-2 fill-current';
   return (
     <Layout title="Download - Session Private Messenger">
       <section className={classNames('lg:flex lg:mb-4 lg:min-h-screen')}>
         <div
           className={classNames(
-            'bg-primary text-gray-dark mx-auto text-center',
-            'lg:w-1/2 lg:mr-2 lg:flex lg:flex-col lg:items-end'
+            panelClasses,
+            'bg-primary text-gray-dark',
+            'lg:mr-2 lg:items-end'
           )}
         >
           <div className={classNames('lg:w-1/2 lg:mr-8')}>
-            <p
-              className={classNames('text-2xl font-light pt-20', 'lg:text-3xl')}
-            >
+            <p className={classNames(subtitleClasses, 'pt-20')}>
               Download Session for
             </p>
             <h2 className={classNames('text-5xl font-semibold my-4')}>
@@ -44,16 +52,13 @@ export default function Download(): ReactElement {
                 layout="responsive"
               />
             </div>
-            <div
-              className={classNames(
-                'flex flex-wrap justify-center items-center pb-12'
-              )}
-            >
+            <div className={classNames(linkContainerClasses)}>
               <Link href="/android">
                 <a
                   className={classNames(
                     downloadLinkClasses,
-                    'lg:pr-4 lg:border-r lg:border-gray-dark lg:border-dashed'
+                    linkBorderClasses,
+                    'lg:border-gray-dark'
                   )}
                 >
                   <AndroidSVG
@@ -71,7 +76,8 @@ export default function Download(): ReactElement {
                 <a
                   className={classNames(
                     downloadLinkClasses,
-                    'lg:pr-4 lg:border-r lg:border-gray-dark lg:border-dashed'
+                    linkBorderClasses,
+                    'lg:border-gray-dark'
                   )}
                 >
                   <AndroidSVG
@@ -103,8 +109,9 @@ export default function Download(): ReactElement {
         </div>
         <div
           className={classNames(
-            'bg-gray-dark text-white mx-auto text-center',
-            'lg:w-1/2 lg:ml-2 lg:flex lg:flex-col lg:items-start'
+            panelClasses,
+            'bg-gray-dark text-white',
+            'lg:ml-2 lg:items-start'
           )}
         >
           <div
@@ -112,12 +119,7 @@ export default function Download(): ReactElement {
               'lg:w-1/2 lg:ml-8 lg:h-full lg:flex lg:flex-col lg:justify-between'
             )}
           >
-            <p
-              className={classNames(
-                'text-2xl font-light pt-32',
-                'lg:pt-20 lg:text-3xl'
-              )}
-            >
+            <p className={classNames(subtitleClasses, 'pt-32', 'lg:pt-20')}>
               Download Session for
             </p>
             <h2 className={classNames('text-5xl font-semibold mt-4 mb-6')}>
@@ -138,17 +140,13 @@ export default function Download(): ReactElement {
                 layout="responsive"
               />
             </div>
-            <div
-              className={classNames(
-                'flex flex-wrap justify-center items-center pb-12',
-                'md:pb-32'
-              )}
-            >
+            <div className={classNames(linkContainerClasses, 'md:pb-32')}>
               <Link href="/mac">
                 <a
                   className={classNames(
                     downloadLinkClasses,
-                    'lg:pr-4 lg:border-r lg:border-white lg:border-dashed'
+                    linkBorderClasses,
+                    'lg:border-white'
                   )}
                 >
                   <AppleSVG
@@ -166,7 +164,8 @@ export default function Download(): ReactElement {
                 <a
                   className={classNames(
                     downloadLinkClasses,
-                    'lg:pr-4 lg:border-r lg:border-white lg:border-dashed'
+                    linkBorderClasses,
+                    'lg:border-white'
                   )}
                 >
                   <WindowsSVG
