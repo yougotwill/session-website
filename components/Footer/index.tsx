@@ -64,7 +64,7 @@ export default function Footer(): ReactElement {
               )}
             >
               <h3 className={headingClasses}>About</h3>
-              <Link href="/assets/downloads/Session-Whitepaper.pdf">
+              <Link href="/whitepaper">
                 <a className={linkClasses} target="_blank">
                   Whitepaper
                 </a>

@@ -78,7 +78,7 @@ export default function Nav(): ReactElement {
             isExpanded ? 'translate-y-0' : '-translate-y-full lg:translate-y-0'
           )}
         >
-          <Link href="/assets/downloads/Session-Whitepaper.pdf">
+          <Link href="/whitepaper">
             <a className={navLinkClasses} target="_blank">
               whitepaper
             </a>
