@@ -34,7 +34,7 @@ export default function Hero(): ReactElement {
             'lg:hidden'
           )}
         >
-          <Link href="https://getsession.org/android">
+          <Link href="/android">
             <a className={downloadLinkClasses}>
               <AndroidSVG
                 className={classNames(downloadSVGClasses, 'w-8 h-8')}
@@ -49,10 +49,10 @@ export default function Hero(): ReactElement {
                 className={classNames(downloadSVGClasses, 'w-8 h-8')}
                 title="Android logo"
               />
-              <span>Apk</span>
+              <span>APK</span>
             </a>
           </Link>
-          <Link href="https://getsession.org/iphone">
+          <Link href="/iphone">
             <a className={downloadLinkClasses}>
               <AppleSVG
                 className={classNames(downloadSVGClasses, 'w-6 h-6')}
@@ -61,7 +61,7 @@ export default function Hero(): ReactElement {
               <span>iPhone</span>
             </a>
           </Link>
-          <Link href="https://getsession.org/download">
+          <Link href="/download">
             <a className={downloadLinkClasses}>
               <DesktopSVG
                 className={classNames(downloadSVGClasses, 'w-7 h-7')}

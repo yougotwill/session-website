@@ -8,7 +8,7 @@
   "Class Definition": {
     "scope": "typescriptreact",
     "prefix": ["cl", "class"],
-    "body": ["className={classNames('$1')}"],
+    "body": ["className={classNames('$0')}"],
     "description": "Define classes using classnames package"
   }
 }
