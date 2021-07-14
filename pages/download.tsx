@@ -40,7 +40,7 @@ export default function Download(): ReactElement {
           )}
         >
           <div className={classNames('lg:w-1/2 lg:mr-8')}>
-            <p className={classNames(subtitleClasses, 'pt-20')}>
+            <p className={classNames(subtitleClasses, 'pt-8')}>
               Download Session for
             </p>
             <h2 className={classNames('text-5xl font-semibold my-4')}>
@@ -141,7 +141,7 @@ export default function Download(): ReactElement {
               'lg:w-1/2 lg:ml-8 lg:h-full lg:flex lg:flex-col lg:justify-between'
             )}
           >
-            <p className={classNames(subtitleClasses, 'pt-32', 'lg:pt-20')}>
+            <p className={classNames(subtitleClasses, 'pt-32', 'lg:pt-8')}>
               Download Session for
             </p>
             <h2 className={classNames('text-5xl font-semibold mt-4 mb-6')}>
