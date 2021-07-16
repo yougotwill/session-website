@@ -69,6 +69,7 @@ export default function OpenGroup(): ReactElement {
               alt="session open group qr code"
               width="208px"
               height="208px"
+              priority={true}
             />
           </div>
           <p className={classNames('text-gray-dark')}>

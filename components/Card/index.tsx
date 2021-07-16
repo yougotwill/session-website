@@ -55,6 +55,7 @@ export default function Card(props: Props): ReactElement {
             width={imageWidth}
             height={imageHeight}
             layout="responsive"
+            priority={true}
           />
         </div>
       );
