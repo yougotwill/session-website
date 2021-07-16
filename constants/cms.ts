@@ -1,0 +1,6 @@
+const CMS = {
+  BLOG_RESULTS_PER_PAGE: 13,
+  BLOG_RESULTS_PER_PAGE_TAGGED: 12,
+};
+
+export default CMS;
