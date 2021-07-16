@@ -7,6 +7,7 @@ interface Props {
   size?: 'small' | 'medium' | 'large';
   shape?: 'round' | 'semiround' | 'square';
   fontWeight?: 'light' | 'semibold';
+  animate?: boolean;
   hoverEffect?: boolean;
   classes?: string;
   children?: string;
@@ -20,6 +21,7 @@ export default function Button(props: Props): ReactElement {
     fontWeight = 'semibold',
     size = 'medium',
     shape = 'round',
+    animate = false,
     hoverEffect = true,
     classes,
     children,
@@ -27,7 +29,7 @@ export default function Button(props: Props): ReactElement {
   } = props;
   const btnClasses = classNames(
     `text-${textColor} bg-${bgColor}`,
-    hoverEffect ? 'transition-colors duration-300' : '',
+    hoverEffect || animate ? 'transition-colors duration-300' : '',
     hoverEffect ? `hover:bg-black hover:text-${bgColor}` : ''
   );
   const sizeClasses = [
