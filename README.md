@@ -49,6 +49,13 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
   )}></div>
 ```
 
+### Gotchas
+
+- We can't use template literals with classes if we want to purge the CSS.
+  - https://github.com/tailwindlabs/tailwindcss/issues/2209#issuecomment-677855297
+  - https://tailwindcss.com/docs/optimizing-for-production#writing-purgeable-html
+  - I.e. `hover:bg-black hover:text-${bgColor}` won't work in production.
+
 ## Attributions
 
 ‘Android robot head’ by Google available at https://commons.wikimedia.org/wiki/File:Android_robot_head.svg under a Creative Commons Attribution Generic 2.5. Full terms at https://creativecommons.org/licenses/by/2.5/deed.en.

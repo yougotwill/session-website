@@ -1,5 +1,9 @@
 module.exports = {
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  purge: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+    './utils/**/*.{js,ts,jsx,tsx}',
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
@@ -33,7 +37,7 @@ module.exports = {
     extend: {
       animation: ['hover'],
       backgroundColor: ['selection'],
-      display: ['hover', 'group-hover'],
+      display: ['group-hover', 'hover'],
       transitionDuration: ['group-hover'],
     },
   },
