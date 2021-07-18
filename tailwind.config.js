@@ -31,6 +31,9 @@ module.exports = {
           '50%': { transform: 'scale(0.8)' },
         },
       },
+      transitionProperty: {
+        height: 'height',
+      },
     },
   },
   variants: {
