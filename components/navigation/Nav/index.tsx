@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'classnames';
 
-import Button from '@components/Button';
+import { Button } from '@components/ui';
 import MenuSVG from '@assets/svgs/hamburger.svg';
 import CloseSVG from '@assets/svgs/close.svg';
 

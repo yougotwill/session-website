@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
 import classNames from 'classnames';
 
-import Headline from '@components/Headline';
-import Card from '@components/Card';
+import { Headline } from '@components/ui';
+import { BenefitsCard } from '@components/cards';
 
 export default function Benefits(): ReactElement {
   const cardClasses = classNames('w-1/2 mb-5', 'lg:w-full lg:max-w-sm lg:px-8');
@@ -28,7 +28,7 @@ export default function Benefits(): ReactElement {
             'lg:max-w-screen-xl'
           )}
         >
-          <Card
+          <BenefitsCard
             title="No Phone Numbers"
             description={[
               'Session accounts are completely anonymous.',
@@ -43,7 +43,7 @@ export default function Benefits(): ReactElement {
             imageHeight="152px"
             classes={classNames(cardClasses, 'lg:mb-32')}
           />
-          <Card
+          <BenefitsCard
             title="No Data Breaches"
             description={[
               'Session doesn’t collect data,',
@@ -58,7 +58,7 @@ export default function Benefits(): ReactElement {
             imageHeight="155px"
             classes={classNames(cardClasses, 'lg:mb-32')}
           />
-          <Card
+          <BenefitsCard
             title="No Footprints"
             description={[
               'Send messages through our onion',
@@ -73,7 +73,7 @@ export default function Benefits(): ReactElement {
             imageHeight="159px"
             classes={classNames(cardClasses, 'lg:mb-32')}
           />
-          <Card
+          <BenefitsCard
             title="Open Source"
             description={[
               'Session’s code has nothing to hide. Anyone can',
@@ -88,7 +88,7 @@ export default function Benefits(): ReactElement {
             imageHeight="159px"
             classes={classNames(cardClasses, 'lg:mb-24')}
           />
-          <Card
+          <BenefitsCard
             title="Censorship Resistant"
             description={[
               'With no central point of failure,',

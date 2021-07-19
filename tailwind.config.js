@@ -20,9 +20,10 @@ module.exports = {
       colors: {
         primary: { DEFAULT: '#00f782', dark: '#00b35f' },
         gray: {
+          lightest: '#ADADAD',
           lighter: '#7A7A7A',
           light: '#55595c',
-          DEFAULT: '#3a3a3a',
+          DEFAULT: '#3A3A3A',
           dark: '#333132',
         },
       },

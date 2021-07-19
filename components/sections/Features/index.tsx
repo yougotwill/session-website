@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import Image from 'next/image';
 import classNames from 'classnames';
 
-import Headline from '@components/Headline';
+import { Headline } from '@components/ui';
 
 export default function Features(): ReactElement {
   const headingClasses = classNames(

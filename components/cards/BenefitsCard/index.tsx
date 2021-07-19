@@ -13,7 +13,7 @@ interface Props {
   classes?: string;
 }
 
-export default function Card(props: Props): ReactElement {
+export default function BenefitsCard(props: Props): ReactElement {
   const {
     title,
     description,

@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import classNames from 'classnames';
 import redact from '@utils/redact';
 
-import Headline from '@components/Headline';
+import { Headline } from '@components/ui';
 
 export default function About(): ReactElement {
   const redactedClasses = redact({

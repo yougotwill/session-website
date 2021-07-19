@@ -2,9 +2,8 @@ import { ReactElement, useState } from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';
 
-import Layout from '@components/Layout';
-import Headline from '@components/Headline';
-import Button from '@components/Button';
+import Layout from '@components/layout';
+import { Button, Headline } from '@components/ui';
 
 export default function OpenGroup(): ReactElement {
   const openGroupURL =

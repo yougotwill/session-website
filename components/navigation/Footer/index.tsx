@@ -8,7 +8,7 @@ import FacebookSVG from '@assets/svgs/facebook.svg';
 import TwitterSVG from '@assets/svgs/twitter.svg';
 import GithubSVG from '@assets/svgs/github.svg';
 
-import GroupNotice from '@components/GroupNotice';
+import { GroupNotice } from '@components/sections';
 
 export default function Footer(): ReactElement {
   const redactedClasses = redact({
