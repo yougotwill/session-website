@@ -5,9 +5,8 @@ import classNames from 'classnames';
 import { fetchBlogEntries } from '@/services/cms';
 import { IPost } from '@/types/cms';
 
-import Layout from '@/components/layout';
+import { Headline, Layout } from '@/components/ui';
 import { ArticleCard } from '@/components/cards';
-import { Headline } from '@/components/ui';
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext

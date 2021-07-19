@@ -1,4 +1,4 @@
-import Layout from '@/components/layout';
+import { Layout } from '@/components/ui';
 import { Hero, About, Benefits, Features } from '@/components/sections';
 
 export default function Home() {

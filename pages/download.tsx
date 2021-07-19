@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'classnames';
 
-import Layout from '@/components/layout';
+import { Layout } from '@/components/ui';
 
 import AndroidSVG from '@/assets/svgs/android_robot_head.svg';
 import AppleSVG from '@/assets/svgs/apple.svg';
