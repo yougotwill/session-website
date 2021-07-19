@@ -40,15 +40,17 @@ export default function ArticleCard(props: Props): ReactElement {
           />
         </div>
       )}
-      <h3 className={classNames('text-2xl font-semibold mb-3')}>{title}</h3>
-      <p
-        className={classNames(
-          'text-gray-lightest text-xs font-extralight mb-1'
-        )}
-      >
-        {publishedDate}
-      </p>
-      <p className={classNames('text-sm font-light')}>{description}</p>
+      <div className={classNames('cursor-pointer')}>
+        <h3 className={classNames('text-2xl font-semibold mb-3')}>{title}</h3>
+        <p
+          className={classNames(
+            'text-gray-lightest text-xs font-extralight mb-1'
+          )}
+        >
+          {publishedDate}
+        </p>
+        <p className={classNames('text-sm font-light')}>{description}</p>
+      </div>
     </div>
   );
 }

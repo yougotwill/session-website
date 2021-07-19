@@ -27,16 +27,15 @@ export default function Blog(props: Props): ReactElement {
   const { posts } = props;
   const cardClasses = classNames(
     'md:w-1/2 mb-5',
-    'lg:w-full lg:max-w-sm lg:px-2'
+    'lg:w-1/3 lg:max-w-sm lg:px-3'
   );
   return (
     <Layout title="Blog - Session Private Messenger">
-      <section className={classNames('flex flex-wrap mt-12')}>
+      <section>
         <div
           className={classNames(
-            'flex flex-wrap justify-center items-center max-w-screen-md',
-            'md:mx-auto',
-            'lg:max-w-screen-xl'
+            'container flex flex-wrap justify-center items-center max-w-screen-md mt-12 mx-auto',
+            'lg:px-24 lg:max-w-screen-xl'
           )}
         >
           {posts?.map((post) => {
