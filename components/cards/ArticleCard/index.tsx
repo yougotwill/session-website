@@ -32,41 +32,42 @@ export default function ArticleCard(props: Props): ReactElement {
       )}
     >
       {featureImage?.imageUrl && (
-        <div
-          className={classNames(
-            'relative overflow-hidden w-full h-60 md:px-16',
-            'lg:px-20',
-            featured && 'md:w-1/2 md:mr-4 lg:mr-3 lg:w-3/5 lg:h-96',
-            !featured && 'rounded-lg'
-          )}
-        >
-          <Image
-            src={featureImage?.imageUrl}
-            alt={featureImage?.description ?? title}
-            layout="fill"
+        <Link href={slug}>
+          <div
             className={classNames(
-              'object-cover cursor-pointer rounded-lg',
-              !featured &&
-                'transition transform scale-105 duration-300 hover:filter hover:blur-xs'
+              'relative overflow-hidden w-full h-60 md:px-16',
+              'lg:px-20',
+              featured && 'md:w-1/2 md:mr-4 lg:mr-3 lg:w-3/5 lg:h-96',
+              !featured && 'rounded-lg'
             )}
-          />
-        </div>
+          >
+            <Image
+              src={featureImage?.imageUrl}
+              alt={featureImage?.description ?? title}
+              layout="fill"
+              className={classNames(
+                'object-cover cursor-pointer rounded-lg',
+                !featured &&
+                  'transition transform scale-105 duration-300 hover:filter hover:blur-xs'
+              )}
+            />
+          </div>
+        </Link>
       )}
       <div
-        className={classNames(
-          'cursor-pointer',
-          featured && 'md:w-1/2 md:ml-4 lg:ml-3 lg:w-2/5'
-        )}
+        className={classNames(featured && 'md:w-1/2 md:ml-4 lg:ml-3 lg:w-2/5')}
       >
-        <h3
-          className={classNames(
-            'text-2xl font-semibold mb-3',
-            featured &&
-              'font-bold text-3xl mt-8 md:text-4xl md:-mt-1 lg:leading-tight'
-          )}
-        >
-          {title}
-        </h3>
+        <Link href={slug}>
+          <h3
+            className={classNames(
+              'cursor-pointer text-2xl font-semibold mb-3',
+              featured &&
+                'font-bold text-3xl mt-8 md:text-4xl md:-mt-1 lg:leading-tight'
+            )}
+          >
+            {title}
+          </h3>
+        </Link>
         <p
           className={classNames(
             'text-gray-lightest text-xs font-helvetica font-extralight'
