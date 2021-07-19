@@ -1,10 +1,12 @@
 import { ReactElement } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import classNames from 'classnames';
 
 import { IPost } from '@/types/cms';
 
 interface Props extends IPost {
+  featured?: boolean;
   classes?: string;
 }
 
@@ -17,6 +19,7 @@ export default function ArticleCard(props: Props): ReactElement {
     publishedDate,
     author,
     slug,
+    featured,
     classes,
   } = props;
   // parent container must have 'flex' class
@@ -30,26 +33,61 @@ export default function ArticleCard(props: Props): ReactElement {
     >
       {featureImage?.imageUrl && (
         <div
-          className={classNames('relative w-full h-60 md:px-16', 'lg:px-20')}
+          className={classNames(
+            'relative w-full h-60 md:px-16',
+            'lg:px-20',
+            featured && 'md:w-1/2 md:mr-4 lg:mr-3 lg:w-3/5 lg:h-96'
+          )}
         >
           <Image
             src={featureImage?.imageUrl}
             alt={featureImage?.description ?? title}
             layout="fill"
-            className="object-cover rounded-lg cursor-pointer"
+            className={classNames('object-cover rounded-lg cursor-pointer')}
           />
         </div>
       )}
-      <div className={classNames('cursor-pointer')}>
-        <h3 className={classNames('text-2xl font-semibold mb-3')}>{title}</h3>
+      <div
+        className={classNames(
+          'cursor-pointer',
+          featured && 'md:w-1/2 md:ml-4 lg:ml-3 lg:w-2/5'
+        )}
+      >
+        <h3
+          className={classNames(
+            'text-2xl font-semibold mb-3',
+            featured &&
+              'font-bold text-3xl mt-8 md:text-4xl md:-mt-1 lg:leading-tight'
+          )}
+        >
+          {title}
+        </h3>
         <p
           className={classNames(
-            'text-gray-lightest text-xs font-extralight mb-1'
+            'text-gray-lightest text-xs font-helvetica font-extralight'
           )}
         >
           {publishedDate}
         </p>
-        <p className={classNames('text-sm font-light')}>{description}</p>
+        <p
+          className={classNames(
+            'text-sm font-light',
+            featured && 'md:text-base md:leading-normal'
+          )}
+        >
+          {description}
+        </p>
+        {featured && (
+          <Link href={slug}>
+            <a
+              className={classNames(
+                'block text-primary-dark text-xs font-extralight mt-4'
+              )}
+            >
+              Read More »
+            </a>
+          </Link>
+        )}
       </div>
     </div>
   );

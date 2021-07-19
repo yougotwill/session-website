@@ -7,6 +7,7 @@ import { IPost } from '@/types/cms';
 
 import Layout from '@/components/layout';
 import { ArticleCard } from '@/components/cards';
+import { Headline } from '@/components/ui';
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
@@ -25,6 +26,8 @@ interface Props {
 
 export default function Blog(props: Props): ReactElement {
   const { posts } = props;
+  const [featuredPost, ...otherPosts] = posts;
+  const featuredClasses = classNames('mb-5', 'md:flex');
   const cardClasses = classNames(
     'md:w-1/2 mb-5',
     'lg:w-1/3 lg:max-w-sm lg:px-3'
@@ -34,11 +37,36 @@ export default function Blog(props: Props): ReactElement {
       <section>
         <div
           className={classNames(
-            'container flex flex-wrap justify-center items-center max-w-screen-md mt-12 mx-auto',
+            'flex justify-center items-center mx-auto mt-12 mb-8',
+            'md:mt-24 md:mb-0',
+            'lg:max-w-screen-xl lg:mt-16 lg:px-24'
+          )}
+        >
+          <ArticleCard
+            featured={true}
+            classes={classNames(featuredClasses)}
+            key={featuredPost.id}
+            {...featuredPost}
+          />
+        </div>
+        <Headline
+          color={'gray-dark'}
+          classes={classNames(
+            'font-helvetica font-light text-md mx-6 mb-10',
+            'md:mx-12 md:mt-8 md:mb-10',
+            'lg:mx-32 lg:my-12'
+          )}
+        >
+          More posts
+        </Headline>
+        <div
+          className={classNames(
+            'container flex flex-wrap justify-center items-center max-w-screen-md mx-auto',
+            'md:justify-start',
             'lg:px-24 lg:max-w-screen-xl'
           )}
         >
-          {posts?.map((post) => {
+          {otherPosts?.map((post) => {
             return (
               <ArticleCard
                 classes={classNames(cardClasses)}
