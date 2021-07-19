@@ -66,7 +66,7 @@ export default function Nav(): ReactElement {
       </div>
       <div
         className={classNames(
-          'fixed left-0 right-0 w-screen overflow-hidden top-20',
+          'absolute left-0 right-0 w-screen overflow-hidden top-20',
           'lg:relative lg:overflow-visible lg:w-2/3 lg:top-0'
         )}
       >
@@ -74,8 +74,10 @@ export default function Nav(): ReactElement {
           className={classNames(
             'flex flex-col items-start justify-center text-sm font-light text-primary',
             'lg:text-base lg:flex-row lg:items-center lg:justify-end lg:font-semibold lg:text-gray',
-            'transform transition-transform duration-300',
-            isExpanded ? 'translate-y-0' : '-translate-y-full lg:translate-y-0'
+            'transform transition-all duration-300',
+            isExpanded
+              ? 'h-full translate-y-0'
+              : 'h-0 -translate-y-full lg:translate-y-0'
           )}
         >
           <Link href="/whitepaper">

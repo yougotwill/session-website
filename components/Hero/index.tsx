@@ -88,6 +88,7 @@ export default function Hero(): ReactElement {
           width="300px"
           height="630px"
           layout="responsive"
+          priority={true}
         />
       </div>
       <div
@@ -107,6 +108,7 @@ export default function Hero(): ReactElement {
             alt="mobile app screenshot landing page"
             width="280px"
             height="590px"
+            priority={true}
           />
         </div>
         <div className={classNames('-ml-8 mt-16')}>

@@ -1,5 +1,9 @@
 module.exports = {
-  // purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  purge: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+    './utils/**/*.{js,ts,jsx,tsx}',
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
@@ -27,13 +31,16 @@ module.exports = {
           '50%': { transform: 'scale(0.8)' },
         },
       },
+      transitionProperty: {
+        height: 'height',
+      },
     },
   },
   variants: {
     extend: {
       animation: ['hover'],
       backgroundColor: ['selection'],
-      display: ['hover', 'group-hover'],
+      display: ['group-hover', 'hover'],
       transitionDuration: ['group-hover'],
     },
   },

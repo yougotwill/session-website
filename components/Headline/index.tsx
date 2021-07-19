@@ -10,12 +10,21 @@ interface Props {
 
 export default function Headline(props: Props): ReactElement {
   const { color = 'primary', showLine = true, classes, children } = props;
+  const colorClasses = [
+    color === 'primary' && 'text-primary',
+    color === 'gray-dark' && 'text-gray-dark',
+  ];
+  const borderClasses = [
+    color === 'primary' && 'border-primary',
+    color === 'gray-dark' && 'border-gray-dark',
+  ];
   return (
-    <div className={classNames(`flex mr-4 text-${color}`, classes)}>
+    <div className={classNames(`flex mr-4`, colorClasses, classes)}>
       {showLine && (
         <span
           className={classNames(
-            `w-36 border-${color} border-t mt-2 mr-5 -ml-3`,
+            borderClasses,
+            `border-t w-36 mt-2 mr-5 -ml-3`,
             'md:-ml-9',
             'lg:-ml-28'
           )}

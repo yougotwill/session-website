@@ -10,8 +10,6 @@ const fetchLatest = async (repo) => {
   return data['tag_name'].split('v')[1];
 };
 
-const desktopVersion = fetchLatest('session-desktop');
-
 const config = {
   // .env.local doesn't load itself
   env: {
@@ -20,6 +18,7 @@ const config = {
   },
   target: 'serverless',
   async redirects() {
+    const desktopVersion = await fetchLatest('session-desktop');
     return [
       {
         source: '/android',

@@ -41,13 +41,20 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ```jsx
   <div className={classNames(
     "general classes here - colors, fonts, padding, margin etc",
-    "repsonsive class changes should have it's own string md: lg: etc."
+    "responsive class changes should have it's own string md: lg: etc."
     "placeholder classes",
     "animations, transforms, effect",
     "pseudo classes i.e hover, focus, active, etc.",
     "toggling classes i.e. NavMenu isExpanded"
   )}></div>
 ```
+
+### Gotchas
+
+- We can't use template literals with classes if we want to purge the CSS.
+  - https://github.com/tailwindlabs/tailwindcss/issues/2209#issuecomment-677855297
+  - https://tailwindcss.com/docs/optimizing-for-production#writing-purgeable-html
+  - I.e. `hover:bg-black hover:text-${bgColor}` won't work in production.
 
 ## Attributions
 
