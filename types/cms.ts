@@ -1,3 +1,8 @@
+export interface IFetchBlogEntriesReturn {
+  posts: Array<IPost>;
+  total: number;
+}
+
 export type IFigureImage = {
   title: string | null;
   description: string | null;

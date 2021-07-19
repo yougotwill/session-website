@@ -2,13 +2,13 @@ import { ReactElement } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'classnames';
-import redact from '@utils/redact';
+import redact from '@/utils/redact';
 
-import FacebookSVG from '@assets/svgs/facebook.svg';
-import TwitterSVG from '@assets/svgs/twitter.svg';
-import GithubSVG from '@assets/svgs/github.svg';
+import FacebookSVG from '@/assets/svgs/facebook.svg';
+import TwitterSVG from '@/assets/svgs/twitter.svg';
+import GithubSVG from '@/assets/svgs/github.svg';
 
-import { GroupNotice } from '@components/sections';
+import { GroupNotice } from '@/components/sections';
 
 export default function Footer(): ReactElement {
   const redactedClasses = redact({

@@ -3,9 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'classnames';
 
-import { Button } from '@components/ui';
-import MenuSVG from '@assets/svgs/hamburger.svg';
-import CloseSVG from '@assets/svgs/close.svg';
+import { Button } from '@/components/ui';
+import MenuSVG from '@/assets/svgs/hamburger.svg';
+import CloseSVG from '@/assets/svgs/close.svg';
 
 export default function Nav(): ReactElement {
   const [isExpanded, setIsExpanded] = useState(false);

@@ -2,8 +2,8 @@ import { ReactElement } from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
 
-import Layout from '@components/layout';
-import { Headline } from '@components/ui';
+import Layout from '@/components/layout';
+import { Headline } from '@/components/ui';
 
 export default function PrivacyPolicy(): ReactElement {
   const headingClasses = classNames('text-gray text-2xl font-medium mt-6');

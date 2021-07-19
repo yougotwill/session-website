@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
 import classNames from 'classnames';
 
-import { Headline } from '@components/ui';
-import { BenefitsCard } from '@components/cards';
+import { Headline } from '@/components/ui';
+import { BenefitsCard } from '@/components/cards';
 
 export default function Benefits(): ReactElement {
   const cardClasses = classNames('w-1/2 mb-5', 'lg:w-full lg:max-w-sm lg:px-8');

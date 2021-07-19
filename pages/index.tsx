@@ -1,5 +1,5 @@
-import Layout from '@components/layout';
-import { Hero, About, Benefits, Features } from '@components/sections';
+import Layout from '@/components/layout';
+import { Hero, About, Benefits, Features } from '@/components/sections';
 
 export default function Home() {
   return (

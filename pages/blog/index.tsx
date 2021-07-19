@@ -1,12 +1,30 @@
 import { ReactElement } from 'react';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import classNames from 'classnames';
 
-import { fetchBlogEntries } from '@services/cms';
+import { fetchBlogEntries } from '@/services/cms';
+import { IPost } from '@/types/cms';
 
-import Layout from '@components/layout';
-import { ArticleCard } from '@components/cards';
+import Layout from '@/components/layout';
+import { ArticleCard } from '@/components/cards';
 
-export default function Blog(): ReactElement {
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const { posts, total: totalPosts } = await fetchBlogEntries();
+  return {
+    props: {
+      posts,
+    },
+  };
+};
+
+interface Props {
+  posts: IPost[];
+}
+
+export default function Blog(props: Props): ReactElement {
+  const { posts } = props;
   const cardClasses = classNames(
     'md:w-1/2 mb-5',
     'lg:w-full lg:max-w-sm lg:px-2'
@@ -21,66 +39,15 @@ export default function Blog(): ReactElement {
             'lg:max-w-screen-xl'
           )}
         >
-          <ArticleCard
-            title="Privacy propaganda: The war on encryption"
-            date={'June 23, 2021'}
-            description={
-              'Encryption is vital to defending digital privacy, but it’s being painted as the villain of the tech world. Push back against the anti-encryption agenda.'
-            }
-            image={'/assets/images/blog.png'}
-            imageAlt="blog test image"
-            classes={classNames(cardClasses)}
-          />
-          <ArticleCard
-            title="Privacy propaganda: The war on encryption"
-            date={'June 23, 2021'}
-            description={
-              'Encryption is vital to defending digital privacy, but it’s being painted as the villain of the tech world. Push back against the anti-encryption agenda.'
-            }
-            image={'/assets/images/blog.png'}
-            imageAlt="blog test image"
-            classes={classNames(cardClasses)}
-          />
-          <ArticleCard
-            title="Privacy propaganda: The war on encryption"
-            date={'June 23, 2021'}
-            description={
-              'Encryption is vital to defending digital privacy, but it’s being painted as the villain of the tech world. Push back against the anti-encryption agenda.'
-            }
-            image={'/assets/images/blog.png'}
-            imageAlt="blog test image"
-            classes={classNames(cardClasses)}
-          />
-          <ArticleCard
-            title="Privacy propaganda: The war on encryption"
-            date={'June 23, 2021'}
-            description={
-              'Encryption is vital to defending digital privacy, but it’s being painted as the villain of the tech world. Push back against the anti-encryption agenda.'
-            }
-            image={'/assets/images/blog.png'}
-            imageAlt="blog test image"
-            classes={classNames(cardClasses)}
-          />
-          <ArticleCard
-            title="Privacy propaganda: The war on encryption"
-            date={'June 23, 2021'}
-            description={
-              'Encryption is vital to defending digital privacy, but it’s being painted as the villain of the tech world. Push back against the anti-encryption agenda.'
-            }
-            image={'/assets/images/blog.png'}
-            imageAlt="blog test image"
-            classes={classNames(cardClasses)}
-          />
-          <ArticleCard
-            title="Privacy propaganda: The war on encryption"
-            date={'June 23, 2021'}
-            description={
-              'Encryption is vital to defending digital privacy, but it’s being painted as the villain of the tech world. Push back against the anti-encryption agenda.'
-            }
-            image={'/assets/images/blog.png'}
-            imageAlt="blog test image"
-            classes={classNames(cardClasses)}
-          />
+          {posts?.map((post) => {
+            return (
+              <ArticleCard
+                classes={classNames(cardClasses)}
+                key={post.id}
+                {...post}
+              />
+            );
+          })}
         </div>
       </section>
     </Layout>

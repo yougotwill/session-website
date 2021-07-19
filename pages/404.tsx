@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import Layout from '@components/layout';
+import Layout from '@/components/layout';
 
 export default function Custom404() {
   return (

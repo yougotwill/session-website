@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import Image from 'next/image';
 import classNames from 'classnames';
-import redact from '@utils/redact';
+import redact from '@/utils/redact';
 
 interface Props {
   title: string;

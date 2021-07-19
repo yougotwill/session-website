@@ -1,8 +1,8 @@
 import { ReactElement, ReactNode } from 'react';
 import Head from 'next/head';
 
-import { Nav, Footer } from '@components/navigation';
-import { EmailSignup } from '@components/sections';
+import { Nav, Footer } from '@/components/navigation';
+import { EmailSignup } from '@/components/sections';
 
 interface Props {
   title: string;

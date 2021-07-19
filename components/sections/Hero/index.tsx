@@ -3,10 +3,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import classNames from 'classnames';
 
-import { Button } from '@components/ui';
-import AndroidSVG from '@assets/svgs/android_robot_head.svg';
-import AppleSVG from '@assets/svgs/apple.svg';
-import DesktopSVG from '@assets/svgs/desktop.svg';
+import { Button } from '@/components/ui';
+import AndroidSVG from '@/assets/svgs/android_robot_head.svg';
+import AppleSVG from '@/assets/svgs/apple.svg';
+import DesktopSVG from '@/assets/svgs/desktop.svg';
 
 export default function Hero(): ReactElement {
   const headingClasses = classNames(

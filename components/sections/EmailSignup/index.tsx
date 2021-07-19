@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
 import classNames from 'classnames';
 
-import { Button } from '@components/ui';
-import { GroupNotice } from '@components/sections';
+import { Button } from '@/components/ui';
+import { GroupNotice } from '@/components/sections';
 
 export default function EmailSignup(): ReactElement {
   return (

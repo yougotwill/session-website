@@ -3,12 +3,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'classnames';
 
-import Layout from '@components/layout';
+import Layout from '@/components/layout';
 
-import AndroidSVG from '@assets/svgs/android_robot_head.svg';
-import AppleSVG from '@assets/svgs/apple.svg';
-import LinuxSVG from '@assets/svgs/linux.svg';
-import WindowsSVG from '@assets/svgs/windows.svg';
+import AndroidSVG from '@/assets/svgs/android_robot_head.svg';
+import AppleSVG from '@/assets/svgs/apple.svg';
+import LinuxSVG from '@/assets/svgs/linux.svg';
+import WindowsSVG from '@/assets/svgs/windows.svg';
 
 export default function Download(): ReactElement {
   const panelClasses = classNames(
