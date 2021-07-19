@@ -61,7 +61,7 @@ export default function Blog(props: Props): ReactElement {
         </Headline>
         <div
           className={classNames(
-            'container flex flex-wrap justify-center items-center max-w-screen-md mx-auto',
+            'container flex flex-wrap justify-center max-w-screen-md mx-auto',
             'md:justify-start',
             'lg:px-24 lg:max-w-screen-xl'
           )}

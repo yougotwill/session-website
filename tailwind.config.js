@@ -14,6 +14,9 @@ module.exports = {
       animation: {
         push: 'push 0.3s linear 1',
       },
+      blur: {
+        xs: '2px',
+      },
       borderWidth: {
         3: '3px',
       },
@@ -41,7 +44,9 @@ module.exports = {
     extend: {
       animation: ['hover'],
       backgroundColor: ['selection'],
+      blur: ['hover'],
       display: ['group-hover', 'hover'],
+      filter: ['hover'],
       transitionDuration: ['group-hover'],
     },
   },

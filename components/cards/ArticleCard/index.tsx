@@ -34,16 +34,21 @@ export default function ArticleCard(props: Props): ReactElement {
       {featureImage?.imageUrl && (
         <div
           className={classNames(
-            'relative w-full h-60 md:px-16',
+            'relative overflow-hidden w-full h-60 md:px-16',
             'lg:px-20',
-            featured && 'md:w-1/2 md:mr-4 lg:mr-3 lg:w-3/5 lg:h-96'
+            featured && 'md:w-1/2 md:mr-4 lg:mr-3 lg:w-3/5 lg:h-96',
+            !featured && 'rounded-lg'
           )}
         >
           <Image
             src={featureImage?.imageUrl}
             alt={featureImage?.description ?? title}
             layout="fill"
-            className={classNames('object-cover rounded-lg cursor-pointer')}
+            className={classNames(
+              'object-cover cursor-pointer rounded-lg',
+              !featured &&
+                'transition transform scale-105 duration-300 hover:filter hover:blur-xs'
+            )}
           />
         </div>
       )}
