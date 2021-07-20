@@ -5,18 +5,20 @@ import { IPost } from '@/types/cms';
 import { fetchBlogEntries, fetchBlogEntryBySlug } from '@/services/cms';
 
 import { Layout } from '@/components/ui';
-import Article from '@/components/Article';
+import { Post } from '@/components/posts';
 
 interface Props {
   post: IPost;
+  otherPosts: IPost[];
 }
 
-export default function Post(props: Props): ReactElement {
+export default function BlogSlug(props: Props): ReactElement {
   const { post } = props;
+  const pageTitle = post?.title + ' - Session';
   return (
     <>
-      <Layout title={post?.title}>
-        <Article {...post} />
+      <Layout title={pageTitle}>
+        <Post {...props} />
       </Layout>
     </>
   );
@@ -25,15 +27,23 @@ export default function Post(props: Props): ReactElement {
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  console.log('Building page', context.params?.slug);
-  const post = await fetchBlogEntryBySlug(String(context.params?.slug));
-  if (!post) {
+  const currentPost = await fetchBlogEntryBySlug(String(context.params?.slug));
+  if (!currentPost) {
     return { notFound: true };
   }
 
+  // we want 6 posts excluding the current one if it's found
+  const { posts } = await fetchBlogEntries(7);
+  const otherPosts = posts
+    .filter((post) => {
+      return currentPost.slug !== post.slug;
+    })
+    .slice(0, 6);
+
   return {
     props: {
-      post,
+      post: currentPost,
+      otherPosts,
     },
     revalidate: 60,
   };

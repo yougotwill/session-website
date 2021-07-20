@@ -22,7 +22,7 @@ export default function Nav(): ReactElement {
   return (
     <nav
       className={classNames(
-        'container relative flex flex-wrap items-center justify-between max-w-6xl px-4 mx-auto',
+        'container relative flex flex-wrap items-center justify-between max-w-6xl px-4 mx-auto z-10',
         'lg:h-28 lg:px-10'
       )}
     >

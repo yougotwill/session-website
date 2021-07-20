@@ -1,4 +1,4 @@
-import ArticleCard from './ArticleCard';
+import PostCard from './PostCard';
 import BenefitsCard from './BenefitsCard';
 
-export { ArticleCard, BenefitsCard };
+export { PostCard, BenefitsCard };

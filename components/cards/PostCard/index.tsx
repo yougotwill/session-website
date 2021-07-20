@@ -6,11 +6,14 @@ import classNames from 'classnames';
 import { IPost } from '@/types/cms';
 
 interface Props extends IPost {
+  route: string;
   featured?: boolean;
+  hoverEffect?: boolean;
+  showDescription?: boolean;
   classes?: string;
 }
 
-export default function ArticleCard(props: Props): ReactElement {
+export default function PostCard(props: Props): ReactElement {
   const {
     title,
     description,
@@ -19,11 +22,13 @@ export default function ArticleCard(props: Props): ReactElement {
     publishedDate,
     author,
     slug,
+    route,
     featured,
+    hoverEffect = !featured,
+    showDescription = true,
     classes,
   } = props;
   // parent container must have 'flex' class
-  const url = 'blog/' + slug;
   return (
     <div
       className={classNames(
@@ -33,13 +38,14 @@ export default function ArticleCard(props: Props): ReactElement {
       )}
     >
       {featureImage?.imageUrl && (
-        <Link href={url}>
+        <Link href={route}>
           <div
             className={classNames(
-              'relative overflow-hidden w-full h-60 md:px-16',
+              'relative overflow-hidden w-full h-60 mb-4',
+              'md:px-16',
               'lg:px-20',
               featured && 'md:w-1/2 md:mr-4 lg:mr-3 lg:w-3/5 lg:h-96',
-              !featured && 'rounded-lg'
+              hoverEffect && 'rounded-lg'
             )}
           >
             <Image
@@ -48,7 +54,7 @@ export default function ArticleCard(props: Props): ReactElement {
               layout="fill"
               className={classNames(
                 'object-cover cursor-pointer rounded-lg',
-                !featured &&
+                hoverEffect &&
                   'transition transform scale-105 duration-300 hover:filter hover:blur-xs'
               )}
             />
@@ -58,7 +64,7 @@ export default function ArticleCard(props: Props): ReactElement {
       <div
         className={classNames(featured && 'md:w-1/2 md:ml-4 lg:ml-3 lg:w-2/5')}
       >
-        <Link href={url}>
+        <Link href={route}>
           <h3
             className={classNames(
               'cursor-pointer text-2xl font-semibold mb-3',
@@ -76,16 +82,18 @@ export default function ArticleCard(props: Props): ReactElement {
         >
           {publishedDate}
         </p>
-        <p
-          className={classNames(
-            'text-sm font-light',
-            featured && 'md:text-base md:leading-normal'
-          )}
-        >
-          {description}
-        </p>
+        {showDescription && (
+          <p
+            className={classNames(
+              'text-sm font-light',
+              featured && 'md:text-base md:leading-normal'
+            )}
+          >
+            {description}
+          </p>
+        )}
         {featured && (
-          <Link href={url}>
+          <Link href={route}>
             <a
               className={classNames(
                 'block text-primary-dark text-xs font-extralight mt-4'

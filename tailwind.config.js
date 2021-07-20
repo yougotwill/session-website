@@ -7,8 +7,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      sans: ['PublicSans', 'sans-serif'],
       helvetica: ['Helvetica', 'Arial', 'sans-serif'],
+      mono: ['SpaceMono', 'monospace'],
+      sans: ['PublicSans', 'sans-serif'],
     },
     extend: {
       animation: {
@@ -29,6 +30,9 @@ module.exports = {
           DEFAULT: '#3A3A3A',
           dark: '#333132',
         },
+      },
+      height: {
+        120: '30rem', // for larger images
       },
       keyframes: {
         push: {

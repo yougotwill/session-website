@@ -15,11 +15,13 @@ const client: ContentfulClientApi = createClient({
 });
 
 // TODO typescriptify
-export async function fetchBlogEntries(): Promise<IFetchBlogEntriesReturn> {
+export async function fetchBlogEntries(
+  quantity = 100
+): Promise<IFetchBlogEntriesReturn> {
   const entries = await client.getEntries({
     content_type: 'post', // only fetch blog post entry
     order: '-fields.date',
-    limit: CMS.BLOG_RESULTS_PER_PAGE,
+    limit: quantity,
   });
 
   // TODO look at post converion
@@ -84,4 +86,10 @@ function convertAuthor(rawAuthor: any): IAuthor {
     facebook: rawAuthor.facebook ?? null,
     github: rawAuthor.github ?? null,
   };
+}
+
+export function generateRoute(slug: string): string {
+  const route =
+    slug.indexOf('/blog/') > 0 ? slug.split('/blog/')[1] : '/blog/' + slug;
+  return route;
 }
