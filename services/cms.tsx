@@ -31,6 +31,19 @@ export async function fetchBlogEntries(): Promise<IFetchBlogEntriesReturn> {
   return { posts: [], total: 0 } as IFetchBlogEntriesReturn;
 }
 
+export async function fetchBlogEntryBySlug(slug: string): Promise<IPost> {
+  const entries = await client.getEntries({
+    content_type: 'post', // only fetch blog post entry
+    'fields.slug': slug,
+  });
+
+  if (entries?.items?.length > 0) {
+    const post = convertPost(entries.items[0]);
+    return post;
+  }
+  return Promise.reject(new Error('Failed to fetch blog posts by slug'));
+}
+
 function convertPost(rawData: any): IPost {
   const rawPost = rawData.fields;
   const rawFeatureImage = rawPost?.featureImage

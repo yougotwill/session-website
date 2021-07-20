@@ -23,6 +23,7 @@ export default function ArticleCard(props: Props): ReactElement {
     classes,
   } = props;
   // parent container must have 'flex' class
+  const url = 'blog/' + slug;
   return (
     <div
       className={classNames(
@@ -32,7 +33,7 @@ export default function ArticleCard(props: Props): ReactElement {
       )}
     >
       {featureImage?.imageUrl && (
-        <Link href={slug}>
+        <Link href={url}>
           <div
             className={classNames(
               'relative overflow-hidden w-full h-60 md:px-16',
@@ -57,7 +58,7 @@ export default function ArticleCard(props: Props): ReactElement {
       <div
         className={classNames(featured && 'md:w-1/2 md:ml-4 lg:ml-3 lg:w-2/5')}
       >
-        <Link href={slug}>
+        <Link href={url}>
           <h3
             className={classNames(
               'cursor-pointer text-2xl font-semibold mb-3',
@@ -84,7 +85,7 @@ export default function ArticleCard(props: Props): ReactElement {
           {description}
         </p>
         {featured && (
-          <Link href={slug}>
+          <Link href={url}>
             <a
               className={classNames(
                 'block text-primary-dark text-xs font-extralight mt-4'
