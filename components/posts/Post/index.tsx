@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { IPost } from '@/types/cms';
 import { PostList } from '@/components/posts';
+import RichBody from '@/components/RichBody';
 
 interface Props {
   post: IPost;
@@ -60,8 +61,7 @@ export default function Post(props: Props): ReactElement {
           >
             {publishedDate} / **tags here**
           </p>
-          {/* Body content */}
-          <div>Here be bodies</div>
+          <RichBody body={body} />
         </div>
       </div>
       <PostList

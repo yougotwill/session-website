@@ -1,3 +1,5 @@
+import { Document } from '@contentful/rich-text-types';
+
 export interface IFetchBlogEntriesReturn {
   posts: Array<IPost>;
   total: number;
@@ -26,7 +28,7 @@ export interface IPost {
   title: string;
   subtitle: string;
   description: string;
-  body: string; // should be Document type
+  body: Document;
   author?: IAuthor;
   publishedDate: string;
   featureImage?: IFigureImage;
