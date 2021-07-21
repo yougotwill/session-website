@@ -27,7 +27,7 @@ export default function Post(props: Props): ReactElement {
     <section>
       <div
         className={classNames(
-          'container max-w-6xl p-6 mx-auto mt-12',
+          'container max-w-6xl p-6 mx-auto mt-12 break-words',
           'md:py-8',
           'lg:mt-0 lg:px-16'
         )}
@@ -54,8 +54,7 @@ export default function Post(props: Props): ReactElement {
           </h1>
           <p
             className={classNames(
-              'font-mono font-normal text-sm mb-1',
-              'md:mb-3',
+              'font-mono font-normal text-sm mb-3',
               'lg:mb-8'
             )}
           >

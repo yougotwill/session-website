@@ -169,8 +169,7 @@ export default function Footer(): ReactElement {
             />
             <p
               className={classNames(
-                'group text-white text-sm font-extralight leading-6 tracking-wide',
-                'md:text-md'
+                'group text-white text-sm font-extralight leading-6 tracking-wide'
               )}
             >
               Session is an <span className={redactedClasses}>end-to-end</span>{' '}
