@@ -5,7 +5,7 @@
 @font-face {
   font-family: PublicSans;
   font-display: swap;
-  src: url('../public/assets/fonts/PublicSans/PublicSans-VariableFont_wght.ttf')
+  src: url('@/public/assets/fonts/PublicSans/PublicSans-VariableFont_wght.ttf')
     format('truetype');
 }
 
@@ -13,30 +13,14 @@
   font-family: PublicSans;
   font-display: swap;
   font-style: italic;
-  src: url('../public/assets/fonts/PublicSans/PublicSans-Italic-VariableFont_wght.ttf')
+  src: url('@/public/assets/fonts/PublicSans/PublicSans-Italic-VariableFont_wght.ttf')
     format('truetype');
 }
 
 @font-face {
   font-family: SpaceMono;
   font-display: swap;
-  src: url('../public/assets/fonts/SpaceMono/SpaceMono-Regular.ttf')
-    format('truetype');
-}
-
-@font-face {
-  font-family: SpaceMono;
-  font-display: swap;
-  font-weight: bold;
-  src: url('../public/assets/fonts/SpaceMono/SpaceMono-Bold.ttf')
-    format('truetype');
-}
-
-@font-face {
-  font-family: SpaceMono;
-  font-display: swap;
-  font-style: italic;
-  src: url('../public/assets/fonts/SpaceMono/SpaceMono-italic.ttf')
+  src: url('@/public/assets/fonts/SpaceMono/SpaceMono-Regular.ttf')
     format('truetype');
 }
 
@@ -44,7 +28,23 @@
   font-family: SpaceMono;
   font-display: swap;
   font-weight: bold;
+  src: url('@/public/assets/fonts/SpaceMono/SpaceMono-Bold.ttf')
+    format('truetype');
+}
+
+@font-face {
+  font-family: SpaceMono;
+  font-display: swap;
   font-style: italic;
-  src: url('../public/assets/fonts/SpaceMono/SpaceMono-BoldItalic.ttf')
+  src: url('@/public/assets/fonts/SpaceMono/SpaceMono-Italic.ttf')
+    format('truetype');
+}
+
+@font-face {
+  font-family: SpaceMono;
+  font-display: swap;
+  font-weight: bold;
+  font-style: italic;
+  src: url('@/public/assets/fonts/SpaceMono/SpaceMono-BoldItalic.ttf')
     format('truetype');
 }
