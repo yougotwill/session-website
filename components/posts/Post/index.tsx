@@ -60,7 +60,10 @@ export default function Post(props: Props): ReactElement {
           >
             {publishedDate} / **tags here**
           </p>
-          <RichBody body={body} />
+          <RichBody
+            body={body}
+            classes={classNames('text-sm text-gray font-light', 'lg:text-base')}
+          />
         </div>
       </div>
       <PostList

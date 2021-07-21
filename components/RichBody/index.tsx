@@ -1,4 +1,6 @@
 import { ReactElement } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import classNames from 'classnames';
 
 import {
@@ -9,6 +11,7 @@ import { BLOCKS, Document, INLINES, MARKS } from '@contentful/rich-text-types';
 
 interface Props {
   body: Document;
+  classes?: string; // e.g. general font styles (color, size, weight, etc.)
 }
 
 const options: Options = {
@@ -25,22 +28,10 @@ const options: Options = {
   },
   renderNode: {
     [BLOCKS.PARAGRAPH]: (node, children) => (
-      <p
-        className={classNames(
-          'text-gray text-sm font-light leading-relaxed mb-6',
-          'lg:text-base'
-        )}
-      >
-        {children}
-      </p>
+      <p className={classNames('leading-relaxed pb-6')}>{children}</p>
     ),
     [BLOCKS.HEADING_2]: (node, children) => (
-      <h2
-        className={classNames(
-          'text-gray text-2xl font-light leading-snug mb-5',
-          'lg:text-3xl'
-        )}
-      >
+      <h2 className={classNames('text-2xl leading-snug mb-5', 'lg:text-3xl')}>
         {children}
       </h2>
     ),
@@ -55,24 +46,67 @@ const options: Options = {
     [BLOCKS.LIST_ITEM]: (node, children) => {
       return <li>{children}</li>;
     },
-    // TODO style quote and cititation
-    // [BLOCKS.QUOTE]: (node, children) => <h4>{children}</h4>,
-    [INLINES.HYPERLINK]: (node, children) => (
-      <a
-        className={classNames('text-primary-dark font-extralight')}
-        href={node.data.uri}
-        target="_blank"
-        rel="noreferrer"
+    [BLOCKS.QUOTE]: (node, children) => (
+      <blockquote
+        className={classNames(
+          'border-gray-100 border-l-6 text-base text-black italic mb-6 ml-10 mr-4 pt-6 px-4',
+          'lg:text-lg'
+        )}
       >
-        {/* might need to change to plain text */}
         {children}
-      </a>
+      </blockquote>
+    ),
+    [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
+      const asset = node.data.target.fields;
+      const media = asset.file.fields;
+      const url = media.file.url.replace('//', 'https://');
+      switch (media.file.contentType) {
+        case 'image/jpeg':
+          const imageWidth = media.file.details.image.width;
+          const imageHeight = media.file.details.image.height;
+          return (
+            <figure className={classNames('text-center mb-8', 'lg:px-24')}>
+              <Image
+                src={url}
+                alt={asset.title}
+                width={imageWidth}
+                height={imageHeight}
+              />
+              <figcaption className="mt-1">
+                <Link href={asset.source}>
+                  <a
+                    className={classNames(
+                      'text-primary-dark italic font-extralight'
+                    )}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Image source: '{asset.title}' by {asset.author}
+                  </a>
+                </Link>
+              </figcaption>
+            </figure>
+          );
+        default:
+          return null;
+      }
+    },
+    [INLINES.HYPERLINK]: (node, children) => (
+      <Link href={node.data.uri}>
+        <a
+          className={classNames('text-primary-dark font-extralight')}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {children}
+        </a>
+      </Link>
     ),
   },
 };
 
 export default function RichBody(props: Props): ReactElement {
-  const { body } = props;
+  const { body, classes } = props;
   const richBody = documentToReactComponents(body, options);
-  return <div>{richBody}</div>;
+  return <div className={classNames(classes)}>{richBody}</div>;
 }

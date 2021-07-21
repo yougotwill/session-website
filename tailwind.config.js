@@ -20,6 +20,7 @@ module.exports = {
       },
       borderWidth: {
         3: '3px',
+        6: '6px',
       },
       colors: {
         primary: { DEFAULT: '#00f782', dark: '#00b35f' },
