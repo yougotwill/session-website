@@ -58,37 +58,40 @@ const options: Options = {
     ),
     [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
       const asset = node.data.target.fields;
-      const media = asset.file.fields;
-      const url = media.file.url.replace('//', 'https://');
-      switch (media.file.contentType) {
-        case 'image/jpeg':
-          const imageWidth = media.file.details.image.width;
-          const imageHeight = media.file.details.image.height;
-          return (
-            <figure className={classNames('text-center mb-8', 'lg:px-24')}>
-              <Image
-                src={url}
-                alt={asset.title}
-                width={imageWidth}
-                height={imageHeight}
-              />
-              <figcaption className="mt-1">
-                <Link href={asset.source}>
-                  <a
-                    className={classNames(
-                      'text-primary-dark italic font-extralight'
-                    )}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Image source: '{asset.title}' by {asset.author}
-                  </a>
-                </Link>
-              </figcaption>
-            </figure>
-          );
-        default:
-          return null;
+      if (asset.file) {
+        // is embedded media
+        const media = asset.file.fields;
+        const url = media.file.url.replace('//', 'https://');
+        switch (media.file.contentType) {
+          case 'image/jpeg':
+            const imageWidth = media.file.details.image.width;
+            const imageHeight = media.file.details.image.height;
+            return (
+              <figure className={classNames('text-center mb-8', 'lg:px-24')}>
+                <Image
+                  src={url}
+                  alt={asset.title}
+                  width={imageWidth}
+                  height={imageHeight}
+                />
+                <figcaption className="mt-1">
+                  <Link href={asset.source}>
+                    <a
+                      className={classNames(
+                        'text-primary-dark italic font-extralight'
+                      )}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Image source: '{asset.title}' by {asset.author}
+                    </a>
+                  </Link>
+                </figcaption>
+              </figure>
+            );
+          default:
+            return null;
+        }
       }
     },
     [INLINES.HYPERLINK]: (node, children) => (
