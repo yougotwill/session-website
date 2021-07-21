@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import { GetStaticProps, GetStaticPropsContext, GetStaticPaths } from 'next';
+import { useRouter } from 'next/router';
 
 import { IPost } from '@/types/cms';
 import { fetchBlogEntries, fetchBlogEntryBySlug } from '@/services/cms';
@@ -13,6 +14,18 @@ interface Props {
 }
 
 export default function BlogSlug(props: Props): ReactElement {
+  const router = useRouter();
+  if (router.isFallback) {
+    return (
+      <>
+        <Layout title={'Loading - Session'}>
+          <h1 className={'text-gray font-bold leading-normal '}>
+            Loading page...
+          </h1>
+        </Layout>
+      </>
+    );
+  }
   const { post } = props;
   const pageTitle = post?.title + ' - Session';
   return (

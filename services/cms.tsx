@@ -43,6 +43,7 @@ export async function fetchBlogEntryBySlug(slug: string): Promise<IPost> {
     const post = convertPost(entries.items[0]);
     return post;
   }
+
   return Promise.reject(new Error('Failed to fetch blog posts by slug'));
 }
 
