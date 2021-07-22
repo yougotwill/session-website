@@ -18,10 +18,14 @@ interface Props {
 const options: Options = {
   renderMark: {
     [MARKS.BOLD]: (text) => (
-      <span className={classNames('font-bold')}>{text}</span>
+      <span>
+        <strong>{text}</strong>
+      </span>
     ),
     [MARKS.ITALIC]: (text) => (
-      <span className={classNames('italic')}>{text}</span>
+      <span>
+        <em>{text}</em>
+      </span>
     ),
     [MARKS.UNDERLINE]: (text) => (
       <span className={classNames('underline')}>{text}</span>
@@ -66,7 +70,16 @@ const options: Options = {
     [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
       const asset = node.data.target.fields;
       if (!asset.file) {
-        return <EmbedContent url={asset.url} />;
+        return (
+          <figure>
+            <EmbedContent url={asset.url} />
+            {asset.caption && (
+              <figcaption className={classNames('pb-4')}>
+                <em>{asset.caption}</em>
+              </figcaption>
+            )}
+          </figure>
+        );
       } else {
         // is inline media
         const media = asset.file.fields;
@@ -83,19 +96,23 @@ const options: Options = {
                   width={imageWidth}
                   height={imageHeight}
                 />
-                <figcaption className="mt-1">
-                  <Link href={asset.source}>
-                    <a
-                      className={classNames(
-                        'text-primary-dark italic font-extralight'
-                      )}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Image source: '{asset.title}' by {asset.author}
-                    </a>
-                  </Link>
-                </figcaption>
+                {asset.caption && (
+                  <figcaption className="mt-1">
+                    <em>
+                      <Link href={asset.sourceUrl}>
+                        <a
+                          className={classNames(
+                            'text-primary-dark font-extralight'
+                          )}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {asset.caption}
+                        </a>
+                      </Link>
+                    </em>
+                  </figcaption>
+                )}
               </figure>
             );
           default:
