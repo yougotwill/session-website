@@ -3,37 +3,36 @@ import Link from 'next/link';
 import DOMPurify from 'dompurify';
 import classNames from 'classnames';
 
-import { isEmbeded } from '@/services/noembed';
+import { IEmbed, INoembed, isNoembed } from '@/services/embed';
 
 interface Props {
-  // url: string;
-  data: any;
+  content: IEmbed | INoembed;
   classes?: string;
 }
 
 export default function EmbedContent(props: Props): ReactElement {
-  const { data, classes } = props;
+  const { content, classes } = props;
   const htmlRef = useRef<HTMLDivElement>(null);
-  // let content: IEmbeded;
-  useEffect(() => {
-    //   (async () => {
-    //     const content = await fetchContent(url);
-    if (null !== htmlRef.current) {
-      htmlRef.current.innerHTML = DOMPurify.sanitize(data.html);
-    }
-    //   })();
-  }, []);
-  return isEmbeded(data) ? (
-    <div className={classNames('embed-content', classes)} ref={htmlRef}></div>
-  ) : (
-    <Link href={data.url}>
-      <a>
-        <div className={classNames('embed-content', classes)}>
-          {data.image && <img src={data.image} />}
-          <p>{data.title}</p>
-          {data.description && <p>{data.description}</p>}
-        </div>
-      </a>
-    </Link>
-  );
+  if (isNoembed(content)) {
+    useEffect(() => {
+      if (null !== htmlRef.current) {
+        htmlRef.current.innerHTML = DOMPurify.sanitize(content.html);
+      }
+    }, []);
+    return (
+      <div className={classNames('embed-content', classes)} ref={htmlRef}></div>
+    );
+  } else {
+    return (
+      <Link href={content.url}>
+        <a>
+          <div className={classNames('embed-content', classes)}>
+            {content.image && <img src={content.image} />}
+            <p>{content.title}</p>
+            {content.description && <p>{content.description}</p>}
+          </div>
+        </a>
+      </Link>
+    );
+  }
 }

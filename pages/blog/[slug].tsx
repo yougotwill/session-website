@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { IPost } from '@/types/cms';
 import { fetchBlogEntries, fetchBlogEntryBySlug } from '@/services/cms';
-import { updateLinks } from '@/services/noembed';
+import { fetchContent } from '@/services/embed';
 
 import { Layout } from '@/components/ui';
 import { Post } from '@/components/posts';
@@ -47,43 +47,28 @@ export const getStaticProps: GetStaticProps = async (
     return { notFound: true };
   }
 
-  // start update embedded links with data
+  // any embedded links in post body need metadata to be previewed
+  // **Steps**
+  // Find embedded links
+  // Access node properties (item.data.target.fields)
+  // Add metadata using an asynchronous fetch
+  // Overwrite embedded link nodes
+  // *Notes**
+  // looping via forEach, map, etc. doesn't work because
+  // the callback can't be async
 
-  let embeddedLinks = currentPost.body.content.filter((item) => {
-    if (item.nodeType === 'embedded-entry-block') {
-      const asset = item.data.target.fields;
+  let nodeList = currentPost.body.content;
+  const nodeCount = currentPost.body.content.length;
+  for (let i = 0; i < nodeCount; i++) {
+    if (nodeList[i].nodeType === 'embedded-entry-block') {
+      const asset = nodeList[i].data.target.fields;
+      // is embedded link not embedded media
       if (!asset.file) {
-        return item;
+        asset.meta = await fetchContent(asset.url);
+        nodeList[i].data.target.fields = asset;
       }
     }
-  });
-
-  embeddedLinks = embeddedLinks.map((item) => {
-    return item.data.target.fields;
-  });
-
-  // console.log('embedded links', embeddedLinks);
-
-  const updatedLinks = await updateLinks(embeddedLinks);
-
-  // console.log('updated links', updatedLinks);
-
-  // end update
-
-  // update post body
-
-  let index = 0;
-
-  currentPost.body.content.map((item) => {
-    if (item.nodeType === 'embedded-entry-block') {
-      const asset = item.data.target.fields;
-      if (!asset.file) {
-        item = updatedLinks[index];
-        index++;
-      }
-    }
-    return item;
-  });
+  }
 
   // we want 6 posts excluding the current one if it's found
   const { posts } = await fetchBlogEntries(7);
