@@ -70,9 +70,10 @@ const options: Options = {
     [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
       const asset = node.data.target.fields;
       if (!asset.file) {
+        // embedded link
         return (
           <figure>
-            <EmbedContent url={asset.url} />
+            <EmbedContent data={asset.data} />
             {asset.caption && (
               <figcaption className={classNames('pb-4')}>
                 <em>{asset.caption}</em>
@@ -81,7 +82,7 @@ const options: Options = {
           </figure>
         );
       } else {
-        // is inline media
+        // embedded media
         const media = asset.file.fields;
         const url = media.file.url.replace('//', 'https://');
         switch (media.file.contentType) {
