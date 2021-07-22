@@ -14,6 +14,7 @@
     "@contentful/rich-text-types": "^15.0.0",
     "classnames": "^2.3.1",
     "contentful": "^8.4.2",
+    "dompurify": "^2.3.0",
     "moment": "^2.29.1",
     "next": "10.2.3",
     "next-compose-plugins": "^2.2.1",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.3.3",
+    "@types/dompurify": "^2.2.3",
     "@types/react": "^17.0.13",
     "autoprefixer": "^10.2.5",
     "contentful-cli": "^1.8.17",

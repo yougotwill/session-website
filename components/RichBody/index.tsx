@@ -8,6 +8,7 @@ import {
   Options,
 } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, Document, INLINES, MARKS } from '@contentful/rich-text-types';
+import EmbedContent from '@/components/EmbedContent';
 
 interface Props {
   body: Document;
@@ -59,7 +60,7 @@ const options: Options = {
     [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
       const asset = node.data.target.fields;
       if (asset.file) {
-        // is embedded media
+        // is inline media
         const media = asset.file.fields;
         const url = media.file.url.replace('//', 'https://');
         switch (media.file.contentType) {
@@ -92,6 +93,9 @@ const options: Options = {
           default:
             return null;
         }
+      } else {
+        // is embeded content
+        return <EmbedContent url={asset.url} />;
       }
     },
     [INLINES.HYPERLINK]: (node, children) => (
