@@ -48,18 +48,26 @@ const options: Options = {
       return <li>{children}</li>;
     },
     [BLOCKS.QUOTE]: (node, children) => (
-      <blockquote
+      <div
         className={classNames(
-          'border-gray-100 border-l-6 text-base text-black italic mb-6 ml-10 mr-4 pt-6 px-4',
-          'lg:text-lg'
+          'border-gray-100 border-l-6 py-6 px-4 mb-6 ml-10 mr-4'
         )}
       >
-        {children}
-      </blockquote>
+        <blockquote
+          className={classNames(
+            'text-base text-black italic -mb-6',
+            'lg:text-lg'
+          )}
+        >
+          {children}
+        </blockquote>
+      </div>
     ),
     [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
       const asset = node.data.target.fields;
-      if (asset.file) {
+      if (!asset.file) {
+        return <EmbedContent url={asset.url} />;
+      } else {
         // is inline media
         const media = asset.file.fields;
         const url = media.file.url.replace('//', 'https://');
@@ -93,9 +101,6 @@ const options: Options = {
           default:
             return null;
         }
-      } else {
-        // is embeded content
-        return <EmbedContent url={asset.url} />;
       }
     },
     [INLINES.HYPERLINK]: (node, children) => (

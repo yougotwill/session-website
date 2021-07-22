@@ -1,6 +1,6 @@
 import { ReactElement, useEffect, useRef } from 'react';
-import classNames from 'classnames';
 import DOMPurify from 'dompurify';
+import classNames from 'classnames';
 
 import { IEmbeded, convertContent, fetchContent } from '@/services/noembed';
 
@@ -22,5 +22,7 @@ export default function EmbedContent(props: Props): ReactElement {
       }
     })();
   }, []);
-  return <div className={classNames(classes)} ref={htmlRef}></div>;
+  return (
+    <div className={classNames('embed-content', classes)} ref={htmlRef}></div>
+  );
 }
