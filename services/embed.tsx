@@ -6,7 +6,7 @@ export interface IEmbed {
   image?: string;
 }
 
-export async function fetchMetadata(targetUrl: string): Promise<IEmbed> {
+async function fetchMetadata(targetUrl: string): Promise<IEmbed> {
   const res = await fetch(targetUrl);
   const html = await res.text();
   const cheerio = require('cheerio');
@@ -51,8 +51,8 @@ export function isNoembed(object: unknown): object is INoembed {
   return Object.prototype.hasOwnProperty.call(object, 'html');
 }
 
-// tries to render with noembed on client at run time.
-// fallback is fetching metadata server side at build time
+// fetch noembed data and render on client at run time.
+// fallback is fetch and render metadata on server at build time
 export async function fetchContent(
   targetUrl: string
 ): Promise<IEmbed | INoembed> {

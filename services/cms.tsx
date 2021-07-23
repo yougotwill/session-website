@@ -1,13 +1,14 @@
 import { createClient, ContentfulClientApi } from 'contentful';
+import { Document } from '@contentful/rich-text-types';
 import moment from 'moment';
 
-import { CMS } from '@/constants';
 import {
   IFetchBlogEntriesReturn,
   IFigureImage,
   IAuthor,
   IPost,
 } from '@/types/cms';
+import { fetchContent } from '@/services/embed';
 
 const client: ContentfulClientApi = createClient({
   space: process.env.CONTENTFUL_SPACE_ID!,
@@ -93,4 +94,19 @@ export function generateRoute(slug: string): string {
   const route =
     slug.indexOf('/blog/') > 0 ? slug.split('/blog/')[1] : '/blog/' + slug;
   return route;
+}
+
+export async function generateLinkMeta(doc: Document): Promise<Document> {
+  const promises = doc.content.map(async (node) => {
+    if (node.nodeType === 'embedded-entry-block') {
+      // is embedded link not embedded media
+      if (!node.data.target.fields.file) {
+        node.data.target.fields.meta = await fetchContent(
+          node.data.target.fields.url
+        );
+      }
+    }
+  });
+  await Promise.all(promises);
+  return doc;
 }

@@ -3,8 +3,11 @@ import { GetStaticProps, GetStaticPropsContext, GetStaticPaths } from 'next';
 import { useRouter } from 'next/router';
 
 import { IPost } from '@/types/cms';
-import { fetchBlogEntries, fetchBlogEntryBySlug } from '@/services/cms';
-import { fetchContent } from '@/services/embed';
+import {
+  fetchBlogEntries,
+  fetchBlogEntryBySlug,
+  generateLinkMeta,
+} from '@/services/cms';
 
 import { Layout } from '@/components/ui';
 import { Post } from '@/components/posts';
@@ -47,28 +50,8 @@ export const getStaticProps: GetStaticProps = async (
     return { notFound: true };
   }
 
-  // any embedded links in post body need metadata to be previewed
-  // **Steps**
-  // Find embedded links
-  // Access node properties (item.data.target.fields)
-  // Add metadata using an asynchronous fetch
-  // Overwrite embedded link nodes
-  // *Notes**
-  // looping via forEach, map, etc. doesn't work because
-  // the callback can't be async
-
-  let nodeList = currentPost.body.content;
-  const nodeCount = currentPost.body.content.length;
-  for (let i = 0; i < nodeCount; i++) {
-    if (nodeList[i].nodeType === 'embedded-entry-block') {
-      const asset = nodeList[i].data.target.fields;
-      // is embedded link not embedded media
-      if (!asset.file) {
-        asset.meta = await fetchContent(asset.url);
-        nodeList[i].data.target.fields = asset;
-      }
-    }
-  }
+  // embedded links in post body need metadata for preview
+  currentPost.body = await generateLinkMeta(currentPost.body);
 
   // we want 6 posts excluding the current one if it's found
   const { posts } = await fetchBlogEntries(7);

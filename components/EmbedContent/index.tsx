@@ -1,6 +1,5 @@
 import { ReactElement, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import DOMPurify from 'dompurify';
 import classNames from 'classnames';
 
 import { IEmbed, INoembed, isNoembed } from '@/services/embed';
@@ -14,6 +13,7 @@ export default function EmbedContent(props: Props): ReactElement {
   const { content, classes } = props;
   const htmlRef = useRef<HTMLDivElement>(null);
   if (isNoembed(content)) {
+    const DOMPurify = require('dompurify');
     useEffect(() => {
       if (null !== htmlRef.current) {
         htmlRef.current.innerHTML = DOMPurify.sanitize(content.html);
