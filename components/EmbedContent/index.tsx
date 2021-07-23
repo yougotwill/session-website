@@ -25,11 +25,32 @@ export default function EmbedContent(props: Props): ReactElement {
   } else {
     return (
       <Link href={content.url}>
-        <a>
-          <div className={classNames('embed-content', classes)}>
-            {content.image && <img src={content.image} />}
-            <p>{content.title}</p>
-            {content.description && <p>{content.description}</p>}
+        <a target="_blank">
+          <div
+            className={classNames(
+              'embed-content',
+              'bg-white border border-gray-300 my-6 mx-auto max-w-sm',
+              classes
+            )}
+          >
+            {content.image && (
+              <div className={classNames('w-full')}>
+                <img
+                  src={content.image}
+                  alt="link thumbnail image"
+                  className={classNames('object-cover')}
+                />
+              </div>
+            )}
+            <div className={classNames('p-3 text-black text-sm')}>
+              <p className={classNames('font-bold')}>{content.title}</p>
+              {content.description && <p>{content.description}</p>}
+              {content.site_name && (
+                <p className={classNames('text-gray-500 font-normal')}>
+                  {content.site_name}
+                </p>
+              )}
+            </div>
           </div>
         </a>
       </Link>

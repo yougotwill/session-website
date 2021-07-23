@@ -54,10 +54,10 @@
   @apply lg:text-lg;
 }
 
-.embed-content p {
+.embed-content blockquote > p {
   @apply pb-6 leading-relaxed;
 }
 
-.embed-content a {
+.embed-content blockquote > a {
   @apply text-primary-dark font-extralight;
 }
