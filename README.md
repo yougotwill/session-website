@@ -49,6 +49,17 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
   )}></div>
 ```
 
+```css
+.custom-class {
+  @apply general classes here - colors, fonts, padding, margin etc;
+  @apply responsive class changes should have it's own string md: lg: etc.;
+  @apply placeholder classes;
+  @apply animations, transforms, effect;
+  @apply pseudo classes i.e hover, focus, active, etc.;
+  @apply toggling classes i.e. NavMenu isExpanded;
+}
+```
+
 ### Gotchas
 
 - We can't use template literals with classes if we want to purge the CSS.

@@ -1,6 +1,6 @@
 import { AppProps } from 'next/app';
 import '../styles/globals.css';
-import lockPageTitle from '@utils/lockPageTitle';
+import lockPageTitle from '@/utils/lockPageTitle';
 
 function MyApp({ Component, pageProps }: AppProps) {
   lockPageTitle();

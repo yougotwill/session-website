@@ -7,24 +7,33 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      sans: ['PublicSans', 'sans-serif'],
       helvetica: ['Helvetica', 'Arial', 'sans-serif'],
+      mono: ['SpaceMono', 'monospace'],
+      sans: ['PublicSans', 'sans-serif'],
     },
     extend: {
       animation: {
         push: 'push 0.3s linear 1',
       },
+      blur: {
+        xs: '2px',
+      },
       borderWidth: {
         3: '3px',
+        6: '6px',
       },
       colors: {
         primary: { DEFAULT: '#00f782', dark: '#00b35f' },
         gray: {
+          lightest: '#ADADAD',
           lighter: '#7A7A7A',
           light: '#55595c',
-          DEFAULT: '#3a3a3a',
+          DEFAULT: '#3A3A3A',
           dark: '#333132',
         },
+      },
+      height: {
+        120: '30rem', // for larger images
       },
       keyframes: {
         push: {
@@ -40,7 +49,9 @@ module.exports = {
     extend: {
       animation: ['hover'],
       backgroundColor: ['selection'],
+      blur: ['hover'],
       display: ['group-hover', 'hover'],
+      filter: ['hover'],
       transitionDuration: ['group-hover'],
     },
   },

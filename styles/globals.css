@@ -5,7 +5,7 @@
 @font-face {
   font-family: PublicSans;
   font-display: swap;
-  src: url('../public/assets/fonts/PublicSans/PublicSans-VariableFont_wght.ttf')
+  src: url('@/public/assets/fonts/PublicSans/PublicSans-VariableFont_wght.ttf')
     format('truetype');
 }
 
@@ -13,6 +13,51 @@
   font-family: PublicSans;
   font-display: swap;
   font-style: italic;
-  src: url('../public/assets/fonts/PublicSans/PublicSans-Italic-VariableFont_wght.ttf')
+  src: url('@/public/assets/fonts/PublicSans/PublicSans-Italic-VariableFont_wght.ttf')
     format('truetype');
+}
+
+@font-face {
+  font-family: SpaceMono;
+  font-display: swap;
+  src: url('@/public/assets/fonts/SpaceMono/SpaceMono-Regular.ttf')
+    format('truetype');
+}
+
+@font-face {
+  font-family: SpaceMono;
+  font-display: swap;
+  font-weight: bold;
+  src: url('@/public/assets/fonts/SpaceMono/SpaceMono-Bold.ttf')
+    format('truetype');
+}
+
+@font-face {
+  font-family: SpaceMono;
+  font-display: swap;
+  font-style: italic;
+  src: url('@/public/assets/fonts/SpaceMono/SpaceMono-Italic.ttf')
+    format('truetype');
+}
+
+@font-face {
+  font-family: SpaceMono;
+  font-display: swap;
+  font-weight: bold;
+  font-style: italic;
+  src: url('@/public/assets/fonts/SpaceMono/SpaceMono-BoldItalic.ttf')
+    format('truetype');
+}
+
+.embed-content blockquote {
+  @apply px-4 py-6 mb-6 ml-10 mr-4 text-base italic text-black border-gray-100 border-l-6;
+  @apply lg:text-lg;
+}
+
+.embed-content blockquote > p {
+  @apply pb-6 leading-relaxed;
+}
+
+.embed-content blockquote > a {
+  @apply text-primary-dark font-extralight;
 }
