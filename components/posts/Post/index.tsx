@@ -30,7 +30,9 @@ export default function Post(props: Props): ReactElement {
       return (
         <span key={index}>
           <Link href={`/blog?tag=${tag}`}>
-            <a>{tag}</a>
+            <a className="transition-colors duration-300 hover:text-primary">
+              {tag}
+            </a>
           </Link>
           {index < tags.length - 1 && ', '}
         </span>

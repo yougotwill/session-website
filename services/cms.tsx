@@ -1,6 +1,6 @@
 import { createClient, ContentfulClientApi, EntryCollection } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
-import moment from 'moment';
+import { format, parseISO } from 'date-fns';
 
 import {
   IFetchBlogEntriesReturn,
@@ -67,7 +67,7 @@ function convertPost(rawData: any): IPost {
     body: rawPost.body ?? null,
     subtitle: rawPost.subtitle ?? null,
     description: rawPost.description ?? null,
-    publishedDate: moment(rawPost.date).format('DD MMMM YYYY'),
+    publishedDate: format(parseISO(rawPost.date), 'MMMM dd, yyyy'),
     slug: rawPost.slug,
     tags: rawPost?.tags, //?.map(t => t?.fields?.label) ?? [],
     title: rawPost.title,
