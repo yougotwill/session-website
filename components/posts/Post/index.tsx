@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import classNames from 'classnames';
 
 import { IPost } from '@/types/cms';
@@ -24,6 +25,18 @@ export default function Post(props: Props): ReactElement {
     description,
     body,
   } = post;
+  const renderTags = (() => {
+    return tags.map((tag, index) => {
+      return (
+        <span key={index}>
+          <Link href={`/blog?tag=${tag}`}>
+            <a>{tag}</a>
+          </Link>
+          {index < tags.length - 1 && ', '}
+        </span>
+      );
+    });
+  })();
   return (
     <section>
       <div
@@ -79,7 +92,7 @@ export default function Post(props: Props): ReactElement {
             'lg:mb-8'
           )}
         >
-          {publishedDate} / **tags here**
+          <span>{publishedDate}</span> / <span>{renderTags}</span>
         </p>
         <RichBody
           body={body}

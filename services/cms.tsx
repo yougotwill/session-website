@@ -1,4 +1,4 @@
-import { createClient, ContentfulClientApi } from 'contentful';
+import { createClient, ContentfulClientApi, EntryCollection } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
 import moment from 'moment';
 
@@ -15,7 +15,6 @@ const client: ContentfulClientApi = createClient({
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN!,
 });
 
-// TODO typescriptify
 export async function fetchBlogEntries(
   quantity = 100
 ): Promise<IFetchBlogEntriesReturn> {
@@ -25,13 +24,21 @@ export async function fetchBlogEntries(
     limit: quantity,
   });
 
-  // TODO look at post converion
-  if (entries && entries.items && entries.items.length > 0) {
-    const blogPosts = entries.items.map((entry) => convertPost(entry));
-    return { posts: blogPosts, total: entries.total };
-  }
+  return generatePosts(entries);
+}
 
-  return { posts: [], total: 0 } as IFetchBlogEntriesReturn;
+export async function fetchBlogEntriesByTag(
+  tag: string,
+  quantity = 100
+): Promise<IFetchBlogEntriesReturn> {
+  const entries = await client.getEntries({
+    content_type: 'post', // only fetch blog post entry
+    order: '-fields.date',
+    'fields.tags[in]': tag,
+    limit: quantity,
+  });
+
+  return generatePosts(entries);
 }
 
 export async function fetchBlogEntryBySlug(slug: string): Promise<IPost> {
@@ -91,6 +98,17 @@ function convertAuthor(rawAuthor: any): IAuthor {
     facebook: rawAuthor.facebook ?? null,
     github: rawAuthor.github ?? null,
   };
+}
+
+function generatePosts(
+  entries: EntryCollection<unknown>
+): IFetchBlogEntriesReturn {
+  if (entries && entries.items && entries.items.length > 0) {
+    const blogPosts = entries.items.map((entry) => convertPost(entry));
+    return { posts: blogPosts, total: entries.total };
+  }
+
+  return { posts: [], total: 0 };
 }
 
 export function generateRoute(slug: string): string {

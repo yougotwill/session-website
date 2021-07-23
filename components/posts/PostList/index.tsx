@@ -10,6 +10,7 @@ interface Props {
   posts: IPost[];
   gridStyle?: 'tight' | 'relaxed';
   hoverEffect?: boolean;
+  showHeading?: boolean;
   showDescription?: boolean;
   classes?: string;
 }
@@ -19,6 +20,7 @@ export default function PostList(props: Props): ReactElement {
     posts,
     gridStyle = 'relaxed',
     hoverEffect,
+    showHeading = true,
     showDescription,
     classes,
   } = props;
@@ -32,16 +34,18 @@ export default function PostList(props: Props): ReactElement {
   ];
   return (
     <div className={classNames('mt-8', 'md:mt-0', classes)}>
-      <Headline
-        color={'gray-dark'}
-        classes={classNames(
-          'font-mono text-sm mx-6 mb-10',
-          'md:mx-12 md:mt-8 md:mb-10',
-          'lg:mx-32 lg:my-12'
-        )}
-      >
-        More posts
-      </Headline>
+      {showHeading && (
+        <Headline
+          color={'gray-dark'}
+          classes={classNames(
+            'font-mono text-sm mx-6 mb-10',
+            'md:mx-12 md:mt-8 md:mb-10',
+            'lg:mx-32 lg:my-12'
+          )}
+        >
+          More posts
+        </Headline>
+      )}
       <div
         className={classNames(
           'container flex flex-wrap justify-center max-w-screen-md mx-auto',

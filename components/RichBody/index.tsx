@@ -51,13 +51,21 @@ const options: Options = {
         {children}
       </h2>
     ),
-    [BLOCKS.HEADING_3]: (node, children) => <h3>{children}</h3>,
-    [BLOCKS.HEADING_4]: (node, children) => <h4>{children}</h4>,
+    [BLOCKS.HEADING_3]: (node, children) => (
+      <h3 className={classNames('text-xl leading-snug mb-2', 'lg:text-2xl')}>
+        {children}
+      </h3>
+    ),
+    [BLOCKS.HEADING_4]: (node, children) => (
+      <h4 className={classNames('text-md leading-snug mb-2', 'lg:text-xl')}>
+        {children}
+      </h4>
+    ),
     [BLOCKS.OL_LIST]: (node, children) => {
-      return <ol className="list-decimal">{children}</ol>;
+      return <ol className="ml-4 list-decimal">{children}</ol>;
     },
     [BLOCKS.UL_LIST]: (node, children) => {
-      return <ul className="list-disc">{children}</ul>;
+      return <ul className="ml-4 list-disc">{children}</ul>;
     },
     [BLOCKS.LIST_ITEM]: (node, children) => {
       return <li>{children}</li>;
