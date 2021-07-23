@@ -34,7 +34,7 @@ export interface IPost {
   author?: IAuthor;
   publishedDate: string;
   featureImage?: IFigureImage;
-  fullHeader: boolean;
+  fullHeader?: boolean;
   tags: Array<string>;
   slug: string;
 }

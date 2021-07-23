@@ -71,7 +71,6 @@ function convertPost(rawData: any): IPost {
 }
 
 function convertImage(rawImage: any): IFigureImage {
-  console.log('featureImage', rawImage.file.details.image.width);
   return {
     imageUrl: rawImage.file.url.replace('//', 'https://'), // may need to put null check as well here
     description: rawImage.description ?? null,
