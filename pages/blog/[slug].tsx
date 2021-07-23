@@ -3,7 +3,11 @@ import { GetStaticProps, GetStaticPropsContext, GetStaticPaths } from 'next';
 import { useRouter } from 'next/router';
 
 import { IPost } from '@/types/cms';
-import { fetchBlogEntries, fetchBlogEntryBySlug } from '@/services/cms';
+import {
+  fetchBlogEntries,
+  fetchBlogEntryBySlug,
+  generateLinkMeta,
+} from '@/services/cms';
 
 import { Layout } from '@/components/ui';
 import { Post } from '@/components/posts';
@@ -41,9 +45,13 @@ export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
   const currentPost = await fetchBlogEntryBySlug(String(context.params?.slug));
+
   if (!currentPost) {
     return { notFound: true };
   }
+
+  // embedded links in post body need metadata for preview
+  currentPost.body = await generateLinkMeta(currentPost.body);
 
   // we want 6 posts excluding the current one if it's found
   const { posts } = await fetchBlogEntries(7);

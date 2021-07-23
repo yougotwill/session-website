@@ -3,11 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'classnames';
 
+import { BLOCKS, Document, INLINES, MARKS } from '@contentful/rich-text-types';
 import {
   documentToReactComponents,
   Options,
 } from '@contentful/rich-text-react-renderer';
-import { BLOCKS, Document, INLINES, MARKS } from '@contentful/rich-text-types';
 import EmbedContent from '@/components/EmbedContent';
 
 interface Props {
@@ -32,6 +32,17 @@ const options: Options = {
     ),
   },
   renderNode: {
+    [INLINES.HYPERLINK]: (node, children) => (
+      <Link href={node.data.uri}>
+        <a
+          className={classNames('text-primary-dark font-extralight')}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {children}
+        </a>
+      </Link>
+    ),
     [BLOCKS.PARAGRAPH]: (node, children) => (
       <p className={classNames('leading-relaxed pb-6')}>{children}</p>
     ),
@@ -70,9 +81,10 @@ const options: Options = {
     [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
       const asset = node.data.target.fields;
       if (!asset.file) {
+        // embedded link
         return (
           <figure>
-            <EmbedContent url={asset.url} />
+            <EmbedContent content={asset.meta} />
             {asset.caption && (
               <figcaption className={classNames('pb-4')}>
                 <em>{asset.caption}</em>
@@ -81,7 +93,7 @@ const options: Options = {
           </figure>
         );
       } else {
-        // is inline media
+        // embedded media
         const media = asset.file.fields;
         const url = media.file.url.replace('//', 'https://');
         switch (media.file.contentType) {
@@ -120,17 +132,6 @@ const options: Options = {
         }
       }
     },
-    [INLINES.HYPERLINK]: (node, children) => (
-      <Link href={node.data.uri}>
-        <a
-          className={classNames('text-primary-dark font-extralight')}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {children}
-        </a>
-      </Link>
-    ),
   },
 };
 

@@ -1,28 +1,59 @@
 import { ReactElement, useEffect, useRef } from 'react';
-import DOMPurify from 'dompurify';
+import Link from 'next/link';
 import classNames from 'classnames';
 
-import { IEmbeded, convertContent, fetchContent } from '@/services/noembed';
+import { IEmbed, INoembed, isNoembed } from '@/services/embed';
 
 interface Props {
-  url: string;
+  content: IEmbed | INoembed;
   classes?: string;
 }
 
 export default function EmbedContent(props: Props): ReactElement {
-  const { url, classes } = props;
+  const { content, classes } = props;
   const htmlRef = useRef<HTMLDivElement>(null);
-  let content: IEmbeded;
-  useEffect(() => {
-    (async () => {
-      const data = await fetchContent(url);
-      content = convertContent(data);
+  if (isNoembed(content)) {
+    const DOMPurify = require('dompurify');
+    useEffect(() => {
       if (null !== htmlRef.current) {
         htmlRef.current.innerHTML = DOMPurify.sanitize(content.html);
       }
-    })();
-  }, []);
-  return (
-    <div className={classNames('embed-content', classes)} ref={htmlRef}></div>
-  );
+    }, []);
+    return (
+      <div className={classNames('embed-content', classes)} ref={htmlRef}></div>
+    );
+  } else {
+    return (
+      <Link href={content.url}>
+        <a target="_blank">
+          <div
+            className={classNames(
+              'embed-content',
+              'bg-white border border-gray-300 my-6 mx-auto max-w-sm',
+              classes
+            )}
+          >
+            {content.image && (
+              <div className={classNames('w-full')}>
+                <img
+                  src={content.image}
+                  alt="link thumbnail image"
+                  className={classNames('object-cover')}
+                />
+              </div>
+            )}
+            <div className={classNames('p-3 text-black text-sm')}>
+              <p className={classNames('font-bold')}>{content.title}</p>
+              {content.description && <p>{content.description}</p>}
+              {content.site_name && (
+                <p className={classNames('text-gray-500 font-normal')}>
+                  {content.site_name}
+                </p>
+              )}
+            </div>
+          </div>
+        </a>
+      </Link>
+    );
+  }
 }
