@@ -9,6 +9,8 @@ export type IFigureImage = {
   title: string | null;
   description: string | null;
   imageUrl: string;
+  width: string | number;
+  height: string | number;
 };
 
 export type IAuthor = {
@@ -32,6 +34,7 @@ export interface IPost {
   author?: IAuthor;
   publishedDate: string;
   featureImage?: IFigureImage;
+  fullHeader: boolean;
   tags: Array<string>;
   slug: string;
 }

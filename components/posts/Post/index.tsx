@@ -20,6 +20,7 @@ export default function Post(props: Props): ReactElement {
     tags,
     publishedDate,
     featureImage,
+    fullHeader,
     description,
     body,
   } = post;
@@ -27,44 +28,63 @@ export default function Post(props: Props): ReactElement {
     <section>
       <div
         className={classNames(
-          'container max-w-6xl p-6 mx-auto mt-12 break-words',
-          'md:py-8',
-          'lg:mt-0 lg:px-16'
+          'mx-auto mt-12 mb-8',
+          'md:pt-8',
+          'lg:mt-0',
+          !fullHeader && [
+            'container max-w-6xl pt-6 px-6',
+            'md:px-28',
+            'lg:px-40',
+          ]
         )}
       >
-        <div className={classNames('text-gray', 'md:px-24')}>
-          {featureImage?.imageUrl && (
-            <div
-              className={classNames(
-                'relative w-full h-48 mb-8',
-                'md:h-80 md:px-16',
-                'lg:h-120 lg:px-20'
-              )}
-            >
+        {featureImage?.imageUrl && (
+          <div
+            className={classNames(
+              'relative',
+              fullHeader ? 'w-screen' : ['w-full h-48', 'md:h-80', 'lg:h-120']
+            )}
+          >
+            {fullHeader ? (
+              <Image
+                src={featureImage?.imageUrl}
+                alt={featureImage?.description ?? title}
+                width={featureImage?.width}
+                height={featureImage?.height}
+              />
+            ) : (
               <Image
                 src={featureImage?.imageUrl}
                 alt={featureImage?.description ?? title}
                 layout="fill"
                 className={classNames('object-cover')}
               />
-            </div>
-          )}
-          <h1 className={classNames('text-4xl font-bold leading-normal mb-1')}>
-            {title}
-          </h1>
-          <p
-            className={classNames(
-              'font-mono font-normal text-sm mb-3',
-              'lg:mb-8'
             )}
-          >
-            {publishedDate} / **tags here**
-          </p>
-          <RichBody
-            body={body}
-            classes={classNames('text-sm text-gray font-light', 'lg:text-base')}
-          />
-        </div>
+          </div>
+        )}
+      </div>
+      <div
+        className={classNames(
+          'container max-w-6xl pb-6 px-6 mx-auto text-gray break-words',
+          'md:pb-8 md:px-28',
+          'lg:mt-0 lg:px-40'
+        )}
+      >
+        <h1 className={classNames('text-4xl font-bold leading-normal mb-1')}>
+          {title}
+        </h1>
+        <p
+          className={classNames(
+            'font-mono font-normal text-sm mb-3',
+            'lg:mb-8'
+          )}
+        >
+          {publishedDate} / **tags here**
+        </p>
+        <RichBody
+          body={body}
+          classes={classNames('text-sm text-gray font-light', 'lg:text-base')}
+        />
       </div>
       <PostList
         posts={otherPosts}

@@ -65,15 +65,19 @@ function convertPost(rawData: any): IPost {
     tags: rawPost?.tags, //?.map(t => t?.fields?.label) ?? [],
     title: rawPost.title,
     featureImage: convertImage(rawFeatureImage),
+    fullHeader: rawPost.fullHeader ?? null,
     author: convertAuthor(rawAuthor),
   };
 }
 
 function convertImage(rawImage: any): IFigureImage {
+  console.log('featureImage', rawImage.file.details.image.width);
   return {
     imageUrl: rawImage.file.url.replace('//', 'https://'), // may need to put null check as well here
     description: rawImage.description ?? null,
     title: rawImage.title ?? null,
+    width: rawImage.file.details.image.width,
+    height: rawImage.file.details.image.height,
   };
 }
 
