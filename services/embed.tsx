@@ -6,30 +6,64 @@ export interface IEmbed {
   image?: string;
 }
 
+function extractMetadata(html: string): IEmbed {
+  const himalaya = require('himalaya');
+  html = html.trim();
+  const nodes = himalaya.parse(html);
+  const data: IEmbed = { title: '', url: '' };
+
+  nodes.forEach((node) => {
+    if (node.type === 'element' && node.tagName === 'html') {
+      // use reduce
+      const headNode = node.children.filter((node) => {
+        if (node.type === 'element' && node.tagName === 'head') {
+          return node.children;
+        }
+      });
+      // filtered out empty nodes
+      const metaNodes = headNode[0].children.filter((node) => {
+        if ((node.type = 'element' && node.tagName === 'meta')) {
+          return node;
+        }
+      });
+      metaNodes.forEach((node) => {
+        let [prop, content] = node.attributes;
+        prop = prop?.value;
+        content = content?.value;
+        switch (prop) {
+          case 'title':
+          case 'og:title':
+            data.title = content;
+            break;
+          case 'description':
+          case 'og:description':
+            data.description = content;
+            break;
+          case 'og:url':
+            data.url = content;
+            break;
+          case 'og:site_name':
+            data.site_name = content;
+            break;
+          case 'og:image':
+          case 'og:image:url':
+            data.image = content;
+            break;
+          default:
+            break;
+        }
+      });
+    }
+  });
+
+  return data;
+}
+
 async function fetchMetadata(targetUrl: string): Promise<IEmbed> {
-  const res = await fetch(targetUrl);
-  const html = await res.text();
-  const cheerio = require('cheerio');
-  const $ = cheerio.load(html);
-  const title =
-    $('meta[property="og:title"]').attr('content') ||
-    $('title').text() ||
-    $('meta[name="title"]').attr('content');
-  const description =
-    $('meta[property="og:description"]').attr('content') ||
-    $('meta[name="description"]').attr('content');
-  const url = $('meta[property="og:url"]').attr('content');
-  const site_name = $('meta[property="og:site_name"]').attr('content');
-  const image =
-    $('meta[property="og:image"]').attr('content') ||
-    $('meta[property="og:image:url"]').attr('content');
-  return {
-    title,
-    description,
-    url,
-    site_name,
-    image,
-  };
+  const response = await fetch(targetUrl);
+  let html = await response.text();
+  const data = extractMetadata(html);
+  return data;
 }
 
 // https://noembed.com/#supported-sites
