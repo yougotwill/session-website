@@ -1,3 +1,5 @@
+import { Element } from '@/types/himalaya';
+
 export interface IEmbed {
   title: string;
   url: string;
@@ -12,35 +14,35 @@ function extractMetadata(html: string): IEmbed {
   const nodes = himalaya.parse(html);
   const data: IEmbed = { title: '', url: '' };
 
-  nodes.forEach((node) => {
+  nodes.forEach((node: Element) => {
     if (node.type === 'element' && node.tagName === 'html') {
       // use reduce
-      const headNode = node.children.filter((node) => {
+      const headNode = node.children.filter((node: Element) => {
         if (node.type === 'element' && node.tagName === 'head') {
           return node.children;
         }
       });
-      // filtered out empty nodes
-      const metaNodes = headNode[0].children.filter((node) => {
-        if ((node.type = 'element' && node.tagName === 'meta')) {
+      // filter empty nodes
+      const metaNodes = headNode[0].children.filter((node: Element) => {
+        if (node.type === 'element' && node.tagName === 'meta') {
           return node;
         }
       });
-      metaNodes.forEach((node) => {
-        let [prop, content] = node.attributes;
-        prop = prop?.value;
-        content = content?.value;
+      metaNodes.forEach((node: Element) => {
+        if (node.attributes.length > 2) return;
+        const prop = node.attributes[0]?.value;
+        const content = node.attributes[1]?.value;
         switch (prop) {
           case 'title':
           case 'og:title':
-            data.title = content;
+            data.title = content ?? '';
             break;
           case 'description':
           case 'og:description':
             data.description = content;
             break;
           case 'og:url':
-            data.url = content;
+            data.url = content ?? '';
             break;
           case 'og:site_name':
             data.site_name = content;
