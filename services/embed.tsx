@@ -17,14 +17,12 @@ function extractMetadata(html: string): IEmbed {
 
   nodes.forEach((node: Element) => {
     if (node.type === 'element' && node.tagName === 'html') {
-      // use reduce
-      const headNode = node.children.filter((node: Element) => {
+      const headNode = node.children.find((node: Element) => {
         if (node.type === 'element' && node.tagName === 'head') {
           return node.children;
         }
       });
-      // filter empty nodes
-      const metaNodes = headNode[0].children.filter((node: Element) => {
+      const metaNodes = headNode!.children.filter((node: Element) => {
         if (node.type === 'element' && node.tagName === 'meta') {
           return node;
         }
