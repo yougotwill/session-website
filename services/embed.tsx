@@ -1,3 +1,4 @@
+import DOMPurify from 'isomorphic-dompurify';
 import { Element } from '@/types/himalaya';
 
 export interface IEmbed {
@@ -31,7 +32,10 @@ function extractMetadata(html: string): IEmbed {
       metaNodes.forEach((node: Element) => {
         if (node.attributes.length > 2) return;
         const prop = node.attributes[0]?.value;
-        const content = node.attributes[1]?.value;
+        let content = node.attributes[1]?.value;
+        if (content) {
+          content = DOMPurify.sanitize(content);
+        }
         switch (prop) {
           case 'title':
           case 'og:title':
@@ -116,9 +120,9 @@ export async function fetchContent(
 
 function convertToNoembed(rawData: any): INoembed {
   return {
-    title: rawData.title,
-    url: rawData.url,
-    site_name: rawData.provider_name,
-    html: rawData.html,
+    title: DOMPurify.sanitize(rawData.title),
+    url: DOMPurify.sanitize(rawData.url),
+    site_name: DOMPurify.sanitize(rawData.provider_name),
+    html: DOMPurify.sanitize(rawData.html),
   };
 }
