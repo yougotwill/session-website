@@ -3,10 +3,13 @@ import { Document } from '@contentful/rich-text-types';
 import { format, parseISO } from 'date-fns';
 
 import {
+  IFetchEntriesReturn,
   IFetchBlogEntriesReturn,
+  IFetchFAQItemsReturn,
   IFigureImage,
   IAuthor,
   IPost,
+  IFAQItem,
 } from '@/types/cms';
 import { fetchContent } from '@/services/embed';
 
@@ -18,37 +21,45 @@ const client: ContentfulClientApi = createClient({
 export async function fetchBlogEntries(
   quantity = 100
 ): Promise<IFetchBlogEntriesReturn> {
-  const entries = await client.getEntries({
+  const _entries = await client.getEntries({
     content_type: 'post', // only fetch blog post entry
     order: '-fields.date',
     limit: quantity,
   });
 
-  return generatePosts(entries);
+  const results = generateEntries(_entries, 'post');
+  return {
+    entries: results.entries as Array<IPost>,
+    total: results.total,
+  };
 }
 
 export async function fetchBlogEntriesByTag(
   tag: string,
   quantity = 100
 ): Promise<IFetchBlogEntriesReturn> {
-  const entries = await client.getEntries({
+  const _entries = await client.getEntries({
     content_type: 'post', // only fetch blog post entry
     order: '-fields.date',
     'fields.tags[in]': tag,
     limit: quantity,
   });
 
-  return generatePosts(entries);
+  const results = generateEntries(_entries, 'post');
+  return {
+    entries: results.entries as Array<IPost>,
+    total: results.total,
+  };
 }
 
 export async function fetchBlogEntryBySlug(slug: string): Promise<IPost> {
-  const entries = await client.getEntries({
+  const _entries = await client.getEntries({
     content_type: 'post', // only fetch blog post entry
     'fields.slug': slug,
   });
 
-  if (entries?.items?.length > 0) {
-    const post = convertPost(entries.items[0]);
+  if (_entries?.items?.length > 0) {
+    const post = convertPost(_entries.items[0]);
     return post;
   }
 
@@ -100,15 +111,25 @@ function convertAuthor(rawAuthor: any): IAuthor {
   };
 }
 
-function generatePosts(
-  entries: EntryCollection<unknown>
-): IFetchBlogEntriesReturn {
+function generateEntries(
+  entries: EntryCollection<unknown>,
+  entryType: 'post' | 'faq'
+): IFetchEntriesReturn {
+  let _entries: any = [];
   if (entries && entries.items && entries.items.length > 0) {
-    const blogPosts = entries.items.map((entry) => convertPost(entry));
-    return { posts: blogPosts, total: entries.total };
+    switch (entryType) {
+      case 'post':
+        _entries = entries.items.map((entry) => convertPost(entry));
+        break;
+      case 'faq':
+        _entries = entries.items.map((entry) => convertFAQ(entry));
+      default:
+        break;
+    }
+    return { entries: _entries, total: entries.total };
   }
 
-  return { posts: [], total: 0 };
+  return { entries: _entries, total: 0 };
 }
 
 export function generateRoute(slug: string): string {
@@ -130,4 +151,25 @@ export async function generateLinkMeta(doc: Document): Promise<Document> {
   });
   await Promise.all(promises);
   return doc;
+}
+
+export async function fetchFAQItems(): Promise<IFetchFAQItemsReturn> {
+  const _entries = await client.getEntries({
+    content_type: 'faq_item', // only fetch faq items
+    order: 'fields.id',
+  });
+
+  const results = generateEntries(_entries, 'faq');
+  return { entries: results.entries as Array<IFAQItem>, total: results.total };
+}
+
+function convertFAQ(rawData: any): IFAQItem {
+  const rawFAQ = rawData.fields;
+  const { question, answer, id } = rawFAQ;
+
+  return {
+    id: id ?? null,
+    question: question ?? null,
+    answer: answer ?? null,
+  };
 }

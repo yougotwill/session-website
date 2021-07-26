@@ -50,6 +50,7 @@ module.exports = {
       animation: ['hover'],
       backgroundColor: ['selection'],
       blur: ['hover'],
+      borderWidth: ['first'],
       display: ['group-hover', 'hover'],
       filter: ['hover'],
       transitionDuration: ['group-hover'],

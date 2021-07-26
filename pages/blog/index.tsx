@@ -22,7 +22,7 @@ export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
   const tag = context.query.tag && String(context.query.tag);
-  const { posts, total: totalPosts } = tag
+  const { entries: posts, total: totalPosts } = tag
     ? await fetchBlogEntriesByTag(tag)
     : await fetchBlogEntries();
 

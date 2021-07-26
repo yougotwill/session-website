@@ -54,7 +54,7 @@ export const getStaticProps: GetStaticProps = async (
   currentPost.body = await generateLinkMeta(currentPost.body);
 
   // we want 6 posts excluding the current one if it's found
-  const { posts } = await fetchBlogEntries(7);
+  const { entries: posts, total: totalPosts } = await fetchBlogEntries(7);
   const otherPosts = posts
     .filter((post) => {
       return currentPost.slug !== post.slug;
@@ -71,7 +71,7 @@ export const getStaticProps: GetStaticProps = async (
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { posts } = await fetchBlogEntries();
+  const { entries: posts, total: totalPosts } = await fetchBlogEntries();
   const paths = posts.map((post) => {
     return {
       params: {
