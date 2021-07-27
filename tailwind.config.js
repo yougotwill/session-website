@@ -11,6 +11,11 @@ module.exports = {
       mono: ['SpaceMono', 'monospace'],
       sans: ['PublicSans', 'sans-serif'],
     },
+    screens: {
+      sm: '375px',
+      md: '768px',
+      lg: '1024px',
+    },
     extend: {
       animation: {
         push: 'push 0.3s linear 1',
