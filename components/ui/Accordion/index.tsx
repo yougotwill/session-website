@@ -20,7 +20,6 @@ export default function Accordion(props: Props): ReactElement {
   const content = useRef<HTMLDivElement>(null);
   const handleExpand = () => {
     setIsExpanded(!isExpanded);
-    // TODO look into this.
     setHeight(isExpanded ? '0px' : `${content?.current?.scrollHeight}px`);
   };
   const svgClasses = classNames('w-3 h-3 fill-current mb-1 mr-2');
@@ -51,7 +50,7 @@ export default function Accordion(props: Props): ReactElement {
       <div
         className={classNames(
           'font-light leading-loose px-4 overflow-hidden',
-          'transform transition-all ease-in-out duration-500',
+          'transition-all ease-in-out duration-500',
           isExpanded && 'border-gray-300 border-b'
         )}
         ref={content}
