@@ -1,4 +1,4 @@
-import { ReactElement, useState, useRef } from 'react';
+import { ReactElement, useState, useRef, useEffect } from 'react';
 import { Document } from '@contentful/rich-text-types';
 import classNames from 'classnames';
 
@@ -10,11 +10,12 @@ import RichBody from '@/components/RichBody';
 interface Props {
   question: string;
   answer: Document;
+  expand?: boolean;
   classes?: string;
 }
 
 export default function Accordion(props: Props): ReactElement {
-  const { question, answer, classes } = props;
+  const { question, answer, expand, classes } = props;
   const [isExpanded, setIsExpanded] = useState(false);
   const [height, setHeight] = useState('0px');
   const content = useRef<HTMLDivElement>(null);
@@ -23,6 +24,9 @@ export default function Accordion(props: Props): ReactElement {
     setHeight(isExpanded ? '0px' : `${content?.current?.scrollHeight}px`);
   };
   const svgClasses = classNames('w-3 h-3 fill-current mb-1 mr-2');
+  useEffect(() => {
+    if (expand) handleExpand();
+  }, [expand]);
   return (
     <div
       className={classNames(
@@ -33,7 +37,8 @@ export default function Accordion(props: Props): ReactElement {
     >
       <div
         className={classNames(
-          'bg-gray-100 text-gray-dark py-2 px-4 font-semibold border-gray-300 border-b'
+          'bg-gray-100 text-gray-dark py-2 px-4 font-semibold border-gray-300 border-b',
+          'lg:text-base'
         )}
         onClick={handleExpand}
       >

@@ -19,12 +19,12 @@ const options: Options = {
   renderMark: {
     [MARKS.BOLD]: (text) => (
       <span>
-        <strong>{text}</strong>
+        <strong className="font-bold">{text}</strong>
       </span>
     ),
     [MARKS.ITALIC]: (text) => (
       <span>
-        <em>{text}</em>
+        <em className="italic">{text}</em>
       </span>
     ),
     [MARKS.UNDERLINE]: (text) => (

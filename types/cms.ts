@@ -38,11 +38,16 @@ export interface IFAQItem {
   id: number;
   question: string;
   answer: Document;
+  tag: string;
 }
 
 export interface IFetchEntriesReturn {
   entries: Array<any>;
   total: number;
+}
+
+export interface IFAQList {
+  [key: string]: IFAQItem[];
 }
 
 export interface IFetchBlogEntriesReturn extends IFetchEntriesReturn {

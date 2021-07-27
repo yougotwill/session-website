@@ -1,22 +1,55 @@
 import { ReactElement } from 'react';
 import { GetStaticProps, GetStaticPropsContext } from 'next';
 import classNames from 'classnames';
-import { IFAQItem, IFetchFAQItemsReturn } from '@/types/cms';
+import { IFAQItem, IFAQList } from '@/types/cms';
 import { fetchFAQItems } from '@/services/cms';
+import capitalize from '@/utils/capitalize';
 
 import Layout from '@/components/ui/Layout';
 import Headline from '@/components/ui/Headline';
 import Accordion from '@/components/ui/Accordion';
 
-export default function FAQ(props: IFetchFAQItemsReturn): ReactElement {
+interface Props {
+  entries: IFAQList;
+  total: number;
+}
+
+export default function FAQ(props: Props): ReactElement {
   const { entries: faqItems, total: totalFaqs } = props;
-  const headingClasses = classNames(
-    'text-gray-dark text-3xl font-semibold mb-5'
-  );
+  const headingClasses = classNames('text-3xl font-semibold mb-5');
+  const renderFAQList = (() => {
+    const content = [];
+    for (let key of Object.keys(faqItems)) {
+      content.push(
+        <div key={key} className="mb-10">
+          <h2 className={headingClasses}>{capitalize(key, '/')}</h2>
+          <div>
+            {faqItems[key].map((faqItem: IFAQItem, index) => {
+              return (
+                <Accordion
+                  key={faqItem.id}
+                  question={faqItem.question}
+                  answer={faqItem.answer}
+                  expand={index === 0}
+                />
+              );
+            })}
+          </div>
+        </div>
+      );
+    }
+    return content;
+  })();
   return (
     <Layout title="Session | Frequently Asked Questions">
       <section>
-        <div className={classNames('container py-6 px-2 mx-auto', 'md:p-12')}>
+        <div
+          className={classNames(
+            'container py-6 px-2 mx-auto',
+            'md:p-12',
+            'lg:pt-0'
+          )}
+        >
           <Headline
             color="gray-dark"
             showLine={false}
@@ -28,20 +61,7 @@ export default function FAQ(props: IFetchFAQItemsReturn): ReactElement {
           >
             Frequently Asked Questions
           </Headline>
-          <h2 className={headingClasses}>Intro</h2>
-          <div>
-            {faqItems.map((faqItem: IFAQItem, index) => {
-              return (
-                <Accordion
-                  key={faqItem.id}
-                  question={faqItem.question}
-                  answer={faqItem.answer}
-                />
-              );
-            })}
-          </div>
-          {/* Security */}
-          {/* TODO render faq's in tag groups */}
+          {renderFAQList}
         </div>
       </section>
     </Layout>
@@ -51,7 +71,18 @@ export default function FAQ(props: IFetchFAQItemsReturn): ReactElement {
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const { entries, total } = await fetchFAQItems();
+  const { entries: _entries, total } = await fetchFAQItems();
+
+  // divide up faqs by tags
+  const entries: IFAQList = {};
+
+  _entries.forEach((entry: IFAQItem) => {
+    if (!entries[entry.tag]) {
+      entries[entry.tag] = [];
+    }
+    entries[entry.tag].push(entry);
+  });
+
   return {
     props: {
       entries,
