@@ -45,10 +45,11 @@ export default function OpenGroup(): ReactElement {
         >
           <Headline
             color="gray-dark"
-            showLine={false}
+            hideLineOnMobile={true}
             classes={classNames(
-              'font-extralight text-lg text-center -mr-4 mb-8',
-              'lg:mt-4'
+              'text-lg font-mono -mr-4 mb-8',
+              'md:mt-4',
+              'lg:mt-4 lg:mb-16'
             )}
           >
             Session Open Group Channel

@@ -52,7 +52,7 @@ export default function FAQ(props: Props): ReactElement {
         >
           <Headline
             color="gray-dark"
-            showLine={false}
+            hideLineOnMobile={true}
             classes={classNames(
               'text-lg font-mono ml-2 mt-8 mb-5',
               'md:mb-16',

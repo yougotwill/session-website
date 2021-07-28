@@ -3,13 +3,18 @@ import classNames from 'classnames';
 
 interface Props {
   color?: 'primary' | 'gray-dark';
-  showLine?: boolean;
+  hideLineOnMobile?: boolean;
   classes?: string;
   children?: string;
 }
 
 export default function Headline(props: Props): ReactElement {
-  const { color = 'primary', showLine = true, classes, children } = props;
+  const {
+    color = 'primary',
+    hideLineOnMobile = false,
+    classes,
+    children,
+  } = props;
   const colorClasses = [
     color === 'primary' && 'text-primary',
     color === 'gray-dark' && 'text-gray-dark',
@@ -20,17 +25,22 @@ export default function Headline(props: Props): ReactElement {
   ];
   return (
     <div className={classNames(`flex mr-4`, colorClasses, classes)}>
-      {showLine && (
-        <span
-          className={classNames(
-            borderClasses,
-            `border-t w-36 mt-2 mr-5 -ml-3`,
-            'md:-ml-9',
-            'lg:-ml-28'
-          )}
-        ></span>
-      )}
-      <span className={classNames(showLine ? 'w-1/2' : 'w-full')}>
+      <span
+        className={classNames(
+          borderClasses,
+          hideLineOnMobile && 'hidden md:inline',
+          `border-t w-36 mt-2 mr-5 -ml-3`,
+          'md:-ml-9',
+          'lg:-ml-28'
+        )}
+      ></span>
+      <span
+        className={classNames(
+          hideLineOnMobile
+            ? 'text-center w-full md:text-left md:w-1/2'
+            : 'w-1/2'
+        )}
+      >
         {children}
       </span>
     </div>
