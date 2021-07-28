@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { IPost } from '@/types/cms';
 import {
   fetchBlogEntries,
-  fetchBlogEntryBySlug,
+  fetchEntryBySlug,
   generateLinkMeta,
 } from '@/services/cms';
 
@@ -44,7 +44,10 @@ export default function BlogSlug(props: Props): ReactElement {
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const currentPost = await fetchBlogEntryBySlug(String(context.params?.slug));
+  const currentPost: IPost = await fetchEntryBySlug(
+    String(context.params?.slug),
+    'post'
+  );
 
   if (!currentPost) {
     return { notFound: true };

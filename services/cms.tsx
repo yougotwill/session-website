@@ -3,13 +3,15 @@ import { Document } from '@contentful/rich-text-types';
 import { format, parseISO } from 'date-fns';
 
 import {
-  IFetchEntriesReturn,
-  IFetchBlogEntriesReturn,
-  IFetchFAQItemsReturn,
   IFigureImage,
   IAuthor,
   IPost,
   IFAQItem,
+  IPage,
+  IFetchEntriesReturn,
+  IFetchBlogEntriesReturn,
+  IFetchFAQItemsReturn,
+  IFetchPagesReturn,
 } from '@/types/cms';
 import { fetchContent } from '@/services/embed';
 
@@ -52,18 +54,31 @@ export async function fetchBlogEntriesByTag(
   };
 }
 
-export async function fetchBlogEntryBySlug(slug: string): Promise<IPost> {
+export async function fetchEntryBySlug(
+  slug: string,
+  entryType: 'post' | 'page'
+): Promise<any> {
   const _entries = await client.getEntries({
-    content_type: 'post', // only fetch blog post entry
+    content_type: entryType, // only fetch specific type
     'fields.slug': slug,
   });
 
+  console.log(`fetched ${entryType}s`, _entries);
+
   if (_entries?.items?.length > 0) {
-    const post = convertPost(_entries.items[0]);
-    return post;
+    switch (entryType) {
+      case 'post':
+        const post = convertPost(_entries.items[0]);
+        return post;
+      case 'page':
+        const page = convertPage(_entries.items[0]);
+        return page;
+      default:
+        break;
+    }
   }
 
-  return Promise.reject(new Error('Failed to fetch blog posts by slug'));
+  return Promise.reject(new Error(`Failed to fetch ${entryType} by slug`));
 }
 
 function convertPost(rawData: any): IPost {
@@ -113,7 +128,7 @@ function convertAuthor(rawAuthor: any): IAuthor {
 
 function generateEntries(
   entries: EntryCollection<unknown>,
-  entryType: 'post' | 'faq'
+  entryType: 'post' | 'faq' | 'page'
 ): IFetchEntriesReturn {
   let _entries: any = [];
   if (entries && entries.items && entries.items.length > 0) {
@@ -123,6 +138,8 @@ function generateEntries(
         break;
       case 'faq':
         _entries = entries.items.map((entry) => convertFAQ(entry));
+      case 'page':
+        _entries = entries.items.map((entry) => convertPage(entry));
       default:
         break;
     }
@@ -172,5 +189,28 @@ function convertFAQ(rawData: any): IFAQItem {
     question: question ?? null,
     answer: answer ?? null,
     tag: tag ?? null,
+  };
+}
+
+export async function fetchPages(quantity = 100): Promise<IFetchPagesReturn> {
+  const _entries = await client.getEntries({
+    content_type: 'page',
+    limit: quantity,
+  });
+
+  const results = generateEntries(_entries, 'page');
+  return {
+    entries: results.entries as Array<IPage>,
+    total: results.total,
+  };
+}
+
+function convertPage(rawData: any): IPage {
+  const rawPage = rawData.fields;
+
+  return {
+    title: rawPage.title,
+    slug: rawPage.slug,
+    body: rawPage.body,
   };
 }

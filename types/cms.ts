@@ -57,3 +57,13 @@ export interface IFetchBlogEntriesReturn extends IFetchEntriesReturn {
 export interface IFetchFAQItemsReturn extends IFetchEntriesReturn {
   entries: Array<IFAQItem>;
 }
+
+export interface IPage {
+  title: string;
+  slug: string;
+  body: Document;
+}
+
+export interface IFetchPagesReturn extends IFetchEntriesReturn {
+  entries: Array<IPage>;
+}
