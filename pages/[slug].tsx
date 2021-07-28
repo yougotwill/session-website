@@ -14,10 +14,8 @@ interface Props {
 
 export default function Page(props: Props): ReactElement {
   const { page } = props;
-  const headingClasses = classNames('text-gray text-2xl font-medium mt-6');
-  const listClasses = classNames('list-outside ml-8 leading-loose');
   return (
-    <Layout title="Terms of Service - Session">
+    <Layout title={`${page.title} - Session`}>
       <section>
         <div
           className={classNames(
@@ -26,17 +24,28 @@ export default function Page(props: Props): ReactElement {
             'lg:pt-0 lg:pb-32'
           )}
         >
-          <Headline
-            color="gray-dark"
-            classes={classNames(
-              'font-helvetica font-extralight mb-6',
-              'md:mb-16',
-              'lg:mt-4'
-            )}
-          >
-            {page.title}
-          </Headline>
-          <RichBody body={page.body} classes="" />
+          {page.headline && (
+            <Headline
+              color="gray-dark"
+              classes={classNames(
+                'font-helvetica font-extralight mb-6',
+                'md:mb-16',
+                'lg:mt-4'
+              )}
+            >
+              {page.headline}
+            </Headline>
+          )}
+          <div className={'lg:max-w-screen-md lg:mx-auto'}>
+            <RichBody
+              body={page.body}
+              headingClasses={'text-gray font-medium mt-6'}
+              classes={classNames(
+                'text-sm text-gray-lighter font-helvetica font-extralight leading-loose',
+                'lg:text-base'
+              )}
+            />
+          </div>
         </div>
       </section>
     </Layout>

@@ -61,6 +61,7 @@ export interface IFetchFAQItemsReturn extends IFetchEntriesReturn {
 export interface IPage {
   title: string;
   slug: string;
+  headline?: string;
   body: Document;
 }
 

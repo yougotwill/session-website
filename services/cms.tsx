@@ -211,6 +211,7 @@ function convertPage(rawData: any): IPage {
   return {
     title: rawPage.title,
     slug: rawPage.slug,
+    headline: rawPage.headline ?? null,
     body: rawPage.body,
   };
 }

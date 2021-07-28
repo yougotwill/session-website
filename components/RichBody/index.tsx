@@ -12,139 +12,170 @@ import EmbedContent from '@/components/EmbedContent';
 
 interface Props {
   body: Document;
-  classes?: string; // e.g. general font styles (color, size, weight, etc.)
+  headingClasses?: string; // custom h1-h4 styles
+  classes?: string; // custom styles for regular text (color, font weight, etc.)
 }
 
-const options: Options = {
-  renderMark: {
-    [MARKS.BOLD]: (text) => (
-      <span>
-        <strong className="font-bold">{text}</strong>
-      </span>
-    ),
-    [MARKS.ITALIC]: (text) => (
-      <span>
-        <em className="italic">{text}</em>
-      </span>
-    ),
-    [MARKS.UNDERLINE]: (text) => (
-      <span className={classNames('underline')}>{text}</span>
-    ),
-  },
-  renderNode: {
-    [INLINES.HYPERLINK]: (node, children) => (
-      <Link href={node.data.uri}>
-        <a
-          className={classNames('text-primary-dark font-extralight')}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {children}
-        </a>
-      </Link>
-    ),
-    [BLOCKS.PARAGRAPH]: (node, children) => (
-      <p className={classNames('leading-relaxed pb-6')}>{children}</p>
-    ),
-    [BLOCKS.HEADING_2]: (node, children) => (
-      <h2 className={classNames('text-2xl leading-snug mb-5', 'lg:text-3xl')}>
-        {children}
-      </h2>
-    ),
-    [BLOCKS.HEADING_3]: (node, children) => (
-      <h3 className={classNames('text-xl leading-snug mb-2', 'lg:text-2xl')}>
-        {children}
-      </h3>
-    ),
-    [BLOCKS.HEADING_4]: (node, children) => (
-      <h4 className={classNames('text-md leading-snug mb-2', 'lg:text-xl')}>
-        {children}
-      </h4>
-    ),
-    [BLOCKS.OL_LIST]: (node, children) => {
-      return <ol className="ml-4 list-decimal">{children}</ol>;
+export default function RichBody(props: Props): ReactElement {
+  const { body, headingClasses, classes } = props;
+
+  const options: Options = {
+    renderMark: {
+      [MARKS.BOLD]: (text) => (
+        <span>
+          <strong className="font-bold">{text}</strong>
+        </span>
+      ),
+      [MARKS.ITALIC]: (text) => (
+        <span>
+          <em className="italic">{text}</em>
+        </span>
+      ),
+      [MARKS.UNDERLINE]: (text) => (
+        <span className={classNames('underline')}>{text}</span>
+      ),
     },
-    [BLOCKS.UL_LIST]: (node, children) => {
-      return <ul className="ml-4 list-disc">{children}</ul>;
-    },
-    [BLOCKS.LIST_ITEM]: (node, children) => {
-      return <li>{children}</li>;
-    },
-    [BLOCKS.QUOTE]: (node, children) => (
-      <div
-        className={classNames(
-          'border-gray-100 border-l-6 py-6 px-4 mb-6 ml-10 mr-4'
-        )}
-      >
-        <blockquote
+    renderNode: {
+      [INLINES.HYPERLINK]: (node, children) => (
+        <Link href={node.data.uri}>
+          <a
+            className={classNames('text-primary-dark font-extralight')}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {children}
+          </a>
+        </Link>
+      ),
+      [BLOCKS.PARAGRAPH]: (node, children) => (
+        <p className={classNames('leading-relaxed pb-6')}>{children}</p>
+      ),
+      [BLOCKS.HEADING_1]: (node, children) => (
+        <h1
           className={classNames(
-            'text-base text-black italic -mb-6',
-            'lg:text-lg'
+            'text-3xl leading-snug mb-5',
+            'lg:text-5xl',
+            headingClasses
           )}
         >
           {children}
-        </blockquote>
-      </div>
-    ),
-    [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
-      const asset = node.data.target.fields;
-      if (!asset.file) {
-        // embedded link
-        return (
-          <figure>
-            <EmbedContent content={asset.meta} />
-            {asset.caption && (
-              <figcaption className={classNames('pb-4')}>
-                <em>{asset.caption}</em>
-              </figcaption>
+        </h1>
+      ),
+      [BLOCKS.HEADING_2]: (node, children) => (
+        <h2
+          className={classNames(
+            'text-2xl leading-snug mb-5',
+            'lg:text-3xl',
+            headingClasses
+          )}
+        >
+          {children}
+        </h2>
+      ),
+      [BLOCKS.HEADING_3]: (node, children) => (
+        <h3
+          className={classNames(
+            'text-xl leading-snug mb-2',
+            'lg:text-2xl',
+            headingClasses
+          )}
+        >
+          {children}
+        </h3>
+      ),
+      [BLOCKS.HEADING_4]: (node, children) => (
+        <h4
+          className={classNames(
+            'text-md leading-snug mb-2',
+            'lg:text-xl',
+            headingClasses
+          )}
+        >
+          {children}
+        </h4>
+      ),
+      [BLOCKS.OL_LIST]: (node, children) => {
+        return <ol className="ml-4 list-decimal">{children}</ol>;
+      },
+      [BLOCKS.UL_LIST]: (node, children) => {
+        return <ul className="ml-4 list-disc">{children}</ul>;
+      },
+      [BLOCKS.LIST_ITEM]: (node, children) => {
+        return <li>{children}</li>;
+      },
+      [BLOCKS.QUOTE]: (node, children) => (
+        <div
+          className={classNames(
+            'border-gray-100 border-l-6 py-6 px-4 mb-6 ml-10 mr-4'
+          )}
+        >
+          <blockquote
+            className={classNames(
+              'text-base text-black italic -mb-6',
+              'lg:text-lg'
             )}
-          </figure>
-        );
-      } else {
-        // embedded media
-        const media = asset.file.fields;
-        const url = media.file.url.replace('//', 'https://');
-        switch (media.file.contentType) {
-          case 'image/jpeg':
-            const imageWidth = media.file.details.image.width;
-            const imageHeight = media.file.details.image.height;
-            return (
-              <figure className={classNames('text-center mb-8', 'lg:px-24')}>
-                <Image
-                  src={url}
-                  alt={asset.title}
-                  width={imageWidth}
-                  height={imageHeight}
-                />
-                {asset.caption && (
-                  <figcaption className="mt-1">
-                    <em>
-                      <Link href={asset.sourceUrl}>
-                        <a
-                          className={classNames(
-                            'text-primary-dark font-extralight'
-                          )}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          {asset.caption}
-                        </a>
-                      </Link>
-                    </em>
-                  </figcaption>
-                )}
-              </figure>
-            );
-          default:
-            return null;
+          >
+            {children}
+          </blockquote>
+        </div>
+      ),
+      [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
+        const asset = node.data.target.fields;
+        if (!asset.file) {
+          // embedded link
+          return (
+            <figure>
+              <EmbedContent content={asset.meta} />
+              {asset.caption && (
+                <figcaption className={classNames('pb-4')}>
+                  <em>{asset.caption}</em>
+                </figcaption>
+              )}
+            </figure>
+          );
+        } else {
+          // embedded media
+          const media = asset.file.fields;
+          const url = media.file.url.replace('//', 'https://');
+          switch (media.file.contentType) {
+            case 'image/jpeg':
+              const imageWidth = media.file.details.image.width;
+              const imageHeight = media.file.details.image.height;
+              return (
+                <figure className={classNames('text-center mb-8', 'lg:px-24')}>
+                  <Image
+                    src={url}
+                    alt={asset.title}
+                    width={imageWidth}
+                    height={imageHeight}
+                  />
+                  {asset.caption && (
+                    <figcaption className="mt-1">
+                      <em>
+                        <Link href={asset.sourceUrl}>
+                          <a
+                            className={classNames(
+                              'text-primary-dark font-extralight'
+                            )}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {asset.caption}
+                          </a>
+                        </Link>
+                      </em>
+                    </figcaption>
+                  )}
+                </figure>
+              );
+            default:
+              return null;
+          }
         }
-      }
+      },
     },
-  },
-};
+  };
 
-export default function RichBody(props: Props): ReactElement {
-  const { body, classes } = props;
   const richBody = documentToReactComponents(body, options);
   return <div className={classNames(classes)}>{richBody}</div>;
 }
