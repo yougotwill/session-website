@@ -31,7 +31,9 @@ export default function Headline(props: Props): ReactElement {
           hideLineOnMobile && 'hidden md:inline',
           `border-t w-36 mt-2 mr-5 -ml-3`,
           'md:-ml-9',
-          'lg:-ml-28'
+          'lg:-ml-28',
+          'xl:w-48 xl:-ml-12',
+          '2xl:-ml-28'
         )}
       ></span>
       <span
