@@ -3,10 +3,15 @@ import { Document } from '@contentful/rich-text-types';
 import { format, parseISO } from 'date-fns';
 
 import {
-  IFetchBlogEntriesReturn,
   IFigureImage,
   IAuthor,
   IPost,
+  IFAQItem,
+  IPage,
+  IFetchEntriesReturn,
+  IFetchBlogEntriesReturn,
+  IFetchFAQItemsReturn,
+  IFetchPagesReturn,
 } from '@/types/cms';
 import { fetchContent } from '@/services/embed';
 
@@ -18,41 +23,62 @@ const client: ContentfulClientApi = createClient({
 export async function fetchBlogEntries(
   quantity = 100
 ): Promise<IFetchBlogEntriesReturn> {
-  const entries = await client.getEntries({
+  const _entries = await client.getEntries({
     content_type: 'post', // only fetch blog post entry
     order: '-fields.date',
     limit: quantity,
   });
 
-  return generatePosts(entries);
+  const results = generateEntries(_entries, 'post');
+  return {
+    entries: results.entries as Array<IPost>,
+    total: results.total,
+  };
 }
 
 export async function fetchBlogEntriesByTag(
   tag: string,
   quantity = 100
 ): Promise<IFetchBlogEntriesReturn> {
-  const entries = await client.getEntries({
+  const _entries = await client.getEntries({
     content_type: 'post', // only fetch blog post entry
     order: '-fields.date',
     'fields.tags[in]': tag,
     limit: quantity,
   });
 
-  return generatePosts(entries);
+  const results = generateEntries(_entries, 'post');
+  return {
+    entries: results.entries as Array<IPost>,
+    total: results.total,
+  };
 }
 
-export async function fetchBlogEntryBySlug(slug: string): Promise<IPost> {
-  const entries = await client.getEntries({
-    content_type: 'post', // only fetch blog post entry
+export async function fetchEntryBySlug(
+  slug: string,
+  entryType: 'post' | 'page'
+): Promise<any> {
+  const _entries = await client.getEntries({
+    content_type: entryType, // only fetch specific type
     'fields.slug': slug,
   });
 
-  if (entries?.items?.length > 0) {
-    const post = convertPost(entries.items[0]);
-    return post;
+  console.log(`fetched ${entryType}s`, _entries);
+
+  if (_entries?.items?.length > 0) {
+    switch (entryType) {
+      case 'post':
+        const post = convertPost(_entries.items[0]);
+        return post;
+      case 'page':
+        const page = convertPage(_entries.items[0]);
+        return page;
+      default:
+        break;
+    }
   }
 
-  return Promise.reject(new Error('Failed to fetch blog posts by slug'));
+  return Promise.reject(new Error(`Failed to fetch ${entryType} by slug`));
 }
 
 function convertPost(rawData: any): IPost {
@@ -100,15 +126,27 @@ function convertAuthor(rawAuthor: any): IAuthor {
   };
 }
 
-function generatePosts(
-  entries: EntryCollection<unknown>
-): IFetchBlogEntriesReturn {
+function generateEntries(
+  entries: EntryCollection<unknown>,
+  entryType: 'post' | 'faq' | 'page'
+): IFetchEntriesReturn {
+  let _entries: any = [];
   if (entries && entries.items && entries.items.length > 0) {
-    const blogPosts = entries.items.map((entry) => convertPost(entry));
-    return { posts: blogPosts, total: entries.total };
+    switch (entryType) {
+      case 'post':
+        _entries = entries.items.map((entry) => convertPost(entry));
+        break;
+      case 'faq':
+        _entries = entries.items.map((entry) => convertFAQ(entry));
+      case 'page':
+        _entries = entries.items.map((entry) => convertPage(entry));
+      default:
+        break;
+    }
+    return { entries: _entries, total: entries.total };
   }
 
-  return { posts: [], total: 0 };
+  return { entries: _entries, total: 0 };
 }
 
 export function generateRoute(slug: string): string {
@@ -130,4 +168,50 @@ export async function generateLinkMeta(doc: Document): Promise<Document> {
   });
   await Promise.all(promises);
   return doc;
+}
+
+export async function fetchFAQItems(): Promise<IFetchFAQItemsReturn> {
+  const _entries = await client.getEntries({
+    content_type: 'faq_item', // only fetch faq items
+    order: 'fields.id',
+  });
+
+  const results = generateEntries(_entries, 'faq');
+  return { entries: results.entries as Array<IFAQItem>, total: results.total };
+}
+
+function convertFAQ(rawData: any): IFAQItem {
+  const rawFAQ = rawData.fields;
+  const { question, answer, id, tag } = rawFAQ;
+
+  return {
+    id: id ?? null,
+    question: question ?? null,
+    answer: answer ?? null,
+    tag: tag ?? null,
+  };
+}
+
+export async function fetchPages(quantity = 100): Promise<IFetchPagesReturn> {
+  const _entries = await client.getEntries({
+    content_type: 'page',
+    limit: quantity,
+  });
+
+  const results = generateEntries(_entries, 'page');
+  return {
+    entries: results.entries as Array<IPage>,
+    total: results.total,
+  };
+}
+
+function convertPage(rawData: any): IPage {
+  const rawPage = rawData.fields;
+
+  return {
+    title: rawPage.title,
+    slug: rawPage.slug,
+    headline: rawPage.headline ?? null,
+    body: rawPage.body,
+  };
 }

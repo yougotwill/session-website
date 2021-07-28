@@ -1,4 +1,4 @@
-import xss from 'xss';
+import sanitize from '@/utils/sanitize';
 import { Element } from '@/types/himalaya';
 
 export interface IEmbed {
@@ -32,7 +32,7 @@ function extractMetadata(html: string): IEmbed {
         const prop = node.attributes[0]?.value;
         let content = node.attributes[1]?.value;
         if (content) {
-          content = xss(content);
+          content = sanitize(content);
         }
         switch (prop) {
           case 'title':
@@ -118,9 +118,9 @@ export async function fetchContent(
 
 function convertToNoembed(rawData: any): INoembed {
   return {
-    title: xss(rawData.title),
-    url: xss(rawData.url),
-    site_name: xss(rawData.provider_name),
-    html: xss(rawData.html),
+    title: sanitize(rawData.title),
+    url: sanitize(rawData.url),
+    site_name: sanitize(rawData.provider_name),
+    html: sanitize(rawData.html),
   };
 }
