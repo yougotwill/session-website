@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { IPost } from '@/types/cms';
 import {
   fetchBlogEntries,
-  fetchBlogEntryBySlug,
+  fetchEntryBySlug,
   generateLinkMeta,
 } from '@/services/cms';
 
@@ -44,7 +44,10 @@ export default function BlogSlug(props: Props): ReactElement {
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const currentPost = await fetchBlogEntryBySlug(String(context.params?.slug));
+  const currentPost: IPost = await fetchEntryBySlug(
+    String(context.params?.slug),
+    'post'
+  );
 
   if (!currentPost) {
     return { notFound: true };
@@ -54,7 +57,7 @@ export const getStaticProps: GetStaticProps = async (
   currentPost.body = await generateLinkMeta(currentPost.body);
 
   // we want 6 posts excluding the current one if it's found
-  const { posts } = await fetchBlogEntries(7);
+  const { entries: posts, total: totalPosts } = await fetchBlogEntries(7);
   const otherPosts = posts
     .filter((post) => {
       return currentPost.slug !== post.slug;
@@ -71,7 +74,7 @@ export const getStaticProps: GetStaticProps = async (
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { posts } = await fetchBlogEntries();
+  const { entries: posts, total: totalPosts } = await fetchBlogEntries();
   const paths = posts.map((post) => {
     return {
       params: {

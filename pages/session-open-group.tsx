@@ -35,7 +35,7 @@ export default function OpenGroup(): ReactElement {
   };
   return (
     <section>
-      <Layout title="Session | Open Group Channel | Privat Messenger">
+      <Layout title="Session | Open Group Channel | Private Messenger">
         <div
           className={classNames(
             'container pt-6 pb-8 px-4 mx-auto text-center',
@@ -45,10 +45,11 @@ export default function OpenGroup(): ReactElement {
         >
           <Headline
             color="gray-dark"
-            showLine={false}
+            hideLineOnMobile={true}
             classes={classNames(
-              'font-extralight text-lg text-center -mr-4 mb-8',
-              'lg:mt-4'
+              'text-lg font-mono -mr-4 mb-8',
+              'md:mt-4',
+              'lg:mt-4 lg:mb-16'
             )}
           >
             Session Open Group Channel

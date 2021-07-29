@@ -11,6 +11,13 @@ module.exports = {
       mono: ['SpaceMono', 'monospace'],
       sans: ['PublicSans', 'sans-serif'],
     },
+    screens: {
+      sm: '375px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       animation: {
         push: 'push 0.3s linear 1',
@@ -50,6 +57,7 @@ module.exports = {
       animation: ['hover'],
       backgroundColor: ['selection'],
       blur: ['hover'],
+      borderWidth: ['first'],
       display: ['group-hover', 'hover'],
       filter: ['hover'],
       transitionDuration: ['group-hover'],

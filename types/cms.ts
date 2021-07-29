@@ -1,10 +1,5 @@
 import { Document } from '@contentful/rich-text-types';
 
-export interface IFetchBlogEntriesReturn {
-  posts: Array<IPost>;
-  total: number;
-}
-
 export type IFigureImage = {
   title: string | null;
   description: string | null;
@@ -37,4 +32,39 @@ export interface IPost {
   fullHeader?: boolean;
   tags: Array<string>;
   slug: string;
+}
+
+export interface IFAQItem {
+  id: number;
+  question: string;
+  answer: Document;
+  tag: string;
+}
+
+export interface IFetchEntriesReturn {
+  entries: Array<any>;
+  total: number;
+}
+
+export interface IFAQList {
+  [key: string]: IFAQItem[];
+}
+
+export interface IFetchBlogEntriesReturn extends IFetchEntriesReturn {
+  entries: Array<IPost>;
+}
+
+export interface IFetchFAQItemsReturn extends IFetchEntriesReturn {
+  entries: Array<IFAQItem>;
+}
+
+export interface IPage {
+  title: string;
+  slug: string;
+  headline: string | null;
+  body: Document;
+}
+
+export interface IFetchPagesReturn extends IFetchEntriesReturn {
+  entries: Array<IPage>;
 }

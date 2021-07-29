@@ -33,10 +33,17 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+## Contentful Notes
+
+- [ ] Use `Link` and `Media` content models for embedded content into blog posts.
+- [ ] If linking content that is on the site itself omit https://getsession.org.\
+      e.g. `https://getsession.org/blog/onion-requests-session-new-message-routing-solution/` => `/blog/onion-requests-session-new-message-routing-solution/`
+
 ## Developer Notes
 
 - Use the [Headwind](https://github.com/heybourn/headwind) VSCode extension for sorting TailWindCSS classes.
 - Using the [classnames](https://www.npmjs.com/package/classnames) package we can organise our classes into groups that combine at build time.
+- Always run `yarn run build && yarn run start` to see how the code works in a production environment before pushing to the server.
 
 ```jsx
   <div className={classNames(

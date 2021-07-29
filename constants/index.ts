@@ -1,3 +1,4 @@
 import CMS from './cms';
+import UI from './ui';
 
-export { CMS };
+export { CMS, UI };

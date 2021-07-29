@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { IEmbed, INoembed, isNoembed } from '@/services/embed';
 
 interface Props {
-  content: IEmbed | INoembed;
+  content: IEmbed | INoembed; // is sanitized in embed service
   classes?: string;
 }
 
@@ -13,10 +13,9 @@ export default function EmbedContent(props: Props): ReactElement {
   const { content, classes } = props;
   const htmlRef = useRef<HTMLDivElement>(null);
   if (isNoembed(content)) {
-    const DOMPurify = require('dompurify');
     useEffect(() => {
       if (null !== htmlRef.current) {
-        htmlRef.current.innerHTML = DOMPurify.sanitize(content.html);
+        htmlRef.current.innerHTML = content.html;
       }
     }, []);
     return (
@@ -43,12 +42,18 @@ export default function EmbedContent(props: Props): ReactElement {
               </div>
             )}
             <div className={classNames('p-3 text-black text-sm')}>
-              <p className={classNames('font-bold')}>{content.title}</p>
-              {content.description && <p>{content.description}</p>}
+              <p
+                className={classNames('font-bold')}
+                dangerouslySetInnerHTML={{ __html: content.title }}
+              />
+              {content.description && (
+                <p dangerouslySetInnerHTML={{ __html: content.description }} />
+              )}
               {content.site_name && (
-                <p className={classNames('text-gray-500 font-normal')}>
-                  {content.site_name}
-                </p>
+                <p
+                  className={classNames('text-gray-500 font-normal')}
+                  dangerouslySetInnerHTML={{ __html: content.site_name }}
+                />
               )}
             </div>
           </div>
