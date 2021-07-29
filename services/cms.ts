@@ -23,11 +23,18 @@ const client: ContentfulClientApi = createClient({
 export async function fetchBlogEntries(
   quantity = 100
 ): Promise<IFetchBlogEntriesReturn> {
-  const _entries = await client.getEntries({
+  const options: any = {
     content_type: 'post', // only fetch blog post entry
     order: '-fields.date',
     limit: quantity,
-  });
+  };
+
+  // only show 'live' posts in production
+  if (process.env.SITE_ENV == 'production') {
+    options['fields.live'] = true;
+  }
+
+  const _entries = await client.getEntries(options);
 
   const results = generateEntries(_entries, 'post');
   return {
@@ -40,12 +47,19 @@ export async function fetchBlogEntriesByTag(
   tag: string,
   quantity = 100
 ): Promise<IFetchBlogEntriesReturn> {
-  const _entries = await client.getEntries({
+  const options: any = {
     content_type: 'post', // only fetch blog post entry
     order: '-fields.date',
     'fields.tags[in]': tag,
     limit: quantity,
-  });
+  };
+
+  // only show 'live' posts in production
+  if (process.env.SITE_ENV == 'production') {
+    options['fields.live'] = true;
+  }
+
+  const _entries = await client.getEntries(options);
 
   const results = generateEntries(_entries, 'post');
   return {

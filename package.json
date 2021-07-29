@@ -6,7 +6,8 @@
     "dev": "NODE_ENV=development NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "build:static": "next build && next export",
-    "start": "next start",
+    "start": "SITE_ENV=production next start",
+    "start:staging": "SITE_ENV=development next start --port 3001",
     "start:static": "npx serve -s out"
   },
   "dependencies": {
