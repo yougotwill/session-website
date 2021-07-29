@@ -35,7 +35,7 @@ export default function OpenGroup(): ReactElement {
   };
   return (
     <section>
-      <Layout title="Session | Open Group Channel | Privat Messenger">
+      <Layout title="Session | Open Group Channel | Private Messenger">
         <div
           className={classNames(
             'container pt-6 pb-8 px-4 mx-auto text-center',

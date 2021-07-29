@@ -63,19 +63,19 @@ export async function fetchEntryBySlug(
     'fields.slug': slug,
   });
 
-  console.log(`fetched ${entryType}s`, _entries);
-
   if (_entries?.items?.length > 0) {
+    let entry;
     switch (entryType) {
       case 'post':
-        const post = convertPost(_entries.items[0]);
-        return post;
+        entry = convertPost(_entries.items[0]);
+        break;
       case 'page':
-        const page = convertPage(_entries.items[0]);
-        return page;
+        entry = convertPage(_entries.items[0]);
+        break;
       default:
         break;
     }
+    return entry;
   }
 
   return Promise.reject(new Error(`Failed to fetch ${entryType} by slug`));
@@ -138,8 +138,10 @@ function generateEntries(
         break;
       case 'faq':
         _entries = entries.items.map((entry) => convertFAQ(entry));
+        break;
       case 'page':
         _entries = entries.items.map((entry) => convertPage(entry));
+        break;
       default:
         break;
     }

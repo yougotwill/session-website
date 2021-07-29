@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import { IPage } from '@/types/cms';
 import { fetchEntryBySlug, fetchPages, generateLinkMeta } from '@/services/cms';
+import { hasRedirection } from '@/services/redirect';
 
 import { Headline, Layout } from '@/components/ui';
 import RichBody from '@/components/RichBody';
@@ -14,8 +15,9 @@ interface Props {
 
 export default function Page(props: Props): ReactElement {
   const { page } = props;
+  const pageTitle = page?.title + ' - Session';
   return (
-    <Layout title={`${page.title} - Session`}>
+    <Layout title={pageTitle}>
       <section>
         <div
           className={classNames(
@@ -24,7 +26,7 @@ export default function Page(props: Props): ReactElement {
             'lg:pt-0 lg:pb-32'
           )}
         >
-          {page.headline && (
+          {page?.headline && (
             <Headline
               color="gray-dark"
               classes={classNames(
@@ -38,7 +40,7 @@ export default function Page(props: Props): ReactElement {
           )}
           <div className={'lg:max-w-screen-md lg:mx-auto'}>
             <RichBody
-              body={page.body}
+              body={page?.body}
               headingClasses={'text-gray font-medium mt-6'}
               classes={classNames(
                 'text-sm text-gray-lighter font-helvetica font-extralight leading-loose',
@@ -55,10 +57,12 @@ export default function Page(props: Props): ReactElement {
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const page: IPage = await fetchEntryBySlug(
-    String(context.params?.slug),
-    'page'
-  );
+  const slug = String(context.params?.slug);
+
+  const isRedirect = await hasRedirection('/' + slug);
+  if (isRedirect) return isRedirect;
+
+  const page: IPage = await fetchEntryBySlug(slug, 'page');
 
   if (!page) {
     return { notFound: true };
