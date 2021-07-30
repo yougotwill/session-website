@@ -1,7 +1,7 @@
 import { createClient, ContentfulClientApi, EntryCollection } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
 import { format, parseISO } from 'date-fns';
-import isLive from '@/utils/env';
+import isLive from '@/utils/environment';
 
 import {
   IFigureImage,
