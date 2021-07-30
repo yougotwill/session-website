@@ -1,6 +1,7 @@
 import { createClient, ContentfulClientApi, EntryCollection } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
 import { format, parseISO } from 'date-fns';
+import isLive from '@/utils/env';
 
 import {
   IFigureImage,
@@ -20,21 +21,21 @@ const client: ContentfulClientApi = createClient({
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN!,
 });
 
+function loadOptions(options: any) {
+  if (isLive()) options['fields.live'] = true;
+  return options;
+}
+
 export async function fetchBlogEntries(
   quantity = 100
 ): Promise<IFetchBlogEntriesReturn> {
-  const options: any = {
-    content_type: 'post', // only fetch blog post entry
-    order: '-fields.date',
-    limit: quantity,
-  };
-
-  // only show 'live' posts in production
-  if (process.env.SITE_ENV == 'production') {
-    options['fields.live'] = true;
-  }
-
-  const _entries = await client.getEntries(options);
+  const _entries = await client.getEntries(
+    loadOptions({
+      content_type: 'post', // only fetch blog post entry
+      order: '-fields.date',
+      limit: quantity,
+    })
+  );
 
   const results = generateEntries(_entries, 'post');
   return {
@@ -47,19 +48,14 @@ export async function fetchBlogEntriesByTag(
   tag: string,
   quantity = 100
 ): Promise<IFetchBlogEntriesReturn> {
-  const options: any = {
-    content_type: 'post', // only fetch blog post entry
-    order: '-fields.date',
-    'fields.tags[in]': tag,
-    limit: quantity,
-  };
-
-  // only show 'live' posts in production
-  if (process.env.SITE_ENV == 'production') {
-    options['fields.live'] = true;
-  }
-
-  const _entries = await client.getEntries(options);
+  const _entries = await client.getEntries(
+    loadOptions({
+      content_type: 'post', // only fetch blog post entry
+      order: '-fields.date',
+      'fields.tags[in]': tag,
+      limit: quantity,
+    })
+  );
 
   const results = generateEntries(_entries, 'post');
   return {
@@ -209,10 +205,12 @@ function convertFAQ(rawData: any): IFAQItem {
 }
 
 export async function fetchPages(quantity = 100): Promise<IFetchPagesReturn> {
-  const _entries = await client.getEntries({
-    content_type: 'page',
-    limit: quantity,
-  });
+  const _entries = await client.getEntries(
+    loadOptions({
+      content_type: 'page',
+      limit: quantity,
+    })
+  );
 
   const results = generateEntries(_entries, 'page');
   return {
