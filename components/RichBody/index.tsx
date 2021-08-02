@@ -3,7 +3,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'classnames';
 
-import { BLOCKS, Document, INLINES, MARKS } from '@contentful/rich-text-types';
+import {
+  Block,
+  BLOCKS,
+  Document,
+  Inline,
+  INLINES,
+  MARKS,
+} from '@contentful/rich-text-types';
 import {
   documentToReactComponents,
   Options,
@@ -18,7 +25,25 @@ interface Props {
 
 export default function RichBody(props: Props): ReactElement {
   const { body, headingClasses, classes } = props;
-
+  const protocols = ['https://', 'http://']; // used for checking if hyperlinks are local i.e. #mac, #linux, #windows
+  const isLocal = (url: string) => {
+    let result = true;
+    protocols.forEach((protocol) => {
+      if (url.indexOf(protocol) >= 0) {
+        result = false;
+      }
+    });
+    return result;
+  };
+  const hasLocalID = (node: Block | Inline) => {
+    let id = '';
+    node.content.forEach((child) => {
+      if (child.nodeType === 'hyperlink' && isLocal(child.data.uri)) {
+        id = child.data.uri.split('#')[1];
+      }
+    });
+    return id;
+  };
   const options: Options = {
     renderMark: {
       [MARKS.BOLD]: (text) => (
@@ -34,13 +59,16 @@ export default function RichBody(props: Props): ReactElement {
       [MARKS.UNDERLINE]: (text) => (
         <span className={classNames('underline')}>{text}</span>
       ),
+      [MARKS.CODE]: (text) => (
+        <code className={classNames('font-mono tracking-wide')}>{text}</code>
+      ),
     },
     renderNode: {
       [INLINES.HYPERLINK]: (node, children) => (
-        <Link href={node.data.uri}>
+        <Link href={node.data.uri} scroll={!isLocal(node.data.uri)}>
           <a
             className={classNames('text-primary-dark font-extralight')}
-            target="_blank"
+            target={isLocal(node.data.uri) ? '_self' : '_blank'}
             rel="noreferrer"
           >
             {children}
@@ -52,6 +80,7 @@ export default function RichBody(props: Props): ReactElement {
       ),
       [BLOCKS.HEADING_1]: (node, children) => (
         <h1
+          id={hasLocalID(node)}
           className={classNames(
             'text-3xl leading-snug mb-5',
             'lg:text-5xl',
@@ -63,6 +92,7 @@ export default function RichBody(props: Props): ReactElement {
       ),
       [BLOCKS.HEADING_2]: (node, children) => (
         <h2
+          id={hasLocalID(node)}
           className={classNames(
             'text-2xl leading-snug mb-5',
             'lg:text-3xl',
@@ -74,6 +104,7 @@ export default function RichBody(props: Props): ReactElement {
       ),
       [BLOCKS.HEADING_3]: (node, children) => (
         <h3
+          id={hasLocalID(node)}
           className={classNames(
             'text-xl leading-snug mb-2',
             'lg:text-2xl',
@@ -85,6 +116,7 @@ export default function RichBody(props: Props): ReactElement {
       ),
       [BLOCKS.HEADING_4]: (node, children) => (
         <h4
+          id={hasLocalID(node)}
           className={classNames(
             'text-md leading-snug mb-2',
             'lg:text-xl',
@@ -139,6 +171,7 @@ export default function RichBody(props: Props): ReactElement {
           const url = media.file.url.replace('//', 'https://');
           switch (media.file.contentType) {
             case 'image/jpeg':
+            case 'image/png':
               const imageWidth = media.file.details.image.width;
               const imageHeight = media.file.details.image.height;
               return (
