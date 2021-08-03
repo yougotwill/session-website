@@ -75,6 +75,69 @@ export default function RichBody(props: Props): ReactElement {
           </a>
         </Link>
       ),
+      [INLINES.EMBEDDED_ENTRY]: (node, children) => {
+        const asset = node.data.target.fields;
+        if (!asset.file) {
+          // embedded link
+          return (
+            <figure>
+              <EmbedContent
+                content={asset.meta}
+                classes={'inline-block align-middle mx-1'}
+              />
+              {asset.caption && (
+                <figcaption
+                  className={classNames('inline-block align-middle mx-1')}
+                >
+                  <em>{asset.caption}</em>
+                </figcaption>
+              )}
+            </figure>
+          );
+        } else {
+          // embedded media
+          const media = asset.file.fields;
+          const url = media.file.url.replace('//', 'https://');
+          switch (media.file.contentType) {
+            case 'image/jpeg':
+            case 'image/png':
+              const imageWidth = asset.width ?? media.file.details.image.width;
+              const imageHeight =
+                asset.height ?? media.file.details.image.height;
+              return (
+                <figure
+                  className={classNames('inline-block align-middle mx-1')}
+                >
+                  <Image
+                    src={url}
+                    alt={asset.title}
+                    width={imageWidth}
+                    height={imageHeight}
+                  />
+                  {asset.caption && (
+                    <figcaption className="inline-block mx-1 align-middle">
+                      <em>
+                        <Link href={asset.sourceUrl}>
+                          <a
+                            className={classNames(
+                              'text-primary-dark font-extralight'
+                            )}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            {asset.caption}
+                          </a>
+                        </Link>
+                      </em>
+                    </figcaption>
+                  )}
+                </figure>
+              );
+            default:
+              return null;
+          }
+        }
+      },
       [BLOCKS.PARAGRAPH]: (node, children) => (
         <p className={classNames('leading-relaxed pb-6')}>{children}</p>
       ),
@@ -125,6 +188,9 @@ export default function RichBody(props: Props): ReactElement {
         >
           {children}
         </h4>
+      ),
+      [BLOCKS.HR]: (node, children) => (
+        <hr className={classNames('border-gray-300 w-24 mx-auto pb-6')} />
       ),
       [BLOCKS.OL_LIST]: (node, children) => {
         return <ol className="ml-4 list-decimal">{children}</ol>;
