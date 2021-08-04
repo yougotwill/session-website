@@ -1,5 +1,5 @@
 import { createClient, ContentfulClientApi, EntryCollection } from 'contentful';
-import { Document } from '@contentful/rich-text-types';
+import { Document, Block, Inline } from '@contentful/rich-text-types';
 import { format, parseISO } from 'date-fns';
 import isLive from '@/utils/environment';
 
@@ -168,7 +168,7 @@ export function generateRoute(slug: string): string {
 }
 
 export async function generateLinkMeta(doc: Document): Promise<Document> {
-  const promises = doc.content.map(async (node) => {
+  const promises = doc.content.map(async (node: Block | Inline) => {
     if (node.nodeType === 'embedded-entry-block') {
       // is embedded link not embedded media
       if (!node.data.target.fields.file) {
@@ -176,6 +176,20 @@ export async function generateLinkMeta(doc: Document): Promise<Document> {
           node.data.target.fields.url
         );
       }
+    } else {
+      // check for inline embedding
+      // TODO anyway to optimise?
+      const innerPromises = node.content.map(async (innerNode) => {
+        if (innerNode.nodeType === 'embedded-entry-inline') {
+          // is embedded link not embedded media
+          if (!innerNode.data.target.fields.file) {
+            innerNode.data.target.fields.meta = await fetchContent(
+              innerNode.data.target.fields.url
+            );
+          }
+        }
+      });
+      await Promise.all(innerPromises);
     }
   });
   await Promise.all(promises);

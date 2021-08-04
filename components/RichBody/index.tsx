@@ -112,14 +112,22 @@ export default function RichBody(props: Props): ReactElement {
         if (!asset.file) {
           // embedded link
           return (
-            <figure>
+            <figure
+              className={classNames(
+                asset.position && `md:float-${asset.position} md:w-3/5 lg:w-1/2`
+              )}
+            >
               <EmbedContent
                 content={asset.meta}
-                classes={'inline-block align-middle mx-1'}
+                classes={classNames(
+                  !asset.position && 'inline-block align-middle mx-1'
+                )}
               />
               {asset.caption && (
                 <figcaption
-                  className={classNames('inline-block align-middle mx-1')}
+                  className={classNames(
+                    !asset.position && 'inline-block align-middle mx-1'
+                  )}
                 >
                   <em>{asset.caption}</em>
                 </figcaption>
@@ -138,7 +146,12 @@ export default function RichBody(props: Props): ReactElement {
                 asset.height ?? media.file.details.image.height;
               return (
                 <figure
-                  className={classNames('inline-block align-middle mx-1')}
+                  className={classNames(
+                    asset.position
+                      ? `mx-auto mb-8 md:mx-4 md:float-${asset.position}`
+                      : 'inline-block align-middle mx-1'
+                  )}
+                  style={{ width: asset.position ? imageWidth : '' }}
                 >
                   <Image
                     src={url}
@@ -147,7 +160,12 @@ export default function RichBody(props: Props): ReactElement {
                     height={imageHeight}
                   />
                   {asset.caption && (
-                    <figcaption className="inline-block mx-1 align-middle">
+                    <figcaption
+                      className={classNames(
+                        !asset.position &&
+                          'mt-1 text-center md:inline-block md:align-middle md:mx-1'
+                      )}
+                    >
                       <em>
                         {asset.sourceUrl ? (
                           <Link href={asset.sourceUrl}>
