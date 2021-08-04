@@ -91,6 +91,14 @@ export default function RichBody(props: Props): ReactElement {
             frontTags.push('<s>');
             endTags.push('</s>');
           }
+          if (asset.subscript) {
+            frontTags.push('<sub>');
+            endTags.push('</sub>');
+          }
+          if (asset.superscript) {
+            frontTags.push('<sup>');
+            endTags.push('</sup>');
+          }
           let htmlContent =
             frontTags.join('') + asset.content + endTags.join('');
           htmlContent = sanitize(htmlContent);
