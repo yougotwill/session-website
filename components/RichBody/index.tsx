@@ -16,6 +16,7 @@ import {
   Options,
 } from '@contentful/rich-text-react-renderer';
 import EmbedContent from '@/components/EmbedContent';
+import sanitize from '@/utils/sanitize';
 
 interface Props {
   body: Document;
@@ -76,7 +77,30 @@ export default function RichBody(props: Props): ReactElement {
         </Link>
       ),
       [INLINES.EMBEDDED_ENTRY]: (node, children) => {
-        const asset = node.data.target.fields;
+        const target = node.data.target;
+        const asset = target.fields;
+        if (target.sys.contentType.sys.id === 'markup') {
+          // markup content
+          const frontTags: string[] = [];
+          const endTags: string[] = [];
+          const styles: any = {};
+          if (asset.color) {
+            styles.color = sanitize(asset.color);
+          }
+          if (asset.strikethrough) {
+            frontTags.push('<s>');
+            endTags.push('</s>');
+          }
+          let htmlContent =
+            frontTags.join('') + asset.content + endTags.join('');
+          htmlContent = sanitize(htmlContent);
+          return (
+            <span
+              dangerouslySetInnerHTML={{ __html: htmlContent }}
+              style={styles}
+            />
+          );
+        }
         if (!asset.file) {
           // embedded link
           return (
