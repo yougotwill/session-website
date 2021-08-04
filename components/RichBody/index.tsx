@@ -141,17 +141,21 @@ export default function RichBody(props: Props): ReactElement {
                   {asset.caption && (
                     <figcaption className="inline-block mx-1 align-middle">
                       <em>
-                        <Link href={asset.sourceUrl}>
-                          <a
-                            className={classNames(
-                              'text-primary-dark font-extralight'
-                            )}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            {asset.caption}
-                          </a>
-                        </Link>
+                        {asset.sourceUrl ? (
+                          <Link href={asset.sourceUrl}>
+                            <a
+                              className={classNames(
+                                'text-primary-dark font-extralight'
+                              )}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              {asset.caption}
+                            </a>
+                          </Link>
+                        ) : (
+                          <>{asset.caption}</>
+                        )}
                       </em>
                     </figcaption>
                   )}
@@ -262,8 +266,9 @@ export default function RichBody(props: Props): ReactElement {
           switch (media.file.contentType) {
             case 'image/jpeg':
             case 'image/png':
-              const imageWidth = media.file.details.image.width;
-              const imageHeight = media.file.details.image.height;
+              const imageWidth = asset.width ?? media.file.details.image.width;
+              const imageHeight =
+                asset.height ?? media.file.details.image.height;
               return (
                 <figure className={classNames('text-center mb-8', 'lg:px-24')}>
                   <Image
@@ -275,17 +280,21 @@ export default function RichBody(props: Props): ReactElement {
                   {asset.caption && (
                     <figcaption className="mt-1">
                       <em>
-                        <Link href={asset.sourceUrl}>
-                          <a
-                            className={classNames(
-                              'text-primary-dark font-extralight'
-                            )}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            {asset.caption}
-                          </a>
-                        </Link>
+                        {asset.sourceUrl ? (
+                          <Link href={asset.sourceUrl}>
+                            <a
+                              className={classNames(
+                                'text-primary-dark font-extralight'
+                              )}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              {asset.caption}
+                            </a>
+                          </Link>
+                        ) : (
+                          <>{asset.caption}</>
+                        )}
                       </em>
                     </figcaption>
                   )}
