@@ -68,7 +68,7 @@ function renderEmbeddedMedia(node: any, isInline = false) {
         isInline && !node.position && 'inline-block align-middle mx-1',
         isInline && node.position === 'left' && 'md:float-left',
         isInline && node.position === 'right' && 'md:float-right',
-        !isInline && 'text-center mb-8 lg:px-24',
+        !isInline && 'text-center mb-8',
       ];
       const captionClasses = [
         !node.position && 'mt-1',

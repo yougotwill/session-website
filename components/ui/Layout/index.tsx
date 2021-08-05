@@ -19,8 +19,6 @@ export default function Layout({
     <>
       <Head>
         <title>{title}</title>
-        <link rel="icon" href="/favicon.ico" />
-        <meta charSet="utf-8" />
       </Head>
       <Nav />
       <main>{children}</main>

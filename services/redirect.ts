@@ -70,6 +70,7 @@ export async function hasRedirection(url: string) {
           destination: redirection.destination,
           permanent: redirection.permanent,
         },
+        revalidate: 3600, // refresh redirections hourly
       };
     }
   });
