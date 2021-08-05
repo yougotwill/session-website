@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { cloneElement, Children, ReactElement, ReactNode } from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
 
@@ -107,13 +107,22 @@ export default function RichBody(props: Props): ReactElement {
         <hr className={classNames('border-gray-300 w-24 mx-auto pb-6')} />
       ),
       [BLOCKS.OL_LIST]: (node, children) => {
-        return <ol className="ml-4 list-decimal">{children}</ol>;
+        return <ol className="pb-5 ml-10 list-decimal">{children}</ol>;
       },
       [BLOCKS.UL_LIST]: (node, children) => {
-        return <ul className="ml-4 list-disc">{children}</ul>;
+        return <ul className="pb-5 ml-10 list-disc">{children}</ul>;
       },
       [BLOCKS.LIST_ITEM]: (node, children) => {
-        return <li>{children}</li>;
+        const renderChildren = Children.map(children, (child: any) => {
+          if (child.type === 'p') {
+            const newProps = {
+              ...child.props,
+              className: 'leading-relaxed pb-1',
+            };
+            return cloneElement(child, newProps);
+          }
+        });
+        return <li>{renderChildren}</li>;
       },
       [BLOCKS.QUOTE]: (node, children) => (
         <div
