@@ -1,22 +1,14 @@
 import { ReactElement } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'classnames';
 
-import {
-  Block,
-  BLOCKS,
-  Document,
-  Inline,
-  INLINES,
-  MARKS,
-} from '@contentful/rich-text-types';
+import { BLOCKS, Document, INLINES, MARKS } from '@contentful/rich-text-types';
 import {
   documentToReactComponents,
   Options,
 } from '@contentful/rich-text-react-renderer';
-import EmbedContent from '@/components/EmbedContent';
-import sanitize from '@/utils/sanitize';
+import { isLocal, hasLocalID } from '@/utils/links';
+import { renderEmbeddedEntry } from '@/services/render';
 
 interface Props {
   body: Document;
@@ -26,25 +18,6 @@ interface Props {
 
 export default function RichBody(props: Props): ReactElement {
   const { body, headingClasses, classes } = props;
-  const protocols = ['https://', 'http://']; // used for checking if hyperlinks are local i.e. #mac, #linux, #windows
-  const isLocal = (url: string) => {
-    let result = true;
-    protocols.forEach((protocol) => {
-      if (url.indexOf(protocol) >= 0) {
-        result = false;
-      }
-    });
-    return result;
-  };
-  const hasLocalID = (node: Block | Inline) => {
-    let id = '';
-    node.content.forEach((child) => {
-      if (child.nodeType === 'hyperlink' && isLocal(child.data.uri)) {
-        id = child.data.uri.split('#')[1];
-      }
-    });
-    return id;
-  };
   const options: Options = {
     renderMark: {
       [MARKS.BOLD]: (text) => (
@@ -77,124 +50,7 @@ export default function RichBody(props: Props): ReactElement {
         </Link>
       ),
       [INLINES.EMBEDDED_ENTRY]: (node, children) => {
-        const target = node.data.target;
-        const asset = target.fields;
-        if (target.sys.contentType.sys.id === 'markup') {
-          // markup content
-          const frontTags: string[] = [];
-          const endTags: string[] = [];
-          const styles: any = {};
-          if (asset.color) {
-            styles.color = sanitize(asset.color);
-          }
-          if (asset.strikethrough) {
-            frontTags.push('<s>');
-            endTags.push('</s>');
-          }
-          if (asset.subscript) {
-            frontTags.push('<sub>');
-            endTags.push('</sub>');
-          }
-          if (asset.superscript) {
-            frontTags.push('<sup>');
-            endTags.push('</sup>');
-          }
-          let htmlContent =
-            frontTags.join('') + asset.content + endTags.join('');
-          htmlContent = sanitize(htmlContent);
-          return (
-            <span
-              dangerouslySetInnerHTML={{ __html: htmlContent }}
-              style={styles}
-            />
-          );
-        }
-        if (!asset.file) {
-          // embedded link
-          const inlineClasses = [
-            asset.position && 'md:w-3/5 lg:w-1/2',
-            asset.position === 'left' && 'md:float-left',
-            asset.position === 'right' && 'md:float-right',
-          ];
-          return (
-            <figure className={classNames(inlineClasses)}>
-              <EmbedContent
-                content={asset.meta}
-                classes={classNames(
-                  !asset.position && 'inline-block align-middle mx-1'
-                )}
-              />
-              {asset.caption && (
-                <figcaption
-                  className={classNames(
-                    !asset.position && 'inline-block align-middle mx-1'
-                  )}
-                >
-                  <em>{asset.caption}</em>
-                </figcaption>
-              )}
-            </figure>
-          );
-        } else {
-          // embedded media
-          const media = asset.file.fields;
-          const url = media.file.url.replace('//', 'https://');
-          switch (media.file.contentType) {
-            case 'image/jpeg':
-            case 'image/png':
-              const imageWidth = asset.width ?? media.file.details.image.width;
-              const imageHeight =
-                asset.height ?? media.file.details.image.height;
-              const inlineClasses = [
-                asset.position
-                  ? 'mx-auto mb-8 md:mx-4'
-                  : 'inline-block align-middle mx-1',
-                asset.position === 'left' && 'md:float-left',
-                asset.position === 'right' && 'md:float-right',
-              ];
-              return (
-                <figure
-                  className={classNames(inlineClasses)}
-                  style={{ width: asset.position ? imageWidth : '' }}
-                >
-                  <Image
-                    src={url}
-                    alt={asset.title}
-                    width={imageWidth}
-                    height={imageHeight}
-                  />
-                  {asset.caption && (
-                    <figcaption
-                      className={classNames(
-                        !asset.position &&
-                          'mt-1 text-center md:inline-block md:align-middle md:mx-1'
-                      )}
-                    >
-                      <em>
-                        {asset.sourceUrl ? (
-                          <Link href={asset.sourceUrl}>
-                            <a
-                              className={classNames(
-                                'text-primary-dark font-extralight'
-                              )}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              {asset.caption}
-                            </a>
-                          </Link>
-                        ) : (
-                          <>{asset.caption}</>
-                        )}
-                      </em>
-                    </figcaption>
-                  )}
-                </figure>
-              );
-            default:
-              return null;
-          }
-        }
+        return renderEmbeddedEntry({ node, isInline: true });
       },
       [BLOCKS.PARAGRAPH]: (node, children) => (
         <p className={classNames('leading-relaxed pb-6')}>{children}</p>
@@ -276,64 +132,7 @@ export default function RichBody(props: Props): ReactElement {
         </div>
       ),
       [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
-        const asset = node.data.target.fields;
-        if (!asset.file) {
-          // embedded link
-          return (
-            <figure>
-              <EmbedContent content={asset.meta} />
-              {asset.caption && (
-                <figcaption className={classNames('pb-4')}>
-                  <em>{asset.caption}</em>
-                </figcaption>
-              )}
-            </figure>
-          );
-        } else {
-          // embedded media
-          const media = asset.file.fields;
-          const url = media.file.url.replace('//', 'https://');
-          switch (media.file.contentType) {
-            case 'image/jpeg':
-            case 'image/png':
-              const imageWidth = asset.width ?? media.file.details.image.width;
-              const imageHeight =
-                asset.height ?? media.file.details.image.height;
-              return (
-                <figure className={classNames('text-center mb-8', 'lg:px-24')}>
-                  <Image
-                    src={url}
-                    alt={asset.title}
-                    width={imageWidth}
-                    height={imageHeight}
-                  />
-                  {asset.caption && (
-                    <figcaption className="mt-1">
-                      <em>
-                        {asset.sourceUrl ? (
-                          <Link href={asset.sourceUrl}>
-                            <a
-                              className={classNames(
-                                'text-primary-dark font-extralight'
-                              )}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              {asset.caption}
-                            </a>
-                          </Link>
-                        ) : (
-                          <>{asset.caption}</>
-                        )}
-                      </em>
-                    </figcaption>
-                  )}
-                </figure>
-              );
-            default:
-              return null;
-          }
-        }
+        return renderEmbeddedEntry({ node });
       },
     },
   };
