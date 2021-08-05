@@ -7,6 +7,7 @@ import redact from '@/utils/redact';
 import FacebookSVG from '@/assets/svgs/facebook.svg';
 import TwitterSVG from '@/assets/svgs/twitter.svg';
 import GithubSVG from '@/assets/svgs/github.svg';
+import RssSVG from '@/assets/svgs/rss.svg';
 
 import { GroupNotice } from '@/components/sections';
 
@@ -122,7 +123,7 @@ export default function Footer(): ReactElement {
               )}
             >
               <div className={classNames('w-1/2 mb-4')}>
-                <h3 className={headingClasses}>Socials</h3>
+                <h3 className={headingClasses}>Links</h3>
                 <div className={classNames('flex')}>
                   <Link href="https://www.facebook.com/SessionMessenger/">
                     <a className={socialLinkClasses} target="_blank">
@@ -140,6 +141,11 @@ export default function Footer(): ReactElement {
                   <Link href="https://github.com/oxen-io">
                     <a className={socialLinkClasses} target="_blank">
                       <GithubSVG className={svgClasses} title="github logo" />
+                    </a>
+                  </Link>
+                  <Link href="/feed">
+                    <a className={socialLinkClasses} target="_self">
+                      <RssSVG className={svgClasses} title="rss logo" />
                     </a>
                   </Link>
                 </div>
