@@ -180,7 +180,10 @@ export async function generateLinkMeta(doc: Document): Promise<Document> {
       // check for inline embedding
       // TODO anyway to optimise?
       const innerPromises = node.content.map(async (innerNode) => {
-        if (innerNode.nodeType === 'embedded-entry-inline') {
+        if (
+          innerNode.nodeType === 'embedded-entry-inline' &&
+          innerNode.data.target.sys.contentType.sys.id !== 'markup'
+        ) {
           // is embedded link not embedded media
           if (!innerNode.data.target.fields.file) {
             innerNode.data.target.fields.meta = await fetchContent(

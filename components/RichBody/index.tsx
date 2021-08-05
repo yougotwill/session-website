@@ -111,12 +111,13 @@ export default function RichBody(props: Props): ReactElement {
         }
         if (!asset.file) {
           // embedded link
+          const inlineClasses = [
+            asset.position && 'md:w-3/5 lg:w-1/2',
+            asset.position === 'left' && 'md:float-left',
+            asset.position === 'right' && 'md:float-right',
+          ];
           return (
-            <figure
-              className={classNames(
-                asset.position && `md:float-${asset.position} md:w-3/5 lg:w-1/2`
-              )}
-            >
+            <figure className={classNames(inlineClasses)}>
               <EmbedContent
                 content={asset.meta}
                 classes={classNames(
@@ -144,13 +145,16 @@ export default function RichBody(props: Props): ReactElement {
               const imageWidth = asset.width ?? media.file.details.image.width;
               const imageHeight =
                 asset.height ?? media.file.details.image.height;
+              const inlineClasses = [
+                asset.position
+                  ? 'mx-auto mb-8 md:mx-4'
+                  : 'inline-block align-middle mx-1',
+                asset.position === 'left' && 'md:float-left',
+                asset.position === 'right' && 'md:float-right',
+              ];
               return (
                 <figure
-                  className={classNames(
-                    asset.position
-                      ? `mx-auto mb-8 md:mx-4 md:float-${asset.position}`
-                      : 'inline-block align-middle mx-1'
-                  )}
+                  className={classNames(inlineClasses)}
                   style={{ width: asset.position ? imageWidth : '' }}
                 >
                   <Image
