@@ -167,29 +167,28 @@ export function generateRoute(slug: string): string {
   return route;
 }
 
+async function loadMetaData(node: Block | Inline) {
+  // is embedded link not embedded media
+  if (!node.data.target.fields.file) {
+    node.data.target.fields.meta = await fetchContent(
+      node.data.target.fields.url
+    );
+  }
+  return node;
+}
+
 export async function generateLinkMeta(doc: Document): Promise<Document> {
   const promises = doc.content.map(async (node: Block | Inline) => {
     if (node.nodeType === 'embedded-entry-block') {
-      // is embedded link not embedded media
-      if (!node.data.target.fields.file) {
-        node.data.target.fields.meta = await fetchContent(
-          node.data.target.fields.url
-        );
-      }
+      node = await loadMetaData(node);
     } else {
       // check for inline embedding
-      // TODO anyway to optimise?
       const innerPromises = node.content.map(async (innerNode) => {
         if (
           innerNode.nodeType === 'embedded-entry-inline' &&
           innerNode.data.target.sys.contentType.sys.id !== 'markup'
         ) {
-          // is embedded link not embedded media
-          if (!innerNode.data.target.fields.file) {
-            innerNode.data.target.fields.meta = await fetchContent(
-              innerNode.data.target.fields.url
-            );
-          }
+          innerNode = await loadMetaData(innerNode);
         }
       });
       await Promise.all(innerPromises);
