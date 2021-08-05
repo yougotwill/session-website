@@ -34,22 +34,20 @@ function renderMarkup(node: any) {
 }
 
 function renderEmbeddedLink(node: any, isInline = false) {
-  const figureClasses = classNames(
-    isInline && [
-      node.position && 'md:w-3/5 lg:w-1/2',
-      node.position === 'left' && 'md:float-left',
-      node.position === 'right' && 'md:float-right',
-    ]
-  );
-  const inlineClasses = classNames(
-    isInline && [!node.position && 'inline-block align-middle mx-1']
-  );
-  const captionClasses = classNames(inlineClasses, !isInline && 'pb-4');
+  const figureClasses = [
+    isInline && node.position === 'left' && 'md:float-left',
+    isInline && node.position === 'right' && 'md:float-right',
+    isInline && node.position && 'md:w-3/5 lg:w-1/2',
+  ];
+  const inlineClasses = [
+    isInline && !node.position && 'inline-block align-middle mx-1',
+  ];
+  const captionClasses = [...inlineClasses, !isInline && 'pb-4'];
   return (
-    <figure className={figureClasses}>
-      <EmbedContent content={node.meta} classes={inlineClasses} />
+    <figure className={classNames(figureClasses)}>
+      <EmbedContent content={node.meta} classes={classNames(inlineClasses)} />
       {node.caption && (
-        <figcaption className={captionClasses}>
+        <figcaption className={classNames(captionClasses)}>
           <em>{node.caption}</em>
         </figcaption>
       )}
@@ -65,28 +63,22 @@ function renderEmbeddedMedia(node: any, isInline = false) {
     case 'image/png':
       const imageWidth = node.width ?? media.file.details.image.width;
       const imageHeight = node.height ?? media.file.details.image.height;
-      const inlineClasses = classNames(
-        isInline && [
-          node.position
-            ? 'mx-auto mb-8 md:mx-4'
-            : 'inline-block align-middle mx-1',
-          node.position === 'left' && 'md:float-left',
-          node.position === 'right' && 'md:float-right',
-        ]
-      );
-      const figureClasses = classNames(
-        inlineClasses,
-        !isInline && 'text-center mb-8 lg:px-24'
-      );
-      const captionClasses = classNames([
+      const figureClasses = [
+        isInline && node.position && 'mx-auto mb-8 md:mx-4',
+        isInline && !node.position && 'inline-block align-middle mx-1',
+        isInline && node.position === 'left' && 'md:float-left',
+        isInline && node.position === 'right' && 'md:float-right',
+        !isInline && 'text-center mb-8 lg:px-24',
+      ];
+      const captionClasses = [
         !node.position && 'mt-1',
         isInline &&
           !node.position &&
           'text-center md:inline-block md:align-middle md:mx-1',
-      ]);
+      ];
       return (
         <figure
-          className={figureClasses}
+          className={classNames(figureClasses)}
           style={{ width: node.position ? imageWidth : '' }}
         >
           <Image
@@ -96,7 +88,7 @@ function renderEmbeddedMedia(node: any, isInline = false) {
             height={imageHeight}
           />
           {node.caption && (
-            <figcaption className={captionClasses}>
+            <figcaption className={classNames(captionClasses)}>
               <em>
                 {node.sourceUrl ? (
                   <Link href={node.sourceUrl}>
