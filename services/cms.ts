@@ -1,5 +1,5 @@
 import { createClient, ContentfulClientApi, EntryCollection } from 'contentful';
-import { Document } from '@contentful/rich-text-types';
+import { Document, Block, Inline } from '@contentful/rich-text-types';
 import { format, parseISO } from 'date-fns';
 import isLive from '@/utils/environment';
 
@@ -167,15 +167,31 @@ export function generateRoute(slug: string): string {
   return route;
 }
 
+async function loadMetaData(node: Block | Inline) {
+  // is embedded link not embedded media
+  if (!node.data.target.fields.file) {
+    node.data.target.fields.meta = await fetchContent(
+      node.data.target.fields.url
+    );
+  }
+  return node;
+}
+
 export async function generateLinkMeta(doc: Document): Promise<Document> {
-  const promises = doc.content.map(async (node) => {
+  const promises = doc.content.map(async (node: Block | Inline) => {
     if (node.nodeType === 'embedded-entry-block') {
-      // is embedded link not embedded media
-      if (!node.data.target.fields.file) {
-        node.data.target.fields.meta = await fetchContent(
-          node.data.target.fields.url
-        );
-      }
+      node = await loadMetaData(node);
+    } else {
+      // check for inline embedding
+      const innerPromises = node.content.map(async (innerNode) => {
+        if (
+          innerNode.nodeType === 'embedded-entry-inline' &&
+          innerNode.data.target.sys.contentType.sys.id !== 'markup'
+        ) {
+          innerNode = await loadMetaData(innerNode);
+        }
+      });
+      await Promise.all(innerPromises);
     }
   });
   await Promise.all(promises);

@@ -61,3 +61,8 @@
 .embed-content blockquote > a {
   @apply text-primary-dark font-extralight;
 }
+
+.font-mono {
+  /* fixes '</' in Space Mono font */
+  font-variant-ligatures: no-contextual;
+}
