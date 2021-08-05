@@ -1,5 +1,4 @@
 import { ReactElement } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'classnames';
 
@@ -8,7 +7,8 @@ import {
   documentToReactComponents,
   Options,
 } from '@contentful/rich-text-react-renderer';
-import EmbedContent from '@/components/EmbedContent';
+import { isLocal, hasLocalID } from '@/utils/links';
+import { renderEmbeddedEntry } from '@/services/render';
 
 interface Props {
   body: Document;
@@ -18,7 +18,6 @@ interface Props {
 
 export default function RichBody(props: Props): ReactElement {
   const { body, headingClasses, classes } = props;
-
   const options: Options = {
     renderMark: {
       [MARKS.BOLD]: (text) => (
@@ -34,24 +33,31 @@ export default function RichBody(props: Props): ReactElement {
       [MARKS.UNDERLINE]: (text) => (
         <span className={classNames('underline')}>{text}</span>
       ),
+      [MARKS.CODE]: (text) => (
+        <code className={classNames('font-mono tracking-wide')}>{text}</code>
+      ),
     },
     renderNode: {
       [INLINES.HYPERLINK]: (node, children) => (
-        <Link href={node.data.uri}>
+        <Link href={node.data.uri} scroll={!isLocal(node.data.uri)}>
           <a
             className={classNames('text-primary-dark font-extralight')}
-            target="_blank"
+            target={isLocal(node.data.uri) ? '_self' : '_blank'}
             rel="noreferrer"
           >
             {children}
           </a>
         </Link>
       ),
+      [INLINES.EMBEDDED_ENTRY]: (node, children) => {
+        return renderEmbeddedEntry({ node, isInline: true });
+      },
       [BLOCKS.PARAGRAPH]: (node, children) => (
         <p className={classNames('leading-relaxed pb-6')}>{children}</p>
       ),
       [BLOCKS.HEADING_1]: (node, children) => (
         <h1
+          id={hasLocalID(node)}
           className={classNames(
             'text-3xl leading-snug mb-5',
             'lg:text-5xl',
@@ -63,6 +69,7 @@ export default function RichBody(props: Props): ReactElement {
       ),
       [BLOCKS.HEADING_2]: (node, children) => (
         <h2
+          id={hasLocalID(node)}
           className={classNames(
             'text-2xl leading-snug mb-5',
             'lg:text-3xl',
@@ -74,6 +81,7 @@ export default function RichBody(props: Props): ReactElement {
       ),
       [BLOCKS.HEADING_3]: (node, children) => (
         <h3
+          id={hasLocalID(node)}
           className={classNames(
             'text-xl leading-snug mb-2',
             'lg:text-2xl',
@@ -85,6 +93,7 @@ export default function RichBody(props: Props): ReactElement {
       ),
       [BLOCKS.HEADING_4]: (node, children) => (
         <h4
+          id={hasLocalID(node)}
           className={classNames(
             'text-md leading-snug mb-2',
             'lg:text-xl',
@@ -93,6 +102,9 @@ export default function RichBody(props: Props): ReactElement {
         >
           {children}
         </h4>
+      ),
+      [BLOCKS.HR]: (node, children) => (
+        <hr className={classNames('border-gray-300 w-24 mx-auto pb-6')} />
       ),
       [BLOCKS.OL_LIST]: (node, children) => {
         return <ol className="ml-4 list-decimal">{children}</ol>;
@@ -120,58 +132,7 @@ export default function RichBody(props: Props): ReactElement {
         </div>
       ),
       [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
-        const asset = node.data.target.fields;
-        if (!asset.file) {
-          // embedded link
-          return (
-            <figure>
-              <EmbedContent content={asset.meta} />
-              {asset.caption && (
-                <figcaption className={classNames('pb-4')}>
-                  <em>{asset.caption}</em>
-                </figcaption>
-              )}
-            </figure>
-          );
-        } else {
-          // embedded media
-          const media = asset.file.fields;
-          const url = media.file.url.replace('//', 'https://');
-          switch (media.file.contentType) {
-            case 'image/jpeg':
-              const imageWidth = media.file.details.image.width;
-              const imageHeight = media.file.details.image.height;
-              return (
-                <figure className={classNames('text-center mb-8', 'lg:px-24')}>
-                  <Image
-                    src={url}
-                    alt={asset.title}
-                    width={imageWidth}
-                    height={imageHeight}
-                  />
-                  {asset.caption && (
-                    <figcaption className="mt-1">
-                      <em>
-                        <Link href={asset.sourceUrl}>
-                          <a
-                            className={classNames(
-                              'text-primary-dark font-extralight'
-                            )}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            {asset.caption}
-                          </a>
-                        </Link>
-                      </em>
-                    </figcaption>
-                  )}
-                </figure>
-              );
-            default:
-              return null;
-          }
-        }
+        return renderEmbeddedEntry({ node });
       },
     },
   };

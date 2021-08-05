@@ -1,6 +1,7 @@
 import { createClient, ContentfulClientApi, EntryCollection } from 'contentful';
-import { Document } from '@contentful/rich-text-types';
+import { Document, Block, Inline } from '@contentful/rich-text-types';
 import { format, parseISO } from 'date-fns';
+import isLive from '@/utils/environment';
 
 import {
   IFigureImage,
@@ -20,14 +21,21 @@ const client: ContentfulClientApi = createClient({
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN!,
 });
 
+function loadOptions(options: any) {
+  if (isLive()) options['fields.live'] = true;
+  return options;
+}
+
 export async function fetchBlogEntries(
   quantity = 100
 ): Promise<IFetchBlogEntriesReturn> {
-  const _entries = await client.getEntries({
-    content_type: 'post', // only fetch blog post entry
-    order: '-fields.date',
-    limit: quantity,
-  });
+  const _entries = await client.getEntries(
+    loadOptions({
+      content_type: 'post', // only fetch blog post entry
+      order: '-fields.date',
+      limit: quantity,
+    })
+  );
 
   const results = generateEntries(_entries, 'post');
   return {
@@ -40,12 +48,14 @@ export async function fetchBlogEntriesByTag(
   tag: string,
   quantity = 100
 ): Promise<IFetchBlogEntriesReturn> {
-  const _entries = await client.getEntries({
-    content_type: 'post', // only fetch blog post entry
-    order: '-fields.date',
-    'fields.tags[in]': tag,
-    limit: quantity,
-  });
+  const _entries = await client.getEntries(
+    loadOptions({
+      content_type: 'post', // only fetch blog post entry
+      order: '-fields.date',
+      'fields.tags[in]': tag,
+      limit: quantity,
+    })
+  );
 
   const results = generateEntries(_entries, 'post');
   return {
@@ -157,15 +167,31 @@ export function generateRoute(slug: string): string {
   return route;
 }
 
+async function loadMetaData(node: Block | Inline) {
+  // is embedded link not embedded media
+  if (!node.data.target.fields.file) {
+    node.data.target.fields.meta = await fetchContent(
+      node.data.target.fields.url
+    );
+  }
+  return node;
+}
+
 export async function generateLinkMeta(doc: Document): Promise<Document> {
-  const promises = doc.content.map(async (node) => {
+  const promises = doc.content.map(async (node: Block | Inline) => {
     if (node.nodeType === 'embedded-entry-block') {
-      // is embedded link not embedded media
-      if (!node.data.target.fields.file) {
-        node.data.target.fields.meta = await fetchContent(
-          node.data.target.fields.url
-        );
-      }
+      node = await loadMetaData(node);
+    } else {
+      // check for inline embedding
+      const innerPromises = node.content.map(async (innerNode) => {
+        if (
+          innerNode.nodeType === 'embedded-entry-inline' &&
+          innerNode.data.target.sys.contentType.sys.id !== 'markup'
+        ) {
+          innerNode = await loadMetaData(innerNode);
+        }
+      });
+      await Promise.all(innerPromises);
     }
   });
   await Promise.all(promises);
@@ -195,10 +221,12 @@ function convertFAQ(rawData: any): IFAQItem {
 }
 
 export async function fetchPages(quantity = 100): Promise<IFetchPagesReturn> {
-  const _entries = await client.getEntries({
-    content_type: 'page',
-    limit: quantity,
-  });
+  const _entries = await client.getEntries(
+    loadOptions({
+      content_type: 'page',
+      limit: quantity,
+    })
+  );
 
   const results = generateEntries(_entries, 'page');
   return {

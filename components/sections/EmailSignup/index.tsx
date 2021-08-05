@@ -9,6 +9,7 @@ export default function EmailSignup(): ReactElement {
     <>
       <GroupNotice classes={'md:hidden'} />
       <section
+        id="signup"
         className={classNames(
           'bg-primary text-gray-dark py-6 px-8',
           'md:py-12 md:px-10',
