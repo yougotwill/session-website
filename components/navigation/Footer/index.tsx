@@ -66,7 +66,11 @@ export default function Footer(): ReactElement {
             >
               <h3 className={headingClasses}>About</h3>
               <Link href="/whitepaper">
-                <a className={linkClasses} target="_blank">
+                <a
+                  className={linkClasses}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Whitepaper
                 </a>
               </Link>
@@ -92,17 +96,29 @@ export default function Footer(): ReactElement {
             >
               <h3 className={headingClasses}>Company</h3>
               <Link href="https://optf.ngo/">
-                <a className={linkClasses} target="_blank">
+                <a
+                  className={linkClasses}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   OPTF
                 </a>
               </Link>
               <Link href="https://oxen.io/">
-                <a className={linkClasses} target="_blank">
+                <a
+                  className={linkClasses}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Oxen
                 </a>
               </Link>
               <Link href="https://lokinet.org/">
-                <a className={linkClasses} target="_blank">
+                <a
+                  className={linkClasses}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Lokinet
                 </a>
               </Link>
@@ -110,7 +126,11 @@ export default function Footer(): ReactElement {
                 <a className={linkClasses}>Media Kit</a>
               </Link>
               <Link href="https://optf.ngo/transparency/">
-                <a className={linkClasses} target="_blank">
+                <a
+                  className={linkClasses}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Transparency Report
                 </a>
               </Link>
@@ -126,7 +146,11 @@ export default function Footer(): ReactElement {
                 <h3 className={headingClasses}>Links</h3>
                 <div className={classNames('flex')}>
                   <Link href="https://www.facebook.com/SessionMessenger/">
-                    <a className={socialLinkClasses} target="_blank">
+                    <a
+                      className={socialLinkClasses}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <FacebookSVG
                         className={svgClasses}
                         title="facebook logo"
@@ -134,12 +158,20 @@ export default function Footer(): ReactElement {
                     </a>
                   </Link>
                   <Link href="https://twitter.com/session_app">
-                    <a className={socialLinkClasses} target="_blank">
+                    <a
+                      className={socialLinkClasses}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <TwitterSVG className={svgClasses} title="twitter logo" />
                     </a>
                   </Link>
                   <Link href="https://github.com/oxen-io">
-                    <a className={socialLinkClasses} target="_blank">
+                    <a
+                      className={socialLinkClasses}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <GithubSVG className={svgClasses} title="github logo" />
                     </a>
                   </Link>

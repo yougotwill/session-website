@@ -116,7 +116,7 @@ export default function Hero(): ReactElement {
             src="/assets/images/mockup-attachments.png"
             alt="mobile app screenshot attachments"
             width="220px"
-            height="446px"
+            height="465px"
           />
         </div>
       </div>

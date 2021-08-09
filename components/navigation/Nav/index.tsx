@@ -86,12 +86,20 @@ export default function Nav(): ReactElement {
             </a>
           </Link>
           <Link href="https://docs.oxen.io/products-built-on-oxen/session">
-            <a className={navLinkClasses} target="_blank">
+            <a
+              className={navLinkClasses}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               technicals
             </a>
           </Link>
           <Link href="https://github.com/oxen-io">
-            <a className={navLinkClasses} target="_blank">
+            <a
+              className={navLinkClasses}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               github
             </a>
           </Link>
