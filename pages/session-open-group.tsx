@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import Image from 'next/image';
 
 import { Button, Headline, Layout } from '@/components/ui';
+import METADATA from '@/constants/metadata';
 
 export default function OpenGroup(): ReactElement {
   const openGroupURL =
@@ -35,7 +36,7 @@ export default function OpenGroup(): ReactElement {
   };
   return (
     <section>
-      <Layout title="Session | Open Group Channel | Private Messenger">
+      <Layout title="Open Group Channel" metadata={METADATA.OPEN_GROUP_PAGE}>
         <div
           className={classNames(
             'container pt-6 pb-8 px-4 mx-auto text-center',

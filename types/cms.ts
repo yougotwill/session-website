@@ -28,6 +28,7 @@ export interface IPost {
   body: Document;
   author?: IAuthor;
   publishedDate: string;
+  publishedDateISO: string;
   featureImage?: IFigureImage;
   fullHeader?: boolean;
   tags: Array<string>;

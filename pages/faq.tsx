@@ -8,6 +8,7 @@ import capitalize from '@/utils/capitalize';
 import Layout from '@/components/ui/Layout';
 import Headline from '@/components/ui/Headline';
 import Accordion from '@/components/ui/Accordion';
+import METADATA from '@/constants/metadata';
 
 interface Props {
   entries: IFAQList;
@@ -41,7 +42,7 @@ export default function FAQ(props: Props): ReactElement {
     return content;
   })();
   return (
-    <Layout title="Session | Frequently Asked Questions">
+    <Layout title="Frequently Asked Questions" metadata={METADATA.FAQ_PAGE}>
       <section>
         <div
           className={classNames(

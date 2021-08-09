@@ -12,6 +12,7 @@ import { IPost } from '@/types/cms';
 import { Layout } from '@/components/ui';
 import { PostCard } from '@/components/cards';
 import { PostList } from '@/components/posts';
+import METADATA from '@/constants/metadata';
 
 interface Props {
   tag?: string;
@@ -43,9 +44,8 @@ export default function Blog(props: Props): ReactElement {
   const featuredClasses = classNames('mb-5', 'md:flex');
   return (
     <Layout
-      title={
-        tag ? `${tag} Archives - Session` : 'Blog - Session Private Messenger'
-      }
+      title={tag ? `${tag} Archives` : 'Blog'}
+      metadata={METADATA.BLOG_PAGE}
     >
       <section>
         {tag ? (

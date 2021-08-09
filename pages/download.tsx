@@ -9,6 +9,7 @@ import AndroidSVG from '@/assets/svgs/android_robot_head.svg';
 import AppleSVG from '@/assets/svgs/apple.svg';
 import LinuxSVG from '@/assets/svgs/linux.svg';
 import WindowsSVG from '@/assets/svgs/windows.svg';
+import METADATA from '@/constants/metadata';
 
 export default function Download(): ReactElement {
   const panelClasses = classNames(
@@ -30,7 +31,7 @@ export default function Download(): ReactElement {
   );
   const downloadSVGClasses = 'inline-block mx-3 -mt-2 fill-current';
   return (
-    <Layout title="Download - Session Private Messenger">
+    <Layout title="Download" metadata={METADATA.DOWNLOAD_PAGE}>
       <section className={classNames('lg:flex lg:mb-4 lg:min-h-screen')}>
         <div
           className={classNames(

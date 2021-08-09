@@ -1,7 +1,7 @@
 import { createClient, ContentfulClientApi, EntryCollection } from 'contentful';
 import { Document, Block, Inline } from '@contentful/rich-text-types';
-import { format, parseISO } from 'date-fns';
 import isLive from '@/utils/environment';
+import { format, parseISO } from 'date-fns';
 
 import {
   IFigureImage,
@@ -103,6 +103,7 @@ function convertPost(rawData: any): IPost {
     body: rawPost.body ?? null,
     subtitle: rawPost.subtitle ?? null,
     description: rawPost.description ?? null,
+    publishedDateISO: rawPost.date,
     publishedDate: format(parseISO(rawPost.date), 'MMMM dd, yyyy'),
     slug: rawPost.slug,
     tags: rawPost?.tags, //?.map(t => t?.fields?.label) ?? [],

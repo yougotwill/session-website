@@ -15,7 +15,7 @@ interface Props {
 
 export default function Page(props: Props): ReactElement {
   const { page } = props;
-  const pageTitle = page?.title + ' - Session';
+  const pageTitle = page ? page.title : '';
   return (
     <Layout title={pageTitle}>
       <section>
@@ -91,6 +91,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };
