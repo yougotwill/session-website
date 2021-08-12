@@ -6,6 +6,7 @@ import { fetchFAQItems } from '@/services/cms';
 import capitalize from '@/utils/capitalize';
 
 import Layout from '@/components/ui/Layout';
+import Container from '@/components/Container';
 import Headline from '@/components/ui/Headline';
 import Accordion from '@/components/ui/Accordion';
 import METADATA from '@/constants/metadata';
@@ -44,26 +45,24 @@ export default function FAQ(props: Props): ReactElement {
   return (
     <Layout title="Frequently Asked Questions" metadata={METADATA.FAQ_PAGE}>
       <section>
-        <div
-          className={classNames(
-            'container py-6 px-2 mx-auto',
-            'md:p-12',
-            'lg:pt-0'
+        <Headline
+          color="gray-dark"
+          classes={classNames(
+            'text-lg font-mono pt-12 pb-4 justify-center',
+            'md:mx-0 md:justify-start',
+            'lg:pt-4 lg:pb-10'
           )}
+          containerWidths={{
+            sm: '100%',
+            md: '34rem',
+            lg: '67rem',
+          }}
         >
-          <Headline
-            color="gray-dark"
-            hideLineOnMobile={true}
-            classes={classNames(
-              'text-lg font-mono ml-2 mt-8 mb-5',
-              'md:mb-16',
-              'lg:mt-4'
-            )}
-          >
-            Frequently Asked Questions
-          </Headline>
+          Frequently Asked Questions
+        </Headline>
+        <Container classes={classNames('pt-0 px-4 pb-8', 'lg:pb-12')}>
           {renderFAQList}
-        </div>
+        </Container>
       </section>
     </Layout>
   );

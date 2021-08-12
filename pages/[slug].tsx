@@ -6,6 +6,7 @@ import { IPage } from '@/types/cms';
 import { fetchEntryBySlug, fetchPages, generateLinkMeta } from '@/services/cms';
 import { hasRedirection } from '@/services/redirect';
 
+import Container from '@/components/Container';
 import { Headline, Layout } from '@/components/ui';
 import RichBody from '@/components/RichBody';
 
@@ -19,25 +20,20 @@ export default function Page(props: Props): ReactElement {
   return (
     <Layout title={pageTitle}>
       <section>
-        <div
-          className={classNames(
-            'container pt-6 pb-24 px-4 mx-auto',
-            'md:p-12',
-            'lg:pt-0 lg:pb-32'
-          )}
-        >
-          {page?.headline && (
-            <Headline
-              color="gray-dark"
-              classes={classNames(
-                'font-helvetica font-extralight mb-6',
-                'md:mb-16',
-                'lg:mt-4'
-              )}
-            >
-              {page.headline}
-            </Headline>
-          )}
+        {page?.headline && (
+          <Headline
+            color="gray-dark"
+            classes={classNames('font-mono pt-16', 'lg:pt-4 lg:pb-10')}
+            containerWidths={{
+              sm: '10rem',
+              md: '34rem',
+              lg: '768px',
+            }}
+          >
+            {page.headline}
+          </Headline>
+        )}
+        <Container classes={classNames('pt-0 px-4 pb-24', 'lg:pb-32')}>
           <div className={'lg:max-w-screen-md lg:mx-auto'}>
             <RichBody
               body={page?.body}
@@ -48,7 +44,7 @@ export default function Page(props: Props): ReactElement {
               )}
             />
           </div>
-        </div>
+        </Container>
       </section>
     </Layout>
   );

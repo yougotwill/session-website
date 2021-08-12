@@ -1,31 +1,43 @@
 import { ReactElement } from 'react';
 import classNames from 'classnames';
 
+import Container from '@/components/Container';
 import { Headline } from '@/components/ui';
 import { BenefitsCard } from '@/components/cards';
 
 export default function Benefits(): ReactElement {
   const cardClasses = classNames('w-1/2 mb-5', 'lg:w-full lg:max-w-sm lg:px-8');
   return (
-    <section
-      className={classNames('bg-primary text-gray-dark', 'lg:min-h-screen')}
-    >
-      <div className={classNames('container py-6 px-4 mx-auto', 'md:p-12')}>
-        <Headline
-          color="gray-dark"
-          classes={classNames(
-            'text-lg font-semibold ml-2 mt-8 mb-5',
-            'md:mb-16',
-            'lg:mt-4'
-          )}
-        >
-          Benefits
-        </Headline>
+    <section className={'text-gray-dark bg-primary'}>
+      <Headline
+        color="gray-dark"
+        classes={classNames('text-lg font-semibold pt-16', 'lg:pt-20')}
+        containerWidths={{
+          sm: '10rem',
+          md: '34rem',
+          lg: '67rem',
+        }}
+      >
+        Benefits
+      </Headline>
+      <Container
+        heights={{
+          sm: '100%',
+          md: '100%',
+          lg: '100%',
+          xl: '100vh - 84px',
+        }}
+        classes={classNames(
+          'px-4 lg:max-w-none',
+          '2xl:flex 2xl:flex-col 2xl:justify-center 2xl:items-center'
+        )}
+      >
         <div
           className={classNames(
             'flex flex-wrap justify-center items-center -mx-3 max-w-screen-md',
             'md:mx-auto',
-            'lg:max-w-screen-xl'
+            'lg:max-w-screen-xl lg:pt-16',
+            '2xl:-mt-48'
           )}
         >
           <BenefitsCard
@@ -104,7 +116,7 @@ export default function Benefits(): ReactElement {
             classes={classNames(cardClasses, 'lg:mb-24')}
           />
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

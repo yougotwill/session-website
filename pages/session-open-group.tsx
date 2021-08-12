@@ -2,6 +2,7 @@ import { ReactElement, useState } from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';
 
+import Container from '@/components/Container';
 import { Button, Headline, Layout } from '@/components/ui';
 import METADATA from '@/constants/metadata';
 
@@ -35,26 +36,30 @@ export default function OpenGroup(): ReactElement {
     }
   };
   return (
-    <section>
-      <Layout title="Open Group Channel" metadata={METADATA.OPEN_GROUP_PAGE}>
-        <div
-          className={classNames(
-            'container pt-6 pb-8 px-4 mx-auto text-center',
-            'md:px-16 md:pb-16',
-            'lg:pt-0'
+    <Layout title="Open Group Channel" metadata={METADATA.OPEN_GROUP_PAGE}>
+      <section>
+        <Headline
+          color="gray-dark"
+          classes={classNames(
+            'font-mono py-8 justify-center',
+            'md:text-lg md:mx-0 md:justify-start',
+            'lg:pt-4 lg:pb-16'
+          )}
+          containerWidths={{
+            sm: '100%',
+            md: '34rem',
+            lg: '62rem',
+          }}
+        >
+          Session Open Group Channel
+        </Headline>
+        <Container
+          classes={classNames(
+            'text-center pt-0 px-4 pb-12',
+            'md:pt-4 md:pb-16',
+            'lg:pb-16'
           )}
         >
-          <Headline
-            color="gray-dark"
-            hideLineOnMobile={true}
-            classes={classNames(
-              'text-lg font-mono -mr-4 mb-8',
-              'md:mt-4',
-              'lg:mt-4 lg:mb-16'
-            )}
-          >
-            Session Open Group Channel
-          </Headline>
           <h2
             className={classNames(
               'text-gray-dark text-2xl font-helvetica font-semibold mb-8',
@@ -86,8 +91,8 @@ export default function OpenGroup(): ReactElement {
           >
             {isCopied ? 'Copied!' : 'Copy URL'}
           </Button>
-        </div>
-      </Layout>
-    </section>
+        </Container>
+      </section>
+    </Layout>
   );
 }
