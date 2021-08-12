@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 import Image from 'next/image';
 import classNames from 'classnames';
 
+import Container from '@/components/Container';
 import { Headline } from '@/components/ui';
 
 export default function Features(): ReactElement {
@@ -13,17 +14,33 @@ export default function Features(): ReactElement {
     'md:mb-12'
   );
   return (
-    <section className={classNames(' text-gray-dark', 'lg:min-h-screen')}>
-      <div className={classNames('container p-6 mx-auto', 'md:p-12')}>
-        <Headline
-          color="gray-dark"
-          classes={classNames('text-lg font-semibold mt-8 mb-5', 'lg:mt-4')}
-        >
-          Features
-        </Headline>
+    <section className={classNames(' text-gray-dark')}>
+      <Headline
+        color="gray-dark"
+        classes={classNames('text-lg font-semibold pt-16', 'lg:pt-20')}
+        containerWidths={{
+          sm: '10rem',
+          md: '34rem',
+          lg: '67rem',
+        }}
+      >
+        Features
+      </Headline>
+      <Container
+        heights={{
+          sm: '100%',
+          md: '100%',
+          lg: '100vh - 12rem',
+          xl: '100vh - 84px',
+        }}
+        classes={classNames(
+          '2xl:flex 2xl:flex-col 2xl:justify-center 2xl:items-center'
+        )}
+      >
         <div
           className={classNames(
-            'lg:mx-auto lg:flex lg:justify-between lg:items-center'
+            'lg:mx-auto lg:flex lg:justify-between lg:items-center lg:mt-24',
+            '2xl:-mt-64 2xl:w-full'
           )}
         >
           <div
@@ -45,7 +62,8 @@ export default function Features(): ReactElement {
             className={classNames(
               'px-3',
               'md:max-w-xl',
-              'lg:px-12 lg:max-w-lg lg:ml-4 lg:-mr-12'
+              'lg:max-w-sm lg:px-0 lg:-mt-8',
+              '2xl:mt-0'
             )}
           >
             <h3 className={headingClasses}>Group chats</h3>
@@ -79,7 +97,7 @@ export default function Features(): ReactElement {
             />
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

@@ -2,17 +2,9 @@ import { Feed } from 'feed';
 import { mkdirSync, writeFileSync } from 'fs';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { IPost } from '../types/cms';
+import METADATA from '@/constants/metadata';
 
-const baseUrl = 'https://getsession.org';
-const categories = [
-  'Privacy',
-  'co-op',
-  'Community contribution',
-  'decentralisation',
-  'decentralised',
-  'messaging',
-  'Private messaging',
-]; // TODO tags rework and fetch from contentful
+const baseUrl = METADATA.HOST_URL;
 const date = new Date();
 const feed = new Feed({
   title: 'Session Blog',
@@ -31,8 +23,9 @@ const feed = new Feed({
     atom: `${baseUrl}/rss/atom.xml`,
   },
 });
-categories.forEach((category) => {
-  feed.addCategory(category);
+
+METADATA.TAGS.forEach((tag) => {
+  feed.addCategory(tag);
 });
 
 export default function generateRSSFeed(posts: IPost[]) {

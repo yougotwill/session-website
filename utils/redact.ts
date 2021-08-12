@@ -4,6 +4,7 @@ interface Props {
   redactColor: string;
   textColor: string;
   animate?: boolean;
+  disabled?: boolean;
   classes?: string;
 }
 
@@ -11,6 +12,7 @@ export default function redact({
   redactColor,
   textColor,
   animate = false,
+  disabled = false,
   classes,
 }: Props) {
   // See Gotchas in README
@@ -26,10 +28,16 @@ export default function redact({
     textColor === 'black' && 'group-hover:text-black',
     textColor === 'white' && 'group-hover:text-white',
   ];
+  const disabledClasses = [
+    'bg-transparent',
+    textColor === 'primary' && 'text-primary',
+    textColor === 'black' && 'text-black',
+    textColor === 'white' && 'text-white',
+  ];
   // parent container must have 'group' class
   return classNames(
     'rounded-3xl',
-    redactClasses,
+    disabled ? disabledClasses : redactClasses,
     hoverClasses,
     animate && 'transition-colors duration-1000 group-hover:duration-100',
     classes

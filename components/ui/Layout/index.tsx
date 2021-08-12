@@ -1,25 +1,23 @@
 import { ReactElement, ReactNode } from 'react';
-import Head from 'next/head';
-
 import { Nav, Footer } from '@/components/navigation';
 import { EmailSignup } from '@/components/sections';
+import { IMetadata } from '@/constants/metadata';
+import CustomHead from '@/components/CustomHead';
 
 interface Props {
-  title: string;
+  title?: string;
+  metadata?: IMetadata;
   children: ReactNode;
-  props?: any;
 }
 
 export default function Layout({
   title,
+  metadata,
   children,
-  ...props
 }: Props): ReactElement {
   return (
     <>
-      <Head>
-        <title>{title}</title>
-      </Head>
+      <CustomHead title={title} metadata={metadata} />
       <Nav />
       <main>{children}</main>
       <EmailSignup />

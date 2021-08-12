@@ -1,6 +1,5 @@
 import { ReactElement } from 'react';
 import { GetStaticProps, GetStaticPropsContext, GetStaticPaths } from 'next';
-import { useRouter } from 'next/router';
 
 import { IPost } from '@/types/cms';
 import {
@@ -11,6 +10,7 @@ import {
 
 import { Layout } from '@/components/ui';
 import { Post } from '@/components/posts';
+import METADATA from '@/constants/metadata';
 
 interface Props {
   post: IPost;
@@ -18,23 +18,26 @@ interface Props {
 }
 
 export default function BlogSlug(props: Props): ReactElement {
-  const router = useRouter();
-  if (router.isFallback) {
-    return (
-      <>
-        <Layout title={'Loading - Session'}>
-          <h1 className={'text-gray font-bold leading-normal '}>
-            Loading page...
-          </h1>
-        </Layout>
-      </>
-    );
-  }
   const { post } = props;
-  const pageTitle = post?.title + ' - Session';
   return (
     <>
-      <Layout title={pageTitle}>
+      <Layout
+        title={post.title}
+        metadata={{
+          TYPE: 'article',
+          DESCRIPTION: post.description,
+          OG_IMAGE: {
+            URL: post.featureImage?.imageUrl ?? METADATA.OG_IMAGE.URL,
+            WIDTH: Number(post.featureImage?.width) ?? METADATA.OG_IMAGE.WIDTH,
+            HEIGHT:
+              Number(post.featureImage?.height) ?? METADATA.OG_IMAGE.HEIGHT,
+            ALT: post.featureImage?.title ?? METADATA.OG_IMAGE.ALT,
+          },
+          TAGS: post.tags,
+          ARTICLE_SECTION: post.tags[0],
+          PUBLISHED_TIME: post.publishedDateISO,
+        }}
+      >
         <Post {...props} />
       </Layout>
     </>
@@ -84,6 +87,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   });
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };
