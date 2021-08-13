@@ -27,13 +27,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   );
 
   if (response.status === 201) {
-    console.log(`Email API: ${email} subscribed!`);
+    // console.log(`Email API: ${email} subscribed!`);
     res.status(201).json({ email });
   } else {
     const result = await response.json();
-    console.warn(
-      `Email API: | Code: ${result.Code} | Email: ${email} | ${result.Message}`
-    );
+    // console.warn(
+    //   `Email API: | Code: ${result.Code} | Email: ${email} | ${result.Message}`
+    // );
     res.status(400).json({ email });
   }
 };
