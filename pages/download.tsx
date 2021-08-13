@@ -19,7 +19,8 @@ export default function Download(): ReactElement {
   );
   const subtitleClasses = classNames('text-2xl font-light', 'lg:text-3xl');
   const linkContainerClasses = classNames(
-    'flex flex-wrap justify-center items-center pb-12'
+    'flex flex-wrap justify-center pb-12',
+    'lg:items-center'
   );
   const downloadContainerClasses = classNames(
     'pb-2 lg:py-2 lg:border-r lg:border-dashed'
