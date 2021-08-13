@@ -31,13 +31,16 @@ module.exports = {
         6: '6px',
       },
       colors: {
-        primary: { DEFAULT: '#00f782', dark: '#00b35f' },
+        primary: {
+          DEFAULT: 'var(--primary-DEFAULT)',
+          dark: 'var(--primary-dark)',
+        },
         gray: {
-          lightest: '#ADADAD',
-          lighter: '#7A7A7A',
-          light: '#55595c',
-          DEFAULT: '#3A3A3A',
-          dark: '#333132',
+          lightest: 'var(--gray-lightest)',
+          lighter: 'var(--gray-lighter)',
+          light: 'var(--gray-light)',
+          DEFAULT: 'var(--gray-DEFAULT)',
+          dark: 'var(--gray-dark)',
         },
       },
       height: {
