@@ -10,13 +10,14 @@ export interface IContainerSizes {
 }
 
 interface Props {
+  id?: string;
   heights?: IContainerSizes;
   classes?: string;
   children: ReactNode;
 }
 
 export default function Container(props: Props): ReactElement {
-  const { heights, classes, children } = props;
+  const { id, heights, classes, children } = props;
   const { isMobile, isTablet, isDesktop, isMonitor } = useScreen();
   const height: string | undefined = (() => {
     if (isMobile) return heights?.sm;
@@ -26,6 +27,7 @@ export default function Container(props: Props): ReactElement {
   })();
   return (
     <div
+      id={id}
       className={classNames(
         'container mx-auto max-w-6xl p-6',
         'md:p-12',
