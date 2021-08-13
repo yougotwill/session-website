@@ -1,39 +1,32 @@
-async function fetchLatest(repo: string) {
-  const res = await fetch(
-    `https://api.github.com/repos/oxen-io/${repo}/releases/latest`
-  );
-  const data = await res.json();
-  if (!data) return;
-  return data['tag_name'].split('v')[1];
-}
+const fallbackVersion = '1.6.10'; // should update periodcally
 
 // https://nextjs.org/docs/api-reference/next.config.js/redirects
-interface IRedirection {
+export interface IRedirection {
   source: string;
   destination: string;
   permanent: boolean;
 }
 
-async function fetchRedirects() {
+async function fetchLatest(repo: string) {
+  const res = await fetch(
+    `https://api.github.com/repos/oxen-io/${repo}/releases/latest`
+  );
+  const data = await res.json();
+  if (!data) return fallbackVersion;
+
+  if (res.status !== 200) {
+    console.warn(
+      `Redirect Service: Code ${res.status} | ${data.message} | See ${data.documentation}`
+    );
+    return fallbackVersion;
+  }
+
+  return data['tag_name'].split('v')[1];
+}
+
+export async function fetchRedirects() {
   const desktopVersion = await fetchLatest('session-desktop');
   const redirects: IRedirection[] = [
-    {
-      source: '/android',
-      destination:
-        'https://play.google.com/store/apps/details?id=network.loki.messenger',
-      permanent: true,
-    },
-    {
-      source: '/apk',
-      destination: 'https://github.com/oxen-io/session-android/releases',
-      permanent: true,
-    },
-    {
-      source: '/iphone',
-      destination:
-        'https://apps.apple.com/app/session-private-messenger/id1470168868?ls=1',
-      permanent: true,
-    },
     {
       source: '/linux',
       destination: `https://github.com/oxen-io/session-desktop/releases/download/v${desktopVersion}/session-desktop-linux-x86_64-${desktopVersion}.AppImage`,
@@ -49,11 +42,6 @@ async function fetchRedirects() {
       destination: `https://github.com/oxen-io/session-desktop/releases/download/v${desktopVersion}/session-desktop-win-${desktopVersion}.exe`,
       permanent: true,
     },
-    {
-      source: '/whitepaper',
-      destination: 'https://arxiv.org/pdf/2002.04609.pdf',
-      permanent: true,
-    },
   ];
   return redirects;
 }
@@ -61,16 +49,14 @@ async function fetchRedirects() {
 export async function hasRedirection(url: string) {
   let response = null;
   const redirects = await fetchRedirects();
+  if (!redirects) return false;
 
   redirects.forEach((redirection) => {
     if (redirection.source === url) {
-      // https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation
       response = {
-        redirect: {
-          destination: redirection.destination,
-          permanent: redirection.permanent,
-        },
-        revalidate: 3600, // refresh redirections hourly
+        source: redirection.source,
+        destination: redirection.destination,
+        permanent: redirection.permanent,
       };
     }
   });
