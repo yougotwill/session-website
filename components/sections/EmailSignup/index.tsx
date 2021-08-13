@@ -1,10 +1,41 @@
-import { ReactElement } from 'react';
+import { ReactElement, useState, useRef, FormEventHandler } from 'react';
 import classNames from 'classnames';
 
 import { Button } from '@/components/ui';
 import { GroupNotice } from '@/components/sections';
 
 export default function EmailSignup(): ReactElement {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const [email, setEmail] = useState('');
+  const handleSubscription: FormEventHandler = async (event) => {
+    event.preventDefault();
+    let response;
+    try {
+      response = await fetch('/api/email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+    } catch (error) {
+      response = error;
+    }
+    switch (response?.status) {
+      case 201:
+        setEmail('');
+        if (null !== buttonRef.current) {
+          buttonRef.current.innerText = 'Signed up ✓';
+        }
+        break;
+      case 400:
+      default:
+        if (null !== buttonRef.current) {
+          buttonRef.current.innerText = 'Signup failed ✗';
+        }
+        break;
+    }
+  };
   return (
     <>
       <GroupNotice classes={'md:hidden'} />
@@ -33,18 +64,19 @@ export default function EmailSignup(): ReactElement {
         >
           Sign up to the mailing list and start taking action!
         </p>
-        {/* TODO functionality */}
-        <form>
+        <form onSubmit={handleSubscription}>
           <input
             type="email"
+            placeholder="Your Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className={classNames(
               'block w-5/6 mb-3 text-sm border border-black rounded-sm bg-primary',
               'md:w-1/2',
               'lg:w-2/5',
               'placeholder-black placeholder-opacity-60'
             )}
-            name="email"
-            placeholder="Your Email"
+            required
           />
           <Button
             bgColor="black"
@@ -53,6 +85,8 @@ export default function EmailSignup(): ReactElement {
             shape="semiround"
             fontWeight="light"
             hoverEffect={false}
+            type={'submit'}
+            reference={buttonRef}
           >
             Sign up
           </Button>
