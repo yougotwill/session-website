@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { LegacyRef, ReactElement } from 'react';
 import classNames from 'classnames';
 
 interface Props {
@@ -9,6 +9,8 @@ interface Props {
   fontWeight?: 'light' | 'semibold';
   animate?: boolean;
   hoverEffect?: boolean;
+  type?: 'submit';
+  reference?: LegacyRef<HTMLButtonElement>;
   classes?: string;
   children?: string;
   onClick?(): any;
@@ -21,6 +23,8 @@ export default function Button(props: Props): ReactElement {
     fontWeight = 'semibold',
     size = 'medium',
     shape = 'round',
+    type,
+    reference,
     animate = false,
     hoverEffect = true,
     classes,
@@ -67,6 +71,8 @@ export default function Button(props: Props): ReactElement {
         fontClasses,
         classes
       )}
+      type={type}
+      ref={reference}
       onClick={onClick}
     >
       {children}

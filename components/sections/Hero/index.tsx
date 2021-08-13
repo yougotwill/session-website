@@ -33,7 +33,12 @@ export default function Hero(): ReactElement {
         >
           <div className={'lg:-mt-16 lg:mr-1'}>
             <h2 className={headingClasses}>Send</h2>
-            <h2 className={headingClasses}>Messages,</h2>
+            <h2
+              className={classNames(headingClasses, 'glitch')}
+              data-glitch-text={'Encrypted'}
+            >
+              Messages,
+            </h2>
             <h2 className={headingClasses}>Not Metadata.</h2>
             <div
               className={classNames(
