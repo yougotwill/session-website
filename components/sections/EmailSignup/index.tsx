@@ -2,13 +2,20 @@ import { ReactElement, useState, useRef, FormEventHandler } from 'react';
 import classNames from 'classnames';
 
 import { Button } from '@/components/ui';
+import Container from '@/components/Container';
 import { GroupNotice } from '@/components/sections';
 
 export default function EmailSignup(): ReactElement {
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const setButtonText = (value: string) => {
+    if (null !== buttonRef.current) {
+      buttonRef.current.innerText = value;
+    }
+  };
   const [email, setEmail] = useState('');
   const handleSubscription: FormEventHandler = async (event) => {
     event.preventDefault();
+    setButtonText('Subscribing...');
     let response;
     try {
       response = await fetch('/api/email', {
@@ -24,28 +31,20 @@ export default function EmailSignup(): ReactElement {
     switch (response?.status) {
       case 201:
         setEmail('');
-        if (null !== buttonRef.current) {
-          buttonRef.current.innerText = 'Signed up ✓';
-        }
+        setButtonText('Signed up ✓');
         break;
       case 400:
       default:
-        if (null !== buttonRef.current) {
-          buttonRef.current.innerText = 'Signup failed ✗';
-        }
+        setButtonText('Signup failed ✗');
         break;
     }
   };
   return (
-    <>
+    <section className="bg-primary text-gray-dark">
       <GroupNotice classes={'md:hidden'} />
-      <section
+      <Container
         id="signup"
-        className={classNames(
-          'bg-primary text-gray-dark py-6 px-8',
-          'md:py-12 md:px-10',
-          'lg:py-24 lg:px-48'
-        )}
+        classes={classNames('px-8', 'md:px-10', 'lg:py-24')}
       >
         <h3
           className={classNames(
@@ -71,7 +70,7 @@ export default function EmailSignup(): ReactElement {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className={classNames(
-              'block w-5/6 mb-3 text-sm border border-black rounded-sm bg-primary',
+              'block w-5/6 mb-4 text-sm border border-black rounded-sm bg-primary',
               'md:w-1/2',
               'lg:w-2/5',
               'placeholder-black placeholder-opacity-60'
@@ -82,7 +81,6 @@ export default function EmailSignup(): ReactElement {
             bgColor="black"
             textColor="primary"
             size="small"
-            shape="semiround"
             fontWeight="light"
             hoverEffect={false}
             type={'submit'}
@@ -91,7 +89,7 @@ export default function EmailSignup(): ReactElement {
             Sign up
           </Button>
         </form>
-      </section>
-    </>
+      </Container>
+    </section>
   );
 }
