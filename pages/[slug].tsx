@@ -24,9 +24,9 @@ export default function Page(props: Props): ReactElement {
   // dynamic redirects require a custom fallback solution
   if (redirection) {
     if (typeof window !== 'undefined') {
-      console.log('pushing link', redirection);
       router.push(redirection.destination);
     }
+    // currently only download links are dynamic
     return <Download />;
   }
 

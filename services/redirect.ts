@@ -7,11 +7,10 @@ export interface IRedirection {
   permanent: boolean;
 }
 
-const staticRedirects: IRedirection[] =
-  getConfig().serverRuntimeConfig.redirects;
-const fallbackVersion = '1.6.10'; // should update periodcally
+const redirects: IRedirection[] = getConfig().serverRuntimeConfig.redirects;
 
 async function fetchLatest(repo: string) {
+  const fallbackVersion = '1.6.10'; // should update periodcally
   const res = await fetch(
     `https://api.github.com/repos/oxen-io/${repo}/releases/latest`
   );
@@ -28,7 +27,7 @@ async function fetchLatest(repo: string) {
   return data['tag_name'].split('v')[1];
 }
 
-export async function fetchRedirects() {
+async function fetchDynamicRedirects() {
   const desktopVersion = await fetchLatest('session-desktop');
   const redirects: IRedirection[] = [
     {
@@ -51,18 +50,15 @@ export async function fetchRedirects() {
 }
 
 export async function hasRedirection(url: string) {
-  const dynamicRedirects = await fetchRedirects();
-  if (!dynamicRedirects) return false;
+  const dynamicRedirects = await fetchDynamicRedirects();
 
-  const redirects = staticRedirects.map((staticRedirection) => {
-    let newRedirection = staticRedirection;
-    dynamicRedirects.forEach((redirection) => {
-      if (staticRedirection.source === redirection.source) {
-        newRedirection = redirection;
+  redirects.forEach((redirection, index) => {
+    dynamicRedirects.forEach((dynamicRedirection) => {
+      if (redirection.source === dynamicRedirection.source) {
+        redirects[index] = dynamicRedirection;
         return;
       }
     });
-    return newRedirection;
   });
 
   let response = null;
@@ -75,6 +71,5 @@ export async function hasRedirection(url: string) {
       };
     }
   });
-
   return response;
 }
