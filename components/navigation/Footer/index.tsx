@@ -24,7 +24,8 @@ export default function Footer(): ReactElement {
     'text-white uppercase text-xl font-semibold mb-2'
   );
   const linkClasses = classNames(
-    'text-sm font-light',
+    'text-sm font-light py-2 mr-2',
+    'lg:py-0 lg:my-0',
     'transition-colors duration-300',
     'hover:text-white'
   );
@@ -34,7 +35,8 @@ export default function Footer(): ReactElement {
     'hover:text-white'
   );
   const svgClasses = classNames(
-    'fill-current w-7 h-7 mr-1',
+    'fill-current w-7 h-7 m-1',
+    'lg:my-0 lg:ml-0',
     'hover:animate-push'
   );
   return (
@@ -146,7 +148,7 @@ export default function Footer(): ReactElement {
             >
               <div className={classNames('w-1/2 mb-4')}>
                 <h3 className={headingClasses}>Links</h3>
-                <div className={classNames('flex')}>
+                <div className={classNames('flex -ml-1')}>
                   <Link href="https://www.facebook.com/SessionMessenger/">
                     <a
                       className={socialLinkClasses}
