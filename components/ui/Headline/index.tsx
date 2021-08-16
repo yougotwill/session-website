@@ -7,7 +7,7 @@ interface Props {
   color?: 'primary' | 'gray-dark';
   containerWidths?: IContainerSizes;
   classes?: string;
-  children?: string;
+  children?: ReactElement | string;
 }
 
 export default function Headline(props: Props): ReactElement {

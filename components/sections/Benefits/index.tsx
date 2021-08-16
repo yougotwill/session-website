@@ -18,7 +18,7 @@ export default function Benefits(): ReactElement {
           lg: '67rem',
         }}
       >
-        Benefits
+        <h2>Benefits</h2>
       </Headline>
       <Container
         heights={{

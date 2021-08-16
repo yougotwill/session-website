@@ -26,7 +26,7 @@ export default function Features(): ReactElement {
           lg: '67rem',
         }}
       >
-        Features
+        <h2>Features</h2>
       </Headline>
       <Container
         heights={{

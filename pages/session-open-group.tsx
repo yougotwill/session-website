@@ -60,14 +60,14 @@ export default function OpenGroup(): ReactElement {
             'lg:pb-16'
           )}
         >
-          <h2
+          <h1
             className={classNames(
               'text-gray-dark text-2xl font-helvetica font-semibold mb-8',
               'md:text-4xl'
             )}
           >
             Scan this QR code on Session to join our open group chat
-          </h2>
+          </h1>
           <div className={classNames('mx-auto mb-8')}>
             <Image
               src="/assets/images/qr-code.png"

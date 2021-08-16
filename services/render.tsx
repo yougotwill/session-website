@@ -96,6 +96,7 @@ function EmbeddedMedia(node: any, isInline = false): ReactElement {
                 {node.sourceUrl ? (
                   <Link href={node.sourceUrl}>
                     <a
+                      aria-label={node.caption}
                       className={classNames(
                         'text-primary-dark font-extralight'
                       )}

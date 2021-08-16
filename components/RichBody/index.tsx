@@ -42,6 +42,7 @@ export default function RichBody(props: Props): ReactElement {
       [INLINES.HYPERLINK]: (node, children) => (
         <Link href={node.data.uri} scroll={!isLocal(node.data.uri)}>
           <a
+            aria-label={'Read more about this link'}
             className={classNames('text-primary-dark font-extralight')}
             target={isLocal(node.data.uri) ? '_self' : '_blank'}
             rel="noreferrer"

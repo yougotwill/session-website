@@ -8,14 +8,12 @@ import { Hero, About, Benefits, Features } from '@/components/sections';
 
 export default function Home() {
   return (
-    <div>
-      <Layout>
-        <Hero />
-        <About />
-        <Benefits />
-        <Features />
-      </Layout>
-    </div>
+    <Layout>
+      <Hero />
+      <About />
+      <Benefits />
+      <Features />
+    </Layout>
   );
 }
 

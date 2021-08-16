@@ -54,7 +54,7 @@ export default function About(): ReactElement {
           lg: '67rem',
         }}
       >
-        What is Session?
+        <h2>What is Session?</h2>
       </Headline>
       {/* Full screen height - Headline height */}
       <Container
