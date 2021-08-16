@@ -9,7 +9,7 @@ interface Props extends IPost {
   route: string;
   featured?: boolean;
   hoverEffect?: boolean;
-  showDescription?: boolean;
+  compact?: boolean;
   classes?: string;
 }
 
@@ -25,7 +25,7 @@ export default function PostCard(props: Props): ReactElement {
     route,
     featured,
     hoverEffect = !featured,
-    showDescription = true,
+    compact = false,
     classes,
   } = props;
   const headingClasses = 'cursor-pointer text-2xl font-semibold mb-3';
@@ -42,9 +42,10 @@ export default function PostCard(props: Props): ReactElement {
         <Link href={route} passHref>
           <div
             className={classNames(
-              'relative overflow-hidden w-full h-60 mb-4',
+              'relative overflow-hidden w-full mb-4',
               'md:px-16',
               'lg:px-20',
+              compact ? 'h-48 md:h-60 lg:h-44' : 'h-60 lg:h-56',
               featured && 'md:w-1/2 md:mr-4 lg:mr-3 lg:w-3/5 lg:h-96',
               hoverEffect && 'rounded-lg'
             )}
@@ -86,7 +87,7 @@ export default function PostCard(props: Props): ReactElement {
         >
           {publishedDate}
         </p>
-        {showDescription && (
+        {!compact && (
           <p
             className={classNames(
               'text-sm font-light',

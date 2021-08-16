@@ -111,7 +111,7 @@ export default function Post(props: Props): ReactElement {
         posts={otherPosts}
         gridStyle={'tight'}
         hoverEffect={false}
-        showDescription={false}
+        compact={true}
         classes={classNames('my-16', 'lg:mb-24')}
       />
     </section>
