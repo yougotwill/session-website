@@ -3,7 +3,7 @@ import '@/styles/globals.css';
 import lockPageTitle from '@/utils/lockPageTitle';
 import { ScreenProvider } from '@/contexts/screen';
 
-if (process.env.SITE_ENV !== 'production' && typeof window !== 'undefined') {
+if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
   const React = require('react');
   const ReactDOM = require('react-dom');
   const axe = require('@axe-core/react');
