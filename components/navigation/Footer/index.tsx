@@ -10,8 +10,10 @@ import GithubSVG from '@/assets/svgs/github.svg';
 import RssSVG from '@/assets/svgs/rss.svg';
 
 import { GroupNotice } from '@/components/sections';
+import { useScreen } from '@/contexts/screen';
 
 export default function Footer(): ReactElement {
+  const { isMobile } = useScreen();
   const redactedClasses = redact({
     redactColor: 'primary',
     textColor: 'white',
@@ -42,13 +44,13 @@ export default function Footer(): ReactElement {
           'lg:flex lg:justify-end lg:max-w-screen-xl lg:mx-auto'
         )}
       >
-        <GroupNotice
-          classes={classNames(
-            'hidden',
-            'md:block',
-            'lg:flex lg:flex-col lg:justify-center lg:w-full lg:max-w-xl lg:px-0 lg:border-b-0 lg:border-r lg:my-2'
-          )}
-        />
+        {!isMobile && (
+          <GroupNotice
+            classes={classNames(
+              'lg:flex lg:flex-col lg:justify-center lg:w-full lg:max-w-xl lg:px-0 lg:border-b-0 lg:border-r lg:my-2'
+            )}
+          />
+        )}
         <footer className={classNames('text-primary-dark', 'lg:w-1/2 lg:mt-2')}>
           <div
             className={classNames(
