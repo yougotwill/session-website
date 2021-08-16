@@ -4,11 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "SITE_ENV=development NODE_ENV=development NODE_OPTIONS='--inspect' next dev",
-    "build": "next build",
-    "build:static": "next build && next export",
-    "start": "SITE_ENV=production next start",
+    "build": "NODE_ENV=production next build",
+    "start": "SITE_ENV=production NODE_ENV=production next start",
     "start:staging": "SITE_ENV=development next start --port 3001",
-    "start:static": "npx serve -s out",
     "lint": "next lint"
   },
   "dependencies": {
@@ -30,6 +28,7 @@
     "xss": "^1.0.9"
   },
   "devDependencies": {
+    "@axe-core/react": "^4.2.2",
     "@contentful/rich-text-types": "^15.0.0",
     "@tailwindcss/forms": "^0.3.3",
     "@types/base-64": "^1.0.0",

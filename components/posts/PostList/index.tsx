@@ -12,7 +12,7 @@ interface Props {
   gridStyle?: 'tight' | 'relaxed';
   hoverEffect?: boolean;
   showHeading?: boolean;
-  showDescription?: boolean;
+  compact?: boolean;
   classes?: string;
 }
 
@@ -22,7 +22,7 @@ export default function PostList(props: Props): ReactElement {
     gridStyle = 'relaxed',
     hoverEffect,
     showHeading = true,
-    showDescription,
+    compact,
     classes,
   } = props;
   const cardClasses = classNames(
@@ -61,7 +61,7 @@ export default function PostList(props: Props): ReactElement {
             <PostCard
               route={generateRoute(post.slug)}
               hoverEffect={hoverEffect}
-              showDescription={showDescription}
+              compact={compact}
               classes={classNames(cardClasses)}
               key={post.id}
               {...post}

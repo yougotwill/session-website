@@ -5,8 +5,10 @@ import { Block, Inline } from '@contentful/rich-text-types';
 import sanitize from '@/utils/sanitize';
 
 import EmbedContent from '@/components/EmbedContent';
+import { useScreen } from '@/contexts/screen';
+import { ReactElement } from 'react';
 
-function renderMarkup(node: any) {
+function Markup(node: any): ReactElement {
   const frontTags: string[] = [];
   const endTags: string[] = [];
   const styles: any = {};
@@ -33,7 +35,7 @@ function renderMarkup(node: any) {
   );
 }
 
-function renderEmbeddedLink(node: any, isInline = false) {
+function EmbeddedLink(node: any, isInline = false): ReactElement {
   const figureClasses = [
     isInline && node.position === 'left' && 'md:float-left',
     isInline && node.position === 'right' && 'md:float-right',
@@ -55,7 +57,8 @@ function renderEmbeddedLink(node: any, isInline = false) {
   );
 }
 
-function renderEmbeddedMedia(node: any, isInline = false) {
+function EmbeddedMedia(node: any, isInline = false): ReactElement {
+  const { isMobile, isTablet } = useScreen();
   const media = node.file.fields;
   const url = media.file.url.replace('//', 'https://');
   switch (media.file.contentType) {
@@ -82,7 +85,7 @@ function renderEmbeddedMedia(node: any, isInline = false) {
           style={{ width: node.position ? imageWidth : '' }}
         >
           <Image
-            src={url}
+            src={`${url}${isMobile ? '?w=300' : isTablet ? '?w=600' : ''}`}
             alt={node.title}
             width={imageWidth}
             height={imageHeight}
@@ -93,6 +96,7 @@ function renderEmbeddedMedia(node: any, isInline = false) {
                 {node.sourceUrl ? (
                   <Link href={node.sourceUrl}>
                     <a
+                      aria-label={node.caption}
                       className={classNames(
                         'text-primary-dark font-extralight'
                       )}
@@ -111,7 +115,7 @@ function renderEmbeddedMedia(node: any, isInline = false) {
         </figure>
       );
     default:
-      return null;
+      return <></>;
   }
 }
 
@@ -125,11 +129,11 @@ export function renderEmbeddedEntry(props: IEmbedEntry) {
   const target = node.data.target;
   const asset = target.fields;
   if (target.sys.contentType.sys.id === 'markup') {
-    return renderMarkup(asset);
+    return Markup(asset);
   }
   if (!asset.file) {
-    return renderEmbeddedLink(asset, isInline);
+    return EmbeddedLink(asset, isInline);
   } else {
-    return renderEmbeddedMedia(asset, isInline);
+    return EmbeddedMedia(asset, isInline);
   }
 }

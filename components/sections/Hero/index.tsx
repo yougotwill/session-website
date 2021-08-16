@@ -8,8 +8,10 @@ import Container from '@/components/Container';
 import AndroidSVG from '@/assets/svgs/android_robot_head.svg';
 import AppleSVG from '@/assets/svgs/apple.svg';
 import DesktopSVG from '@/assets/svgs/desktop.svg';
+import { useScreen } from '@/contexts/screen';
 
 export default function Hero(): ReactElement {
+  const { isMobile, isTablet, isDesktop, isMonitor } = useScreen();
   const headingClasses = classNames(
     'text-5xl font-semibold text-gray-dark',
     'lg:text-6xl'
@@ -32,14 +34,13 @@ export default function Hero(): ReactElement {
           )}
         >
           <div className={'lg:-mt-16 lg:mr-1'}>
-            <h2 className={headingClasses}>Send</h2>
-            <h2
-              className={classNames(headingClasses, 'glitch')}
-              data-glitch-text={'Encrypted'}
-            >
-              Messages,
-            </h2>
-            <h2 className={headingClasses}>Not Metadata.</h2>
+            <h1 className={classNames(headingClasses)}>
+              <span className="block">Send</span>
+              <span className={'block glitch'} data-glitch-text={'Encrypted'}>
+                Messages,
+              </span>
+              <span className="block">Not Metadata.</span>
+            </h1>
             <div
               className={classNames(
                 'flex flex-col mt-7 mb-4',
@@ -90,54 +91,49 @@ export default function Hero(): ReactElement {
               </a>
             </Link>
           </div>
-          <div
-            className={classNames(
-              'mx-auto text-center',
-              'md:px-10',
-              'lg:hidden'
-            )}
-          >
-            <Image
-              src="/assets/images/mockup-messages.png"
-              alt="mobile app screenshot"
-              width="300px"
-              height="630px"
-              layout="responsive"
-              priority={true}
-            />
-          </div>
-          <div
-            className={classNames(
-              'hidden justify-center items-center',
-              'lg:flex'
-            )}
-          >
-            <div className={classNames('-mr-8 mt-14')}>
+          {(isMobile || isTablet) && (
+            <div className={classNames('mx-auto text-center', 'md:px-10')}>
               <Image
-                src="/assets/images/mockup-groups.png"
-                alt="mobile app screenshot groups"
-                width="220px"
-                height="474px"
-              />
-            </div>
-            <div className={classNames('z-10')}>
-              <Image
-                src="/assets/images/mockup-landing.png"
-                alt="mobile app screenshot landing page"
-                width="280px"
-                height="590px"
+                src="/assets/images/mockup-messages.png"
+                alt="mobile app screenshot"
+                width="300px"
+                height="630px"
+                layout="responsive"
                 priority={true}
               />
             </div>
-            <div className={classNames('-ml-8 mt-16')}>
-              <Image
-                src="/assets/images/mockup-attachments.png"
-                alt="mobile app screenshot attachments"
-                width="220px"
-                height="465px"
-              />
+          )}
+          {(isDesktop || isMonitor) && (
+            <div className={classNames('flex justify-center items-center')}>
+              <div className={classNames('-mr-8 mt-14')}>
+                <Image
+                  src="/assets/images/mockup-groups.png"
+                  alt="mobile app screenshot groups"
+                  width="220px"
+                  height="474px"
+                  priority={true}
+                />
+              </div>
+              <div className={classNames('z-10')}>
+                <Image
+                  src="/assets/images/mockup-landing.png"
+                  alt="mobile app screenshot landing page"
+                  width="280px"
+                  height="590px"
+                  priority={true}
+                />
+              </div>
+              <div className={classNames('-ml-8 mt-16')}>
+                <Image
+                  src="/assets/images/mockup-attachments.png"
+                  alt="mobile app screenshot attachments"
+                  width="220px"
+                  height="465px"
+                  priority={true}
+                />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </Container>
     </section>

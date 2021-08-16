@@ -2,11 +2,12 @@ import { ReactElement } from 'react';
 import Image from 'next/image';
 import classNames from 'classnames';
 import redact from '@/utils/redact';
+import { useScreen } from '@/contexts/screen';
 
 interface Props {
   title: string;
   description?: string[];
-  image: string | string[]; // toggle images on hover [original, redacted]
+  images: string[]; // toggle images on hover [original, redacted]
   imageAlt: string;
   imageWidth: string;
   imageHeight: string;
@@ -14,10 +15,11 @@ interface Props {
 }
 
 export default function BenefitsCard(props: Props): ReactElement {
+  const { isMobile } = useScreen();
   const {
     title,
     description,
-    image,
+    images,
     imageAlt,
     imageWidth,
     imageHeight,
@@ -28,39 +30,41 @@ export default function BenefitsCard(props: Props): ReactElement {
     textColor: 'gray-dark',
   });
   const renderImages = (() => {
-    if (typeof image === 'string') {
+    if (isMobile) {
       return (
         <Image
-          src={image}
+          src={images[0]}
           alt={imageAlt}
           width={imageWidth}
           height={imageHeight}
           layout="responsive"
         />
       );
+    } else {
+      return images.map((img, index) => {
+        return (
+          <div
+            key={img}
+            className={classNames(
+              index === 0
+                ? 'block group-hover:hidden'
+                : 'hidden group-hover:block'
+            )}
+          >
+            <Image
+              src={img}
+              alt={imageAlt}
+              width={imageWidth}
+              height={imageHeight}
+              layout="responsive"
+              priority={true}
+            />
+          </div>
+        );
+      });
     }
-    return image.map((img, index) => {
-      return (
-        <div
-          key={index}
-          className={classNames(
-            index === 0
-              ? 'block group-hover:hidden'
-              : 'hidden group-hover:block'
-          )}
-        >
-          <Image
-            src={img}
-            alt={imageAlt}
-            width={imageWidth}
-            height={imageHeight}
-            layout="responsive"
-            priority={true}
-          />
-        </div>
-      );
-    });
   })();
+
   const renderDescription = (() => {
     return description?.map((line, index) => {
       return (
@@ -73,6 +77,7 @@ export default function BenefitsCard(props: Props): ReactElement {
       );
     });
   })();
+
   // parent container must have 'flex' class
   return (
     <div

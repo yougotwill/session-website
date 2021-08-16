@@ -44,6 +44,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - Use the [Headwind](https://github.com/heybourn/headwind) VSCode extension for sorting TailWindCSS classes.
 - Using the [classnames](https://www.npmjs.com/package/classnames) package we can organise our classes into groups that combine at build time.
 - Always run `yarn run build && yarn run start` to see how the code works in a production environment before pushing to the server.
+- For accessbility testing we use the [axe-react](https://github.com/dequelabs/axe-core-npm/blob/develop/packages/react/README.md) plugin.
 
 ```jsx
   <div className={classNames(

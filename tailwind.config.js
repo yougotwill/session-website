@@ -1,5 +1,6 @@
 module.exports = {
   purge: [
+    './styles/globals.css',
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
     './services/**/*.{js,ts,jsx,tsx}',
@@ -50,6 +51,9 @@ module.exports = {
         push: {
           '50%': { transform: 'scale(0.8)' },
         },
+      },
+      outline: {
+        primary: '2px dotted var(--primary-DEFAULT)',
       },
       transitionProperty: {
         height: 'height',

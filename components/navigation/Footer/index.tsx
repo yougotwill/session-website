@@ -10,8 +10,10 @@ import GithubSVG from '@/assets/svgs/github.svg';
 import RssSVG from '@/assets/svgs/rss.svg';
 
 import { GroupNotice } from '@/components/sections';
+import { useScreen } from '@/contexts/screen';
 
 export default function Footer(): ReactElement {
+  const { isMobile } = useScreen();
   const redactedClasses = redact({
     redactColor: 'primary',
     textColor: 'white',
@@ -22,7 +24,8 @@ export default function Footer(): ReactElement {
     'text-white uppercase text-xl font-semibold mb-2'
   );
   const linkClasses = classNames(
-    'text-sm font-light',
+    'text-sm font-light py-2 mr-2',
+    'lg:py-0 lg:my-0',
     'transition-colors duration-300',
     'hover:text-white'
   );
@@ -32,7 +35,8 @@ export default function Footer(): ReactElement {
     'hover:text-white'
   );
   const svgClasses = classNames(
-    'fill-current w-7 h-7 mr-1',
+    'fill-current w-7 h-7 m-1',
+    'lg:my-0 lg:ml-0',
     'hover:animate-push'
   );
   return (
@@ -42,13 +46,13 @@ export default function Footer(): ReactElement {
           'lg:flex lg:justify-end lg:max-w-screen-xl lg:mx-auto'
         )}
       >
-        <GroupNotice
-          classes={classNames(
-            'hidden',
-            'md:block',
-            'lg:flex lg:flex-col lg:justify-center lg:w-full lg:max-w-xl lg:px-0 lg:border-b-0 lg:border-r lg:my-2'
-          )}
-        />
+        {!isMobile && (
+          <GroupNotice
+            classes={classNames(
+              'lg:flex lg:flex-col lg:justify-center lg:w-full lg:max-w-xl lg:px-0 lg:border-b-0 lg:border-r lg:my-2'
+            )}
+          />
+        )}
         <footer className={classNames('text-primary-dark', 'lg:w-1/2 lg:mt-2')}>
           <div
             className={classNames(
@@ -144,7 +148,7 @@ export default function Footer(): ReactElement {
             >
               <div className={classNames('w-1/2 mb-4')}>
                 <h3 className={headingClasses}>Links</h3>
-                <div className={classNames('flex')}>
+                <div className={classNames('flex -ml-1')}>
                   <Link href="https://www.facebook.com/SessionMessenger/">
                     <a
                       className={socialLinkClasses}
