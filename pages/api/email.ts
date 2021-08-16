@@ -1,7 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import base64 from 'base-64';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method !== 'POST') {
     res.status(400).json({
       message: 'Email API: Invalid http method. | Only POST is accepted.',
@@ -36,4 +39,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     // );
     res.status(400).json({ email });
   }
-};
+}

@@ -88,7 +88,7 @@ export async function fetchEntryBySlug(
     return entry;
   }
 
-  return Promise.reject(new Error(`Failed to fetch ${entryType} by slug`));
+  return Promise.reject(new Error(`Failed to fetch ${entryType} for ${slug}`));
 }
 
 function convertPost(rawData: any): IPost {

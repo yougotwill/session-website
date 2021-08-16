@@ -1,4 +1,5 @@
-import { cloneElement, Children, ReactElement, ReactNode } from 'react';
+/* eslint-disable react/display-name */
+import { cloneElement, Children, ReactElement } from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
 

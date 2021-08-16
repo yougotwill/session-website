@@ -12,12 +12,12 @@ interface Props {
 export default function EmbedContent(props: Props): ReactElement {
   const { content, classes } = props;
   const htmlRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (isNoembed(content) && null !== htmlRef.current) {
+      htmlRef.current.innerHTML = content.html;
+    }
+  }, [content]);
   if (isNoembed(content)) {
-    useEffect(() => {
-      if (null !== htmlRef.current) {
-        htmlRef.current.innerHTML = content.html;
-      }
-    }, []);
     return (
       <div className={classNames('embed-content', classes)} ref={htmlRef}></div>
     );
