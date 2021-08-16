@@ -34,7 +34,8 @@ export default function Container(props: Props): ReactElement {
         'lg:py-0 lg:px-10',
         classes
       )}
-      style={{ height: height && `calc(${height})` }}
+      // mobile safari needs style props to be explicitly undefined if not used
+      style={{ height: height ? `calc(${height})` : undefined }}
     >
       {children}
     </div>

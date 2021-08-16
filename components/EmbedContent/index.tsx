@@ -1,4 +1,5 @@
 import { ReactElement, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'classnames';
 
@@ -12,12 +13,12 @@ interface Props {
 export default function EmbedContent(props: Props): ReactElement {
   const { content, classes } = props;
   const htmlRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (isNoembed(content) && null !== htmlRef.current) {
+      htmlRef.current.innerHTML = content.html;
+    }
+  }, [content]);
   if (isNoembed(content)) {
-    useEffect(() => {
-      if (null !== htmlRef.current) {
-        htmlRef.current.innerHTML = content.html;
-      }
-    }, []);
     return (
       <div className={classNames('embed-content', classes)} ref={htmlRef}></div>
     );
@@ -34,9 +35,10 @@ export default function EmbedContent(props: Props): ReactElement {
           >
             {content.image && (
               <div className={classNames('w-full')}>
-                <img
+                <Image
                   src={content.image}
                   alt="link thumbnail image"
+                  layout="fill"
                   className={classNames('object-cover')}
                 />
               </div>

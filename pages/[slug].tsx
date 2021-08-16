@@ -1,21 +1,44 @@
 import { ReactElement } from 'react';
-import { GetStaticProps, GetStaticPropsContext, GetStaticPaths } from 'next';
+import { GetStaticPropsContext, GetStaticPaths } from 'next';
+import { useRouter } from 'next/router';
 import classNames from 'classnames';
 
 import { IPage } from '@/types/cms';
 import { fetchEntryBySlug, fetchPages, generateLinkMeta } from '@/services/cms';
-import { hasRedirection } from '@/services/redirect';
+import { hasRedirection, IRedirection } from '@/services/redirect';
 
 import Container from '@/components/Container';
 import { Headline, Layout } from '@/components/ui';
 import RichBody from '@/components/RichBody';
+import Custom404 from '@/pages/404';
+import Download from '@/pages/download';
 
 interface Props {
-  page: IPage;
+  page?: IPage;
+  redirection?: IRedirection;
 }
 
 export default function Page(props: Props): ReactElement {
-  const { page } = props;
+  const router = useRouter();
+  const { page, redirection } = props;
+  // dynamic redirects require a custom fallback solution
+  if (redirection) {
+    if (typeof window !== 'undefined') {
+      router.push(redirection.destination);
+    }
+    // currently only download links are dynamic
+    return <Download />;
+  }
+
+  if (!page) {
+    if (typeof window !== 'undefined') {
+      if (router.isFallback) {
+        router.push('/404', router.asPath);
+      }
+    }
+    return <Custom404 />;
+  }
+
   const pageTitle = page ? page.title : '';
   return (
     <Layout title={pageTitle}>
@@ -50,13 +73,15 @@ export default function Page(props: Props): ReactElement {
   );
 }
 
-export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext
-) => {
+export async function getStaticProps(context: GetStaticPropsContext) {
   const slug = String(context.params?.slug);
 
-  const isRedirect = await hasRedirection('/' + slug);
-  if (isRedirect) return isRedirect;
+  const redirection = await hasRedirection('/' + slug);
+  if (redirection)
+    return {
+      props: { redirection },
+      revalidate: 3600, // refresh redirections hourly
+    };
 
   const page: IPage = await fetchEntryBySlug(slug, 'page');
 
@@ -73,7 +98,7 @@ export const getStaticProps: GetStaticProps = async (
     },
     revalidate: 60,
   };
-};
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { entries: pages, total: totalPages } = await fetchPages();
@@ -87,6 +112,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 };

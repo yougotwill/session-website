@@ -25,7 +25,7 @@ export default function Custom404() {
               'text-primary-dark text-5xl font-semibold mb-8'
             )}
           >
-            This page doesn't seem to exist.
+            This page doesn&apos;t seem to exist.
           </h1>
           <p className={classNames('text-gray text-xl', 'lg:text-2xl')}>
             {METADATA[404].DESCRIPTION}

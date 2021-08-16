@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { IPost } from '@/types/cms';
 import { PostList } from '@/components/posts';
 import RichBody from '@/components/RichBody';
+import { useScreen } from '@/contexts/screen';
 
 interface Props {
   post: IPost;
@@ -13,6 +14,7 @@ interface Props {
 }
 
 export default function Post(props: Props): ReactElement {
+  const { isMobile, isTablet } = useScreen();
   const { post, otherPosts } = props;
   const {
     title,
@@ -62,14 +64,18 @@ export default function Post(props: Props): ReactElement {
           >
             {fullHeader ? (
               <Image
-                src={featureImage?.imageUrl}
+                src={`${featureImage?.imageUrl}${
+                  isMobile ? '?w=300' : isTablet ? '?w=600' : ''
+                }`}
                 alt={featureImage?.description ?? title}
                 width={featureImage?.width}
                 height={featureImage?.height}
               />
             ) : (
               <Image
-                src={featureImage?.imageUrl}
+                src={`${featureImage?.imageUrl}${
+                  isMobile ? '?w=300' : isTablet ? '?w=600' : ''
+                }`}
                 alt={featureImage?.description ?? title}
                 layout="fill"
                 className={classNames('object-cover')}
@@ -105,7 +111,7 @@ export default function Post(props: Props): ReactElement {
         posts={otherPosts}
         gridStyle={'tight'}
         hoverEffect={false}
-        showDescription={false}
+        compact={true}
         classes={classNames('my-16', 'lg:mb-24')}
       />
     </section>

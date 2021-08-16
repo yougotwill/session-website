@@ -1,4 +1,5 @@
-import { cloneElement, Children, ReactElement, ReactNode } from 'react';
+/* eslint-disable react/display-name */
+import { cloneElement, Children, ReactElement } from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
 
@@ -41,6 +42,7 @@ export default function RichBody(props: Props): ReactElement {
       [INLINES.HYPERLINK]: (node, children) => (
         <Link href={node.data.uri} scroll={!isLocal(node.data.uri)}>
           <a
+            aria-label={'Read more about this link'}
             className={classNames('text-primary-dark font-extralight')}
             target={isLocal(node.data.uri) ? '_self' : '_blank'}
             rel="noreferrer"
