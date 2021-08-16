@@ -1,4 +1,5 @@
 import { ReactElement, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'classnames';
 
@@ -34,9 +35,10 @@ export default function EmbedContent(props: Props): ReactElement {
           >
             {content.image && (
               <div className={classNames('w-full')}>
-                <img
+                <Image
                   src={content.image}
                   alt="link thumbnail image"
+                  layout="fill"
                   className={classNames('object-cover')}
                 />
               </div>

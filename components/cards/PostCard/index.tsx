@@ -38,7 +38,7 @@ export default function PostCard(props: Props): ReactElement {
       )}
     >
       {featureImage?.imageUrl && (
-        <Link href={route}>
+        <Link href={route} passHref>
           <div
             className={classNames(
               'relative overflow-hidden w-full h-60 mb-4',
@@ -49,7 +49,7 @@ export default function PostCard(props: Props): ReactElement {
             )}
           >
             <Image
-              src={featureImage?.imageUrl}
+              src={`${featureImage?.imageUrl}${featured ? '?w=700' : '?w=400'}`}
               alt={featureImage?.description ?? title}
               layout="fill"
               className={classNames(
@@ -64,7 +64,7 @@ export default function PostCard(props: Props): ReactElement {
       <div
         className={classNames(featured && 'md:w-1/2 md:ml-4 lg:ml-3 lg:w-2/5')}
       >
-        <Link href={route}>
+        <Link href={route} passHref>
           <h3
             className={classNames(
               'cursor-pointer text-2xl font-semibold mb-3',

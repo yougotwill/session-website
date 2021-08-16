@@ -4,8 +4,10 @@ import classNames from 'classnames';
 
 import Container from '@/components/Container';
 import { Headline } from '@/components/ui';
+import { useScreen } from '@/contexts/screen';
 
 export default function Features(): ReactElement {
+  const { isMobile, isTablet, isDesktop, isMonitor } = useScreen();
   const headingClasses = classNames(
     'font-helvetica text-4xl font-semibold text-gray-dark mb-1'
   );
@@ -43,21 +45,22 @@ export default function Features(): ReactElement {
             '2xl:-mt-64 2xl:w-full'
           )}
         >
-          <div
-            className={classNames(
-              'mx-auto mb-12 text-center px-4',
-              'md:mb-16 md:px-24',
-              'lg:hidden'
-            )}
-          >
-            <Image
-              src="/assets/images/mockup-landing.png"
-              alt="mobile app screenshot"
-              width="475px"
-              height="1000px"
-              layout="responsive"
-            />
-          </div>
+          {(isMobile || isTablet) && (
+            <div
+              className={classNames(
+                'mx-auto mb-12 text-center px-4',
+                'md:mb-16 md:px-24'
+              )}
+            >
+              <Image
+                src="/assets/images/mockup-landing.png"
+                alt="mobile app screenshot"
+                width="475px"
+                height="1000px"
+                layout="responsive"
+              />
+            </div>
+          )}
           <div
             className={classNames(
               'px-3',
@@ -85,17 +88,17 @@ export default function Features(): ReactElement {
               attachments through a network that takes your privacy seriously.
             </p>
           </div>
-          <div
-            className={classNames('hidden w-full -mt-12 -mr-24', 'lg:block')}
-          >
-            <Image
-              src="/assets/images/mockup-desktop.png"
-              alt="desktop app screenshot"
-              width="1600px"
-              height="858px"
-              layout="responsive"
-            />
-          </div>
+          {(isDesktop || isMonitor) && (
+            <div className={classNames('w-full -mt-12 -mr-24')}>
+              <Image
+                src="/assets/images/mockup-desktop.png"
+                alt="desktop app screenshot"
+                width="1600px"
+                height="858px"
+                layout="responsive"
+              />
+            </div>
+          )}
         </div>
       </Container>
     </section>

@@ -46,7 +46,7 @@ export default function Benefits(): ReactElement {
               'Session accounts are completely anonymous.',
               'No phone number or email required.',
             ]}
-            image={[
+            images={[
               '/assets/images/no-phone.png',
               '/assets/images/no-phone-redacted.png',
             ]}
@@ -61,7 +61,7 @@ export default function Benefits(): ReactElement {
               'Session doesn’t collect data,',
               'so there’s nothing to leak.',
             ]}
-            image={[
+            images={[
               '/assets/images/no-data.png',
               '/assets/images/no-data-redacted.png',
             ]}
@@ -76,7 +76,7 @@ export default function Benefits(): ReactElement {
               'Send messages through our onion',
               ' routing network and leave no trace.',
             ]}
-            image={[
+            images={[
               '/assets/images/no-footprint.png',
               '/assets/images/no-footprint-redacted.png',
             ]}
@@ -91,7 +91,7 @@ export default function Benefits(): ReactElement {
               'Session’s code has nothing to hide. Anyone can',
               'view, audit, and contribute.',
             ]}
-            image={[
+            images={[
               '/assets/images/open-source.png',
               '/assets/images/open-source-redacted.png',
             ]}
@@ -106,7 +106,7 @@ export default function Benefits(): ReactElement {
               'With no central point of failure,',
               'it’s harder to shut Session down.',
             ]}
-            image={[
+            images={[
               '/assets/images/censorship-resistant.png',
               '/assets/images/censorship-resistant-redacted.png',
             ]}
