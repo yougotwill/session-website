@@ -1,4 +1,4 @@
-const fallbackVersion = '1.6.10'; // should update periodcally
+import getConfig from 'next/config';
 
 // https://nextjs.org/docs/api-reference/next.config.js/redirects
 export interface IRedirection {
@@ -6,6 +6,10 @@ export interface IRedirection {
   destination: string;
   permanent: boolean;
 }
+
+const staticRedirects: IRedirection[] =
+  getConfig().serverRuntimeConfig.redirects;
+const fallbackVersion = '1.6.10'; // should update periodcally
 
 async function fetchLatest(repo: string) {
   const res = await fetch(
@@ -47,10 +51,21 @@ export async function fetchRedirects() {
 }
 
 export async function hasRedirection(url: string) {
-  let response = null;
-  const redirects = await fetchRedirects();
-  if (!redirects) return false;
+  const dynamicRedirects = await fetchRedirects();
+  if (!dynamicRedirects) return false;
 
+  const redirects = staticRedirects.map((staticRedirection) => {
+    let newRedirection = staticRedirection;
+    dynamicRedirects.forEach((redirection) => {
+      if (staticRedirection.source === redirection.source) {
+        newRedirection = redirection;
+        return;
+      }
+    });
+    return newRedirection;
+  });
+
+  let response = null;
   redirects.forEach((redirection) => {
     if (redirection.source === url) {
       response = {

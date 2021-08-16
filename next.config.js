@@ -13,8 +13,8 @@ const config = {
   images: {
     domains: ['images.ctfassets.net'],
   },
-  async redirects() {
-    return [
+  serverRuntimeConfig: {
+    redirects: [
       {
         source: '/android',
         destination:
@@ -52,7 +52,10 @@ const config = {
         destination: '/download',
         permanent: true,
       },
-    ];
+    ],
+  },
+  async redirects() {
+    return this.serverRuntimeConfig.redirects;
   },
   async rewrites() {
     return [
