@@ -59,6 +59,12 @@
     format('truetype');
 }
 
+a,
+input,
+button {
+  @apply focus:outline-primary;
+}
+
 .embed-content blockquote {
   @apply px-4 py-6 mb-6 ml-10 mr-4 text-base italic text-black border-gray-100 border-l-6;
   @apply lg:text-lg;

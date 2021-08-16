@@ -51,6 +51,9 @@ module.exports = {
           '50%': { transform: 'scale(0.8)' },
         },
       },
+      outline: {
+        primary: '2px dotted var(--primary-DEFAULT)',
+      },
       transitionProperty: {
         height: 'height',
       },
