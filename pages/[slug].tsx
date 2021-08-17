@@ -11,7 +11,9 @@ import Container from '@/components/Container';
 import { Headline, Layout } from '@/components/ui';
 import RichBody from '@/components/RichBody';
 import Custom404 from '@/pages/404';
+import Home from '@/pages/index';
 import Download from '@/pages/download';
+import RedirectPage from '@/components/RedirectPage';
 
 interface Props {
   page?: IPage;
@@ -26,17 +28,16 @@ export default function Page(props: Props): ReactElement {
     if (typeof window !== 'undefined') {
       router.push(redirection.destination);
     }
-    // currently only download links are dynamic
-    return <Download />;
-  }
-
-  if (!page) {
-    if (typeof window !== 'undefined') {
-      if (router.isFallback) {
-        router.push('/404', router.asPath);
+    return <RedirectPage />;
+  } else {
+    if (!page) {
+      if (typeof window !== 'undefined') {
+        if (router.isFallback) {
+          router.push('/404', router.asPath);
+        }
       }
+      return <Custom404 />;
     }
-    return <Custom404 />;
   }
 
   const pageTitle = page ? page.title : '';
