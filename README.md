@@ -1,6 +1,11 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<img src="public/assets/images/logo.png" width="300px">
+<br>
+<b>Send Messages, Not Metadata.</b>
+<br>
 
 ## Getting Started
+
+This project is built with [Next.js](https://nextjs.org/) , [Tailwind CSS](https://tailwindcss.com/) & [Contentful](https://www.contentful.com).
 
 First, run the development server:
 
@@ -18,33 +23,32 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
 ## Contentful Notes
 
-- [ ] Use `Link` and `Media` content models for embedded content into blog posts.
-- [ ] If linking content that is on the site itself omit https://getsession.org.\
-      e.g. `https://getsession.org/blog/onion-requests-session-new-message-routing-solution/` => `/blog/onion-requests-session-new-message-routing-solution/`
+- Use `Link Preview` and `Media` content models for embedding content into blog posts.
+- If linking content that is on the site itself try to omit omit https://getsession.org.
+  e.g. `https://getsession.org/blog/onion-requests-session-new-message-routing-solution/` => `/blog/onion-requests-session-new-message-routing-solution/`.
+- To use <sup>superscript</sup>, <sub>subscript</sub>, ~~strikethroughs~~ or <span style="background-color: #3a3a3a; color: white;">style</span> <span style="color: #00f782;">text</span> use the `Markup` content model.
 
-## Developer Notes
+## Development
 
-- Use the [Headwind](https://github.com/heybourn/headwind) VSCode extension for sorting TailWindCSS classes.
-- Using the [classnames](https://www.npmjs.com/package/classnames) package we can organise our classes into groups that combine at build time.
-- Always run `yarn run build && yarn run start` to see how the code works in a production environment before pushing to the server.
+- **Always** run `yarn run build && yarn run start` to see how the code works in a production environment before committing or pushing to the server.
+
 - For accessbility testing we use the [axe-react](https://github.com/dequelabs/axe-core-npm/blob/develop/packages/react/README.md) plugin.
+
+- Uses [Headwind](https://github.com/heybourn/headwind) VSCode extension for sorting Tailwind classes.
+
+- Uses [classnames](https://www.npmjs.com/package/classnames) to organise our classes into groups that combine at build time.
+
+- To work with any pages that use [Contentful](https://www.contentful.com) you will need to create your own free account and import our Contentful models.
+
+  Email [will@oxen.io](mailto:will@oxen.io) for access to the content models. If there is enough interest they may be added to the repo in future.
+
+### Tailwind class structure
+
+This helps with readability and is encouraged. More of a _guideline_.
+
+#### React
 
 ```jsx
   <div className={classNames(
@@ -56,6 +60,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
     "toggling classes i.e. NavMenu isExpanded"
   )}></div>
 ```
+
+#### CSS
 
 ```css
 .custom-class {
@@ -73,7 +79,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - We can't use template literals with classes if we want to purge the CSS.
   - https://github.com/tailwindlabs/tailwindcss/issues/2209#issuecomment-677855297
   - https://tailwindcss.com/docs/optimizing-for-production#writing-purgeable-html
-  - I.e. `hover:bg-black hover:text-${bgColor}` won't work in production.
+  - i.e. `hover:bg-black hover:text-${bgColor}` won't work in production.
 
 ## Attributions
 
