@@ -28,7 +28,7 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 - Use `Link Preview` and `Media` content models for embedding content into blog posts.
 - If linking content that is on the site itself try to omit omit https://getsession.org.
   e.g. `https://getsession.org/blog/onion-requests-session-new-message-routing-solution/` => `/blog/onion-requests-session-new-message-routing-solution/`.
-- To use ^superscript^, ~subscript~ or ~~strikethroughs~~ etc. use the `Markup` content model.
+- To use <sup>superscript</sup>, <sub>subscript</sub>, ~~strikethroughs~~ or <span style="background-color: #3a3a3a; color: white;">style</span> <span style="color: #00f782;">text</span> use the `Markup` content model.
 
 ## Development
 
