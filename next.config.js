@@ -68,6 +68,10 @@ const config = {
         source: '/feed/:slug',
         destination: '/api/feed/:slug',
       },
+      {
+        source: '/sitemap.xml',
+        destination: '/api/sitemap',
+      },
     ];
   },
   target: 'serverless',
