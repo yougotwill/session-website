@@ -165,3 +165,31 @@ button {
     clip: rect(45px, 9999px, 70px, 0);
   }
 }
+
+/* https://github.com/videojs/video.js/issues/5751#issuecomment-483585248 */
+/* includes fixes for desktop safari  */
+.vjs-has-started .vjs-control-bar {
+  display: flex;
+  align-items: center;
+}
+
+.video-js .vjs-current-time,
+.vjs-no-flex .vjs-current-time {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}
+
+.video-js .vjs-time-divider,
+.vjs-no-flex .vjs-time-divider {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}
+
+.video-js .vjs-duration,
+.vjs-no-flex .vjs-duration {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}

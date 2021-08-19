@@ -5,7 +5,7 @@ import { useScreen } from '@/contexts/screen';
 
 import Container from '@/components/Container';
 import { Headline } from '@/components/ui';
-import VideoPlayer from '@/components/VideoPlayer';
+import VideoPlayer, { VideoPlayerProps } from '@/components/VideoPlayer';
 
 export default function About(): ReactElement {
   const textRef = useRef<HTMLDivElement>(null);
@@ -19,6 +19,43 @@ export default function About(): ReactElement {
   const [redactedClasses, setRedactedClasses] = useState(
     redact(redactedOptions)
   );
+  const videoProps: VideoPlayerProps = {
+    hasQualityLevels: true,
+    poster: '/assets/videos/this-is-session/thumbnail.webp',
+    sources: [
+      {
+        src: '/assets/videos/this-is-session/1080p.mp4',
+        type: 'video/mp4',
+        label: '1080p',
+      },
+      {
+        src: '/assets/videos/this-is-session/720p.mp4',
+        type: 'video/mp4',
+        label: '720p',
+        selected: true,
+      },
+      {
+        src: '/assets/videos/this-is-session/480p.mp4',
+        type: 'video/mp4',
+        label: '480p',
+      },
+      {
+        src: '/assets/videos/this-is-session/360p.mp4',
+        type: 'video/mp4',
+        label: '360p',
+      },
+      {
+        src: '/assets/videos/this-is-session/240p.mp4',
+        type: 'video/mp4',
+        label: '240p',
+      },
+      {
+        src: '/assets/videos/this-is-session/144p.mp4',
+        type: 'video/mp4',
+        label: '144p',
+      },
+    ],
+  };
 
   useEffect(() => {
     if (isMobile || isTablet) {
@@ -66,64 +103,28 @@ export default function About(): ReactElement {
           lg: '100vh + 2rem',
         }}
         classes={classNames(
-          'flex flex-col justify-center items-center pb-48',
+          'flex flex-col justify-center items-center pb-24',
           'md:pb-0 md:-mt-24',
-          'lg:-mt-32 lg:items-start'
+          'lg:items-start'
         )}
       >
-        <div>
-          <p
-            className={classNames(
-              'group text-white text-lg font-light leading-10 my-12',
-              'md:text-4xl md:leading-relaxed md:ml-16',
-              'lg:my-0 lg:ml-0 lg:max-w-2xl'
-            )}
-            ref={textRef}
-          >
-            Session is an <span className={redactedClasses}>end-to-end</span>{' '}
-            encrypted messenger that minimises{' '}
-            <span className={redactedClasses}>sensitive</span> metadata,{' '}
-            <span className={redactedClasses}>designed and built</span> for
-            people who want <span className={redactedClasses}>absolute</span>{' '}
-            privacy and freedom from{' '}
-            <span className={redactedClasses}>any form of</span> surveillance.
-          </p>
-        </div>
-        <VideoPlayer
-          sources={[
-            {
-              src: '/assets/videos/this-is-session/1080p.mp4',
-              type: 'video/mp4',
-              label: '1080p',
-            },
-            {
-              src: '/assets/videos/this-is-session/720p.mp4',
-              type: 'video/mp4',
-              label: '720p',
-              selected: true,
-            },
-            {
-              src: '/assets/videos/this-is-session/480p.mp4',
-              type: 'video/mp4',
-              label: '480p',
-            },
-            {
-              src: '/assets/videos/this-is-session/360p.mp4',
-              type: 'video/mp4',
-              label: '360p',
-            },
-            {
-              src: '/assets/videos/this-is-session/240p.mp4',
-              type: 'video/mp4',
-              label: '240p',
-            },
-            {
-              src: '/assets/videos/this-is-session/144p.mp4',
-              type: 'video/mp4',
-              label: '144p',
-            },
-          ]}
-        />
+        <p
+          className={classNames(
+            'group text-white text-lg font-light leading-10 mt-12 mb-20',
+            'md:text-4xl md:leading-relaxed md:ml-16',
+            'lg:mt-0 lg:ml-0 lg:max-w-2xl'
+          )}
+          ref={textRef}
+        >
+          Session is an <span className={redactedClasses}>end-to-end</span>{' '}
+          encrypted messenger that minimises{' '}
+          <span className={redactedClasses}>sensitive</span> metadata,{' '}
+          <span className={redactedClasses}>designed and built</span> for people
+          who want <span className={redactedClasses}>absolute</span> privacy and
+          freedom from <span className={redactedClasses}>any form of</span>{' '}
+          surveillance.
+        </p>
+        <VideoPlayer {...videoProps} />
       </Container>
     </section>
   );
