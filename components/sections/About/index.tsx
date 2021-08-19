@@ -105,14 +105,18 @@ export default function About(): ReactElement {
         classes={classNames(
           'flex flex-col justify-center items-center pb-24',
           'md:pb-0 md:-mt-24',
-          'lg:items-start'
+          'lg:items-start',
+          'xl:-mt-16',
+          '2xl:-mt-24'
         )}
       >
         <p
           className={classNames(
             'group text-white text-lg font-light leading-10 mt-12 mb-20',
             'md:text-4xl md:leading-relaxed md:ml-16',
-            'lg:mt-0 lg:ml-0 lg:max-w-2xl'
+            'lg:mt-0 lg:ml-0 lg:max-w-2xl',
+            'xl:mb-8',
+            '2xl:mb-20'
           )}
           ref={textRef}
         >
