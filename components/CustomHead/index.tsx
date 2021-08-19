@@ -112,7 +112,11 @@ export default function CustomHead(props: Props): ReactElement {
       />
       <meta
         name="robots"
-        content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+        content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"
+      />
+      <meta
+        name="googlebot"
+        content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"
       />
       <meta name="googlebot" content="index,follow" />
       <meta property="og:url" content={pageUrl} />
