@@ -12,6 +12,7 @@
   "dependencies": {
     "@contentful/rich-text-html-renderer": "15.0.0",
     "@contentful/rich-text-react-renderer": "^15.0.0",
+    "@silvermine/videojs-quality-selector": "^1.2.5",
     "base-64": "^1.0.0",
     "classnames": "^2.3.1",
     "contentful": "^8.4.2",
@@ -25,6 +26,7 @@
     "react-dom": "^17.0.2",
     "react-use": "^17.2.4",
     "sharp": "^0.28.3",
+    "video.js": "^7.14.3",
     "xss": "^1.0.9"
   },
   "devDependencies": {
@@ -33,6 +35,7 @@
     "@tailwindcss/forms": "^0.3.3",
     "@types/base-64": "^1.0.0",
     "@types/react": "^17.0.13",
+    "@types/video.js": "^7.3.26",
     "autoprefixer": "^10.2.5",
     "contentful-cli": "^1.8.17",
     "cssnano": "^4.1.11",
