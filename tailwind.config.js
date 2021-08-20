@@ -1,6 +1,8 @@
 module.exports = {
   purge: [
     './styles/globals.css',
+    './node_modules/video.js/dist/video-js.min.css',
+    './node_modules/@silvermine/videojs-quality-selector/dist/css/quality-selector.css',
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
     './services/**/*.{js,ts,jsx,tsx}',

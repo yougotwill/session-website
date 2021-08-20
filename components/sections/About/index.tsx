@@ -1,11 +1,15 @@
 import { ReactElement, useState, useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import classNames from 'classnames';
 import redact from '@/utils/redact';
 import { useScreen } from '@/contexts/screen';
 
 import Container from '@/components/Container';
 import { Headline } from '@/components/ui';
-import VideoPlayer, { VideoPlayerProps } from '@/components/VideoPlayer';
+import { VideoPlayerProps } from '@/components/VideoPlayer';
+
+// optimise build sizes by loading dynamically
+const DynamicVideoPlayer = dynamic(() => import('@/components/VideoPlayer'));
 
 export default function About(): ReactElement {
   const textRef = useRef<HTMLDivElement>(null);
@@ -128,7 +132,7 @@ export default function About(): ReactElement {
           freedom from <span className={redactedClasses}>any form of</span>{' '}
           surveillance.
         </p>
-        <VideoPlayer {...videoProps} />
+        <DynamicVideoPlayer {...videoProps} />
       </Container>
     </section>
   );

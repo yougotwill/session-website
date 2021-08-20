@@ -2,7 +2,7 @@ import { ReactElement, useRef, useEffect } from 'react';
 import videojs, { VideoJsPlayerOptions } from 'video.js';
 // @ts-ignore
 import QualitySelector from '@silvermine/videojs-quality-selector';
-import 'video.js/dist/video-js.css';
+import 'video.js/dist/video-js.min.css';
 import '@silvermine/videojs-quality-selector/dist/css/quality-selector.css';
 import { UI } from '@/constants';
 import { useScreen } from '@/contexts/screen';
