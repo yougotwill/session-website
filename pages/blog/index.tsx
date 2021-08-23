@@ -51,7 +51,7 @@ export default function Blog(props: Props): ReactElement {
         {tag ? (
           <div
             className={classNames(
-              'text-primary-dark text-4xl font-semibold mx-auto mt-12 px-3',
+              'text-primary-dark text-4xl font-bold mx-auto mt-12 px-3',
               'md:mt-16 md:mb-8',
               'lg:max-w-6xl lg:mt-8 lg:px-10'
             )}

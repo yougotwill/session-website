@@ -11,8 +11,6 @@ import Container from '@/components/Container';
 import { Headline, Layout } from '@/components/ui';
 import RichBody from '@/components/RichBody';
 import Custom404 from '@/pages/404';
-import Home from '@/pages/index';
-import Download from '@/pages/download';
 import RedirectPage from '@/components/RedirectPage';
 
 interface Props {
@@ -47,7 +45,10 @@ export default function Page(props: Props): ReactElement {
         {page?.headline && (
           <Headline
             color="gray-dark"
-            classes={classNames('font-mono pt-16', 'lg:pt-4 lg:pb-10')}
+            classes={classNames(
+              'font-mono font-medium pt-16',
+              'lg:pt-4 lg:pb-10'
+            )}
             containerWidths={{
               sm: '10rem',
               md: '34rem',
@@ -63,7 +64,7 @@ export default function Page(props: Props): ReactElement {
               body={page?.body}
               headingClasses={'text-gray font-medium mt-6'}
               classes={classNames(
-                'text-sm text-gray-lighter font-helvetica font-extralight leading-loose',
+                'text-sm text-gray-lighter font-helvetica leading-loose',
                 'lg:text-base'
               )}
             />

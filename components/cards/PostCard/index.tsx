@@ -28,7 +28,7 @@ export default function PostCard(props: Props): ReactElement {
     compact = false,
     classes,
   } = props;
-  const headingClasses = 'cursor-pointer text-2xl font-semibold mb-3';
+  const headingClasses = 'cursor-pointer text-2xl font-bold mb-3';
   // parent container must have 'flex' class
   return (
     <div
@@ -82,17 +82,13 @@ export default function PostCard(props: Props): ReactElement {
             <h2 className={classNames(headingClasses)}>{title}</h2>
           )}
         </Link>
-        <p
-          className={classNames(
-            'text-gray-lightest text-xs font-helvetica font-extralight'
-          )}
-        >
+        <p className={classNames('text-gray-lightest text-xs font-helvetica')}>
           {publishedDate}
         </p>
         {!compact && (
           <p
             className={classNames(
-              'text-sm font-light',
+              'text-sm',
               featured && 'md:text-base md:leading-normal'
             )}
           >
@@ -101,11 +97,7 @@ export default function PostCard(props: Props): ReactElement {
         )}
         {featured && (
           <Link href={route}>
-            <a
-              className={classNames(
-                'block text-primary-dark text-xs font-extralight mt-4'
-              )}
-            >
+            <a className={classNames('block text-primary-dark text-xs mt-4')}>
               Read More »
             </a>
           </Link>

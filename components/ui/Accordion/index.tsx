@@ -65,7 +65,7 @@ export default function Accordion(props: Props): ReactElement {
       >
         <RichBody
           body={answer}
-          classes={classNames('text-sm text-gray py-2', 'lg:text-base')}
+          classes={classNames('text-sm text-black py-2', 'lg:text-base')}
         />
       </div>
     </div>

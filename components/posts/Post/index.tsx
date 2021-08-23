@@ -96,7 +96,7 @@ export default function Post(props: Props): ReactElement {
         </h1>
         <p
           className={classNames(
-            'font-mono font-normal text-sm mb-3',
+            'font-mono font-medium text-sm mb-3',
             'lg:mb-8'
           )}
         >
@@ -104,7 +104,7 @@ export default function Post(props: Props): ReactElement {
         </p>
         <RichBody
           body={body}
-          classes={classNames('text-sm text-gray font-light', 'lg:text-base')}
+          classes={classNames('text-sm text-gray', 'lg:text-base')}
         />
       </div>
       <PostList

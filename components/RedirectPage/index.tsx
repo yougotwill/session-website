@@ -24,9 +24,17 @@ export default function RedirectPage() {
           <h1 className={classNames('text-5xl font-semibold mb-8')}>
             Redirecting...
           </h1>
-          <p className={classNames('text-gray text-xl', 'lg:text-2xl')}>
+          <p
+            className={classNames(
+              'text-gray text-xl font-medium',
+              'lg:text-2xl'
+            )}
+          >
             Click{' '}
-            <button className="text-primary-dark" onClick={() => router.back()}>
+            <button
+              className="font-semibold text-primary-dark"
+              onClick={() => router.back()}
+            >
               here
             </button>{' '}
             to return to the previous page.

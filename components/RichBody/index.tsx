@@ -43,7 +43,7 @@ export default function RichBody(props: Props): ReactElement {
         <Link href={node.data.uri} scroll={!isLocal(node.data.uri)}>
           <a
             aria-label={'Read more about this link'}
-            className={classNames('text-primary-dark font-extralight')}
+            className={classNames('text-primary-dark')}
             target={isLocal(node.data.uri) ? '_self' : '_blank'}
             rel="noreferrer"
           >
