@@ -66,17 +66,17 @@ export default function VideoPlayer(props: VideoPlayerProps): ReactElement {
 
   useEffect(() => {
     if (null !== videoRef.current) {
+      videojs(videoRef.current, videoOptions);
+    }
+    return () => {
       const players = videojs.getAllPlayers();
       if (players && players.length > 0) {
         players.forEach((player) => {
-          // set width once videojs and useScreen have completely initialized
-          player.width(videoWidth);
+          player.dispose();
         });
-      } else {
-        videojs(videoRef.current, videoOptions);
       }
-    }
-  }, [videoWidth]);
+    };
+  }, []);
 
   return (
     <div style={{ width: videoWidth }}>
