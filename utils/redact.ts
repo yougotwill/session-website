@@ -25,6 +25,7 @@ export default function redact({
   const hoverClasses = [
     'group-hover:bg-transparent',
     textColor === 'primary' && 'group-hover:text-primary',
+    textColor === 'gray-dark' && 'group-hover:text-gray-dark',
     textColor === 'black' && 'group-hover:text-black',
     textColor === 'white' && 'group-hover:text-white',
   ];

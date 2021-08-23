@@ -9,17 +9,17 @@ import { useScreen } from '@/contexts/screen';
 export default function Features(): ReactElement {
   const { isMobile, isTablet, isDesktop, isMonitor } = useScreen();
   const headingClasses = classNames(
-    'font-helvetica text-4xl font-semibold text-gray-dark mb-1'
+    'font-helvetica text-4xl font-bold text-gray-dark mb-1'
   );
   const paragraphClasses = classNames(
-    'text-gray-lighter font-light leading-6 mb-8',
+    'text-gray-lighter leading-6 mb-8',
     'md:mb-12'
   );
   return (
     <section className={classNames(' text-gray-dark')}>
       <Headline
         color="gray-dark"
-        classes={classNames('text-lg font-semibold pt-16', 'lg:pt-20')}
+        classes={classNames('text-lg font-bold pt-16', 'lg:pt-20')}
         containerWidths={{
           sm: '10rem',
           md: '34rem',

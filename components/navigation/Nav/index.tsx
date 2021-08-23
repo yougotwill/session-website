@@ -72,8 +72,8 @@ export default function Nav(): ReactElement {
       >
         <div
           className={classNames(
-            'flex flex-col items-start justify-center text-sm font-light text-primary',
-            'lg:text-base lg:flex-row lg:items-center lg:justify-end lg:font-semibold lg:text-gray',
+            'flex flex-col items-start justify-center text-sm text-primary',
+            'lg:text-base lg:flex-row lg:items-center lg:justify-end lg:font-bold lg:text-gray',
             'transform transition-all duration-300',
             isExpanded
               ? 'h-full translate-y-0'
@@ -111,7 +111,9 @@ export default function Nav(): ReactElement {
           </Link>
           <Link href="/download">
             <a className="hidden lg:inline">
-              <Button classes="ml-6">Download</Button>
+              <Button fontWeight="bold" classes="ml-6">
+                Download
+              </Button>
             </a>
           </Link>
         </div>

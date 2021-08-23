@@ -82,7 +82,7 @@ export default function BenefitsCard(props: Props): ReactElement {
   return (
     <div
       className={classNames(
-        'group text-center text-2xl font-semibold leading-none p-3',
+        'group text-center text-2xl font-bold leading-none p-3',
         'lg:text-3xl',
         classes
       )}

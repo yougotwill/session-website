@@ -9,6 +9,7 @@ module.exports = {
     './utils/**/*.{js,ts,jsx,tsx}',
   ],
   darkMode: false, // or 'media' or 'class'
+  mode: 'jit',
   theme: {
     fontFamily: {
       helvetica: ['Helvetica', 'Arial', 'sans-serif'],

@@ -19,7 +19,7 @@ export default function GroupNotice(props: Props): ReactElement {
       <h4 className={classNames('text-xl font-bold leading-none mb-2')}>
         Join the movement to keep the internet private!
       </h4>
-      <p className={classNames('font-extralight leading-none')}>
+      <p className={classNames('leading-none')}>
         Chat with like-minded individuals in the{' '}
         <Link href="/session-open-group">
           <a

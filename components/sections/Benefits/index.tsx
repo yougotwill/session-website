@@ -11,7 +11,7 @@ export default function Benefits(): ReactElement {
     <section className={'text-gray-dark bg-primary'}>
       <Headline
         color="gray-dark"
-        classes={classNames('text-lg font-semibold pt-16', 'lg:pt-20')}
+        classes={classNames('text-lg font-bold pt-16', 'lg:pt-20')}
         containerWidths={{
           sm: '10rem',
           md: '34rem',

@@ -31,6 +31,7 @@ export default function Headline(props: Props): ReactElement {
       <div
         className={classNames(`border-t mt-2 ml-3`, borderClasses)}
         style={{
+          minWidth: isDesktop || isMonitor ? '72px' : '',
           width: isMobile
             ? `calc((100vw - ${containerWidth}))`
             : `calc((100vw - ${containerWidth}) / 2)`,

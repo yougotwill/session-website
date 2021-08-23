@@ -56,13 +56,7 @@ export default function EmailSignup(): ReactElement {
         >
           Friends don’t let friends use compromised messengers.
         </h3>
-        <p
-          className={classNames(
-            'font-light leading-none mb-4',
-            'md:mb-8',
-            'lg:text-xl'
-          )}
-        >
+        <p className={classNames('leading-none mb-4', 'md:mb-8', 'lg:text-xl')}>
           Sign up to the mailing list and start taking action!
         </p>
         <form onSubmit={handleSubscription}>
@@ -82,8 +76,8 @@ export default function EmailSignup(): ReactElement {
           <Button
             bgColor="black"
             textColor="primary"
+            fontWeight="semibold"
             size="small"
-            fontWeight="light"
             hoverEffect={false}
             type={'submit'}
             reference={buttonRef}

@@ -16,7 +16,7 @@ export default function Hero(): ReactElement {
     'text-5xl font-semibold text-gray-dark',
     'lg:text-6xl'
   );
-  const downloadLinkClasses = 'text-3xl font-semibold text-primary mb-7';
+  const downloadLinkClasses = 'text-3xl font-bold text-primary mb-7';
   const downloadSVGClasses = 'inline-block mx-3 -mt-2 fill-current';
   return (
     <section>
@@ -87,7 +87,9 @@ export default function Hero(): ReactElement {
             </div>
             <Link href="/download">
               <a className="hidden lg:block">
-                <Button classes="mt-4 px-10">Download</Button>
+                <Button fontWeight="bold" size="large" classes="mt-4 px-12">
+                  Download
+                </Button>
               </a>
             </Link>
           </div>
