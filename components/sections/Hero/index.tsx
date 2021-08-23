@@ -29,11 +29,11 @@ export default function Hero(): ReactElement {
       >
         <div
           className={classNames(
-            'lg:-mt-16 lg:flex lg:justify-center lg:items-center',
+            'lg:-mt-16 lg:w-full lg:flex lg:justify-between lg:items-center',
             '2xl:-mt-64'
           )}
         >
-          <div className={'lg:-mt-16 lg:mr-1'}>
+          <div className={'lg:-mt-16 lg:-mr-8'}>
             <h1 className={classNames(headingClasses)}>
               <span className="block">Send</span>
               <span className={'block glitch'} data-glitch-text={'Encrypted'}>
@@ -92,43 +92,30 @@ export default function Hero(): ReactElement {
             </Link>
           </div>
           {(isMobile || isTablet) && (
-            <div className={classNames('mx-auto text-center', 'md:px-10')}>
+            <div
+              className={classNames(
+                '-my-4 -mx-20 pr-2 text-center',
+                'md:-mx-24 md:pr-4'
+              )}
+            >
               <Image
-                src="/assets/images/mockup-messages.png"
+                src="/assets/images/ui-direct-message.png"
                 alt="mobile app screenshot"
-                width="300px"
-                height="630px"
+                width="1348px"
+                height="2000px"
                 layout="responsive"
                 priority={true}
               />
             </div>
           )}
           {(isDesktop || isMonitor) && (
-            <div className={classNames('flex justify-center items-center')}>
-              <div className={classNames('-mr-8 mt-14')}>
+            <div className={classNames('max-w-2xl')}>
+              <div className={classNames('-mr-8')}>
                 <Image
-                  src="/assets/images/mockup-groups.png"
-                  alt="mobile app screenshot groups"
-                  width="220px"
-                  height="474px"
-                  priority={true}
-                />
-              </div>
-              <div className={classNames('z-10')}>
-                <Image
-                  src="/assets/images/mockup-landing.png"
-                  alt="mobile app screenshot landing page"
-                  width="280px"
-                  height="590px"
-                  priority={true}
-                />
-              </div>
-              <div className={classNames('-ml-8 mt-16')}>
-                <Image
-                  src="/assets/images/mockup-attachments.png"
-                  alt="mobile app screenshot attachments"
-                  width="220px"
-                  height="465px"
+                  src="/assets/images/ui-showcase.png"
+                  alt="mobile app ui showcase"
+                  width="2224px"
+                  height="2000px"
                   priority={true}
                 />
               </div>

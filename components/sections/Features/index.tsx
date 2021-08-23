@@ -48,15 +48,15 @@ export default function Features(): ReactElement {
           {(isMobile || isTablet) && (
             <div
               className={classNames(
-                'mx-auto mb-12 text-center px-4',
+                '-mt-4 mb-12 -mx-16 pr-1',
                 'md:mb-16 md:px-24'
               )}
             >
               <Image
-                src="/assets/images/mockup-landing.png"
-                alt="mobile app screenshot"
-                width="475px"
-                height="1000px"
+                src="/assets/images/ui-create-account.png"
+                alt="mobile app create account screenshot"
+                width="1348px"
+                height="2000px"
                 layout="responsive"
               />
             </div>

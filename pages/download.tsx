@@ -79,16 +79,16 @@ export default function Download(): ReactElement {
               </h2>
               <div
                 className={classNames(
-                  'px-24 mb-6',
-                  'md:px-56',
-                  'lg:px-0 lg:w-1/2 lg:mx-auto'
+                  '-mt-2 px-12 mb-3',
+                  'md:-mt-5 md:px-36',
+                  'lg:-mt-7 lg:px-0 lg:w-3/4 lg:mx-auto'
                 )}
               >
                 <Image
-                  src="/assets/images/mockup-landing.png"
-                  alt="mobile app screenshot"
-                  width="475px"
-                  height="1000px"
+                  src="/assets/images/ui-create-account.png"
+                  alt="mobile app create account screenshot"
+                  width="1348px"
+                  height="2000px"
                   layout="responsive"
                 />
               </div>
