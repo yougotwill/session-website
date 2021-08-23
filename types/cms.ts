@@ -40,6 +40,7 @@ export interface IFAQItem {
   question: string;
   answer: Document;
   tag: string;
+  slug: string;
 }
 
 export interface IFetchEntriesReturn {

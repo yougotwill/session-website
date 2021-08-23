@@ -211,13 +211,14 @@ export async function fetchFAQItems(): Promise<IFetchFAQItemsReturn> {
 
 function convertFAQ(rawData: any): IFAQItem {
   const rawFAQ = rawData.fields;
-  const { question, answer, id, tag } = rawFAQ;
+  const { question, answer, id, tag, slug } = rawFAQ;
 
   return {
     id: id ?? null,
     question: question ?? null,
     answer: answer ?? null,
     tag: tag ?? null,
+    slug: slug ?? null,
   };
 }
 

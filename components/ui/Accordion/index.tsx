@@ -8,6 +8,7 @@ import MinusSVG from '@/assets/svgs/minus.svg';
 import RichBody from '@/components/RichBody';
 
 interface Props {
+  id: string;
   question: string;
   answer: Document;
   expand?: boolean;
@@ -15,7 +16,7 @@ interface Props {
 }
 
 export default function Accordion(props: Props): ReactElement {
-  const { question, answer, expand, classes } = props;
+  const { id, question, answer, expand, classes } = props;
   const [isExpanded, setIsExpanded] = useState(false);
   const [height, setHeight] = useState('0px');
   const content = useRef<HTMLDivElement>(null);
@@ -29,6 +30,7 @@ export default function Accordion(props: Props): ReactElement {
   }, [expand]);
   return (
     <div
+      id={id}
       className={classNames(
         'border-l border-r border-gray-300 text-sm',
         'first:border-t',

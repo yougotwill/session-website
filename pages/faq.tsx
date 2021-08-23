@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import { GetStaticProps, GetStaticPropsContext } from 'next';
+import { useRouter } from 'next/router';
 import classNames from 'classnames';
 import { IFAQItem, IFAQList } from '@/types/cms';
 import { fetchFAQItems } from '@/services/cms';
@@ -18,6 +19,8 @@ interface Props {
 
 export default function FAQ(props: Props): ReactElement {
   const { entries: faqItems, total: totalFaqs } = props;
+  const router = useRouter();
+  const slug = router.asPath.indexOf('#') >= 0 && router.asPath.split('#')[1];
   const headingClasses = classNames('text-3xl font-semibold mb-5');
   const renderFAQList = (() => {
     const content = [];
@@ -30,9 +33,10 @@ export default function FAQ(props: Props): ReactElement {
               return (
                 <Accordion
                   key={faqItem.id}
+                  id={faqItem.slug ?? ''}
                   question={faqItem.question}
                   answer={faqItem.answer}
-                  expand={index === 0}
+                  expand={!slug ? index === 0 : slug === faqItem.slug}
                 />
               );
             })}
@@ -58,7 +62,7 @@ export default function FAQ(props: Props): ReactElement {
             lg: '67rem',
           }}
         >
-          Frequently Asked Questions
+          <h1>Frequently Asked Questions</h1>
         </Headline>
         <Container classes={classNames('pt-0 px-4 pb-8', 'lg:pb-12')}>
           {renderFAQList}
