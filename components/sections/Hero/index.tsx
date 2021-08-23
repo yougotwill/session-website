@@ -24,7 +24,7 @@ export default function Hero(): ReactElement {
         heights={{ sm: '100%', md: '100%', lg: '100vh - 112px' }}
         classes={classNames(
           'mt-12',
-          'lg:my-0 lg:flex lg:flex-col lg:justify-center lg:items-center'
+          'lg:mt-16 lg:flex lg:flex-col lg:justify-center lg:items-center'
         )}
       >
         <div
