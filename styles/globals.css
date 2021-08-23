@@ -78,9 +78,14 @@ button {
   @apply text-primary-dark font-extralight;
 }
 
+/* fixes '</' in Space Mono */
 .font-mono {
-  /* fixes '</' in Space Mono font */
   font-variant-ligatures: no-contextual;
+}
+
+/* Space Mono doesn't have a medium weight */
+.font-mono.font-medium {
+  @apply subpixel-antialiased;
 }
 
 .glitch {
