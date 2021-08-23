@@ -57,7 +57,9 @@ export default function PostCard(props: Props): ReactElement {
               className={classNames(
                 'object-cover cursor-pointer rounded-lg',
                 hoverEffect &&
-                  'transition transform scale-105 duration-300 hover:filter hover:blur-xs'
+                  // no animation transition
+                  // https://stackoverflow.com/questions/29330381/rounded-corners-in-safari-chrome-are-not-rounded-on-hover-for-first-second
+                  'transform scale-105 hover:filter hover:blur-xs'
               )}
             />
           </div>
