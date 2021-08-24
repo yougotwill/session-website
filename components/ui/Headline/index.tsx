@@ -14,9 +14,9 @@ export default function Headline(props: Props): ReactElement {
   const { color = 'primary', containerWidths, classes, children } = props;
   const { isSmall, isMedium, isLarge, isHuge, isEnormous } = useScreen();
   const containerWidth: string | undefined = (() => {
-    if (isSmall) return containerWidths?.sm;
-    if (isMedium) return containerWidths?.md;
-    if (isLarge || isHuge || isEnormous) return containerWidths?.lg;
+    if (isSmall) return containerWidths?.small;
+    if (isMedium) return containerWidths?.medium;
+    if (isLarge || isHuge || isEnormous) return containerWidths?.large;
   })();
   const colorClasses = [
     color === 'primary' && 'text-primary',

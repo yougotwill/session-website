@@ -21,19 +21,20 @@ export default function Features(): ReactElement {
         color="gray-dark"
         classes={classNames('text-lg font-bold pt-16', 'lg:pt-20')}
         containerWidths={{
-          sm: '10rem',
-          md: '34rem',
-          lg: '67rem',
+          small: '10rem',
+          medium: '34rem',
+          large: '67rem',
         }}
       >
         <h2>Features</h2>
       </Headline>
       <Container
         heights={{
-          sm: '100%',
-          md: '100%',
-          lg: '100vh - 12rem',
-          xl: '100vh - 84px',
+          small: '100%',
+          medium: '100%',
+          large: '100vh - 12rem',
+          huge: '100vh - 84px',
+          enormous: '100vh - 84px',
         }}
         classes={classNames(
           '2xl:flex 2xl:flex-col 2xl:justify-center 2xl:items-center'
@@ -41,8 +42,9 @@ export default function Features(): ReactElement {
       >
         <div
           className={classNames(
-            'lg:mx-auto lg:flex lg:justify-between lg:items-center lg:mt-24',
-            '2xl:-mt-64 2xl:w-full'
+            'lg:mx-auto lg:flex lg:justify-between lg:items-center lg:mt-36',
+            '2xl:mt-0 2xl:w-full',
+            '3xl:-mt-24'
           )}
         >
           {(isSmall || isMedium) && (

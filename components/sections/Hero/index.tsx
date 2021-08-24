@@ -21,7 +21,7 @@ export default function Hero(): ReactElement {
   return (
     <section>
       <Container
-        heights={{ sm: '100%', md: '100%', lg: '100vh - 112px' }}
+        heights={{ small: '100%', medium: '100%', large: '100vh - 112px' }}
         classes={classNames(
           'mt-12',
           'lg:mt-16 lg:flex lg:flex-col lg:justify-center lg:items-center'
@@ -30,7 +30,7 @@ export default function Hero(): ReactElement {
         <div
           className={classNames(
             'lg:-mt-16 lg:w-full lg:flex lg:justify-between lg:items-center',
-            '2xl:-mt-64'
+            '3xl:-mt-64'
           )}
         >
           <div className={'lg:-mt-16 lg:-mr-8'}>

@@ -3,10 +3,11 @@ import classNames from 'classnames';
 import { useScreen } from '@/contexts/screen';
 
 export interface IContainerSizes {
-  sm: string;
-  md: string;
-  lg: string;
-  xl?: string;
+  small: string;
+  medium: string;
+  large: string;
+  huge?: string;
+  enormous?: string;
 }
 
 interface Props {
@@ -20,10 +21,11 @@ export default function Container(props: Props): ReactElement {
   const { id, heights, classes, children } = props;
   const { isSmall, isMedium, isLarge, isHuge, isEnormous } = useScreen();
   const height: string | undefined = (() => {
-    if (isSmall) return heights?.sm;
-    if (isMedium) return heights?.md;
-    if (isLarge) return heights?.lg;
-    if (isHuge || isEnormous) return heights?.xl ?? heights?.lg;
+    if (isSmall) return heights?.small;
+    if (isMedium) return heights?.medium;
+    if (isLarge) return heights?.large;
+    if (isHuge) return heights?.huge ?? heights?.large;
+    if (isEnormous) return heights?.enormous ?? heights?.large;
   })();
   return (
     <div

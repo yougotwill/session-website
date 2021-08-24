@@ -50,7 +50,7 @@ export default function VideoPlayer(props: VideoPlayerProps): ReactElement {
       width = 672;
     }
     if (isEnormous) {
-      width = UI.LARGE_BREAKPOINT;
+      width = 920;
     }
     return width;
   })();

@@ -13,19 +13,20 @@ export default function Benefits(): ReactElement {
         color="gray-dark"
         classes={classNames('text-lg font-bold pt-16', 'lg:pt-20')}
         containerWidths={{
-          sm: '10rem',
-          md: '34rem',
-          lg: '67rem',
+          small: '10rem',
+          medium: '34rem',
+          large: '67rem',
         }}
       >
         <h2>Benefits</h2>
       </Headline>
       <Container
         heights={{
-          sm: '100%',
-          md: '100%',
-          lg: '100%',
-          xl: '100vh - 84px',
+          small: '100%',
+          medium: '100%',
+          large: '100%',
+          huge: '100%',
+          enormous: '100vh - 84px',
         }}
         classes={classNames(
           'px-4 lg:max-w-none',
@@ -37,7 +38,8 @@ export default function Benefits(): ReactElement {
             'flex flex-wrap justify-center items-center -mx-3 max-w-screen-md',
             'md:mx-auto',
             'lg:max-w-screen-xl lg:pt-16',
-            '2xl:-mt-48'
+            '2xl:mt-12',
+            '3xl:-mt-16'
           )}
         >
           <BenefitsCard
