@@ -50,9 +50,9 @@ export default function Page(props: Props): ReactElement {
               'lg:pt-4 lg:pb-10'
             )}
             containerWidths={{
-              sm: '10rem',
-              md: '34rem',
-              lg: '768px',
+              small: '10rem',
+              medium: '34rem',
+              large: '768px',
             }}
           >
             {page.headline}

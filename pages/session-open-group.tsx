@@ -46,9 +46,9 @@ export default function OpenGroup(): ReactElement {
             'lg:pt-4 lg:pb-16'
           )}
           containerWidths={{
-            sm: '100%',
-            md: '34rem',
-            lg: '62rem',
+            small: '100%',
+            medium: '34rem',
+            large: '62rem',
           }}
         >
           Session Open Group Channel

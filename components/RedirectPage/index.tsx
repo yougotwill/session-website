@@ -11,10 +11,11 @@ export default function RedirectPage() {
       <section>
         <Container
           heights={{
-            sm: '100vh - 108px',
-            md: '50vh',
-            lg: '40vh',
-            xl: '50vh',
+            small: '100vh - 108px',
+            medium: '50vh',
+            large: '40vh',
+            huge: '50vh',
+            enormous: '50vh',
           }}
           classes={classNames(
             'py-16 px-2 mx-auto text-center',

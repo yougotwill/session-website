@@ -40,9 +40,9 @@ export default function PostList(props: Props): ReactElement {
           color="gray-dark"
           classes={classNames('text-sm font-mono pb-4', 'md:pb-0', 'lg:pb-4')}
           containerWidths={{
-            sm: '8rem',
-            md: '24rem',
-            lg: '1024px',
+            small: '8rem',
+            medium: '24rem',
+            large: '1024px',
           }}
         >
           More posts
