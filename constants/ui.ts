@@ -9,6 +9,7 @@ const UI = {
   SMALL_BREAKPOINT: makeNumber(tailwindConfig.theme.screens.sm),
   MEDIUM_BREAKPOINT: makeNumber(tailwindConfig.theme.screens.md),
   LARGE_BREAKPOINT: makeNumber(tailwindConfig.theme.screens.lg),
+  XLARGE_BREAKPOINT: makeNumber(tailwindConfig.theme.screens.xl),
   HUGE_BREAKPOINT: makeNumber(tailwindConfig.theme.screens['2xl']),
   ENORMOUS_BREAKPOINT: makeNumber(tailwindConfig.theme.screens['3xl']),
 };
