@@ -54,6 +54,7 @@ export default function PostCard(props: Props): ReactElement {
               src={`${featureImage?.imageUrl}${featured ? '?w=700' : '?w=400'}`}
               alt={featureImage?.description ?? title}
               layout="fill"
+              priority={featured}
               className={classNames(
                 'object-cover cursor-pointer rounded-lg',
                 hoverEffect &&

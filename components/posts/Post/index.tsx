@@ -70,6 +70,7 @@ export default function Post(props: Props): ReactElement {
                 alt={featureImage?.description ?? title}
                 width={featureImage?.width}
                 height={featureImage?.height}
+                priority={true}
               />
             ) : (
               <Image
@@ -78,6 +79,7 @@ export default function Post(props: Props): ReactElement {
                 }`}
                 alt={featureImage?.description ?? title}
                 layout="fill"
+                priority={true}
                 className={classNames('object-cover')}
               />
             )}
