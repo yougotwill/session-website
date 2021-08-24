@@ -11,7 +11,7 @@ import DesktopSVG from '@/assets/svgs/desktop.svg';
 import { useScreen } from '@/contexts/screen';
 
 export default function Hero(): ReactElement {
-  const { isMobile, isTablet, isDesktop, isMonitor } = useScreen();
+  const { isSmall, isMedium, isLarge, isHuge, isEnormous } = useScreen();
   const headingClasses = classNames(
     'text-5xl font-semibold text-gray-dark',
     'lg:text-6xl'
@@ -93,7 +93,7 @@ export default function Hero(): ReactElement {
               </a>
             </Link>
           </div>
-          {(isMobile || isTablet) && (
+          {(isSmall || isMedium) && (
             <div
               className={classNames(
                 '-my-4 -mx-20 pr-2 text-center',
@@ -110,7 +110,7 @@ export default function Hero(): ReactElement {
               />
             </div>
           )}
-          {(isDesktop || isMonitor) && (
+          {(isLarge || isHuge || isEnormous) && (
             <div className={classNames('max-w-2xl')}>
               <div className={classNames('-mr-8')}>
                 <Image

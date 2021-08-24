@@ -7,7 +7,7 @@ import { GroupNotice } from '@/components/sections';
 import { useScreen } from '@/contexts/screen';
 
 export default function EmailSignup(): ReactElement {
-  const { isMobile } = useScreen();
+  const { isSmall } = useScreen();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const setButtonText = (value: string) => {
     if (null !== buttonRef.current) {
@@ -43,7 +43,7 @@ export default function EmailSignup(): ReactElement {
   };
   return (
     <section className="bg-primary text-gray-dark">
-      {isMobile && <GroupNotice />}
+      {isSmall && <GroupNotice />}
       <Container
         id="signup"
         classes={classNames('px-8', 'md:px-10', 'lg:py-24')}

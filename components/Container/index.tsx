@@ -18,12 +18,12 @@ interface Props {
 
 export default function Container(props: Props): ReactElement {
   const { id, heights, classes, children } = props;
-  const { isMobile, isTablet, isDesktop, isMonitor } = useScreen();
+  const { isSmall, isMedium, isLarge, isHuge, isEnormous } = useScreen();
   const height: string | undefined = (() => {
-    if (isMobile) return heights?.sm;
-    if (isTablet) return heights?.md;
-    if (isDesktop) return heights?.lg;
-    if (isMonitor) return heights?.xl ?? heights?.lg;
+    if (isSmall) return heights?.sm;
+    if (isMedium) return heights?.md;
+    if (isLarge) return heights?.lg;
+    if (isHuge || isEnormous) return heights?.xl ?? heights?.lg;
   })();
   return (
     <div

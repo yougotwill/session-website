@@ -13,7 +13,7 @@ const DynamicVideoPlayer = dynamic(() => import('@/components/VideoPlayer'));
 
 export default function About(): ReactElement {
   const textRef = useRef<HTMLDivElement>(null);
-  const { isMobile, isTablet } = useScreen();
+  const { isSmall, isMedium } = useScreen();
   const redactedOptions = {
     redactColor: 'primary',
     textColor: 'white',
@@ -62,7 +62,7 @@ export default function About(): ReactElement {
   };
 
   useEffect(() => {
-    if (isMobile || isTablet) {
+    if (isSmall || isMedium) {
       const onScroll = () => {
         const scrollEffectStart =
           textRef.current?.offsetTop! - textRef.current?.scrollHeight! - 28;
@@ -86,7 +86,7 @@ export default function About(): ReactElement {
         document.removeEventListener('scroll', onScroll);
       };
     }
-  }, [isMobile, isTablet]);
+  }, [isSmall, isMedium]);
   return (
     <section className="text-white bg-gray-dark">
       <Headline

@@ -7,7 +7,7 @@ import { Headline } from '@/components/ui';
 import { useScreen } from '@/contexts/screen';
 
 export default function Features(): ReactElement {
-  const { isMobile, isTablet, isDesktop, isMonitor } = useScreen();
+  const { isSmall, isMedium, isLarge, isHuge, isEnormous } = useScreen();
   const headingClasses = classNames(
     'font-helvetica text-4xl font-bold text-gray-dark mb-1'
   );
@@ -45,7 +45,7 @@ export default function Features(): ReactElement {
             '2xl:-mt-64 2xl:w-full'
           )}
         >
-          {(isMobile || isTablet) && (
+          {(isSmall || isMedium) && (
             <div
               className={classNames(
                 '-mt-4 mb-12 -mx-16 pr-1',
@@ -88,7 +88,7 @@ export default function Features(): ReactElement {
               attachments through a network that takes your privacy seriously.
             </p>
           </div>
-          {(isDesktop || isMonitor) && (
+          {(isLarge || isHuge || isEnormous) && (
             <div className={classNames('w-full -mt-12 -mr-24')}>
               <Image
                 src="/assets/images/mockup-desktop.png"
