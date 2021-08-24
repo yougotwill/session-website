@@ -11,7 +11,7 @@ import DesktopSVG from '@/assets/svgs/desktop.svg';
 import { useScreen } from '@/contexts/screen';
 
 export default function Hero(): ReactElement {
-  const { isMobile, isTablet, isDesktop, isMonitor } = useScreen();
+  const { isSmall, isMedium, isLarge, isHuge, isEnormous } = useScreen();
   const headingClasses = classNames(
     'text-5xl font-semibold text-gray-dark',
     'lg:text-6xl'
@@ -21,7 +21,7 @@ export default function Hero(): ReactElement {
   return (
     <section>
       <Container
-        heights={{ sm: '100%', md: '100%', lg: '100vh - 112px' }}
+        heights={{ small: '100%', medium: '100%', large: '100vh - 112px' }}
         classes={classNames(
           'mt-12',
           'lg:mt-16 lg:flex lg:flex-col lg:justify-center lg:items-center'
@@ -30,7 +30,7 @@ export default function Hero(): ReactElement {
         <div
           className={classNames(
             'lg:-mt-16 lg:w-full lg:flex lg:justify-between lg:items-center',
-            '2xl:-mt-64'
+            '3xl:-mt-64'
           )}
         >
           <div className={'lg:-mt-16 lg:-mr-8'}>
@@ -93,7 +93,7 @@ export default function Hero(): ReactElement {
               </a>
             </Link>
           </div>
-          {(isMobile || isTablet) && (
+          {(isSmall || isMedium) && (
             <div
               className={classNames(
                 '-my-4 -mx-20 pr-2 text-center',
@@ -110,7 +110,7 @@ export default function Hero(): ReactElement {
               />
             </div>
           )}
-          {(isDesktop || isMonitor) && (
+          {(isLarge || isHuge || isEnormous) && (
             <div className={classNames('max-w-2xl')}>
               <div className={classNames('-mr-8')}>
                 <Image

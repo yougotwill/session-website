@@ -57,9 +57,9 @@ export default function FAQ(props: Props): ReactElement {
             'lg:pt-4 lg:pb-10'
           )}
           containerWidths={{
-            sm: '100%',
-            md: '34rem',
-            lg: '67rem',
+            small: '100%',
+            medium: '34rem',
+            large: '67rem',
           }}
         >
           <h1>Frequently Asked Questions</h1>

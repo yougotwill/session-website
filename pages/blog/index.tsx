@@ -82,7 +82,7 @@ export default function Blog(props: Props): ReactElement {
             />
           </div>
         )}
-        <PostList posts={tag ? posts : otherPosts} showHeading={false} />
+        <PostList posts={tag ? posts : otherPosts} />
       </section>
     </Layout>
   );

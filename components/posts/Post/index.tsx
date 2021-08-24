@@ -14,7 +14,7 @@ interface Props {
 }
 
 export default function Post(props: Props): ReactElement {
-  const { isMobile, isTablet } = useScreen();
+  const { isSmall, isMedium } = useScreen();
   const { post, otherPosts } = props;
   const {
     title,
@@ -65,7 +65,7 @@ export default function Post(props: Props): ReactElement {
             {fullHeader ? (
               <Image
                 src={`${featureImage?.imageUrl}${
-                  isMobile ? '?w=300' : isTablet ? '?w=600' : ''
+                  isSmall ? '?w=300' : isMedium ? '?w=600' : ''
                 }`}
                 alt={featureImage?.description ?? title}
                 width={featureImage?.width}
@@ -74,7 +74,7 @@ export default function Post(props: Props): ReactElement {
             ) : (
               <Image
                 src={`${featureImage?.imageUrl}${
-                  isMobile ? '?w=300' : isTablet ? '?w=600' : ''
+                  isSmall ? '?w=300' : isMedium ? '?w=600' : ''
                 }`}
                 alt={featureImage?.description ?? title}
                 layout="fill"

@@ -38,10 +38,9 @@ export default function Download(): ReactElement {
       <section>
         <Container
           heights={{
-            sm: '100%',
-            md: '100%',
-            lg: '100%',
-            xl: '100%',
+            small: '100%',
+            medium: '100%',
+            large: '100%',
           }}
           classes={classNames(
             'px-0 py-0',

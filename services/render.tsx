@@ -58,7 +58,7 @@ function EmbeddedLink(node: any, isInline = false): ReactElement {
 }
 
 function EmbeddedMedia(node: any, isInline = false): ReactElement {
-  const { isMobile, isTablet } = useScreen();
+  const { isSmall, isMedium } = useScreen();
   const media = node.file.fields;
   const url = media.file.url.replace('//', 'https://');
   switch (media.file.contentType) {
@@ -85,7 +85,7 @@ function EmbeddedMedia(node: any, isInline = false): ReactElement {
           style={{ width: node.position ? imageWidth : '' }}
         >
           <Image
-            src={`${url}${isMobile ? '?w=300' : isTablet ? '?w=600' : ''}`}
+            src={`${url}${isSmall ? '?w=300' : isMedium ? '?w=600' : ''}`}
             alt={node.title}
             width={imageWidth}
             height={imageHeight}

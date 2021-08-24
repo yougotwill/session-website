@@ -12,11 +12,11 @@ interface Props {
 
 export default function Headline(props: Props): ReactElement {
   const { color = 'primary', containerWidths, classes, children } = props;
-  const { isMobile, isTablet, isDesktop, isMonitor } = useScreen();
+  const { isSmall, isMedium, isLarge, isHuge, isEnormous } = useScreen();
   const containerWidth: string | undefined = (() => {
-    if (isMobile) return containerWidths?.sm;
-    if (isTablet) return containerWidths?.md;
-    if (isDesktop || isMonitor) return containerWidths?.lg;
+    if (isSmall) return containerWidths?.small;
+    if (isMedium) return containerWidths?.medium;
+    if (isLarge || isHuge || isEnormous) return containerWidths?.large;
   })();
   const colorClasses = [
     color === 'primary' && 'text-primary',
@@ -31,8 +31,8 @@ export default function Headline(props: Props): ReactElement {
       <div
         className={classNames(`border-t mt-2 ml-3`, borderClasses)}
         style={{
-          minWidth: isDesktop || isMonitor ? '72px' : '',
-          width: isMobile
+          minWidth: isLarge || isHuge || isEnormous ? '72px' : '',
+          width: isSmall
             ? `calc((100vw - ${containerWidth}))`
             : `calc((100vw - ${containerWidth}) / 2)`,
         }}

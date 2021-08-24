@@ -38,19 +38,19 @@ const videoOptions: VideoJsPlayerOptions = {
 };
 
 export default function VideoPlayer(props: VideoPlayerProps): ReactElement {
-  const { isTablet, isDesktop, isMonitor } = useScreen();
+  const { isMedium, isLarge, isHuge, isEnormous } = useScreen();
   const { hasQualityLevels = false, poster, sources } = props;
 
   const videoWidth = (() => {
     let width = 320;
-    if (isTablet) {
+    if (isMedium) {
       width = 720;
     }
-    if (isDesktop) {
+    if (isLarge || isHuge) {
       width = 672;
     }
-    if (isMonitor) {
-      width = UI.DESKTOP_BREAKPOINT;
+    if (isEnormous) {
+      width = 920;
     }
     return width;
   })();

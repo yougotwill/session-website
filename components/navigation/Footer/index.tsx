@@ -13,7 +13,7 @@ import { GroupNotice } from '@/components/sections';
 import { useScreen } from '@/contexts/screen';
 
 export default function Footer(): ReactElement {
-  const { isMobile } = useScreen();
+  const { isSmall } = useScreen();
   const redactedClasses = redact({
     redactColor: 'primary',
     textColor: 'white',
@@ -46,7 +46,7 @@ export default function Footer(): ReactElement {
           'lg:flex lg:justify-end lg:max-w-screen-xl lg:mx-auto'
         )}
       >
-        {!isMobile && (
+        {!isSmall && (
           <GroupNotice
             classes={classNames(
               'lg:flex lg:flex-col lg:justify-center lg:w-full lg:max-w-xl lg:px-0 lg:border-b-0 lg:border-r lg:my-2'

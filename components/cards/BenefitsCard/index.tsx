@@ -15,7 +15,7 @@ interface Props {
 }
 
 export default function BenefitsCard(props: Props): ReactElement {
-  const { isMobile } = useScreen();
+  const { isSmall } = useScreen();
   const {
     title,
     description,
@@ -30,7 +30,7 @@ export default function BenefitsCard(props: Props): ReactElement {
     textColor: 'gray-dark',
   });
   const renderImages = (() => {
-    if (isMobile) {
+    if (isSmall) {
       return (
         <Image
           src={images[0]}
