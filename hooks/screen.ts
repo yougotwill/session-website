@@ -6,24 +6,34 @@ export function useScreenSize() {
   const { width } = useWindowSize();
 
   // Mobile first
-  const [isMobile, setIsMobile] = useState(true);
-  const [isTablet, setIsTablet] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
-  const [isMonitor, setIsMonitor] = useState(false);
+  const [isSmall, setIsSmall] = useState(true);
+  const [isMedium, setIsMedium] = useState(false);
+  const [isLarge, setIsLarge] = useState(false);
+  const [isHuge, setIsHuge] = useState(false);
+  const [isEnormous, setIsEnormous] = useState(false);
 
   useEffect(() => {
-    const _isMobile = width < UI.TABLET_BREAKPOINT;
-    const _isTablet =
-      width >= UI.TABLET_BREAKPOINT && width < UI.DESKTOP_BREAKPOINT;
-    const _isDesktop =
-      width >= UI.DESKTOP_BREAKPOINT && width < UI.MONITOR_BREAKPOINT;
-    const _isMonitor = width >= UI.MONITOR_BREAKPOINT;
+    const _isSmall = width < UI.MEDIUM_BREAKPOINT;
+    const _isMedium =
+      width >= UI.MEDIUM_BREAKPOINT && width < UI.LARGE_BREAKPOINT;
+    const _isLarge = width >= UI.LARGE_BREAKPOINT && width < UI.HUGE_BREAKPOINT;
+    const _isHuge =
+      width >= UI.HUGE_BREAKPOINT && width < UI.ENORMOUS_BREAKPOINT;
+    const _isEnormous = width >= UI.ENORMOUS_BREAKPOINT;
 
-    if (isMobile !== _isMobile) setIsMobile(_isMobile);
-    if (isTablet !== _isTablet) setIsTablet(_isTablet);
-    if (isDesktop !== _isDesktop) setIsDesktop(_isDesktop);
-    if (isMonitor !== _isMonitor) setIsMonitor(_isMonitor);
-  }, [width, isMobile, isTablet, isDesktop, isMonitor]);
+    setIsSmall(_isSmall);
+    setIsMedium(_isMedium);
+    setIsLarge(_isLarge);
+    setIsHuge(_isHuge);
+    setIsEnormous(_isEnormous);
+  }, [width]);
 
-  return { width, isMobile, isTablet, isDesktop, isMonitor };
+  return {
+    width,
+    isSmall,
+    isMedium,
+    isLarge,
+    isHuge,
+    isEnormous,
+  };
 }
