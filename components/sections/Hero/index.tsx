@@ -33,7 +33,7 @@ export default function Hero(): ReactElement {
             '3xl:-mt-64'
           )}
         >
-          <div className={'lg:-mt-16 lg:-mr-8'}>
+          <div className={classNames('lg:-mt-16 lg:mr-8', 'xl:-mr-1')}>
             <h1 className={classNames(headingClasses)}>
               <span className="block">Send</span>
               <span className={'block glitch'} data-glitch-text={'Encrypted'}>
@@ -94,16 +94,11 @@ export default function Hero(): ReactElement {
             </Link>
           </div>
           {(isSmall || isMedium) && (
-            <div
-              className={classNames(
-                '-my-4 -mx-20 pr-2 text-center',
-                'md:-mx-24 md:pr-4'
-              )}
-            >
+            <div className={classNames('-mt-4 -ml-1')}>
               <Image
                 src="/assets/images/ui-direct-message.png"
                 alt="mobile app screenshot"
-                width="1348px"
+                width="1148px"
                 height="2000px"
                 layout="responsive"
                 priority={true}
@@ -112,15 +107,13 @@ export default function Hero(): ReactElement {
           )}
           {(isLarge || isHuge || isEnormous) && (
             <div className={classNames('max-w-2xl')}>
-              <div className={classNames('-mr-8')}>
-                <Image
-                  src="/assets/images/ui-showcase.png"
-                  alt="mobile app ui showcase"
-                  width="2224px"
-                  height="2000px"
-                  priority={true}
-                />
-              </div>
+              <Image
+                src="/assets/images/ui-showcase.png"
+                alt="mobile app ui showcase"
+                width="2224px"
+                height="2000px"
+                priority={true}
+              />
             </div>
           )}
         </div>

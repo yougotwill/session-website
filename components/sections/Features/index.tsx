@@ -49,15 +49,12 @@ export default function Features(): ReactElement {
         >
           {(isSmall || isMedium) && (
             <div
-              className={classNames(
-                '-mt-4 mb-12 -mx-16 pr-1',
-                'md:mb-16 md:px-24'
-              )}
+              className={classNames('-mt-4 -ml-1 mb-12', 'md:mb-16 md:px-20')}
             >
               <Image
                 src="/assets/images/ui-create-account.png"
                 alt="mobile app create account screenshot"
-                width="1348px"
+                width="1148px"
                 height="2000px"
                 layout="responsive"
               />
@@ -67,7 +64,7 @@ export default function Features(): ReactElement {
             className={classNames(
               'px-3',
               'md:max-w-xl',
-              'lg:max-w-sm lg:px-0 lg:-mt-8',
+              'lg:max-w-sm lg:px-0 lg:-mt-8 lg:mr-8',
               '2xl:mt-0'
             )}
           >
@@ -91,11 +88,11 @@ export default function Features(): ReactElement {
             </p>
           </div>
           {(isLarge || isHuge || isEnormous) && (
-            <div className={classNames('w-full -mt-12 -mr-24')}>
+            <div className={classNames('w-full -mt-12', 'xl:-mr-16')}>
               <Image
                 src="/assets/images/mockup-desktop.png"
                 alt="desktop app screenshot"
-                width="1600px"
+                width="1500px"
                 height="858px"
                 layout="responsive"
               />

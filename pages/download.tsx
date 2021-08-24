@@ -77,15 +77,15 @@ export default function Download(): ReactElement {
               <h2 className={classNames(headingClasses, 'my-4')}>Mobile</h2>
               <div
                 className={classNames(
-                  '-mt-2 px-12 mb-3',
-                  'md:-mt-5 md:px-36',
-                  'lg:-mt-7 lg:px-0 lg:w-3/4 lg:mx-auto'
+                  '-mt-2 -ml-1 px-16 mb-3',
+                  'md:-mt-5 md:px-48',
+                  'lg:mt-0 lg:px-0 lg:w-2/3 lg:mx-auto'
                 )}
               >
                 <Image
                   src="/assets/images/ui-create-account.png"
                   alt="mobile app create account screenshot"
-                  width="1348px"
+                  width="1148px"
                   height="2000px"
                   layout="responsive"
                 />
