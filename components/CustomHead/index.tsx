@@ -18,8 +18,8 @@ export default function CustomHead(props: Props): ReactElement {
   const imageUrl = (() => {
     if (!metadata?.OG_IMAGE?.URL)
       return `${METADATA.HOST_URL}${METADATA.OG_IMAGE.URL}`;
-    if (metadata?.OG_IMAGE?.URL && isLocal(metadata?.OG_IMAGE?.URL)) {
-      return `${METADATA.HOST_URL}${metadata?.OG_IMAGE?.URL}`;
+    if (metadata?.OG_IMAGE?.URL && isLocal(metadata.OG_IMAGE.URL)) {
+      return `${METADATA.HOST_URL}${metadata.OG_IMAGE.URL}`;
     } else {
       return `${metadata?.OG_IMAGE?.URL}`;
     }

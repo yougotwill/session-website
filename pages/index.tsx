@@ -20,7 +20,7 @@ export default function Home() {
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  if (process.env.SITE_ENV !== 'development') {
+  if (process.env.NEXT_PUBLIC_SITE_ENV !== 'development') {
     const posts: IPost[] = [];
     let foundAllPosts = false;
 
