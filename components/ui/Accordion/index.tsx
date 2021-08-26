@@ -8,6 +8,7 @@ import MinusSVG from '@/assets/svgs/minus.svg';
 import RichBody from '@/components/RichBody';
 
 interface Props {
+  id: string;
   question: string;
   answer: Document;
   expand?: boolean;
@@ -15,7 +16,7 @@ interface Props {
 }
 
 export default function Accordion(props: Props): ReactElement {
-  const { question, answer, expand, classes } = props;
+  const { id, question, answer, expand, classes } = props;
   const [isExpanded, setIsExpanded] = useState(false);
   const [height, setHeight] = useState('0px');
   const content = useRef<HTMLDivElement>(null);
@@ -29,6 +30,7 @@ export default function Accordion(props: Props): ReactElement {
   }, [expand]);
   return (
     <div
+      id={id}
       className={classNames(
         'border-l border-r border-gray-300 text-sm',
         'first:border-t',
@@ -37,7 +39,7 @@ export default function Accordion(props: Props): ReactElement {
     >
       <div
         className={classNames(
-          'bg-gray-100 text-gray-dark py-2 px-4 font-semibold border-gray-300 border-b',
+          'bg-gray-100 text-gray-dark py-2 px-4 font-bold border-gray-300 border-b',
           'lg:text-base'
         )}
         onClick={handleExpand}
@@ -54,7 +56,7 @@ export default function Accordion(props: Props): ReactElement {
       </div>
       <div
         className={classNames(
-          'font-light leading-loose px-4 overflow-hidden',
+          'leading-loose px-4 overflow-hidden',
           'transition-all ease-in-out duration-500',
           isExpanded && 'border-gray-300 border-b'
         )}
@@ -63,10 +65,7 @@ export default function Accordion(props: Props): ReactElement {
       >
         <RichBody
           body={answer}
-          classes={classNames(
-            'text-sm text-gray font-light py-2',
-            'lg:text-base'
-          )}
+          classes={classNames('text-sm text-black py-2', 'lg:text-base')}
         />
       </div>
     </div>

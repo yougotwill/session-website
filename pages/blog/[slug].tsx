@@ -72,7 +72,7 @@ export const getStaticProps: GetStaticProps = async (
       post: currentPost,
       otherPosts,
     },
-    revalidate: 60,
+    revalidate: 3600, // refresh hourly
   };
 };
 

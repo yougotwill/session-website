@@ -10,10 +10,11 @@ export default function Custom404() {
       <section>
         <Container
           heights={{
-            sm: '100vh - 108px',
-            md: '50vh',
-            lg: '40vh',
-            xl: '50vh',
+            small: '100vh - 108px',
+            medium: '50vh',
+            large: '40vh',
+            huge: '50vh',
+            enormous: '50vh',
           }}
           classes={classNames(
             'py-16 px-2 mx-auto text-center',
@@ -21,13 +22,16 @@ export default function Custom404() {
           )}
         >
           <h1
-            className={classNames(
-              'text-primary-dark text-5xl font-semibold mb-8'
-            )}
+            className={classNames('text-primary-dark text-5xl font-bold mb-8')}
           >
             This page doesn&apos;t seem to exist.
           </h1>
-          <p className={classNames('text-gray text-xl', 'lg:text-2xl')}>
+          <p
+            className={classNames(
+              'text-gray text-xl font-medium',
+              'lg:text-2xl'
+            )}
+          >
             {METADATA[404].DESCRIPTION}
           </p>
         </Container>

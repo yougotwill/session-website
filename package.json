@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "SITE_ENV=development NODE_ENV=development NODE_OPTIONS='--inspect' next dev",
-    "build": "NODE_ENV=production next build",
-    "start": "SITE_ENV=production NODE_ENV=production next start",
-    "start:staging": "SITE_ENV=development next start",
+    "dev": "NEXT_PUBLIC_SITE_ENV=development NODE_ENV=development NODE_OPTIONS='--inspect' next dev",
+    "build": "NEXT_PUBLIC_SITE_ENV=production NODE_ENV=production next build",
+    "build:staging": "NEXT_PUBLIC_SITE_ENV=development NODE_ENV=production next build",
+    "start": "NEXT_PUBLIC_SITE_ENV=production NODE_ENV=production next start",
+    "start:staging": "NEXT_PUBLIC_SITE_ENV=development NODE_ENV=production next start",
     "lint": "next lint"
   },
   "dependencies": {

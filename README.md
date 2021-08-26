@@ -30,9 +30,11 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
   e.g. `https://getsession.org/blog/onion-requests-session-new-message-routing-solution/` => `/blog/onion-requests-session-new-message-routing-solution/`.
 - To use <sup>superscript</sup>, <sub>subscript</sub>, ~~strikethroughs~~ or <span style="background-color: #3a3a3a; color: white;">style</span> <span style="color: #00f782;">text</span> use the `Markup` content model.
 
-## Development
+## Development Notes
 
 - **Always** run `yarn run build && yarn run start` to see how the code works in a production environment before committing or pushing to the server.
+
+- For staging environments use `build:staging` and `start:staging`. This updates the system environment variables, page metadata and shows content from Contentful that is not yet `live 🚀` .
 
 - For accessbility testing we use the [axe-react](https://github.com/dequelabs/axe-core-npm/blob/develop/packages/react/README.md) plugin.
 

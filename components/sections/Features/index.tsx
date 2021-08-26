@@ -7,33 +7,34 @@ import { Headline } from '@/components/ui';
 import { useScreen } from '@/contexts/screen';
 
 export default function Features(): ReactElement {
-  const { isMobile, isTablet, isDesktop, isMonitor } = useScreen();
+  const { isSmall, isMedium, isLarge, isHuge, isEnormous } = useScreen();
   const headingClasses = classNames(
-    'font-helvetica text-4xl font-semibold text-gray-dark mb-1'
+    'font-helvetica text-4xl font-bold text-gray-dark mb-1'
   );
   const paragraphClasses = classNames(
-    'text-gray-lighter font-light leading-6 mb-8',
+    'text-gray-lighter leading-6 mb-8',
     'md:mb-12'
   );
   return (
     <section className={classNames(' text-gray-dark')}>
       <Headline
         color="gray-dark"
-        classes={classNames('text-lg font-semibold pt-16', 'lg:pt-20')}
+        classes={classNames('text-lg font-bold pt-16', 'lg:pt-20')}
         containerWidths={{
-          sm: '10rem',
-          md: '34rem',
-          lg: '67rem',
+          small: '10rem',
+          medium: '34rem',
+          large: '67rem',
         }}
       >
         <h2>Features</h2>
       </Headline>
       <Container
         heights={{
-          sm: '100%',
-          md: '100%',
-          lg: '100vh - 12rem',
-          xl: '100vh - 84px',
+          small: '100%',
+          medium: '100%',
+          large: '100vh - 12rem',
+          huge: '100vh - 84px',
+          enormous: '100vh - 84px',
         }}
         classes={classNames(
           '2xl:flex 2xl:flex-col 2xl:justify-center 2xl:items-center'
@@ -41,22 +42,20 @@ export default function Features(): ReactElement {
       >
         <div
           className={classNames(
-            'lg:mx-auto lg:flex lg:justify-between lg:items-center lg:mt-24',
-            '2xl:-mt-64 2xl:w-full'
+            'lg:mx-auto lg:flex lg:justify-between lg:items-center lg:mt-36',
+            '2xl:mt-0 2xl:w-full',
+            '3xl:-mt-24'
           )}
         >
-          {(isMobile || isTablet) && (
+          {(isSmall || isMedium) && (
             <div
-              className={classNames(
-                'mx-auto mb-12 text-center px-4',
-                'md:mb-16 md:px-24'
-              )}
+              className={classNames('-mt-4 -ml-1 mb-12', 'md:mb-16 md:px-20')}
             >
               <Image
-                src="/assets/images/mockup-landing.png"
-                alt="mobile app screenshot"
-                width="475px"
-                height="1000px"
+                src="/assets/images/ui-create-account.png"
+                alt="mobile app create account screenshot"
+                width="1148px"
+                height="2000px"
                 layout="responsive"
               />
             </div>
@@ -65,7 +64,7 @@ export default function Features(): ReactElement {
             className={classNames(
               'px-3',
               'md:max-w-xl',
-              'lg:max-w-sm lg:px-0 lg:-mt-8',
+              'lg:max-w-sm lg:px-0 lg:-mt-8 lg:mr-8',
               '2xl:mt-0'
             )}
           >
@@ -88,13 +87,13 @@ export default function Features(): ReactElement {
               attachments through a network that takes your privacy seriously.
             </p>
           </div>
-          {(isDesktop || isMonitor) && (
-            <div className={classNames('w-full -mt-12 -mr-24')}>
+          {(isLarge || isHuge || isEnormous) && (
+            <div className={classNames('w-full -mt-12', 'xl:-mr-16')}>
               <Image
                 src="/assets/images/mockup-desktop.png"
                 alt="desktop app screenshot"
-                width="1600px"
-                height="858px"
+                width="1125px"
+                height="644px"
                 layout="responsive"
               />
             </div>

@@ -11,8 +11,6 @@ import Container from '@/components/Container';
 import { Headline, Layout } from '@/components/ui';
 import RichBody from '@/components/RichBody';
 import Custom404 from '@/pages/404';
-import Home from '@/pages/index';
-import Download from '@/pages/download';
 import RedirectPage from '@/components/RedirectPage';
 
 interface Props {
@@ -47,11 +45,14 @@ export default function Page(props: Props): ReactElement {
         {page?.headline && (
           <Headline
             color="gray-dark"
-            classes={classNames('font-mono pt-16', 'lg:pt-4 lg:pb-10')}
+            classes={classNames(
+              'font-mono font-medium pt-16',
+              'lg:pt-4 lg:pb-10'
+            )}
             containerWidths={{
-              sm: '10rem',
-              md: '34rem',
-              lg: '768px',
+              small: '10rem',
+              medium: '34rem',
+              large: '768px',
             }}
           >
             {page.headline}
@@ -63,7 +64,7 @@ export default function Page(props: Props): ReactElement {
               body={page?.body}
               headingClasses={'text-gray font-medium mt-6'}
               classes={classNames(
-                'text-sm text-gray-lighter font-helvetica font-extralight leading-loose',
+                'text-sm text-gray-lighter font-helvetica leading-loose',
                 'lg:text-base'
               )}
             />
@@ -81,7 +82,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   if (redirection)
     return {
       props: { redirection },
-      revalidate: 3600, // refresh redirections hourly
+      revalidate: 3600, // refresh hourly
     };
 
   const page: IPage = await fetchEntryBySlug(slug, 'page');
@@ -97,7 +98,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
     props: {
       page,
     },
-    revalidate: 60,
+    revalidate: 3600, // refresh hourly
   };
 }
 

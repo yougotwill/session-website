@@ -46,9 +46,9 @@ export default function OpenGroup(): ReactElement {
             'lg:pt-4 lg:pb-16'
           )}
           containerWidths={{
-            sm: '100%',
-            md: '34rem',
-            lg: '62rem',
+            small: '100%',
+            medium: '34rem',
+            large: '62rem',
           }}
         >
           Session Open Group Channel
@@ -77,13 +77,14 @@ export default function OpenGroup(): ReactElement {
               priority={true}
             />
           </div>
-          <p className={classNames('text-gray-dark')}>
+          <p className={classNames('text-gray-dark font-semibold')}>
             Otherwise you can click the button below and copy our group chat URL
             to your clipboard.
           </p>
           <Button
             bgColor={isCopied ? 'black' : 'primary'}
             textColor={isCopied ? 'primary' : 'black'}
+            fontWeight="bold"
             animate={true}
             hoverEffect={false}
             classes={classNames('w-40 px-0 mt-8')}

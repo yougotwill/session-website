@@ -1,15 +1,19 @@
 import { ReactElement, useState, useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import classNames from 'classnames';
 import redact from '@/utils/redact';
 import { useScreen } from '@/contexts/screen';
 
 import Container from '@/components/Container';
 import { Headline } from '@/components/ui';
-import VideoPlayer, { VideoPlayerProps } from '@/components/VideoPlayer';
+import { VideoPlayerProps } from '@/components/VideoPlayer';
+
+// optimise build sizes by loading dynamically
+const DynamicVideoPlayer = dynamic(() => import('@/components/VideoPlayer'));
 
 export default function About(): ReactElement {
   const textRef = useRef<HTMLDivElement>(null);
-  const { isMobile, isTablet } = useScreen();
+  const { isSmall, isMedium } = useScreen();
   const redactedOptions = {
     redactColor: 'primary',
     textColor: 'white',
@@ -58,7 +62,7 @@ export default function About(): ReactElement {
   };
 
   useEffect(() => {
-    if (isMobile || isTablet) {
+    if (isSmall || isMedium) {
       const onScroll = () => {
         const scrollEffectStart =
           textRef.current?.offsetTop! - textRef.current?.scrollHeight! - 28;
@@ -82,15 +86,15 @@ export default function About(): ReactElement {
         document.removeEventListener('scroll', onScroll);
       };
     }
-  }, [isMobile, isTablet]);
+  }, [isSmall, isMedium]);
   return (
     <section className="text-white bg-gray-dark">
       <Headline
-        classes={classNames('text-lg font-semibold pt-16', 'lg:pt-20')}
+        classes={classNames('text-lg font-bold pt-16', 'lg:pt-20')}
         containerWidths={{
-          sm: '10rem',
-          md: '34rem',
-          lg: '67rem',
+          small: '10rem',
+          medium: '34rem',
+          large: '67rem',
         }}
       >
         <h2>What is Session?</h2>
@@ -98,16 +102,16 @@ export default function About(): ReactElement {
       {/* Full screen height - Headline height */}
       <Container
         heights={{
-          sm: '100%',
-          md: '100vh + 2rem',
-          lg: '100vh + 2rem',
+          small: '100%',
+          medium: '100vh + 2rem',
+          large: '100vh + 2rem',
         }}
         classes={classNames(
           'flex flex-col justify-center items-center pb-24',
           'md:pb-0 md:-mt-24',
           'lg:items-start',
           'xl:-mt-16',
-          '2xl:-mt-24'
+          '3xl:-mt-24'
         )}
       >
         <p
@@ -116,7 +120,8 @@ export default function About(): ReactElement {
             'md:text-4xl md:leading-relaxed md:ml-16',
             'lg:mt-0 lg:ml-0 lg:max-w-2xl',
             'xl:mb-8',
-            '2xl:mb-20'
+            '2xl:mb-20',
+            '3xl:mb-16'
           )}
           ref={textRef}
         >
@@ -128,7 +133,7 @@ export default function About(): ReactElement {
           freedom from <span className={redactedClasses}>any form of</span>{' '}
           surveillance.
         </p>
-        <VideoPlayer {...videoProps} />
+        <DynamicVideoPlayer {...videoProps} />
       </Container>
     </section>
   );

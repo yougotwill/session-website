@@ -7,6 +7,7 @@ import { IPost } from '@/types/cms';
 import { PostList } from '@/components/posts';
 import RichBody from '@/components/RichBody';
 import { useScreen } from '@/contexts/screen';
+import Container from '@/components/Container';
 
 interface Props {
   post: IPost;
@@ -14,7 +15,7 @@ interface Props {
 }
 
 export default function Post(props: Props): ReactElement {
-  const { isMobile, isTablet } = useScreen();
+  const { isSmall, isMedium } = useScreen();
   const { post, otherPosts } = props;
   const {
     title,
@@ -31,7 +32,7 @@ export default function Post(props: Props): ReactElement {
     return tags.map((tag, index) => {
       return (
         <span key={index}>
-          <Link href={`/blog?tag=${tag}`}>
+          <Link href={`/tag/${tag}`}>
             <a className="transition-colors duration-300 hover:text-primary">
               {tag}
             </a>
@@ -43,16 +44,13 @@ export default function Post(props: Props): ReactElement {
   })();
   return (
     <section>
-      <div
-        className={classNames(
-          'mx-auto mt-12 mb-8',
-          'md:pt-8',
-          'lg:mt-0',
-          !fullHeader && [
-            'container max-w-6xl pt-6 px-6',
-            'md:px-28',
-            'lg:px-40',
-          ]
+      <Container
+        fullWidth={fullHeader}
+        classes={classNames(
+          'pt-16 pb-8',
+          fullHeader
+            ? ['lg:pt-8']
+            : ['md:pt-20 md:pb-8 md:px-28', 'lg:py-8 lg:px-40']
         )}
       >
         {featureImage?.imageUrl && (
@@ -65,30 +63,33 @@ export default function Post(props: Props): ReactElement {
             {fullHeader ? (
               <Image
                 src={`${featureImage?.imageUrl}${
-                  isMobile ? '?w=300' : isTablet ? '?w=600' : ''
+                  isSmall ? '?w=300' : isMedium ? '?w=600' : ''
                 }`}
                 alt={featureImage?.description ?? title}
                 width={featureImage?.width}
                 height={featureImage?.height}
+                layout="responsive"
+                priority={true}
               />
             ) : (
               <Image
                 src={`${featureImage?.imageUrl}${
-                  isMobile ? '?w=300' : isTablet ? '?w=600' : ''
+                  isSmall ? '?w=300' : isMedium ? '?w=600' : ''
                 }`}
                 alt={featureImage?.description ?? title}
                 layout="fill"
+                priority={true}
                 className={classNames('object-cover')}
               />
             )}
           </div>
         )}
-      </div>
-      <div
-        className={classNames(
-          'container max-w-6xl pb-6 px-6 mx-auto text-gray break-words',
-          'md:pb-8 md:px-28',
-          'lg:mt-0 lg:px-40'
+      </Container>
+      <Container
+        classes={classNames(
+          'text-gray break-words pt-0',
+          'md:pt-0 md:pb-8 md:px-28',
+          'lg:pb-8 lg:px-40'
         )}
       >
         <h1 className={classNames('text-4xl font-bold leading-normal mb-1')}>
@@ -96,7 +97,7 @@ export default function Post(props: Props): ReactElement {
         </h1>
         <p
           className={classNames(
-            'font-mono font-normal text-sm mb-3',
+            'font-mono font-medium text-sm mb-3',
             'lg:mb-8'
           )}
         >
@@ -104,12 +105,12 @@ export default function Post(props: Props): ReactElement {
         </p>
         <RichBody
           body={body}
-          classes={classNames('text-sm text-gray font-light', 'lg:text-base')}
+          classes={classNames('text-sm text-gray', 'lg:text-base')}
         />
-      </div>
+      </Container>
       <PostList
         posts={otherPosts}
-        gridStyle={'tight'}
+        gridStyle={'blog'}
         hoverEffect={false}
         compact={true}
         classes={classNames('my-16', 'lg:mb-24')}

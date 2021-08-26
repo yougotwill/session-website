@@ -15,7 +15,7 @@ interface Props {
 }
 
 export default function BenefitsCard(props: Props): ReactElement {
-  const { isMobile } = useScreen();
+  const { isSmall } = useScreen();
   const {
     title,
     description,
@@ -30,7 +30,7 @@ export default function BenefitsCard(props: Props): ReactElement {
     textColor: 'gray-dark',
   });
   const renderImages = (() => {
-    if (isMobile) {
+    if (isSmall) {
       return (
         <Image
           src={images[0]}
@@ -82,7 +82,7 @@ export default function BenefitsCard(props: Props): ReactElement {
   return (
     <div
       className={classNames(
-        'group text-center text-2xl font-semibold leading-none p-3',
+        'group text-center text-2xl font-bold leading-none p-3',
         'lg:text-3xl',
         classes
       )}

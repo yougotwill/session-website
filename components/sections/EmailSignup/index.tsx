@@ -7,7 +7,7 @@ import { GroupNotice } from '@/components/sections';
 import { useScreen } from '@/contexts/screen';
 
 export default function EmailSignup(): ReactElement {
-  const { isMobile } = useScreen();
+  const { isSmall } = useScreen();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const setButtonText = (value: string) => {
     if (null !== buttonRef.current) {
@@ -43,7 +43,7 @@ export default function EmailSignup(): ReactElement {
   };
   return (
     <section className="bg-primary text-gray-dark">
-      {isMobile && <GroupNotice />}
+      {isSmall && <GroupNotice />}
       <Container
         id="signup"
         classes={classNames('px-8', 'md:px-10', 'lg:py-24')}
@@ -56,13 +56,7 @@ export default function EmailSignup(): ReactElement {
         >
           Friends don’t let friends use compromised messengers.
         </h3>
-        <p
-          className={classNames(
-            'font-light leading-none mb-4',
-            'md:mb-8',
-            'lg:text-xl'
-          )}
-        >
+        <p className={classNames('leading-none mb-4', 'md:mb-8', 'lg:text-xl')}>
           Sign up to the mailing list and start taking action!
         </p>
         <form onSubmit={handleSubscription}>
@@ -82,8 +76,8 @@ export default function EmailSignup(): ReactElement {
           <Button
             bgColor="black"
             textColor="primary"
+            fontWeight="semibold"
             size="small"
-            fontWeight="light"
             hoverEffect={false}
             type={'submit'}
             reference={buttonRef}

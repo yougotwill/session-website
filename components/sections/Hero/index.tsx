@@ -11,29 +11,29 @@ import DesktopSVG from '@/assets/svgs/desktop.svg';
 import { useScreen } from '@/contexts/screen';
 
 export default function Hero(): ReactElement {
-  const { isMobile, isTablet, isDesktop, isMonitor } = useScreen();
+  const { isSmall, isMedium, isLarge, isHuge, isEnormous } = useScreen();
   const headingClasses = classNames(
     'text-5xl font-semibold text-gray-dark',
     'lg:text-6xl'
   );
-  const downloadLinkClasses = 'text-3xl font-semibold text-primary mb-7';
+  const downloadLinkClasses = 'text-3xl font-bold text-primary mb-7';
   const downloadSVGClasses = 'inline-block mx-3 -mt-2 fill-current';
   return (
     <section>
       <Container
-        heights={{ sm: '100%', md: '100%', lg: '100vh - 112px' }}
+        heights={{ small: '100%', medium: '100%', large: '100vh - 112px' }}
         classes={classNames(
           'mt-12',
-          'lg:my-0 lg:flex lg:flex-col lg:justify-center lg:items-center'
+          'lg:mt-16 lg:flex lg:flex-col lg:justify-center lg:items-center'
         )}
       >
         <div
           className={classNames(
-            'lg:-mt-16 lg:flex lg:justify-center lg:items-center',
-            '2xl:-mt-64'
+            'lg:-mt-16 lg:w-full lg:flex lg:justify-between lg:items-center',
+            '3xl:-mt-64'
           )}
         >
-          <div className={'lg:-mt-16 lg:mr-1'}>
+          <div className={classNames('lg:-mt-16 lg:mr-8', 'xl:-mr-1')}>
             <h1 className={classNames(headingClasses)}>
               <span className="block">Send</span>
               <span className={'block glitch'} data-glitch-text={'Encrypted'}>
@@ -87,51 +87,33 @@ export default function Hero(): ReactElement {
             </div>
             <Link href="/download">
               <a className="hidden lg:block">
-                <Button classes="mt-4 px-10">Download</Button>
+                <Button fontWeight="bold" size="large" classes="mt-4 px-12">
+                  Download
+                </Button>
               </a>
             </Link>
           </div>
-          {(isMobile || isTablet) && (
-            <div className={classNames('mx-auto text-center', 'md:px-10')}>
+          {(isSmall || isMedium) && (
+            <div className={classNames('-mt-4 -ml-1')}>
               <Image
-                src="/assets/images/mockup-messages.png"
+                src="/assets/images/ui-direct-message.png"
                 alt="mobile app screenshot"
-                width="300px"
-                height="630px"
+                width="1148px"
+                height="2000px"
                 layout="responsive"
                 priority={true}
               />
             </div>
           )}
-          {(isDesktop || isMonitor) && (
-            <div className={classNames('flex justify-center items-center')}>
-              <div className={classNames('-mr-8 mt-14')}>
-                <Image
-                  src="/assets/images/mockup-groups.png"
-                  alt="mobile app screenshot groups"
-                  width="220px"
-                  height="474px"
-                  priority={true}
-                />
-              </div>
-              <div className={classNames('z-10')}>
-                <Image
-                  src="/assets/images/mockup-landing.png"
-                  alt="mobile app screenshot landing page"
-                  width="280px"
-                  height="590px"
-                  priority={true}
-                />
-              </div>
-              <div className={classNames('-ml-8 mt-16')}>
-                <Image
-                  src="/assets/images/mockup-attachments.png"
-                  alt="mobile app screenshot attachments"
-                  width="220px"
-                  height="465px"
-                  priority={true}
-                />
-              </div>
+          {(isLarge || isHuge || isEnormous) && (
+            <div className={classNames('max-w-2xl')}>
+              <Image
+                src="/assets/images/ui-showcase.png"
+                alt="mobile app ui showcase"
+                width="1112px"
+                height="1000px"
+                priority={true}
+              />
             </div>
           )}
         </div>

@@ -17,7 +17,8 @@ export default function Download(): ReactElement {
     'mx-auto text-center',
     'lg:w-1/2 lg:flex lg:flex-col lg:pb-16'
   );
-  const subtitleClasses = classNames('text-2xl font-light', 'lg:text-3xl');
+  const headingClasses = 'text-5xl font-semibold';
+  const subtitleClasses = classNames('text-2xl', 'lg:text-3xl');
   const linkContainerClasses = classNames(
     'flex flex-wrap justify-center pb-12',
     'lg:items-center'
@@ -26,7 +27,7 @@ export default function Download(): ReactElement {
     'pb-2 lg:py-2 lg:border-r lg:border-dashed'
   );
   const downloadLinkClasses = classNames(
-    'text-lg font-semibold rounded-3xl py-1 mr-4',
+    'text-lg font-bold rounded-3xl py-1 mr-4',
     'md:text-3xl',
     'lg:pr-2 lg:ml-2',
     'transition-colors duration-300'
@@ -37,10 +38,9 @@ export default function Download(): ReactElement {
       <section>
         <Container
           heights={{
-            sm: '100%',
-            md: '100%',
-            lg: '100%',
-            xl: '100%',
+            small: '100%',
+            medium: '100%',
+            large: '100%',
           }}
           classes={classNames(
             'px-0 py-0',
@@ -74,21 +74,19 @@ export default function Download(): ReactElement {
               >
                 Download Session for
               </p>
-              <h2 className={classNames('text-5xl font-semibold my-4')}>
-                Mobile
-              </h2>
+              <h2 className={classNames(headingClasses, 'my-4')}>Mobile</h2>
               <div
                 className={classNames(
-                  'px-24 mb-6',
-                  'md:px-56',
-                  'lg:px-0 lg:w-1/2 lg:mx-auto'
+                  '-mt-2 -ml-1 px-16 mb-3',
+                  'md:-mt-5 md:px-48',
+                  'lg:mt-0 lg:px-0 lg:w-2/3 lg:mx-auto'
                 )}
               >
                 <Image
-                  src="/assets/images/mockup-landing.png"
-                  alt="mobile app screenshot"
-                  width="475px"
-                  height="1000px"
+                  src="/assets/images/ui-create-account.png"
+                  alt="mobile app create account screenshot"
+                  width="1148px"
+                  height="2000px"
                   layout="responsive"
                 />
               </div>
@@ -193,7 +191,8 @@ export default function Download(): ReactElement {
               </p>
               <h2
                 className={classNames(
-                  'text-5xl font-semibold mt-4 mb-6',
+                  headingClasses,
+                  'mt-4 mb-6',
                   'lg:mb-auto'
                 )}
               >
@@ -209,8 +208,8 @@ export default function Download(): ReactElement {
                 <Image
                   src="/assets/images/mockup-desktop.png"
                   alt="desktop app screenshot"
-                  width="1600px"
-                  height="858px"
+                  width="1125px"
+                  height="644px"
                   layout="responsive"
                 />
               </div>

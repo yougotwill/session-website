@@ -6,10 +6,12 @@ function makeNumber(input: string) {
 }
 
 const UI = {
-  MOBILE_BREAKPOINT: makeNumber(tailwindConfig.theme.screens.sm),
-  TABLET_BREAKPOINT: makeNumber(tailwindConfig.theme.screens.md),
-  DESKTOP_BREAKPOINT: makeNumber(tailwindConfig.theme.screens.lg),
-  MONITOR_BREAKPOINT: makeNumber(tailwindConfig.theme.screens['2xl']),
+  SMALL_BREAKPOINT: makeNumber(tailwindConfig.theme.screens.sm),
+  MEDIUM_BREAKPOINT: makeNumber(tailwindConfig.theme.screens.md),
+  LARGE_BREAKPOINT: makeNumber(tailwindConfig.theme.screens.lg),
+  XLARGE_BREAKPOINT: makeNumber(tailwindConfig.theme.screens.xl),
+  HUGE_BREAKPOINT: makeNumber(tailwindConfig.theme.screens['2xl']),
+  ENORMOUS_BREAKPOINT: makeNumber(tailwindConfig.theme.screens['3xl']),
 };
 
 export default UI;

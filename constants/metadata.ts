@@ -13,7 +13,10 @@ export interface IMetadata {
 }
 
 const METADATA = {
-  HOST_URL: 'https://getsession.org',
+  HOST_URL:
+    process.env.NEXT_PUBLIC_SITE_ENV === 'production'
+      ? 'https://getsession.org'
+      : 'https://staging.getsession.org',
   SITE_NAME: 'Session',
   TITLE: 'Session | Send Messages, Not Metadata. | Private Messenger',
   DESCRIPTION:

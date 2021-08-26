@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import METADATA, { IMetadata } from '@/constants/metadata';
 import { isLocal } from '@/utils/links';
 
@@ -9,17 +10,18 @@ interface Props {
 }
 
 export default function CustomHead(props: Props): ReactElement {
+  const router = useRouter();
   const { title, metadata } = props;
   const pageTitle =
     title && title.length > 0
       ? `${title} - Session Private Messenger`
       : METADATA.TITLE;
-  const pageUrl = `${METADATA.HOST_URL}`;
+  const pageUrl = `${METADATA.HOST_URL}${router.asPath}`;
   const imageUrl = (() => {
     if (!metadata?.OG_IMAGE?.URL)
       return `${METADATA.HOST_URL}${METADATA.OG_IMAGE.URL}`;
-    if (metadata?.OG_IMAGE?.URL && isLocal(metadata?.OG_IMAGE?.URL)) {
-      return `${METADATA.HOST_URL}${metadata?.OG_IMAGE?.URL}`;
+    if (metadata?.OG_IMAGE?.URL && isLocal(metadata.OG_IMAGE.URL)) {
+      return `${METADATA.HOST_URL}${metadata.OG_IMAGE.URL}`;
     } else {
       return `${metadata?.OG_IMAGE?.URL}`;
     }
@@ -66,7 +68,7 @@ export default function CustomHead(props: Props): ReactElement {
       },
       {
         "@type": "ImageObject",
-        "@id": "${pageUrl}/#primaryimage",
+        "@id": "${pageUrl}#primaryimage",
         "url": "${imageUrl}",
         "width": "${String(
           metadata?.OG_IMAGE?.WIDTH ?? METADATA.OG_IMAGE.WIDTH
@@ -77,13 +79,13 @@ export default function CustomHead(props: Props): ReactElement {
       },
       {
         "@type": "WebPage",
-        "@id": "${pageUrl}/#webpage",
+        "@id": "${pageUrl}#webpage",
         "url": "${pageUrl}",
         "inLanguage": "${METADATA.LOCALE}",
         "name": "${pageTitle}",
         "isPartOf": { "@id": "${METADATA.HOST_URL}/#website" },
         "primaryImageOfPage": {
-          "@id": "${pageUrl}/#primaryimage"
+          "@id": "${pageUrl}#primaryimage"
         },
         "datePublished": "${metadata?.PUBLISHED_TIME ?? ''}",
         "description": "${METADATA.DESCRIPTION}"

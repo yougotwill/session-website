@@ -2,7 +2,7 @@ import { ReactElement, useRef, useEffect } from 'react';
 import videojs, { VideoJsPlayerOptions } from 'video.js';
 // @ts-ignore
 import QualitySelector from '@silvermine/videojs-quality-selector';
-import 'video.js/dist/video-js.css';
+import 'video.js/dist/video-js.min.css';
 import '@silvermine/videojs-quality-selector/dist/css/quality-selector.css';
 import { UI } from '@/constants';
 import { useScreen } from '@/contexts/screen';
@@ -38,19 +38,19 @@ const videoOptions: VideoJsPlayerOptions = {
 };
 
 export default function VideoPlayer(props: VideoPlayerProps): ReactElement {
-  const { isTablet, isDesktop, isMonitor } = useScreen();
+  const { isMedium, isLarge, isHuge, isEnormous } = useScreen();
   const { hasQualityLevels = false, poster, sources } = props;
 
   const videoWidth = (() => {
     let width = 320;
-    if (isTablet) {
+    if (isMedium) {
       width = 720;
     }
-    if (isDesktop) {
+    if (isLarge || isHuge) {
       width = 672;
     }
-    if (isMonitor) {
-      width = UI.DESKTOP_BREAKPOINT;
+    if (isEnormous) {
+      width = 920;
     }
     return width;
   })();
@@ -66,17 +66,17 @@ export default function VideoPlayer(props: VideoPlayerProps): ReactElement {
 
   useEffect(() => {
     if (null !== videoRef.current) {
+      videojs(videoRef.current, videoOptions);
+    }
+    return () => {
       const players = videojs.getAllPlayers();
       if (players && players.length > 0) {
         players.forEach((player) => {
-          // set width once videojs and useScreen have completely initialized
-          player.width(videoWidth);
+          player.dispose();
         });
-      } else {
-        videojs(videoRef.current, videoOptions);
       }
-    }
-  }, [videoWidth]);
+    };
+  }, []);
 
   return (
     <div style={{ width: videoWidth }}>

@@ -20,7 +20,7 @@ export default function Home() {
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  if (process.env.SITE_ENV !== 'development') {
+  if (process.env.NEXT_PUBLIC_SITE_ENV !== 'development') {
     const posts: IPost[] = [];
     let foundAllPosts = false;
 
@@ -41,6 +41,6 @@ export const getStaticProps: GetStaticProps = async (
 
   return {
     props: {},
-    revalidate: 3600, // update rss hourly
+    revalidate: 3600, // refresh hourly
   };
 };

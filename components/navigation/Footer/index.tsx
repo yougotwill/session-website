@@ -13,7 +13,7 @@ import { GroupNotice } from '@/components/sections';
 import { useScreen } from '@/contexts/screen';
 
 export default function Footer(): ReactElement {
-  const { isMobile } = useScreen();
+  const { isSmall } = useScreen();
   const redactedClasses = redact({
     redactColor: 'primary',
     textColor: 'white',
@@ -21,10 +21,10 @@ export default function Footer(): ReactElement {
     classes: 'py-0.5 py-1',
   });
   const headingClasses = classNames(
-    'text-white uppercase text-xl font-semibold mb-2'
+    'text-white uppercase text-xl font-bold mb-2'
   );
   const linkClasses = classNames(
-    'text-sm font-light py-2 mr-2',
+    'text-sm py-2 mr-2 font-semibold',
     'lg:py-0 lg:my-0',
     'transition-colors duration-300',
     'hover:text-white'
@@ -46,7 +46,7 @@ export default function Footer(): ReactElement {
           'lg:flex lg:justify-end lg:max-w-screen-xl lg:mx-auto'
         )}
       >
-        {!isMobile && (
+        {!isSmall && (
           <GroupNotice
             classes={classNames(
               'lg:flex lg:flex-col lg:justify-center lg:w-full lg:max-w-xl lg:px-0 lg:border-b-0 lg:border-r lg:my-2'
@@ -211,7 +211,7 @@ export default function Footer(): ReactElement {
             />
             <p
               className={classNames(
-                'group text-white text-sm font-extralight leading-6 tracking-wide'
+                'group text-white text-sm leading-6 tracking-wide'
               )}
             >
               Session is an <span className={redactedClasses}>end-to-end</span>{' '}

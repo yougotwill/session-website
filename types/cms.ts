@@ -40,6 +40,7 @@ export interface IFAQItem {
   question: string;
   answer: Document;
   tag: string;
+  slug: string;
 }
 
 export interface IFetchEntriesReturn {
@@ -50,6 +51,10 @@ export interface IFetchEntriesReturn {
 export interface IFAQList {
   [key: string]: IFAQItem[];
 }
+
+export type ITagList = {
+  [key: string]: string;
+};
 
 export interface IFetchBlogEntriesReturn extends IFetchEntriesReturn {
   entries: Array<IPost>;

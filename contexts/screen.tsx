@@ -3,18 +3,20 @@ import { ReactElement, ReactNode, createContext, useContext } from 'react';
 
 interface IScreen {
   width: number;
-  isMobile: boolean;
-  isTablet: boolean;
-  isDesktop: boolean;
-  isMonitor: boolean;
+  isSmall: boolean;
+  isMedium: boolean;
+  isLarge: boolean;
+  isHuge: boolean;
+  isEnormous: boolean;
 }
 
 const ScreenContext = createContext<IScreen>({
   width: 0,
-  isMobile: true,
-  isTablet: false,
-  isDesktop: false,
-  isMonitor: false,
+  isSmall: true,
+  isMedium: false,
+  isLarge: false,
+  isHuge: false,
+  isEnormous: false,
 });
 
 export function useScreen() {
