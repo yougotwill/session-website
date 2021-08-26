@@ -63,11 +63,16 @@ export async function fetchBlogEntriesByTag(
   tag: string,
   quantity = 100
 ): Promise<IFetchBlogEntriesReturn> {
+  const taglist = await fetchTagList();
+  const id = Object.entries(taglist).filter(([_, value]) => {
+    return tag === value;
+  })[0][0];
+
   const _entries = await client.getEntries(
     loadOptions({
       content_type: 'post', // only fetch blog post entry
       order: '-fields.date',
-      'fields.tags[in]': tag,
+      'metadata.tags.sys.id[in]': id,
       limit: quantity,
     })
   );
