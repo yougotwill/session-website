@@ -31,7 +31,7 @@ export default function Post(props: Props): ReactElement {
     return tags.map((tag, index) => {
       return (
         <span key={index}>
-          <Link href={`/blog?tag=${tag}`}>
+          <Link href={`/tag/${tag}`}>
             <a className="transition-colors duration-300 hover:text-primary">
               {tag}
             </a>

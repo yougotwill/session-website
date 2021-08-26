@@ -92,6 +92,6 @@ export const getStaticProps: GetStaticProps = async (
       entries,
       total,
     },
-    revalidate: 60,
+    revalidate: 3600, // refresh hourly
   };
 };

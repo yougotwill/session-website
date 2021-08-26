@@ -82,7 +82,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   if (redirection)
     return {
       props: { redirection },
-      revalidate: 3600, // refresh redirections hourly
+      revalidate: 3600, // refresh hourly
     };
 
   const page: IPage = await fetchEntryBySlug(slug, 'page');
@@ -98,7 +98,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
     props: {
       page,
     },
-    revalidate: 60,
+    revalidate: 3600, // refresh hourly
   };
 }
 
