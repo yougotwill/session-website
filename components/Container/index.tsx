@@ -13,12 +13,13 @@ export interface IContainerSizes {
 interface Props {
   id?: string;
   heights?: IContainerSizes;
+  fullWidth?: boolean;
   classes?: string;
   children: ReactNode;
 }
 
 export default function Container(props: Props): ReactElement {
-  const { id, heights, classes, children } = props;
+  const { id, heights, fullWidth = false, classes, children } = props;
   const { isSmall, isMedium, isLarge, isHuge, isEnormous } = useScreen();
   const height: string | undefined = (() => {
     if (isSmall) return heights?.small;
@@ -31,9 +32,12 @@ export default function Container(props: Props): ReactElement {
     <div
       id={id}
       className={classNames(
-        'container mx-auto max-w-6xl p-6',
-        'md:p-12',
-        'lg:py-0 lg:px-10',
+        'mx-auto',
+        !fullWidth && [
+          'container max-w-6xl p-6',
+          'md:p-12',
+          'lg:py-0 lg:px-10',
+        ],
         classes
       )}
       // mobile safari needs style props to be explicitly undefined if not used

@@ -44,16 +44,13 @@ export default function Post(props: Props): ReactElement {
   })();
   return (
     <section>
-      <div
-        className={classNames(
-          'mx-auto mt-12 mb-8',
-          'md:pt-8',
-          'lg:mt-0',
-          !fullHeader && [
-            'container max-w-6xl pt-6 px-6',
-            'md:px-28',
-            'lg:px-40',
-          ]
+      <Container
+        fullWidth={fullHeader}
+        classes={classNames(
+          'pt-16 pb-8',
+          fullHeader
+            ? ['lg:pt-8']
+            : ['md:pt-20 md:pb-8 md:px-28', 'lg:py-8 lg:px-40']
         )}
       >
         {featureImage?.imageUrl && (
@@ -71,6 +68,7 @@ export default function Post(props: Props): ReactElement {
                 alt={featureImage?.description ?? title}
                 width={featureImage?.width}
                 height={featureImage?.height}
+                layout="responsive"
                 priority={true}
               />
             ) : (
@@ -86,7 +84,7 @@ export default function Post(props: Props): ReactElement {
             )}
           </div>
         )}
-      </div>
+      </Container>
       <Container
         classes={classNames(
           'text-gray break-words pt-0',
