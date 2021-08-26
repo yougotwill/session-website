@@ -208,8 +208,8 @@ export default function Download(): ReactElement {
                 <Image
                   src="/assets/images/mockup-desktop.png"
                   alt="desktop app screenshot"
-                  width="1600px"
-                  height="858px"
+                  width="1125px"
+                  height="644px"
                   layout="responsive"
                 />
               </div>

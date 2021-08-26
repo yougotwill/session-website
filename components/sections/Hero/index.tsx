@@ -110,8 +110,8 @@ export default function Hero(): ReactElement {
               <Image
                 src="/assets/images/ui-showcase.png"
                 alt="mobile app ui showcase"
-                width="2224px"
-                height="2000px"
+                width="1112px"
+                height="1000px"
                 priority={true}
               />
             </div>

@@ -92,8 +92,8 @@ export default function Features(): ReactElement {
               <Image
                 src="/assets/images/mockup-desktop.png"
                 alt="desktop app screenshot"
-                width="1500px"
-                height="858px"
+                width="1125px"
+                height="644px"
                 layout="responsive"
               />
             </div>
