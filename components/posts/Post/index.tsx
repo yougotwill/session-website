@@ -7,6 +7,7 @@ import { IPost } from '@/types/cms';
 import { PostList } from '@/components/posts';
 import RichBody from '@/components/RichBody';
 import { useScreen } from '@/contexts/screen';
+import Container from '@/components/Container';
 
 interface Props {
   post: IPost;
@@ -86,11 +87,11 @@ export default function Post(props: Props): ReactElement {
           </div>
         )}
       </div>
-      <div
-        className={classNames(
-          'container max-w-6xl pb-6 px-6 mx-auto text-gray break-words',
-          'md:pb-8 md:px-28',
-          'lg:mt-0 lg:px-40'
+      <Container
+        classes={classNames(
+          'text-gray break-words pt-0',
+          'md:pt-0 md:pb-8 md:px-28',
+          'lg:pb-8 lg:px-40'
         )}
       >
         <h1 className={classNames('text-4xl font-bold leading-normal mb-1')}>
@@ -108,10 +109,10 @@ export default function Post(props: Props): ReactElement {
           body={body}
           classes={classNames('text-sm text-gray', 'lg:text-base')}
         />
-      </div>
+      </Container>
       <PostList
         posts={otherPosts}
-        gridStyle={'tight'}
+        gridStyle={'blog'}
         hoverEffect={false}
         compact={true}
         classes={classNames('my-16', 'lg:mb-24')}
