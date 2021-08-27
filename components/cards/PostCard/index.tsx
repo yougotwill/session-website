@@ -70,18 +70,20 @@ export default function PostCard(props: Props): ReactElement {
         className={classNames(featured && 'md:w-1/2 md:ml-4 lg:ml-3 lg:w-2/5')}
       >
         <Link href={route} passHref>
-          {featured ? (
-            <h1
-              className={classNames(
-                headingClasses,
-                'font-bold text-3xl mt-8 md:text-4xl md:-mt-1 lg:leading-tight'
-              )}
-            >
-              {title}
-            </h1>
-          ) : (
-            <h2 className={classNames(headingClasses)}>{title}</h2>
-          )}
+          <a>
+            {featured ? (
+              <h1
+                className={classNames(
+                  headingClasses,
+                  'font-bold text-3xl mt-8 md:text-4xl md:-mt-1 lg:leading-tight'
+                )}
+              >
+                {title}
+              </h1>
+            ) : (
+              <h2 className={classNames(headingClasses)}>{title}</h2>
+            )}
+          </a>
         </Link>
         <p className={classNames('text-gray-lightest text-xs font-helvetica')}>
           {publishedDate}

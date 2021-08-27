@@ -4,10 +4,13 @@ import { Block, Inline } from '@contentful/rich-text-types';
 // are there any links to id's i.e. #mac, #linux, #windows
 // TODO links on site should be updated to follow NextJS convention on contentful?
 
-const protocols = ['https://', 'http://'];
+const protocols = ['https://', 'http://', 'ftp://', 'file://', 'mailto:'];
 
 export function isLocal(url: string) {
   let result = true;
+  if (url[0] === '#') {
+    return result;
+  }
   protocols.forEach((protocol) => {
     if (url.indexOf(protocol) >= 0) {
       result = false;

@@ -39,18 +39,28 @@ export default function RichBody(props: Props): ReactElement {
       ),
     },
     renderNode: {
-      [INLINES.HYPERLINK]: (node, children) => (
-        <Link href={node.data.uri} scroll={!isLocal(node.data.uri)}>
-          <a
-            aria-label={'Read more about this link'}
-            className={classNames('text-primary-dark')}
-            target={isLocal(node.data.uri) ? '_self' : '_blank'}
-            rel="noreferrer"
-          >
-            {children}
-          </a>
-        </Link>
-      ),
+      [INLINES.HYPERLINK]: (node, children) => {
+        const url =
+          node.data.uri.indexOf('://getsession.org') >= 0
+            ? node.data.uri.split('://getsession.org')[1]
+            : node.data.uri;
+        return (
+          <Link href={url} scroll={!isLocal(node.data.uri)}>
+            <a
+              aria-label={'Read more about this link'}
+              className={classNames('text-primary-dark')}
+              target={
+                isLocal(node.data.uri) || url !== node.data.uri
+                  ? '_self'
+                  : '_blank'
+              }
+              rel="noreferrer"
+            >
+              {children}
+            </a>
+          </Link>
+        );
+      },
       [INLINES.EMBEDDED_ENTRY]: (node, children) => {
         return renderEmbeddedEntry({ node, isInline: true });
       },
