@@ -29,6 +29,7 @@ export default function Features(): ReactElement {
         <h2>Features</h2>
       </Headline>
       <Container
+        hasMinHeight={true}
         heights={{
           small: '100%',
           medium: '100%',

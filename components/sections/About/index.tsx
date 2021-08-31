@@ -101,6 +101,7 @@ export default function About(): ReactElement {
       </Headline>
       {/* Full screen height - Headline height */}
       <Container
+        hasMinHeight={true}
         heights={{
           small: '100%',
           medium: '100vh + 2rem',

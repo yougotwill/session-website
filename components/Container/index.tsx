@@ -12,6 +12,7 @@ export interface IContainerSizes {
 
 interface Props {
   id?: string;
+  hasMinHeight?: boolean;
   heights?: IContainerSizes;
   fullWidth?: boolean;
   classes?: string;
@@ -19,22 +20,31 @@ interface Props {
 }
 
 export default function Container(props: Props): ReactElement {
-  const { id, heights, fullWidth = false, classes, children } = props;
+  const {
+    id,
+    hasMinHeight = false,
+    heights,
+    fullWidth = false,
+    classes,
+    children,
+  } = props;
+  const minHeights: IContainerSizes = {
+    small: '568px',
+    medium: '1024px',
+    large: '768px',
+    huge: '900px',
+    enormous: '968px',
+  };
   const { isSmall, isMedium, isLarge, isHuge, isEnormous } = useScreen();
-  const height: string | undefined = (() => {
-    if (isSmall) return heights?.small;
-    if (isMedium) return heights?.medium;
-    if (isLarge) return heights?.large;
-    if (isHuge) return heights?.huge ?? heights?.large;
-    if (isEnormous) return heights?.enormous ?? heights?.large;
-  })();
-  const minHeight: string | undefined = (() => {
-    if (isSmall) return '568px';
-    if (isMedium) return '1024px';
-    if (isLarge) return '768px';
-    if (isHuge) return '900px';
-    if (isEnormous) return '968px';
-  })();
+  const getHeight = (sizes: IContainerSizes): string => {
+    if (isSmall) return sizes?.small;
+    if (isMedium) return sizes?.medium;
+    if (isLarge) return sizes?.large;
+    if (isHuge) return sizes?.huge ?? sizes?.large;
+    if (isEnormous) return sizes?.enormous ?? sizes?.large;
+    return '';
+  };
+  const height = heights && getHeight(heights);
   return (
     <div
       id={id}
@@ -49,7 +59,7 @@ export default function Container(props: Props): ReactElement {
       )}
       // mobile safari needs style props to be explicitly undefined if not used
       style={{
-        minHeight: minHeight,
+        minHeight: hasMinHeight ? getHeight(minHeights) : undefined,
         height: height ? `calc(${height})` : undefined,
       }}
     >

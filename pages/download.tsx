@@ -37,6 +37,7 @@ export default function Download(): ReactElement {
     <Layout title="Download" metadata={METADATA.DOWNLOAD_PAGE}>
       <section>
         <Container
+          hasMinHeight={true}
           heights={{
             small: '100%',
             medium: '100%',
