@@ -31,9 +31,9 @@ export default function Container(props: Props): ReactElement {
   const minHeight: string | undefined = (() => {
     if (isSmall) return '568px';
     if (isMedium) return '1024px';
-    if (isLarge) return '900px';
+    if (isLarge) return '768px';
     if (isHuge) return '900px';
-    if (isEnormous) return '1080px';
+    if (isEnormous) return '968px';
   })();
   return (
     <div
