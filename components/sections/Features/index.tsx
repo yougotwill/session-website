@@ -57,6 +57,8 @@ export default function Features(): ReactElement {
                 width="1148px"
                 height="2000px"
                 layout="responsive"
+                priority={true}
+                loading="eager"
               />
             </div>
           )}
@@ -95,6 +97,7 @@ export default function Features(): ReactElement {
                 width="1125px"
                 height="644px"
                 layout="responsive"
+                loading="eager"
               />
             </div>
           )}

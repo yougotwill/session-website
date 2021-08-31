@@ -88,6 +88,8 @@ export default function Download(): ReactElement {
                   width="1148px"
                   height="2000px"
                   layout="responsive"
+                  priority={true}
+                  loading="eager"
                 />
               </div>
               <div className={classNames(linkContainerClasses)}>
@@ -211,6 +213,8 @@ export default function Download(): ReactElement {
                   width="1125px"
                   height="644px"
                   layout="responsive"
+                  priority={true}
+                  loading="eager"
                 />
               </div>
               <div

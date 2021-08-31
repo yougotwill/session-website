@@ -113,6 +113,7 @@ export default function Hero(): ReactElement {
                 width="1112px"
                 height="1000px"
                 priority={true}
+                loading="eager"
               />
             </div>
           )}
