@@ -28,6 +28,13 @@ export default function Container(props: Props): ReactElement {
     if (isHuge) return heights?.huge ?? heights?.large;
     if (isEnormous) return heights?.enormous ?? heights?.large;
   })();
+  const minHeight: string | undefined = (() => {
+    if (isSmall) return '568px';
+    if (isMedium) return '1024px';
+    if (isLarge) return '900px';
+    if (isHuge) return '900px';
+    if (isEnormous) return '1080px';
+  })();
   return (
     <div
       id={id}
@@ -41,7 +48,10 @@ export default function Container(props: Props): ReactElement {
         classes
       )}
       // mobile safari needs style props to be explicitly undefined if not used
-      style={{ height: height ? `calc(${height})` : undefined }}
+      style={{
+        minHeight: minHeight,
+        height: height ? `calc(${height})` : undefined,
+      }}
     >
       {children}
     </div>
