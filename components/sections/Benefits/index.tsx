@@ -21,6 +21,7 @@ export default function Benefits(): ReactElement {
         <h2>Benefits</h2>
       </Headline>
       <Container
+        hasMinHeight={true}
         heights={{
           small: '100%',
           medium: '100%',

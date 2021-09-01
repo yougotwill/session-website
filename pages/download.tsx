@@ -37,6 +37,7 @@ export default function Download(): ReactElement {
     <Layout title="Download" metadata={METADATA.DOWNLOAD_PAGE}>
       <section>
         <Container
+          hasMinHeight={true}
           heights={{
             small: '100%',
             medium: '100%',
@@ -88,6 +89,8 @@ export default function Download(): ReactElement {
                   width="1148px"
                   height="2000px"
                   layout="responsive"
+                  priority={true}
+                  loading="eager"
                 />
               </div>
               <div className={classNames(linkContainerClasses)}>
@@ -211,6 +214,8 @@ export default function Download(): ReactElement {
                   width="1125px"
                   height="644px"
                   layout="responsive"
+                  priority={true}
+                  loading="eager"
                 />
               </div>
               <div
