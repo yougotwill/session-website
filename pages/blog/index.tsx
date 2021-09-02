@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 import { GetStaticProps, GetStaticPropsContext } from 'next';
 import classNames from 'classnames';
 
+import { CMS } from '@/constants';
 import { IPost } from '@/types/cms';
 import { fetchBlogEntries, generateRoute } from '@/services/cms';
 import METADATA from '@/constants/metadata';
@@ -22,7 +23,7 @@ export const getStaticProps: GetStaticProps = async (
 
   return {
     props: { posts },
-    revalidate: 3600, // refresh hourly
+    revalidate: CMS.CONTENT_REVALIDATE_RATE,
   };
 };
 

@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 import { GetStaticProps, GetStaticPropsContext, GetStaticPaths } from 'next';
 
+import { CMS } from '@/constants';
 import { IPost } from '@/types/cms';
 import {
   fetchBlogEntries,
@@ -72,7 +73,7 @@ export const getStaticProps: GetStaticProps = async (
       post: currentPost,
       otherPosts,
     },
-    revalidate: 3600, // refresh hourly
+    revalidate: CMS.CONTENT_REVALIDATE_RATE,
   };
 };
 

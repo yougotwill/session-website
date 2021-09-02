@@ -2,6 +2,8 @@ import { ReactElement } from 'react';
 import { GetStaticProps, GetStaticPropsContext } from 'next';
 import { useRouter } from 'next/router';
 import classNames from 'classnames';
+
+import { CMS } from '@/constants';
 import { IFAQItem, IFAQList } from '@/types/cms';
 import { fetchFAQItems } from '@/services/cms';
 import capitalize from '@/utils/capitalize';
@@ -92,6 +94,6 @@ export const getStaticProps: GetStaticProps = async (
       entries,
       total,
     },
-    revalidate: 3600, // refresh hourly
+    revalidate: CMS.CONTENT_REVALIDATE_RATE,
   };
 };

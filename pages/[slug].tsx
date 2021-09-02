@@ -3,6 +3,7 @@ import { GetStaticPropsContext, GetStaticPaths } from 'next';
 import { useRouter } from 'next/router';
 import classNames from 'classnames';
 
+import { CMS } from '@/constants';
 import { IPage } from '@/types/cms';
 import { fetchEntryBySlug, fetchPages, generateLinkMeta } from '@/services/cms';
 import { hasRedirection, IRedirection } from '@/services/redirect';
@@ -82,7 +83,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   if (redirection)
     return {
       props: { redirection },
-      revalidate: 3600, // refresh hourly
+      revalidate: CMS.CONTENT_REVALIDATE_RATE,
     };
 
   const page: IPage = await fetchEntryBySlug(slug, 'page');
@@ -98,7 +99,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
     props: {
       page,
     },
-    revalidate: 3600, // refresh hourly
+    revalidate: CMS.CONTENT_REVALIDATE_RATE,
   };
 }
 
