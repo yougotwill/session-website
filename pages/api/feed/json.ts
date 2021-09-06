@@ -7,5 +7,5 @@ export default async function handler(
 ) {
   res.statusCode = 200;
   res.setHeader('content-type', 'application/feed+json');
-  res.end(readFileSync('./public/rss/atom.xml'));
+  res.end(readFileSync('./public/rss/feed.json'));
 }
