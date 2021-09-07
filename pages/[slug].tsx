@@ -1,110 +1,65 @@
 import { ReactElement } from 'react';
 import { GetStaticPropsContext, GetStaticPaths } from 'next';
-import { useRouter } from 'next/router';
-import classNames from 'classnames';
 
-import { IPage } from '@/types/cms';
-import { fetchEntryBySlug, fetchPages, generateLinkMeta } from '@/services/cms';
-import { hasRedirection, IRedirection } from '@/services/redirect';
+import { CMS } from '@/constants';
+import { IPage, IPost, isPost } from '@/types/cms';
+import {
+  fetchBlogEntries,
+  fetchEntryBySlug,
+  fetchPages,
+  generateLinkMeta,
+} from '@/services/cms';
 
-import Container from '@/components/Container';
-import { Headline, Layout } from '@/components/ui';
-import RichBody from '@/components/RichBody';
-import Custom404 from '@/pages/404';
-import RedirectPage from '@/components/RedirectPage';
+import BlogPost from '@/components/BlogPost';
+import RichPage from '@/components/RichPage';
 
 interface Props {
-  page?: IPage;
-  redirection?: IRedirection;
+  content: IPage | IPost;
+  otherPosts?: IPost[];
 }
 
 export default function Page(props: Props): ReactElement {
-  const router = useRouter();
-  const { page, redirection } = props;
-  // dynamic redirects require a custom fallback solution
-  if (redirection) {
-    if (typeof window !== 'undefined') {
-      router.push(redirection.destination);
-    }
-    return <RedirectPage />;
+  const { content } = props;
+  if (isPost(content)) {
+    return <BlogPost post={content} otherPosts={props.otherPosts} />;
   } else {
-    if (!page) {
-      if (typeof window !== 'undefined') {
-        if (router.isFallback) {
-          router.push('/404', router.asPath);
-        }
-      }
-      return <Custom404 />;
-    }
+    return <RichPage page={content} />;
   }
-
-  const pageTitle = page ? page.title : '';
-  return (
-    <Layout title={pageTitle}>
-      <section>
-        {page?.headline && (
-          <Headline
-            color="gray-dark"
-            classes={classNames(
-              'font-mono font-medium pt-16',
-              'lg:pt-4 lg:pb-10'
-            )}
-            containerWidths={{
-              small: '10rem',
-              medium: '34rem',
-              large: '768px',
-            }}
-          >
-            {page.headline}
-          </Headline>
-        )}
-        <Container classes={classNames('pt-0 px-4 pb-24', 'lg:pb-32')}>
-          <div className={'lg:max-w-screen-md lg:mx-auto'}>
-            <RichBody
-              body={page?.body}
-              headingClasses={'text-gray font-medium mt-6'}
-              classes={classNames(
-                'text-sm text-gray-lighter font-helvetica leading-loose',
-                'lg:text-base'
-              )}
-            />
-          </div>
-        </Container>
-      </section>
-    </Layout>
-  );
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   const slug = String(context.params?.slug);
+  const content: IPage | IPost = await fetchEntryBySlug(slug);
 
-  const redirection = await hasRedirection('/' + slug);
-  if (redirection)
-    return {
-      props: { redirection },
-      revalidate: 3600, // refresh hourly
-    };
-
-  const page: IPage = await fetchEntryBySlug(slug, 'page');
-
-  if (!page) {
+  if (!content) {
     return { notFound: true };
   }
 
-  // embedded links in page body need metadata for preview
-  page.body = await generateLinkMeta(page.body);
+  // embedded links in content body need metadata for preview
+  content.body = await generateLinkMeta(content.body);
+
+  const props: Props = { content };
+
+  if (isPost(content)) {
+    // we want 6 posts excluding the current one if it's found
+    const { entries: posts, total: totalPosts } = await fetchBlogEntries(7);
+    const otherPosts = posts
+      .filter((post) => {
+        return content.slug !== post.slug;
+      })
+      .slice(0, 6);
+    props.otherPosts = otherPosts;
+  }
 
   return {
-    props: {
-      page,
-    },
-    revalidate: 3600, // refresh hourly
+    props,
+    revalidate: CMS.CONTENT_REVALIDATE_RATE,
   };
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { entries: pages, total: totalPages } = await fetchPages();
-  const paths = pages.map((page) => {
+  const pagePaths = pages.map((page) => {
     return {
       params: {
         slug: page.slug,
@@ -112,8 +67,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
   });
 
+  const { entries: posts, total: totalPosts } = await fetchBlogEntries();
+  const postPaths = posts.map((post) => {
+    return {
+      params: {
+        slug: post.slug,
+      },
+    };
+  });
+
   return {
-    paths,
-    fallback: true,
+    paths: [...pagePaths, ...postPaths],
+    fallback: false,
   };
 };

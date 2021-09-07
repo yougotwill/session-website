@@ -5,7 +5,6 @@ import {
   Tag,
 } from 'contentful';
 import { Document, Block, Inline } from '@contentful/rich-text-types';
-import isLive from '@/utils/environment';
 import { format, parseISO } from 'date-fns';
 
 import {
@@ -20,7 +19,9 @@ import {
   IFetchFAQItemsReturn,
   IFetchPagesReturn,
 } from '@/types/cms';
+import { METADATA } from '@/constants';
 import { fetchContent } from '@/services/embed';
+import isLive from '@/utils/environment';
 
 const client: ContentfulClientApi = createClient({
   space: process.env.CONTENTFUL_SPACE_ID!,
@@ -84,32 +85,30 @@ export async function fetchBlogEntriesByTag(
   };
 }
 
-export async function fetchEntryBySlug(
-  slug: string,
-  entryType: 'post' | 'page'
-): Promise<any> {
-  const _entries = await client.getEntries({
-    content_type: entryType, // only fetch specific type
+export async function fetchEntryBySlug(slug: string): Promise<IPage | IPost> {
+  const _pages = await client.getEntries({
+    content_type: 'page',
     'fields.slug': slug,
   });
+  const _posts = await client.getEntries({
+    content_type: 'post',
+    'fields.slug': slug,
+  });
+
+  const _entries = [..._pages.items, ..._posts.items];
   const taglist = await fetchTagList();
 
-  if (_entries?.items?.length > 0) {
-    let entry;
-    switch (entryType) {
-      case 'post':
-        entry = convertPost(_entries.items[0], taglist);
-        break;
-      case 'page':
-        entry = convertPage(_entries.items[0]);
-        break;
-      default:
-        break;
+  if (_entries.length > 0) {
+    let entry = _entries[0];
+    if (entry.sys.contentType.sys.id === 'post') {
+      return convertPost(entry, taglist);
     }
-    return entry;
+    if (entry.sys.contentType.sys.id === 'page') {
+      return convertPage(entry);
+    }
   }
 
-  return Promise.reject(new Error(`Failed to fetch ${entryType} for ${slug}`));
+  return Promise.reject(new Error(`Failed to fetch entry for ${slug}`));
 }
 
 function convertPost(rawData: any, taglist: ITagList): IPost {
@@ -200,6 +199,9 @@ export function generateRoute(slug: string): string {
 async function loadMetaData(node: Block | Inline) {
   // is embedded link not embedded media
   if (!node.data.target.fields.file) {
+    if (node.data.target.sys.contentType.sys.id === 'post') {
+      node.data.target.fields.url = `${METADATA.HOST_URL}/blog/${node.data.target.fields.slug}`;
+    }
     node.data.target.fields.meta = await fetchContent(
       node.data.target.fields.url
     );

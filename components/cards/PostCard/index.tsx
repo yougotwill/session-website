@@ -55,6 +55,7 @@ export default function PostCard(props: Props): ReactElement {
               alt={featureImage?.description ?? title}
               layout="fill"
               priority={featured}
+              loading={featured ? 'eager' : 'lazy'}
               className={classNames(
                 'object-cover cursor-pointer rounded-lg',
                 hoverEffect &&

@@ -1,4 +1,6 @@
 import { GetStaticProps, GetStaticPropsContext } from 'next';
+
+import { CMS } from '@/constants';
 import { IPost } from '@/types/cms';
 import { fetchBlogEntries } from '@/services/cms';
 import generateRSSFeed from '@/utils/rss';
@@ -41,6 +43,6 @@ export const getStaticProps: GetStaticProps = async (
 
   return {
     props: {},
-    revalidate: 3600, // refresh hourly
+    revalidate: CMS.CONTENT_REVALIDATE_RATE,
   };
 };

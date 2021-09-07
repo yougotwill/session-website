@@ -11,7 +11,7 @@ import Container from '@/components/Container';
 
 interface Props {
   post: IPost;
-  otherPosts: IPost[];
+  otherPosts?: IPost[];
 }
 
 export default function Post(props: Props): ReactElement {
@@ -108,13 +108,15 @@ export default function Post(props: Props): ReactElement {
           classes={classNames('text-sm text-gray', 'lg:text-base')}
         />
       </Container>
-      <PostList
-        posts={otherPosts}
-        gridStyle={'blog'}
-        hoverEffect={false}
-        compact={true}
-        classes={classNames('my-16', 'lg:mb-24')}
-      />
+      {otherPosts && (
+        <PostList
+          posts={otherPosts}
+          gridStyle={'blog'}
+          hoverEffect={false}
+          compact={true}
+          classes={classNames('my-16', 'lg:mb-24')}
+        />
+      )}
     </section>
   );
 }

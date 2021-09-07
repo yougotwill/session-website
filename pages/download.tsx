@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { ReactElement } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -37,6 +38,7 @@ export default function Download(): ReactElement {
     <Layout title="Download" metadata={METADATA.DOWNLOAD_PAGE}>
       <section>
         <Container
+          hasMinHeight={true}
           heights={{
             small: '100%',
             medium: '100%',
@@ -88,6 +90,8 @@ export default function Download(): ReactElement {
                   width="1148px"
                   height="2000px"
                   layout="responsive"
+                  priority={true}
+                  loading="eager"
                 />
               </div>
               <div className={classNames(linkContainerClasses)}>
@@ -211,6 +215,8 @@ export default function Download(): ReactElement {
                   width="1125px"
                   height="644px"
                   layout="responsive"
+                  priority={true}
+                  loading="eager"
                 />
               </div>
               <div
@@ -226,24 +232,23 @@ export default function Download(): ReactElement {
                     'lg:border-white'
                   )}
                 >
-                  <Link href="/mac">
-                    <a
+                  <a
+                    className={classNames(
+                      downloadLinkClasses,
+                      'lg:hover:bg-white lg:hover:text-gray-dark'
+                    )}
+                    href="/mac"
+                  >
+                    <AppleSVG
                       className={classNames(
-                        downloadLinkClasses,
-                        'lg:hover:bg-white lg:hover:text-gray-dark'
+                        downloadSVGClasses,
+                        'w-4 h-4',
+                        'md:w-6 md:h-6'
                       )}
-                    >
-                      <AppleSVG
-                        className={classNames(
-                          downloadSVGClasses,
-                          'w-4 h-4',
-                          'md:w-6 md:h-6'
-                        )}
-                        title="Apple logo"
-                      />
-                      <span>Mac</span>
-                    </a>
-                  </Link>
+                      title="Apple logo"
+                    />
+                    <span>Mac</span>
+                  </a>
                 </div>
                 <div
                   className={classNames(
@@ -251,44 +256,42 @@ export default function Download(): ReactElement {
                     'lg:border-white'
                   )}
                 >
-                  <Link href="/windows">
-                    <a
+                  <a
+                    className={classNames(
+                      downloadLinkClasses,
+                      'lg:hover:bg-white lg:hover:text-gray-dark'
+                    )}
+                    href="/windows"
+                  >
+                    <WindowsSVG
                       className={classNames(
-                        downloadLinkClasses,
-                        'lg:hover:bg-white lg:hover:text-gray-dark'
+                        downloadSVGClasses,
+                        'w-4 h-4',
+                        'md:w-6 md:h-6'
                       )}
-                    >
-                      <WindowsSVG
-                        className={classNames(
-                          downloadSVGClasses,
-                          'w-4 h-4',
-                          'md:w-6 md:h-6'
-                        )}
-                        title="Windows logo"
-                      />
-                      <span>Windows</span>
-                    </a>
-                  </Link>
+                      title="Windows logo"
+                    />
+                    <span>Windows</span>
+                  </a>
                 </div>
                 <div>
-                  <Link href="/linux">
-                    <a
+                  <a
+                    className={classNames(
+                      downloadLinkClasses,
+                      'lg:hover:bg-white lg:hover:text-gray-dark'
+                    )}
+                    href="/linux"
+                  >
+                    <LinuxSVG
                       className={classNames(
-                        downloadLinkClasses,
-                        'lg:hover:bg-white lg:hover:text-gray-dark'
+                        downloadSVGClasses,
+                        'w-5 h-5',
+                        'md:w-7 md:h-7'
                       )}
-                    >
-                      <LinuxSVG
-                        className={classNames(
-                          downloadSVGClasses,
-                          'w-5 h-5',
-                          'md:w-7 md:h-7'
-                        )}
-                        title="Linux logo"
-                      />
-                      <span>Linux</span>
-                    </a>
-                  </Link>
+                      title="Linux logo"
+                    />
+                    <span>Linux</span>
+                  </a>
                 </div>
               </div>
             </div>

@@ -21,6 +21,7 @@ export default function Hero(): ReactElement {
   return (
     <section>
       <Container
+        hasMinHeight={true}
         heights={{ small: '100%', medium: '100%', large: '100vh - 112px' }}
         classes={classNames(
           'mt-12',
@@ -113,6 +114,7 @@ export default function Hero(): ReactElement {
                 width="1112px"
                 height="1000px"
                 priority={true}
+                loading="eager"
               />
             </div>
           )}
