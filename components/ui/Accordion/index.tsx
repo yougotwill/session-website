@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ReactElement, useState, useRef, useEffect } from 'react';
 import { Document } from '@contentful/rich-text-types';
 import classNames from 'classnames';
@@ -17,16 +18,25 @@ interface Props {
 
 export default function Accordion(props: Props): ReactElement {
   const { id, question, answer, expand, classes } = props;
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [height, setHeight] = useState('0px');
   const content = useRef<HTMLDivElement>(null);
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [height, setHeight] = useState(`${content?.current?.scrollHeight}px`);
+  const [loaded, setLoaded] = useState(false);
   const handleExpand = () => {
     setIsExpanded(!isExpanded);
     setHeight(isExpanded ? '0px' : `${content?.current?.scrollHeight}px`);
   };
   const svgClasses = classNames('w-3 h-3 fill-current mb-1 mr-2');
   useEffect(() => {
-    if (expand) handleExpand();
+    if (!expand) {
+      handleExpand();
+    } else {
+      setHeight(`${content?.current?.scrollHeight}px`);
+    }
+    setLoaded(true);
+  }, []);
+  useEffect(() => {
+    if (loaded && expand) handleExpand();
   }, [expand]);
   return (
     <div
@@ -44,14 +54,24 @@ export default function Accordion(props: Props): ReactElement {
         )}
         onClick={handleExpand}
       >
-        <PlusSVG
-          className={classNames(svgClasses, isExpanded ? 'hidden' : 'inline')}
-          title="expand"
-        />
-        <MinusSVG
-          className={classNames(svgClasses, isExpanded ? 'inline' : 'hidden')}
-          title="close"
-        />
+        {loaded && (
+          <>
+            <MinusSVG
+              className={classNames(
+                svgClasses,
+                isExpanded ? 'inline' : 'hidden'
+              )}
+              title="close"
+            />
+            <PlusSVG
+              className={classNames(
+                svgClasses,
+                isExpanded ? 'hidden' : 'inline'
+              )}
+              title="expand"
+            />
+          </>
+        )}
         {question}
       </div>
       <div
@@ -61,7 +81,7 @@ export default function Accordion(props: Props): ReactElement {
           isExpanded && 'border-gray-300 border-b'
         )}
         ref={content}
-        style={{ maxHeight: height }}
+        style={{ height: height }}
       >
         <RichBody
           body={answer}

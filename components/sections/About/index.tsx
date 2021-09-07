@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ReactElement, useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import classNames from 'classnames';
