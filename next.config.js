@@ -68,6 +68,10 @@ const config = {
         source: '/windows',
         destination: '/api/download/windows',
       },
+      {
+        source: '/blog/:slug',
+        destination: '/:slug',
+      },
     ];
   },
   target: 'serverless',

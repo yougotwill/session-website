@@ -85,32 +85,30 @@ export async function fetchBlogEntriesByTag(
   };
 }
 
-export async function fetchEntryBySlug(
-  slug: string,
-  entryType: 'post' | 'page'
-): Promise<any> {
-  const _entries = await client.getEntries({
-    content_type: entryType, // only fetch specific type
+export async function fetchEntryBySlug(slug: string): Promise<IPage | IPost> {
+  const _pages = await client.getEntries({
+    content_type: 'page',
     'fields.slug': slug,
   });
+  const _posts = await client.getEntries({
+    content_type: 'post',
+    'fields.slug': slug,
+  });
+
+  const _entries = [..._pages.items, ..._posts.items];
   const taglist = await fetchTagList();
 
-  if (_entries?.items?.length > 0) {
-    let entry;
-    switch (entryType) {
-      case 'post':
-        entry = convertPost(_entries.items[0], taglist);
-        break;
-      case 'page':
-        entry = convertPage(_entries.items[0]);
-        break;
-      default:
-        break;
+  if (_entries.length > 0) {
+    let entry = _entries[0];
+    if (entry.sys.contentType.sys.id === 'post') {
+      return convertPost(entry, taglist);
     }
-    return entry;
+    if (entry.sys.contentType.sys.id === 'page') {
+      return convertPage(entry);
+    }
   }
 
-  return Promise.reject(new Error(`Failed to fetch ${entryType} for ${slug}`));
+  return Promise.reject(new Error(`Failed to fetch entry for ${slug}`));
 }
 
 function convertPost(rawData: any, taglist: ITagList): IPost {

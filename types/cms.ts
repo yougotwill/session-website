@@ -35,6 +35,10 @@ export interface IPost {
   slug: string;
 }
 
+export function isPost(object: unknown): object is IPost {
+  return Object.prototype.hasOwnProperty.call(object, 'publishedDate');
+}
+
 export interface IFAQItem {
   id: number;
   question: string;
@@ -69,6 +73,10 @@ export interface IPage {
   slug: string;
   headline: string | null;
   body: Document;
+}
+
+export function isPage(object: unknown): object is IPage {
+  return Object.prototype.hasOwnProperty.call(object, 'headline');
 }
 
 export interface IFetchPagesReturn extends IFetchEntriesReturn {
