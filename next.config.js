@@ -11,7 +11,7 @@ const config = {
     CAMPAIGN_MONITOR_LIST_API_ID: process.env.CAMPAIGN_MONITOR_LIST_API_ID,
   },
   images: {
-    domains: ['images.ctfassets.net'],
+    domains: ['downloads.ctfassets.net', 'images.ctfassets.net'],
   },
   serverRuntimeConfig: {
     redirects: [

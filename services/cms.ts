@@ -5,7 +5,6 @@ import {
   Tag,
 } from 'contentful';
 import { Document, Block, Inline } from '@contentful/rich-text-types';
-import isLive from '@/utils/environment';
 import { format, parseISO } from 'date-fns';
 
 import {
@@ -20,7 +19,9 @@ import {
   IFetchFAQItemsReturn,
   IFetchPagesReturn,
 } from '@/types/cms';
+import { METADATA } from '@/constants';
 import { fetchContent } from '@/services/embed';
+import isLive from '@/utils/environment';
 
 const client: ContentfulClientApi = createClient({
   space: process.env.CONTENTFUL_SPACE_ID!,
@@ -200,6 +201,9 @@ export function generateRoute(slug: string): string {
 async function loadMetaData(node: Block | Inline) {
   // is embedded link not embedded media
   if (!node.data.target.fields.file) {
+    if (node.data.target.sys.contentType.sys.id === 'post') {
+      node.data.target.fields.url = `${METADATA.HOST_URL}/blog/${node.data.target.fields.slug}`;
+    }
     node.data.target.fields.meta = await fetchContent(
       node.data.target.fields.url
     );

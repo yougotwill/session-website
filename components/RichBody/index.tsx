@@ -152,6 +152,9 @@ export default function RichBody(props: Props): ReactElement {
           </blockquote>
         </div>
       ),
+      [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
+        return renderEmbeddedEntry({ node });
+      },
       [BLOCKS.EMBEDDED_ENTRY]: (node, children) => {
         return renderEmbeddedEntry({ node });
       },
