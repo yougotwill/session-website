@@ -59,15 +59,18 @@ function EmbeddedLink(node: any, isInline = false): ReactElement {
 
 function EmbeddedMedia(node: any, isInline = false): ReactElement {
   const { isSmall, isMedium } = useScreen();
-  const media = node.file.fields;
+  // is either an asset or entry
+  const media = node.file.fields ?? node;
   const url = media.file.url.replace('//', 'https://');
   switch (media.file.contentType) {
     case 'image/jpeg':
     case 'image/png':
+    case 'image/gif':
+    case 'image/svg+xml':
       const imageWidth = node.width ?? media.file.details.image.width;
       const imageHeight = node.height ?? media.file.details.image.height;
       const figureClasses = [
-        isInline && node.position && 'mx-auto mb-8 md:mx-4',
+        isInline && node.position && ' text-center mx-auto mb-8 md:mx-4',
         isInline && !node.position && 'inline-block align-middle mx-1',
         isInline && node.position === 'left' && 'md:float-left',
         isInline && node.position === 'right' && 'md:float-right',
@@ -82,13 +85,16 @@ function EmbeddedMedia(node: any, isInline = false): ReactElement {
       return (
         <figure
           className={classNames(figureClasses)}
-          style={{ width: node.position ? imageWidth : '' }}
+          style={{
+            width: !isSmall && node.position ? imageWidth : '',
+          }}
         >
           <Image
             src={`${url}${isSmall ? '?w=300' : isMedium ? '?w=600' : ''}`}
             alt={node.title}
             width={imageWidth}
             height={imageHeight}
+            priority={true}
           />
           {node.caption && (
             <figcaption className={classNames(captionClasses)}>
@@ -128,7 +134,7 @@ export function renderEmbeddedEntry(props: IEmbedEntry) {
   const { node, isInline = false } = props;
   const target = node.data.target;
   const asset = target.fields;
-  if (target.sys.contentType.sys.id === 'markup') {
+  if (target.sys.contentType && target.sys.contentType.sys.id === 'markup') {
     return Markup(asset);
   }
   if (!asset.file) {

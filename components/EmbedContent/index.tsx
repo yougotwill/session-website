@@ -34,11 +34,12 @@ export default function EmbedContent(props: Props): ReactElement {
             )}
           >
             {content.image && (
-              <div className={classNames('w-full')}>
+              <div className={classNames('relative w-full h-36', 'md:h-48')}>
                 <Image
                   src={content.image}
                   alt="link thumbnail image"
                   layout="fill"
+                  priority={true}
                   className={classNames('object-cover')}
                 />
               </div>
