@@ -33,23 +33,8 @@ const config = {
         permanent: true,
       },
       {
-        source: '/linux',
-        destination: '/download',
-        permanent: true,
-      },
-      {
-        source: '/mac',
-        destination: '/download',
-        permanent: true,
-      },
-      {
         source: '/whitepaper',
         destination: 'https://arxiv.org/pdf/2002.04609.pdf',
-        permanent: true,
-      },
-      {
-        source: '/windows',
-        destination: '/download',
         permanent: true,
       },
     ],
@@ -64,13 +49,24 @@ const config = {
         destination: '/api/feed/rss',
       },
       {
-        // The /:slug part is a generic parameter handler to catch all other cases
         source: '/feed/:slug',
         destination: '/api/feed/:slug',
       },
       {
         source: '/sitemap.xml',
         destination: '/api/sitemap',
+      },
+      {
+        source: '/linux',
+        destination: '/api/download/linux',
+      },
+      {
+        source: '/mac',
+        destination: '/api/download/mac',
+      },
+      {
+        source: '/windows',
+        destination: '/api/download/windows',
       },
     ];
   },
