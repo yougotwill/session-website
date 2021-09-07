@@ -9,7 +9,7 @@ export interface IRedirection {
 
 const redirects: IRedirection[] = getConfig().serverRuntimeConfig.redirects;
 
-async function fetchLatest(repo: string) {
+async function fetchLatestVersion(repo: string) {
   const fallbackVersion = '1.6.10'; // should update periodcally
   const res = await fetch(
     `https://api.github.com/repos/oxen-io/${repo}/releases/latest`
@@ -19,7 +19,11 @@ async function fetchLatest(repo: string) {
 
   if (res.status !== 200) {
     console.warn(
-      `Redirect Service: Code ${res.status} | ${data.message} | See ${data.documentation}`
+      `Redirect Service: Code ${res.status} | ${data.message}`,
+      `${data.documentation && `| See ${data.documentation}`}`
+    );
+    console.log(
+      `Redirect Service: Falling back to version ${fallbackVersion}.`
     );
     return fallbackVersion;
   }
@@ -28,7 +32,7 @@ async function fetchLatest(repo: string) {
 }
 
 async function fetchDynamicRedirects() {
-  const desktopVersion = await fetchLatest('session-desktop');
+  const desktopVersion = await fetchLatestVersion('session-desktop');
   const redirects: IRedirection[] = [
     {
       source: '/linux',
@@ -49,18 +53,19 @@ async function fetchDynamicRedirects() {
   return redirects;
 }
 
-export async function hasRedirection(url: string) {
+export async function getDynamicRedirection(url: string) {
   const dynamicRedirects = await fetchDynamicRedirects();
-
-  redirects.forEach((redirection, index) => {
-    dynamicRedirects.forEach((dynamicRedirection) => {
-      if (redirection.source === dynamicRedirection.source) {
-        redirects[index] = dynamicRedirection;
-        return;
-      }
-    });
+  let redirection = '';
+  dynamicRedirects.forEach((dynamicRedirection) => {
+    if (url === dynamicRedirection.source) {
+      redirection = dynamicRedirection.destination;
+      return;
+    }
   });
+  return redirection;
+}
 
+export async function hasRedirection(url: string) {
   let response = null;
   redirects.forEach((redirection) => {
     if (redirection.source === url) {
