@@ -192,7 +192,7 @@ async function generateEntries(
 
 export function generateRoute(slug: string): string {
   const route =
-    slug.indexOf('/blog/') > 0 ? slug.split('/blog/')[1] : '/blog/' + slug;
+    slug.indexOf('/blog/') > 0 ? slug.split('/blog/')[0] : '/blog/' + slug;
   return route;
 }
 
