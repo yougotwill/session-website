@@ -47,14 +47,23 @@ export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
   const tag = String(context.params?.tag);
-  const { entries: posts, total: totalPosts } = await fetchBlogEntriesByTag(
-    tag
-  );
 
-  return {
-    props: { tag, posts },
-    revalidate: CMS.CONTENT_REVALIDATE_RATE,
-  };
+  try {
+    const { entries: posts, total: totalPosts } = await fetchBlogEntriesByTag(
+      tag
+    );
+
+    return {
+      props: { tag, posts },
+      revalidate: CMS.CONTENT_REVALIDATE_RATE,
+    };
+  } catch (err) {
+    console.error(err);
+    return {
+      notFound: true,
+      revalidate: CMS.CONTENT_REVALIDATE_RATE,
+    };
+  }
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -69,6 +78,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   };
 };
