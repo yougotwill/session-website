@@ -9,6 +9,7 @@ import {
   fetchPages,
   generateLinkMeta,
 } from '@/services/cms';
+import { hasRedirection } from '@/services/redirect';
 
 import BlogPost from '@/components/BlogPost';
 import RichPage from '@/components/RichPage';
@@ -29,32 +30,43 @@ export default function Page(props: Props): ReactElement {
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   const slug = String(context.params?.slug);
-  const content: IPage | IPost = await fetchEntryBySlug(slug);
-
-  if (!content) {
-    return { notFound: true };
+  const redirect = await hasRedirection(`/${slug}`);
+  if (redirect) {
+    return {
+      redirect: redirect,
+      revalidate: CMS.CONTENT_REVALIDATE_RATE,
+    };
   }
 
-  // embedded links in content body need metadata for preview
-  content.body = await generateLinkMeta(content.body);
+  try {
+    const content: IPage | IPost = await fetchEntryBySlug(slug);
 
-  const props: Props = { content };
+    // embedded links in content body need metadata for preview
+    content.body = await generateLinkMeta(content.body);
+    const props: Props = { content };
 
-  if (isPost(content)) {
-    // we want 6 posts excluding the current one if it's found
-    const { entries: posts, total: totalPosts } = await fetchBlogEntries(7);
-    const otherPosts = posts
-      .filter((post) => {
-        return content.slug !== post.slug;
-      })
-      .slice(0, 6);
-    props.otherPosts = otherPosts;
+    if (isPost(content)) {
+      // we want 6 posts excluding the current one if it's found
+      const { entries: posts, total: totalPosts } = await fetchBlogEntries(7);
+      const otherPosts = posts
+        .filter((post) => {
+          return content.slug !== post.slug;
+        })
+        .slice(0, 6);
+      props.otherPosts = otherPosts;
+    }
+
+    return {
+      props,
+      revalidate: CMS.CONTENT_REVALIDATE_RATE,
+    };
+  } catch (err) {
+    console.error(err);
+    return {
+      notFound: true,
+      revalidate: CMS.CONTENT_REVALIDATE_RATE,
+    };
   }
-
-  return {
-    props,
-    revalidate: CMS.CONTENT_REVALIDATE_RATE,
-  };
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -78,6 +90,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths: [...pagePaths, ...postPaths],
-    fallback: false,
+    fallback: 'blocking',
   };
 };
