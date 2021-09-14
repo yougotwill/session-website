@@ -77,12 +77,15 @@ export async function fetchBlogEntriesByTag(
       limit: quantity,
     })
   );
+  if (_entries.items.length > 0) {
+    const results = await generateEntries(_entries, 'post');
+    return {
+      entries: results.entries as Array<IPost>,
+      total: results.total,
+    };
+  }
 
-  const results = await generateEntries(_entries, 'post');
-  return {
-    entries: results.entries as Array<IPost>,
-    total: results.total,
-  };
+  return Promise.reject(new Error(`Failed to fetch entries for ${tag}`));
 }
 
 export async function fetchEntryBySlug(slug: string): Promise<IPage | IPost> {
@@ -192,7 +195,7 @@ async function generateEntries(
 
 export function generateRoute(slug: string): string {
   const route =
-    slug.indexOf('/blog/') > 0 ? slug.split('/blog/')[1] : '/blog/' + slug;
+    slug.indexOf('/blog/') > 0 ? slug.split('/blog/')[0] : '/blog/' + slug;
   return route;
 }
 
