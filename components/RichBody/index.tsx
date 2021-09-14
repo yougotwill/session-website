@@ -64,9 +64,23 @@ export default function RichBody(props: Props): ReactElement {
       [INLINES.EMBEDDED_ENTRY]: (node, children) => {
         return renderEmbeddedEntry({ node, isInline: true });
       },
-      [BLOCKS.PARAGRAPH]: (node, children) => (
-        <p className={classNames('leading-relaxed pb-6')}>{children}</p>
-      ),
+      [BLOCKS.PARAGRAPH]: (node, children) => {
+        let hasImage = false;
+        Children.map(children, (child: any) => {
+          if (child.type === 'figure') {
+            hasImage = true;
+            return;
+          }
+        });
+        if (hasImage) {
+          return (
+            <span className={classNames('leading-relaxed pb-6')}>
+              {children}
+            </span>
+          );
+        }
+        return <p className={classNames('leading-relaxed pb-6')}>{children}</p>;
+      },
       [BLOCKS.HEADING_1]: (node, children) => (
         <h1
           id={hasLocalID(node)}

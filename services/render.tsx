@@ -6,7 +6,7 @@ import sanitize from '@/utils/sanitize';
 
 import EmbedContent from '@/components/EmbedContent';
 import { useScreen } from '@/contexts/screen';
-import { ReactElement } from 'react';
+import { ReactElement, CSSProperties } from 'react';
 
 function Markup(node: any): ReactElement {
   const frontTags: string[] = [];
@@ -70,7 +70,7 @@ function EmbeddedMedia(node: any, isInline = false): ReactElement {
       const imageWidth = node.width ?? media.file.details.image.width;
       const imageHeight = node.height ?? media.file.details.image.height;
       const figureClasses = [
-        isInline && node.position && ' text-center mx-auto mb-8 md:mx-4',
+        isInline && node.position && ' text-center mx-auto mt-4 mb-8 md:mx-4',
         isInline && !node.position && 'inline-block align-middle mx-1',
         isInline && node.position === 'left' && 'md:float-left',
         isInline && node.position === 'right' && 'md:float-right',
@@ -82,13 +82,12 @@ function EmbeddedMedia(node: any, isInline = false): ReactElement {
           !node.position &&
           'text-center md:inline-block md:align-middle md:mx-1',
       ];
+      const figureStyles: CSSProperties = {};
+      if (!isSmall && node.position) {
+        figureStyles.width = imageWidth;
+      }
       return (
-        <figure
-          className={classNames(figureClasses)}
-          style={{
-            width: !isSmall && node.position ? imageWidth : '',
-          }}
-        >
+        <figure className={classNames(figureClasses)} style={figureStyles}>
           <Image
             src={`${url}${isSmall ? '?w=300' : isMedium ? '?w=600' : ''}`}
             alt={node.title}
