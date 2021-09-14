@@ -162,5 +162,5 @@ export default function RichBody(props: Props): ReactElement {
   };
 
   const richBody = documentToReactComponents(body, options);
-  return <div className={classNames(classes)}>{richBody}</div>;
+  return <div className={classNames('rich-content', classes)}>{richBody}</div>;
 }
