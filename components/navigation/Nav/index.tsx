@@ -1,4 +1,5 @@
 import { ReactElement, useState } from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'classnames';
@@ -8,6 +9,7 @@ import MenuSVG from '@/assets/svgs/hamburger.svg';
 import CloseSVG from '@/assets/svgs/close.svg';
 
 export default function Nav(): ReactElement {
+  const router = useRouter();
   const [isExpanded, setIsExpanded] = useState(false);
   const toggleNav = () => {
     setIsExpanded(!isExpanded);
@@ -19,6 +21,9 @@ export default function Nav(): ReactElement {
     'transition-colors duration-300',
     'hover:bg-gray-light lg:hover:border-primary lg:hover:text-primary lg:hover:bg-transparent'
   );
+  const isActiveNavLink = (url: string) => {
+    return url == router.asPath && 'lg:border-primary lg:text-primary';
+  };
   return (
     <nav
       className={classNames(
@@ -104,10 +109,14 @@ export default function Nav(): ReactElement {
             </a>
           </Link>
           <Link href="/blog">
-            <a className={navLinkClasses}>blog</a>
+            <a className={classNames(navLinkClasses, isActiveNavLink('/blog'))}>
+              blog
+            </a>
           </Link>
           <Link href="/faq">
-            <a className={navLinkClasses}>faq</a>
+            <a className={classNames(navLinkClasses, isActiveNavLink('/faq'))}>
+              faq
+            </a>
           </Link>
           <Link href="/download">
             <a className="hidden lg:inline">

@@ -354,6 +354,14 @@ button {
   }
 }
 
+.rich-content a span {
+  text-decoration-line: none;
+}
+
+.rich-content a span:hover {
+  text-decoration-line: underline;
+}
+
 /* https://github.com/videojs/video.js/issues/5751#issuecomment-483585248 */
 /* includes fixes for desktop safari  */
 .vjs-has-started .vjs-control-bar {
