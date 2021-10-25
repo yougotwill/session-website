@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ReactElement, useState, useEffect, useRef } from 'react';
-import dynamic from 'next/dynamic';
-import classNames from 'classnames';
-import redact from '@/utils/redact';
-import { useScreen } from '@/contexts/screen';
+import { ReactElement, useEffect, useRef, useState } from 'react';
 
 import Container from '@/components/Container';
 import { Headline } from '@/components/ui';
 import { VideoPlayerProps } from '@/components/VideoPlayer';
+import classNames from 'classnames';
+import dynamic from 'next/dynamic';
+import redact from '@/utils/redact';
+import { useScreen } from '@/contexts/screen';
 
 // optimise build sizes by loading dynamically
 const DynamicVideoPlayer = dynamic(() => import('@/components/VideoPlayer'));
@@ -26,6 +26,7 @@ export default function About(): ReactElement {
   );
   const videoProps: VideoPlayerProps = {
     hasQualityLevels: true,
+    shape: 'square',
     poster: '/assets/videos/this-is-session/thumbnail.webp',
     sources: [
       {
