@@ -1,27 +1,26 @@
+import { Block, Document, Inline } from '@contentful/rich-text-types';
 import {
-  createClient,
   ContentfulClientApi,
   EntryCollection,
   Tag,
+  createClient,
 } from 'contentful';
-import { Document, Block, Inline } from '@contentful/rich-text-types';
-import { format, parseISO } from 'date-fns';
-
 import {
-  IFigureImage,
   IAuthor,
-  IPost,
   IFAQItem,
-  IPage,
-  ITagList,
-  IFetchEntriesReturn,
   IFetchBlogEntriesReturn,
+  IFetchEntriesReturn,
   IFetchFAQItemsReturn,
   IFetchPagesReturn,
+  IFigureImage,
+  IPage,
+  IPost,
+  ITagList,
 } from '@/types/cms';
+import { format, parseISO } from 'date-fns';
+
 import { METADATA } from '@/constants';
 import { fetchContent } from '@/services/embed';
-import isLive from '@/utils/environment';
 
 const client: ContentfulClientApi = createClient({
   space: process.env.CONTENTFUL_SPACE_ID!,
@@ -38,21 +37,14 @@ export async function fetchTagList(): Promise<ITagList> {
   return tags;
 }
 
-function loadOptions(options: any) {
-  if (isLive()) options['fields.live'] = true;
-  return options;
-}
-
 export async function fetchBlogEntries(
   quantity = 100
 ): Promise<IFetchBlogEntriesReturn> {
-  const _entries = await client.getEntries(
-    loadOptions({
-      content_type: 'post', // only fetch blog post entry
-      order: '-fields.date',
-      limit: quantity,
-    })
-  );
+  const _entries = await client.getEntries({
+    content_type: 'post', // only fetch blog post entry
+    order: '-fields.date',
+    limit: quantity,
+  });
 
   const results = await generateEntries(_entries, 'post');
   return {
@@ -70,14 +62,13 @@ export async function fetchBlogEntriesByTag(
     return tag === value;
   })[0][0];
 
-  const _entries = await client.getEntries(
-    loadOptions({
-      content_type: 'post', // only fetch blog post entry
-      order: '-fields.date',
-      'metadata.tags.sys.id[in]': id,
-      limit: quantity,
-    })
-  );
+  const _entries = await client.getEntries({
+    content_type: 'post', // only fetch blog post entry
+    order: '-fields.date',
+    'metadata.tags.sys.id[in]': id,
+    limit: quantity,
+  });
+
   if (_entries.items.length > 0) {
     const results = await generateEntries(_entries, 'post');
     return {
@@ -292,12 +283,10 @@ function convertFAQ(rawData: any): IFAQItem {
 }
 
 export async function fetchPages(quantity = 100): Promise<IFetchPagesReturn> {
-  const _entries = await client.getEntries(
-    loadOptions({
-      content_type: 'page',
-      limit: quantity,
-    })
-  );
+  const _entries = await client.getEntries({
+    content_type: 'page',
+    limit: quantity,
+  });
 
   const results = await generateEntries(_entries, 'page');
   return {
