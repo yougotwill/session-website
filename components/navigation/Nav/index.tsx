@@ -20,7 +20,7 @@ export default function Nav(): ReactElement {
       role="navigation"
       className={classNames(
         'container relative flex flex-wrap items-center justify-between max-w-6xl px-4 pb-2 mx-auto z-10',
-        'lg:pb-0 lg:h-28 lg:px-10'
+        'lg:pb-0 lg:h-24 lg:px-10'
       )}
     >
       <div
