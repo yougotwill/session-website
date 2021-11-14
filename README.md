@@ -7,19 +7,40 @@
 
 This project is built with [Next.js](https://nextjs.org/) , [Tailwind CSS](https://tailwindcss.com/) & [Contentful](https://www.contentful.com).
 
-First, run the development server:
+### Setup
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- Signup for a free [Contentful](https://www.contentful.com/) account and create an organisation.
+- Import our Content models and assets into your Contentful space. We have created some example content for you to use.
+  - Add your `space ID` and `content management token` inside of [contentful/config.json](contentful/config.json)
+  - Run this command inside the root of this project
+  ```
+    npx contentful space import --config contentful/config.json
+  ```
+  - For more information see [here](https://www.contentful.com/developers/docs/tutorials/cli/import-and-export/)
+- Create a `.env.local` file
+  ```shell
+  CONTENTFUL_SPACE_ID=************
+  CONTENTFUL_ACCESS_TOKEN=*******************************************
+  CONTENTFUL_PREVIEW_TOKEN=*******************************************
+  CAMPAIGN_MONITOR_CLIENT_ID=********************************
+  CAMPAIGN_MONITOR_API_KEY=********************************
+  ************************************************************************************************************************
+  CAMPAIGN_MONITOR_LIST_API_ID=********************************
+  STAGING_SECRET=**********
+  ```
+  - You don't need to worry about Campaign Monitor keys unless you are interested in how we handle mailing list subscriptions.
+- Install the depencencies
+  ```bash
+  yarn install
+  ```
+- Now you can run the development server:
+  ```bash
+  yarn dev
+  ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
@@ -34,17 +55,13 @@ The `pages/api` directory is mapped to `/api/*`. Files in this directory are tre
 
 - **Always** run `yarn run build && yarn run start` to see how the code works in a production environment before committing or pushing to the server.
 
-- For staging environments use `build:staging` and `start:staging`. This updates the system environment variables, page metadata and shows content from Contentful that is not yet `live 🚀` .
+- For staging environments use `build:staging` and `start:staging`. This updates the system environment variables, page metadata accordingly.
 
 - For accessbility testing we use the [axe-react](https://github.com/dequelabs/axe-core-npm/blob/develop/packages/react/README.md) plugin.
 
 - Uses [Headwind](https://github.com/heybourn/headwind) VSCode extension for sorting Tailwind classes.
 
 - Uses [classnames](https://www.npmjs.com/package/classnames) to organise our classes into groups that combine at build time.
-
-- To work with any pages that use [Contentful](https://www.contentful.com) you will need to create your own free account and import our Contentful models.
-
-  Email [will@oxen.io](mailto:will@oxen.io) for access to the content models. If there is enough interest they may be added to the repo in future.
 
 ### Tailwind class structure
 
