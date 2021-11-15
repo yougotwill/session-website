@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ReactElement, useEffect, useRef, useState } from 'react';
 
-import { ReactComponent as CopySVG } from '@/assets/svgs/copy.svg';
+import { ReactComponent as LinkSVG } from '@/assets/svgs/link.svg';
 import { Document } from '@contentful/rich-text-types';
 import Link from 'next/link';
 import { ReactComponent as MinusSVG } from '@/assets/svgs/minus.svg';
@@ -74,9 +74,10 @@ export default function Accordion(props: Props): ReactElement {
         {question}
         <Link href={`#${id}`}>
           <a className="focus:outline-none">
-            <CopySVG
+            <LinkSVG
               className={classNames(
-                'inline w-4 h-4 fill-current mb-1 mr-2 mt-1 ml-2 opacity-0',
+                'inline w-4 h-4 fill-current mb-1 mr-2 mt-0.5 ml-2 opacity-0',
+                'transition-opacity duration-500',
                 'hover:opacity-100'
               )}
             />
