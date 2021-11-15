@@ -191,12 +191,12 @@ export default function CustomHead(props: Props): ReactElement {
       <meta
         key="twitter:creator"
         name="twitter:creator"
-        content="session_app"
+        content={METADATA.TWITTER_CREATOR}
       />
       <meta
         key="apple-itunes-app"
         name="apple-itunes-app"
-        content="app-id=1547745078"
+        content={METADATA.ITUNES_ID}
       />
       <meta
         key="msapplication-TileColor"
