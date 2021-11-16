@@ -172,7 +172,7 @@ export default function Download(): ReactElement {
           >
             <div
               className={classNames(
-                'lg:w-3/4 lg:ml-8 lg:h-full lg:flex lg:flex-col lg:justify-between',
+                'lg:w-3/4 lg:ml-10 lg:h-full lg:flex lg:flex-col lg:justify-between',
                 'xl:w-7/12',
                 '2xl:w-1/2 2xl:ml-24'
               )}
@@ -180,7 +180,7 @@ export default function Download(): ReactElement {
               <p
                 className={classNames(
                   subtitleClasses,
-                  'pt-32',
+                  'pt-20',
                   'lg:pt-20',
                   'xl:pt-8',
                   '2xl:pt-20'
@@ -188,27 +188,22 @@ export default function Download(): ReactElement {
               >
                 Download Session for
               </p>
-              <h2
-                className={classNames(
-                  headingClasses,
-                  'mt-4 mb-6',
-                  'lg:mb-auto'
-                )}
-              >
+              <h2 className={classNames(headingClasses, 'mt-4', 'lg:mb-auto')}>
                 Desktop
               </h2>
               <div
                 className={classNames(
-                  'px-3 mb-6',
-                  'md:mb-10',
-                  'lg:px-0 lg:mt-4 lg:mb-auto'
+                  'px-3 -ml-1 z-0',
+                  'md:px-16',
+                  'lg:px-0 lg:mt-2 lg:ml-0 lg:-mr-6 lg:mb-auto',
+                  'xl:-mr-8'
                 )}
               >
                 <Image
                   src="/assets/images/mockup-desktop.png"
                   alt="desktop app screenshot"
-                  width="1125px"
-                  height="644px"
+                  width="2477px"
+                  height="3000px"
                   layout="responsive"
                   priority={true}
                   loading="eager"
@@ -217,7 +212,8 @@ export default function Download(): ReactElement {
               <div
                 className={classNames(
                   linkContainerClasses,
-                  'md:pb-32',
+                  'z-10',
+                  'md:-mt-8 md:pb-32',
                   'lg:pb-12'
                 )}
               >

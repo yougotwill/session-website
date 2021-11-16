@@ -1,9 +1,8 @@
-import { ReactElement } from 'react';
-import Image from 'next/image';
-import classNames from 'classnames';
-
 import Container from '@/components/Container';
 import { Headline } from '@/components/ui';
+import Image from 'next/image';
+import { ReactElement } from 'react';
+import classNames from 'classnames';
 import { useScreen } from '@/contexts/screen';
 
 export default function Features(): ReactElement {
@@ -91,12 +90,18 @@ export default function Features(): ReactElement {
             </p>
           </div>
           {(isLarge || isHuge || isEnormous) && (
-            <div className={classNames('w-full -mt-12', 'xl:-mr-16')}>
+            <div
+              className={classNames(
+                'w-full -mt-12',
+                'xl:ml-8 xl:-mr-8',
+                '3xl:-mr-16'
+              )}
+            >
               <Image
                 src="/assets/images/mockup-desktop.png"
                 alt="desktop app screenshot"
-                width="1125px"
-                height="644px"
+                width="2477px"
+                height="3000px"
                 layout="responsive"
                 loading="eager"
               />

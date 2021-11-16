@@ -1,10 +1,11 @@
+import { Button, Headline, Layout } from '@/components/ui';
 import { ReactElement, useState } from 'react';
-import classNames from 'classnames';
-import Image from 'next/image';
 
 import Container from '@/components/Container';
-import { Button, Headline, Layout } from '@/components/ui';
+import Image from 'next/image';
 import METADATA from '@/constants/metadata';
+import classNames from 'classnames';
+import { copyToClipboard } from '@/utils/clipboard';
 
 export default function OpenGroup(): ReactElement {
   const openGroupURL =
@@ -15,25 +16,7 @@ export default function OpenGroup(): ReactElement {
       setIsCopied(false);
       return;
     }
-    if (typeof window !== 'undefined') {
-      // https://stackoverflow.com/questions/51805395/navigator-clipboard-is-undefined
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard
-          .writeText(openGroupURL)
-          .then(() => setIsCopied(true))
-          .catch((e) => alert(e.message));
-      } else {
-        let textArea = document.createElement('textarea');
-        textArea.value = openGroupURL;
-        textArea.style.position = 'fixed';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        const copySuccess = document.execCommand('copy');
-        copySuccess ? setIsCopied(true) : alert('Copy Failed');
-        textArea.remove();
-      }
-    }
+    copyToClipboard(openGroupURL, setIsCopied);
   };
   return (
     <Layout title="Open Group Channel" metadata={METADATA.OPEN_GROUP_PAGE}>
