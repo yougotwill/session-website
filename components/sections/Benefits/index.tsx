@@ -1,12 +1,13 @@
+import { BenefitsCard } from '@/components/cards';
+import Container from '@/components/Container';
+import { Headline } from '@/components/ui';
 import { ReactElement } from 'react';
 import classNames from 'classnames';
 
-import Container from '@/components/Container';
-import { Headline } from '@/components/ui';
-import { BenefitsCard } from '@/components/cards';
-
 export default function Benefits(): ReactElement {
   const cardClasses = classNames('w-1/2 mb-5', 'lg:w-full lg:max-w-sm lg:px-8');
+  const imageWidth = '500px';
+  const imageHeight = '500px';
   return (
     <section className={'text-gray-dark bg-primary'}>
       <Headline
@@ -50,12 +51,12 @@ export default function Benefits(): ReactElement {
               'No phone number or email required.',
             ]}
             images={[
-              '/assets/images/no-phone.png',
-              '/assets/images/no-phone-redacted.png',
+              '/assets/svgs/no-phone.svg',
+              '/assets/svgs/no-phone-redacted.svg',
             ]}
             imageAlt="crossed out telephone"
-            imageWidth="152px"
-            imageHeight="152px"
+            imageWidth={imageWidth}
+            imageHeight={imageHeight}
             classes={classNames(cardClasses, 'lg:mb-32')}
           />
           <BenefitsCard
@@ -65,12 +66,12 @@ export default function Benefits(): ReactElement {
               'so there’s nothing to leak.',
             ]}
             images={[
-              '/assets/images/no-data.png',
-              '/assets/images/no-data-redacted.png',
+              '/assets/svgs/no-data.svg',
+              '/assets/svgs/no-data-redacted.svg',
             ]}
             imageAlt="restricted lock"
-            imageWidth="174px"
-            imageHeight="155px"
+            imageWidth={imageWidth}
+            imageHeight={imageHeight}
             classes={classNames(cardClasses, 'lg:mb-32')}
           />
           <BenefitsCard
@@ -80,12 +81,12 @@ export default function Benefits(): ReactElement {
               ' routing network and leave no trace.',
             ]}
             images={[
-              '/assets/images/no-footprint.png',
-              '/assets/images/no-footprint-redacted.png',
+              '/assets/svgs/no-footprint.svg',
+              '/assets/svgs/no-footprint-redacted.svg',
             ]}
             imageAlt="footprint stop sign"
-            imageWidth="159px"
-            imageHeight="159px"
+            imageWidth={imageWidth}
+            imageHeight={imageHeight}
             classes={classNames(cardClasses, 'lg:mb-32')}
           />
           <BenefitsCard
@@ -95,12 +96,12 @@ export default function Benefits(): ReactElement {
               'view, audit, and contribute.',
             ]}
             images={[
-              '/assets/images/open-source.png',
-              '/assets/images/open-source-redacted.png',
+              '/assets/svgs/open-source.svg',
+              '/assets/svgs/open-source-redacted.svg',
             ]}
             imageAlt="open source logo"
-            imageWidth="159px"
-            imageHeight="159px"
+            imageWidth={imageWidth}
+            imageHeight={imageHeight}
             classes={classNames(cardClasses, 'lg:mb-24')}
           />
           <BenefitsCard
@@ -110,12 +111,12 @@ export default function Benefits(): ReactElement {
               'it’s harder to shut Session down.',
             ]}
             images={[
-              '/assets/images/censorship-resistant.png',
-              '/assets/images/censorship-resistant-redacted.png',
+              '/assets/svgs/censorship-resistant.svg',
+              '/assets/svgs/censorship-resistant-redacted.svg',
             ]}
             imageAlt="silenced person"
-            imageWidth="160px"
-            imageHeight="159px"
+            imageWidth={imageWidth}
+            imageHeight={imageHeight}
             classes={classNames(cardClasses, 'lg:mb-24')}
           />
         </div>
