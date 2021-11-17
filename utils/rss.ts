@@ -1,6 +1,6 @@
-import { Feed } from 'feed';
 import { mkdirSync, writeFileSync } from 'fs';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+
+import { Feed } from 'feed';
 import { IPost } from '../types/cms';
 import METADATA from '@/constants/metadata';
 
@@ -30,12 +30,14 @@ METADATA.TAGS.forEach((tag) => {
 
 export default function generateRSSFeed(posts: IPost[]) {
   posts.forEach((post) => {
+    const postLink = `${baseUrl}/blog/${post.slug}`;
+    const postContent = `<p>${post.description}</p><p><a href="${postLink}">Read more</a></p>`;
     feed.addItem({
       title: post.title,
       id: post.id,
-      link: `${baseUrl}/blog/${post.slug}`,
+      link: postLink,
       description: post.description,
-      content: documentToHtmlString(post.body),
+      content: postContent,
       date: new Date(post.publishedDate),
     });
   });
