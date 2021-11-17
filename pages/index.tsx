@@ -1,12 +1,11 @@
+import { About, Benefits, Features, Hero } from '@/components/sections';
 import { GetStaticProps, GetStaticPropsContext } from 'next';
 
 import { CMS } from '@/constants';
 import { IPost } from '@/types/cms';
+import { Layout } from '@/components/ui';
 import { fetchBlogEntries } from '@/services/cms';
 import generateRSSFeed from '@/utils/rss';
-
-import { Layout } from '@/components/ui';
-import { Hero, About, Benefits, Features } from '@/components/sections';
 
 export default function Home() {
   return (

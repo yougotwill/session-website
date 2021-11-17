@@ -1,9 +1,8 @@
-import { ReactElement } from 'react';
-
 import { IPost } from '@/types/cms';
 import { Layout } from '@/components/ui';
-import { Post } from '@/components/posts';
 import METADATA from '@/constants/metadata';
+import { Post } from '@/components/posts';
+import { ReactElement } from 'react';
 
 interface Props {
   post: IPost;
@@ -19,6 +18,7 @@ export default function BlogPost(props: Props): ReactElement {
         metadata={{
           TYPE: 'article',
           DESCRIPTION: post.description,
+          CANONICAL_URL: `${METADATA.HOST_URL}/blog`,
           OG_IMAGE: {
             URL: post.featureImage?.imageUrl ?? METADATA.OG_IMAGE.URL,
             WIDTH: Number(post.featureImage?.width) ?? METADATA.OG_IMAGE.WIDTH,

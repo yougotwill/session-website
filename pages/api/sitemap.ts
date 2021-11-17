@@ -1,9 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { fetchBlogEntries, fetchPages } from '@/services/cms';
+
+import { IRedirection } from '@/services/redirect';
+import { METADATA } from '@/constants';
 import getConfig from 'next/config';
 import { readdirSync } from 'fs';
-import { METADATA } from '@/constants';
-import { fetchBlogEntries, fetchPages } from '@/services/cms';
-import { IRedirection } from '@/services/redirect';
 
 export default async function handler(
   req: NextApiRequest,
@@ -26,6 +27,8 @@ export default async function handler(
         '[slug].tsx',
         'sitemap.xml.tsx',
         'api',
+        'tag',
+        'preview',
       ].includes(page);
     })
     .map((pagePath) => {
