@@ -9,7 +9,7 @@ const date = new Date();
 const feed = new Feed({
   title: 'Session Blog',
   description: 'Send Messages, Not Metadata!',
-  id: baseUrl,
+  id: `${baseUrl}/`,
   link: baseUrl,
   language: 'en', // optional, used only in RSS 2.0, possible values: http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
   image: `${baseUrl}/assets/images/logo-icon-black.png`,
@@ -34,7 +34,7 @@ export default function generateRSSFeed(posts: IPost[]) {
     const postContent = `<p>${post.description}</p><p><a href="${postLink}">Read more</a></p>`;
     feed.addItem({
       title: post.title,
-      id: post.id,
+      id: postLink,
       link: postLink,
       description: post.description,
       content: postContent,
