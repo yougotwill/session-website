@@ -18,6 +18,7 @@ export default function CustomHead(props: Props): ReactElement {
       ? `${title} - Session Private Messenger`
       : METADATA.TITLE;
   const pageUrl = `${METADATA.HOST_URL}${router.asPath}`;
+  const canonicalUrl = metadata?.CANONICAL_URL ?? pageUrl;
   const imageALT = metadata?.OG_IMAGE?.ALT ?? METADATA.OG_IMAGE.ALT;
   let imageWidth = metadata?.OG_IMAGE?.WIDTH ?? METADATA.OG_IMAGE.WIDTH;
   let imageHeight = metadata?.OG_IMAGE?.HEIGHT ?? METADATA.OG_IMAGE.HEIGHT;
@@ -209,7 +210,7 @@ export default function CustomHead(props: Props): ReactElement {
         content={METADATA.THEME_COLOR}
       />
       {renderTags}
-      <link key="canonical" rel="canonical" href={pageUrl} />
+      <link key="canonical" rel="canonical" href={canonicalUrl} />
       <link
         key="image/png32x32"
         rel="icon"
