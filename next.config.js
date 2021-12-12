@@ -64,6 +64,7 @@ const config = {
     CAMPAIGN_MONITOR_CLIENT_ID: process.env.CAMPAIGN_MONITOR_CLIENT_ID,
     CAMPAIGN_MONITOR_API_KEY: process.env.CAMPAIGN_MONITOR_API_KEY,
     CAMPAIGN_MONITOR_LIST_API_ID: process.env.CAMPAIGN_MONITOR_LIST_API_ID,
+    STAGING_SECRET: process.env.STAGING_SECRET,
   },
   async headers() {
     return [
