@@ -3,20 +3,19 @@ import { ReactElement, useState } from 'react';
 
 import Container from '@/components/Container';
 import Image from 'next/image';
+import { LINKS } from '@/constants';
 import METADATA from '@/constants/metadata';
 import classNames from 'classnames';
 import { copyToClipboard } from '@/utils/clipboard';
 
 export default function OpenGroup(): ReactElement {
-  const openGroupURL =
-    'http://116.203.70.33/session?public_key=a03c383cf63c3c4efe67acc52112a6dd734b3a946b9545f488aaa93da7991238'; // TODO move into constants
   const [isCopied, setIsCopied] = useState(false);
   const handleCopy = () => {
     if (isCopied) {
       setIsCopied(false);
       return;
     }
-    copyToClipboard(openGroupURL, setIsCopied);
+    copyToClipboard(LINKS.SESSION.OPEN_GROUP_SERVER, setIsCopied);
   };
   return (
     <Layout title="Open Group Channel" metadata={METADATA.OPEN_GROUP_PAGE}>
