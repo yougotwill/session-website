@@ -32,6 +32,11 @@ export default function MarketResearchSignup(): ReactElement {
         case 400:
         default:
           setButtonText('Signup failed ✗');
+          console.error(
+            'Email API Code',
+            response.status,
+            await response.json()
+          );
           break;
       }
     } catch (error) {
