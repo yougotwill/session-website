@@ -2,12 +2,9 @@ import { FormEventHandler, ReactElement, useRef, useState } from 'react';
 
 import { Button } from '@/components/ui';
 import Container from '@/components/Container';
-import { GroupNotice } from '@/components/sections';
 import classNames from 'classnames';
-import { useScreen } from '@/contexts/screen';
 
-export default function EmailSignup(): ReactElement {
-  const { isSmall } = useScreen();
+export default function MarketResearchSignup(): ReactElement {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const setButtonText = (value: string) => {
     if (null !== buttonRef.current) {
@@ -20,7 +17,7 @@ export default function EmailSignup(): ReactElement {
     setButtonText('Subscribing...');
     let response;
     try {
-      response = await fetch('/api/email/session', {
+      response = await fetch('/api/email/market-research', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,22 +39,30 @@ export default function EmailSignup(): ReactElement {
     }
   };
   return (
-    <section className="bg-primary text-gray-dark">
-      {isSmall && <GroupNotice />}
+    <section
+      id="research-signup"
+      className="mb-6 border text-gray-dark border-gray-dark"
+    >
       <Container
         id="signup"
-        classes={classNames('px-8', 'md:px-10', 'lg:py-24')}
+        classes={classNames('px-8', 'md:px-10', 'lg:py-12')}
       >
         <h3
           className={classNames(
-            'text-xl font-bold leading-none mb-2',
-            'lg:text-3xl lg:mb-0'
+            'text-xl font-bold leading-tight mb-2',
+            'md:text-3xl',
+            'lg:text-4xl lg:mb-4'
           )}
         >
-          Friends don’t let friends use compromised messengers.
+          Join our new research group!
         </h3>
-        <p className={classNames('leading-none mb-4', 'md:mb-8', 'lg:text-xl')}>
-          Sign up to the mailing list and start taking action!
+        <p className={classNames('mb-4', 'md:mb-8', 'lg:text-xl')}>
+          <span>
+            You can help us make Session the best messenger in the world.{' '}
+          </span>
+          <span className={classNames('md:block')}>
+            Sign up to Session&apos;s market research group now!
+          </span>
         </p>
         <form onSubmit={handleSubscription}>
           <input
@@ -66,7 +71,7 @@ export default function EmailSignup(): ReactElement {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className={classNames(
-              'block w-5/6 mb-4 text-sm border border-black rounded-sm bg-primary',
+              'block w-5/6 mb-4 text-sm border border-black rounded-sm',
               'md:w-1/2',
               'lg:w-2/5',
               'placeholder-black placeholder-opacity-60'
