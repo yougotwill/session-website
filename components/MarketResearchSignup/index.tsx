@@ -19,6 +19,8 @@ export default function MarketResearchSignup(): ReactElement {
   const [roles, setRoles] = useState<string[]>([]);
   const [tags, setTags] = useState<string[]>([]);
 
+  const [submitted, setSubmitted] = useState(false);
+
   const buttonRef = useRef<HTMLButtonElement>(null);
   const setButtonText = (value: string) => {
     if (null !== buttonRef.current) {
@@ -42,6 +44,7 @@ export default function MarketResearchSignup(): ReactElement {
         case 201:
           setEmail('');
           setButtonText('Signed up ✓');
+          setSubmitted(true);
           break;
         case 400:
         default:
@@ -51,10 +54,12 @@ export default function MarketResearchSignup(): ReactElement {
             response.status,
             await response.json()
           );
+          setSubmitted(false);
           break;
       }
     } catch (error) {
       response = error;
+      setSubmitted(false);
     }
   };
 
@@ -109,7 +114,9 @@ export default function MarketResearchSignup(): ReactElement {
             <select
               id={question.fieldName}
               name={question.fieldName}
-              onChange={(event) => setCountry(event.target.value)}
+              onChange={(event) => {
+                // No questions with dropdowns yet
+              }}
               className={classNames(styleClasses)}
               required
             >
@@ -133,6 +140,7 @@ export default function MarketResearchSignup(): ReactElement {
       setCountry('');
       setEmail('');
       setName('');
+      setSubmitted(false);
 
       const inputs = form.querySelectorAll('input');
       inputs.forEach((input) => (input.checked = false));
@@ -171,7 +179,7 @@ export default function MarketResearchSignup(): ReactElement {
           >
             <h3 className={classNames('text-xl font-bold mb-3')}>Questions</h3>
             <label htmlFor="name" className={classNames('mb-2')}>
-              Name (or alias):
+              Name (or alias)
             </label>
             <input
               type="text"
@@ -179,6 +187,23 @@ export default function MarketResearchSignup(): ReactElement {
               placeholder="User"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              className={classNames(
+                'block w-5/6 mb-3 text-sm border border-black rounded-sm',
+                'md:w-1/2',
+                'lg:w-2/5',
+                'placeholder-black placeholder-opacity-60'
+              )}
+              required
+            />
+
+            <label htmlFor="country" className={classNames('mb-2')}>
+              Which country are you from?
+            </label>
+            <input
+              type="text"
+              name="country"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
               className={classNames(
                 'block w-5/6 mb-3 text-sm border border-black rounded-sm',
                 'md:w-1/2',
@@ -218,6 +243,17 @@ export default function MarketResearchSignup(): ReactElement {
           >
             Sign up
           </Button>
+          {submitted && (
+            <span
+              className={classNames(
+                'block mt-6',
+                'md:inline md:mt-0 md:ml-2',
+                'lg:ml-4'
+              )}
+            >
+              Thanks! Check your inbox to confirm your subscription.
+            </span>
+          )}
         </form>
       </Container>
     </section>
