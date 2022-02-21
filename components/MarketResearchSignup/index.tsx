@@ -1,17 +1,31 @@
-import { FormEventHandler, ReactElement, useRef, useState } from 'react';
+import {
+  FormEventHandler,
+  ReactElement,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import { Button } from '@/components/ui';
 import Container from '@/components/Container';
+import { IQuestion } from '@/constants/signups';
+import { SIGNUPS } from '@/constants';
 import classNames from 'classnames';
 
 export default function MarketResearchSignup(): ReactElement {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [country, setCountry] = useState('');
+  const [roles, setRoles] = useState<string[]>([]);
+  const [tags, setTags] = useState<string[]>([]);
+
   const buttonRef = useRef<HTMLButtonElement>(null);
   const setButtonText = (value: string) => {
     if (null !== buttonRef.current) {
       buttonRef.current.innerText = value;
     }
   };
-  const [email, setEmail] = useState('');
+
   const handleSubscription: FormEventHandler = async (event) => {
     event.preventDefault();
     setButtonText('Subscribing...');
@@ -22,7 +36,7 @@ export default function MarketResearchSignup(): ReactElement {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ country, email, name, roles, tags }),
       });
       switch (response.status) {
         case 201:
@@ -43,14 +57,96 @@ export default function MarketResearchSignup(): ReactElement {
       response = error;
     }
   };
+
+  const handleInputUpdate = (input: HTMLInputElement, field: string) => {
+    let newState: string[] = [];
+    if (input.checked) {
+      newState =
+        field === 'Tags' ? [...tags, input.value] : [...roles, input.value];
+    } else {
+      newState =
+        field === 'Tags'
+          ? tags.filter((tag) => tag !== input.value)
+          : roles.filter((role) => role !== input.value);
+    }
+    if (field === 'Tags') {
+      setTags(newState);
+    } else {
+      setRoles(newState);
+    }
+  };
+
+  const renderQuestions = (questions: IQuestion[]) => {
+    const styleClasses = classNames('text-sm w-5/6', 'md:w-1/2', 'lg:w-2/5');
+    return questions.map((question) => {
+      return (
+        <fieldset
+          key={question.fieldName}
+          name={question.fieldName}
+          className={classNames('my-3')}
+        >
+          <legend className={classNames('mb-2')}>{question.question}</legend>
+          {question.type === 'checkbox' ? (
+            <div className={classNames('flex flex-wrap mt-1')}>
+              {question.answer.map((item) => {
+                return (
+                  <span key={item} className={classNames(styleClasses, 'mb-3')}>
+                    <input
+                      type="checkbox"
+                      name={item}
+                      value={item}
+                      onChange={(event) => {
+                        handleInputUpdate(event.target, question.fieldName);
+                      }}
+                      className={classNames('-mt-1 mr-4')}
+                    />
+                    {item}
+                  </span>
+                );
+              })}
+            </div>
+          ) : (
+            <select
+              id={question.fieldName}
+              name={question.fieldName}
+              onChange={(event) => setCountry(event.target.value)}
+              className={classNames(styleClasses)}
+              required
+            >
+              {question.answer.map((item) => {
+                return (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                );
+              })}
+            </select>
+          )}
+        </fieldset>
+      );
+    });
+  };
+
+  useEffect(() => {
+    const form = document.querySelector('#research-signup');
+    if (form) {
+      setCountry('');
+      setEmail('');
+      setName('');
+
+      const inputs = form.querySelectorAll('input');
+      inputs.forEach((input) => (input.checked = false));
+
+      const selects = form.querySelectorAll('select');
+      selects.forEach((select) => (select.value = ''));
+    }
+  }, []);
+
   return (
-    <section
-      id="research-signup"
-      className="mb-6 border text-gray-dark border-gray-dark"
-    >
+    <section className="mb-6 border text-gray-dark border-gray-dark">
       <Container
-        id="signup"
-        classes={classNames('px-8', 'md:px-10', 'lg:py-12')}
+        id="research-signup"
+        classes={classNames('px-4', 'md:px-10', 'lg:py-12')}
       >
         <h3
           className={classNames(
@@ -61,7 +157,7 @@ export default function MarketResearchSignup(): ReactElement {
         >
           Join our new research group!
         </h3>
-        <p className={classNames('mb-4', 'md:mb-8', 'lg:text-xl')}>
+        <p className={classNames('mb-6', 'lg:text-xl')}>
           <span>
             You can help us make Session the best messenger in the world.{' '}
           </span>
@@ -70,24 +166,52 @@ export default function MarketResearchSignup(): ReactElement {
           </span>
         </p>
         <form onSubmit={handleSubscription}>
-          <input
-            type="email"
-            placeholder="Your Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className={classNames(
-              'block w-5/6 mb-4 text-sm border border-black rounded-sm',
-              'md:w-1/2',
-              'lg:w-2/5',
-              'placeholder-black placeholder-opacity-60'
-            )}
-            required
-          />
+          <div
+            className={classNames('flex flex-col justify-center text-md mb-6')}
+          >
+            <h3 className={classNames('text-xl font-bold mb-3')}>Questions</h3>
+            <label htmlFor="name" className={classNames('mb-2')}>
+              Name (or alias):
+            </label>
+            <input
+              type="text"
+              name="name"
+              placeholder="User"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className={classNames(
+                'block w-5/6 mb-3 text-sm border border-black rounded-sm',
+                'md:w-1/2',
+                'lg:w-2/5',
+                'placeholder-black placeholder-opacity-60'
+              )}
+              required
+            />
+
+            {renderQuestions(SIGNUPS.QUESTIONS)}
+            <label htmlFor="email" className={classNames('mb-2')}>
+              Your email:
+            </label>
+            <input
+              type="email"
+              name="email"
+              placeholder="user@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={classNames(
+                'block w-5/6 text-sm border border-black rounded-sm',
+                'md:w-1/2',
+                'lg:w-2/5',
+                'placeholder-black placeholder-opacity-60'
+              )}
+              required
+            />
+          </div>
           <Button
             bgColor="black"
             textColor="primary"
             fontWeight="semibold"
-            size="small"
+            size="large"
             hoverEffect={false}
             type={'submit'}
             reference={buttonRef}
