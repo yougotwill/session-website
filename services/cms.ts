@@ -81,18 +81,18 @@ export async function fetchBlogEntriesByTag(
 }
 
 export async function fetchEntryPreview(slug: string): Promise<IPage | IPost> {
-  const client = createClient({
+  const _client = createClient({
     space: process.env.CONTENTFUL_SPACE_ID!,
     accessToken: process.env.CONTENTFUL_PREVIEW_TOKEN!,
     host: 'preview.contentful.com',
   });
 
-  const _pages = await client.getEntries({
+  const _pages = await _client.getEntries({
     content_type: 'page',
     'fields.slug': slug,
     'fields.preview': true,
   });
-  const _posts = await client.getEntries({
+  const _posts = await _client.getEntries({
     content_type: 'post',
     'fields.slug': slug,
     'fields.preview': true,
