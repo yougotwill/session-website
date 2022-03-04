@@ -166,3 +166,4 @@ Distributed under the GNU GPLv3 License. See [LICENSE](LICENSE) for more informa
 ## Attributions
 
 ‘Android robot head’ by Google available at https://commons.wikimedia.org/wiki/File:Android_robot_head.svg under a Creative Commons Attribution Generic 2.5. Full terms at https://creativecommons.org/licenses/by/2.5/deed.en.
+'F-Droid Logo’ by F-Droid available at https://gitlab.com/fdroid/fdroid-website/-/blob/master/assets/fdroid-logo.svg under a Creative Commons Attribution ShareAlike 3.0. Full terms at https://gitlab.com/fdroid/artwork/-/blob/master/LICENSES/CC-BY-SA-3.0.txt.
