@@ -1,14 +1,13 @@
-import { ReactElement } from 'react';
-import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
-import classNames from 'classnames';
-
 import { CMS, METADATA } from '@/constants';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import { IPost, ITagList } from '@/types/cms';
 import { fetchBlogEntriesByTag, fetchTagList } from '@/services/cms';
 
-import { Layout } from '@/components/ui';
 import Container from '@/components/Container';
+import { Layout } from '@/components/ui';
 import { PostList } from '@/components/posts';
+import { ReactElement } from 'react';
+import classNames from 'classnames';
 
 interface Props {
   tag: string;

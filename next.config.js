@@ -100,6 +100,11 @@ const config = {
         permanent: true,
       },
       {
+        source: '/f-droid',
+        destination: 'https://fdroid.getsession.org/',
+        permanent: true,
+      },
+      {
         source: '/whitepaper',
         destination: 'https://arxiv.org/pdf/2002.04609.pdf',
         permanent: true,

@@ -1,7 +1,4 @@
-import { ReactElement } from 'react';
-import { GetStaticPropsContext, GetStaticPaths } from 'next';
-
-import { CMS } from '@/constants';
+import { GetStaticPaths, GetStaticPropsContext } from 'next';
 import { IPage, IPost, isPost } from '@/types/cms';
 import {
   fetchBlogEntries,
@@ -9,10 +6,12 @@ import {
   fetchPages,
   generateLinkMeta,
 } from '@/services/cms';
-import { hasRedirection } from '@/services/redirect';
 
 import BlogPost from '@/components/BlogPost';
+import { CMS } from '@/constants';
+import { ReactElement } from 'react';
 import RichPage from '@/components/RichPage';
+import { hasRedirection } from '@/services/redirect';
 
 interface Props {
   content: IPage | IPost;

@@ -1,6 +1,7 @@
 import { ReactComponent as AndroidSVG } from '@/assets/svgs/android_robot_head.svg';
 import { ReactComponent as AppleSVG } from '@/assets/svgs/apple.svg';
 import Container from '@/components/Container';
+import { ReactComponent as FDroidSVG } from '@/assets/svgs/fdroid-logo.svg';
 import Image from 'next/image';
 import { Layout } from '@/components/ui';
 import Link from 'next/link';
@@ -138,6 +139,30 @@ export default function Download(): ReactElement {
                         )}
                       />
                       <span>APK</span>
+                    </a>
+                  </Link>
+                </div>
+                <div
+                  className={classNames(
+                    downloadContainerClasses,
+                    'lg:border-gray-dark'
+                  )}
+                >
+                  <Link href="/f-droid">
+                    <a
+                      className={classNames(
+                        downloadLinkClasses,
+                        'lg:hover:bg-gray-dark lg:hover:text-primary'
+                      )}
+                    >
+                      <FDroidSVG
+                        className={classNames(
+                          downloadSVGClasses,
+                          'w-5 h-5',
+                          'md:w-7 md:h-7'
+                        )}
+                      />
+                      <span>F-Droid</span>
                     </a>
                   </Link>
                 </div>
