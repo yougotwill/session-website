@@ -24,7 +24,7 @@ export default function Download(): ReactElement {
     'lg:items-center'
   );
   const downloadContainerClasses = classNames(
-    'pb-2 lg:py-2 lg:border-r lg:border-dashed'
+    'pb-2 lg:py-3 lg:border-r lg:border-dashed z-10'
   );
   const downloadLinkClasses = classNames(
     'text-lg font-bold rounded-3xl py-1 mr-4',
@@ -166,7 +166,12 @@ export default function Download(): ReactElement {
                     </a>
                   </Link>
                 </div>
-                <div>
+                <div
+                  className={classNames(
+                    downloadContainerClasses,
+                    'lg:border-primary'
+                  )}
+                >
                   <Link href="/iphone">
                     <a
                       className={classNames(
@@ -237,7 +242,6 @@ export default function Download(): ReactElement {
               <div
                 className={classNames(
                   linkContainerClasses,
-                  'z-10',
                   'md:-mt-8 md:pb-32',
                   'lg:pb-12'
                 )}
@@ -288,7 +292,12 @@ export default function Download(): ReactElement {
                     <span>Windows</span>
                   </a>
                 </div>
-                <div>
+                <div
+                  className={classNames(
+                    downloadContainerClasses,
+                    'lg:border-gray-dark'
+                  )}
+                >
                   <a
                     className={classNames(
                       downloadLinkClasses,
