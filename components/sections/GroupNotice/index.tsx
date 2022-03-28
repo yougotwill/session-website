@@ -1,5 +1,5 @@
-import { ReactElement } from 'react';
 import Link from 'next/link';
+import { ReactElement } from 'react';
 import classNames from 'classnames';
 
 interface Props {
@@ -29,7 +29,7 @@ export default function GroupNotice(props: Props): ReactElement {
               'hover:text-white'
             )}
           >
-            Sessions Open Group Channel.
+            Session Open Group Channel.
           </a>
         </Link>
       </p>
