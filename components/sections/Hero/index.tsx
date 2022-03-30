@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { ReactElement } from 'react';
 import classNames from 'classnames';
 import { useScreen } from '@/contexts/screen';
+import { ReactComponent as FDroidSVG } from '@/assets/svgs/fdroid-logo.svg';
 
 export default function Hero(): ReactElement {
   const { isSmall, isMedium, isLarge, isHuge, isEnormous } = useScreen();
@@ -62,6 +63,14 @@ export default function Hero(): ReactElement {
                     className={classNames(downloadSVGClasses, 'w-8 h-8')}
                   />
                   <span>APK</span>
+                </a>
+              </Link>
+              <Link href="/f-droid">
+                <a className={downloadLinkClasses}>
+                  <FDroidSVG
+                    className={classNames(downloadSVGClasses, 'w-8 h-8')}
+                  />
+                  <span>F-Droid</span>
                 </a>
               </Link>
               <Link href="/iphone">

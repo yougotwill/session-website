@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { ReactComponent as AndroidSVG } from '@/assets/svgs/android_robot_head.svg';
 import { ReactComponent as AppleSVG } from '@/assets/svgs/apple.svg';
 import Container from '@/components/Container';
@@ -7,7 +8,6 @@ import { Layout } from '@/components/ui';
 import Link from 'next/link';
 import { ReactComponent as LinuxSVG } from '@/assets/svgs/linux.svg';
 import METADATA from '@/constants/metadata';
-/* eslint-disable @next/next/no-html-link-for-pages */
 import { ReactElement } from 'react';
 import { ReactComponent as WindowsSVG } from '@/assets/svgs/windows.svg';
 import classNames from 'classnames';
