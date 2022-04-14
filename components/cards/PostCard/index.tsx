@@ -1,9 +1,8 @@
-import { ReactElement } from 'react';
+import { IPost } from '@/types/cms';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ReactElement } from 'react';
 import classNames from 'classnames';
-
-import { IPost } from '@/types/cms';
 
 interface Props extends IPost {
   route: string;
@@ -88,6 +87,7 @@ export default function PostCard(props: Props): ReactElement {
         </Link>
         <p className={classNames('text-gray-lightest text-xs font-helvetica')}>
           {publishedDate}
+          {author && author.name && <span> / {author.name}</span>}
         </p>
         {!compact && (
           <p

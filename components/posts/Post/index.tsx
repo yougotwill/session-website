@@ -101,7 +101,9 @@ export default function Post(props: Props): ReactElement {
             'lg:mb-8'
           )}
         >
-          <span>{publishedDate}</span> / <span>{renderTags}</span>
+          <span>{publishedDate}</span>
+          {author && author.name && <span> / {author.name}</span>}
+          <span className={classNames('block mt-1')}>{renderTags}</span>
         </p>
         <RichBody
           body={body}
