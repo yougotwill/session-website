@@ -44,12 +44,41 @@ export default function OpenGroup(): ReactElement {
         >
           <h1
             className={classNames(
-              'text-gray-dark text-2xl font-helvetica font-semibold mb-8',
+              'text-gray-dark text-2xl font-helvetica font-semibold mb-6',
               'md:text-4xl'
             )}
           >
             Scan this QR code on Session to join our open group chat
           </h1>
+          <p className={classNames('text-gray-dark font-semibold mb-8')}>
+            To join, open Session and tap and hold on the{' '}
+            <span
+              className={classNames('inline-block align-middle mx-1 w-7 h-7')}
+            >
+              <Image
+                src="/assets/images/session-ui-add.png"
+                alt="session add chat button"
+                title="session add chat button"
+                width="121px"
+                height="121px"
+                priority={true}
+              />
+            </span>{' '}
+            icon, then tap on the{' '}
+            <span
+              className={classNames('inline-block align-middle mx-1 w-7 h-7')}
+            >
+              <Image
+                src="/assets/images/session-ui-opengroup.png"
+                alt="session opengroup button"
+                title="session opengroup button"
+                width="121px"
+                height="121px"
+                priority={true}
+              />
+            </span>{' '}
+            option.
+          </p>
           <div className={classNames('mx-auto mb-8')}>
             <Image
               src="/assets/images/qr-code.png"
