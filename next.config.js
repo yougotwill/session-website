@@ -8,7 +8,7 @@ const ContentSecurityPolicy = `
       ? "'unsafe-eval' 'unsafe-inline' "
       : ''
   }*.ctfassets.net *.youtube.com *.twitter.com;
-  child-src 'self' *.ctfassets.net *.youtube.com *.twitter.com;
+  child-src 'self' *.ctfassets.net *.youtube.com player.vimeo.com *.twitter.com;
   style-src 'self' 'unsafe-inline' *.googleapis.com;
   img-src 'self' blob: data: *.ctfassets.net *.youtube.com *.twitter.com;
   media-src 'self' *.youtube.com;

@@ -127,15 +127,35 @@ function convertToNoembed(rawData: any): INoembed {
     html: '',
   };
 
-  if (noembed.site_name === 'YouTube') {
-    const himalaya = require('himalaya');
-    const nodes = himalaya.parse(rawData.html.trim());
-    nodes[0].attributes[0].value = '100%'; // width
-    nodes[0].attributes[1].value = '500px'; // height
-    noembed.html = himalaya.stringify(nodes);
-    noembed.isExternalVideo = true;
-  } else {
-    noembed.html = sanitize(rawData.html);
+  switch (noembed.site_name) {
+    case 'Vimeo':
+    case 'YouTube':
+      const himalaya = require('himalaya');
+
+      let nodes = himalaya.parse(rawData.html);
+      nodes[0].attributes = nodes[0].attributes.map((attr: any) => {
+        switch (attr.key) {
+          case 'width':
+            attr.value = '100%';
+            break;
+          case 'height':
+            // Vimeo player has a fixed height
+            if (noembed.site_name !== 'Vimeo') {
+              attr.value = '500px';
+            }
+            break;
+          default:
+            break;
+        }
+        return attr;
+      });
+
+      noembed.html = himalaya.stringify(nodes);
+      noembed.isExternalVideo = true;
+      break;
+    default:
+      noembed.html = sanitize(rawData.html);
+      break;
   }
 
   return noembed;
