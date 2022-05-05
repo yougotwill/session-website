@@ -1,5 +1,5 @@
-import sanitize from '@/utils/sanitize';
 import { Element } from '@/types/himalaya';
+import sanitize from '@/utils/sanitize';
 
 export interface IEmbed {
   title: string;
@@ -7,6 +7,7 @@ export interface IEmbed {
   description?: string;
   site_name?: string;
   image?: string;
+  isExternalVideo?: boolean;
 }
 
 function extractMetadata(html: string): IEmbed {
@@ -94,7 +95,9 @@ export function isNoembed(object: unknown): object is INoembed {
 export async function fetchContent(
   targetUrl: string
 ): Promise<IEmbed | INoembed> {
-  const fetchUrl = `https://noembed.com/embed?url=${targetUrl}`;
+  const fetchUrl = `https://noembed.com/embed?url=${encodeURIComponent(
+    targetUrl
+  )}`;
   const response = await fetch(fetchUrl);
   let data = await response.json();
 
@@ -117,10 +120,23 @@ export async function fetchContent(
 }
 
 function convertToNoembed(rawData: any): INoembed {
-  return {
+  const noembed: INoembed = {
     title: sanitize(rawData.title),
     url: sanitize(rawData.url),
     site_name: sanitize(rawData.provider_name),
-    html: sanitize(rawData.html),
+    html: '',
   };
+
+  if (noembed.site_name === 'YouTube') {
+    const himalaya = require('himalaya');
+    const nodes = himalaya.parse(rawData.html.trim());
+    nodes[0].attributes[0].value = '100%'; // width
+    nodes[0].attributes[1].value = '500px'; // height
+    noembed.html = himalaya.stringify(nodes);
+    noembed.isExternalVideo = true;
+  } else {
+    noembed.html = sanitize(rawData.html);
+  }
+
+  return noembed;
 }

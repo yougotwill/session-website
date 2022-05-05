@@ -261,6 +261,10 @@ button {
   @apply text-primary-dark font-extralight;
 }
 
+.embed-content iframe {
+  @apply mb-6;
+}
+
 /* fixes '</' in Space Mono */
 .font-mono {
   font-variant-ligatures: no-contextual;

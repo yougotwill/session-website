@@ -11,7 +11,7 @@ const ContentSecurityPolicy = `
   child-src 'self' *.ctfassets.net *.youtube.com *.twitter.com;
   style-src 'self' 'unsafe-inline' *.googleapis.com;
   img-src 'self' blob: data: *.ctfassets.net *.youtube.com *.twitter.com;
-  media-src 'self';
+  media-src 'self' *.youtube.com;
   connect-src *;
   font-src 'self' blob: data: fonts.gstatic.com maxcdn.bootstrapcdn.com;
   worker-src 'self' blob:;

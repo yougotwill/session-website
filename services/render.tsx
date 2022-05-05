@@ -1,12 +1,12 @@
+import { Block, Inline } from '@contentful/rich-text-types';
+import { CSSProperties, ReactElement } from 'react';
+
+import EmbedContent from '@/components/EmbedContent';
 import Image from 'next/image';
 import Link from 'next/link';
 import classNames from 'classnames';
-import { Block, Inline } from '@contentful/rich-text-types';
 import sanitize from '@/utils/sanitize';
-
-import EmbedContent from '@/components/EmbedContent';
 import { useScreen } from '@/contexts/screen';
-import { ReactElement, CSSProperties } from 'react';
 
 function Markup(node: any): ReactElement {
   const frontTags: string[] = [];
