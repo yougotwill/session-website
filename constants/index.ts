@@ -3,6 +3,7 @@ import LINKS from './links';
 import METADATA from './metadata';
 import NAVIGATION from './navigation';
 import SIGNUPS from './signups';
+import TOS from './tos';
 import UI from './ui';
 
-export { CMS, LINKS, METADATA, NAVIGATION, SIGNUPS, UI };
+export { CMS, LINKS, METADATA, NAVIGATION, SIGNUPS, TOS, UI };
