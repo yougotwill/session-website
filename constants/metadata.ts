@@ -86,6 +86,9 @@ const METADATA = {
       ALT: 'Frequently Asked Questions heading with redacted text below',
     },
   },
+  HELP_PAGE: {
+    DESCRIPTION: 'How you can help. A Session Community Help Guide Document.',
+  },
   LIGHTPAPER_PAGE: {
     DESCRIPTION:
       'Session is a decentralised messenger that supports completely private, secure, and anonymous communications.',
