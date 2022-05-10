@@ -17,6 +17,7 @@ export default function OpenGroup(): ReactElement {
     }
     copyToClipboard(LINKS.SESSION.OPEN_GROUP_SERVER, setIsCopied);
   };
+
   return (
     <Layout title="Open Group Channel" metadata={METADATA.OPEN_GROUP_PAGE}>
       <section>
@@ -50,8 +51,8 @@ export default function OpenGroup(): ReactElement {
           >
             Scan this QR code on Session to join our open group chat
           </h1>
-          <p className={classNames('text-gray-dark font-semibold mb-8')}>
-            To join, open Session and tap and hold on the{' '}
+          <div className={classNames('text-gray-dark font-semibold mb-8')}>
+            <span>To join, open Session and tap and hold on the </span>
             <span
               className={classNames('inline-block align-middle mx-1 w-7 h-7')}
             >
@@ -61,10 +62,9 @@ export default function OpenGroup(): ReactElement {
                 title="session add chat button"
                 width="121px"
                 height="121px"
-                priority={true}
               />
-            </span>{' '}
-            icon, then tap on the{' '}
+            </span>
+            <span> icon, then tap on the </span>
             <span
               className={classNames('inline-block align-middle mx-1 w-7 h-7')}
             >
@@ -74,11 +74,11 @@ export default function OpenGroup(): ReactElement {
                 title="session opengroup button"
                 width="121px"
                 height="121px"
-                priority={true}
               />
-            </span>{' '}
-            option.
-          </p>
+            </span>
+            <span> option.</span>
+          </div>
+
           <div className={classNames('mx-auto mb-8')}>
             <Image
               src="/assets/images/qr-code.png"
@@ -88,10 +88,12 @@ export default function OpenGroup(): ReactElement {
               priority={true}
             />
           </div>
+
           <p className={classNames('text-gray-dark font-semibold')}>
             Otherwise you can click the button below and copy our group chat URL
             to your clipboard.
           </p>
+
           <Button
             bgColor={isCopied ? 'black' : 'primary'}
             textColor={isCopied ? 'primary' : 'black'}
