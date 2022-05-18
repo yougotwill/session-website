@@ -11,16 +11,18 @@ import { useScreen } from '@/contexts/screen';
 export interface DropdownProps {
   title: string | ReactNode; // social icons can be nav items
   navItem: INavItem;
+  classes?: string;
 }
 
 export interface NavItemProps extends DropdownProps {
   isExpanded?: boolean;
   isIcon?: boolean;
   hoverEffect?: boolean;
+  zIndex?: number;
 }
 
 function NavDropdown(props: DropdownProps): ReactElement {
-  const { title, navItem } = props;
+  const { title, navItem, classes } = props;
 
   const navItemClasses = classNames(
     'bg-gray-dark block w-full px-5 py-2 uppercase border-transparent border-b-3',
@@ -33,7 +35,7 @@ function NavDropdown(props: DropdownProps): ReactElement {
   );
 
   return (
-    <span>
+    <span className={classNames(classes)}>
       <Link href={navItem.href}>
         <a
           aria-label={navItem.alt}
@@ -65,10 +67,12 @@ export default function NavItem(props: NavItemProps): ReactElement {
     isExpanded,
     isIcon: isSVG = false,
     hoverEffect = true,
+    zIndex,
   } = props;
   const router = useRouter();
   const { isSmall, isMedium } = useScreen();
   const [IsDropdownExpanded, setIsDropdownExpanded] = useState(false);
+  const [isHover, setIsHover] = useState(false);
 
   const isActiveNavLink = (url: string) => {
     return (
@@ -99,7 +103,13 @@ export default function NavItem(props: NavItemProps): ReactElement {
           </a>
         </Link>
       ) : (
-        <span className={classNames('w-full relative group', 'lg:w-auto')}>
+        <span
+          className={classNames(
+            'w-full relative group',
+            'lg:w-auto lg:flex lg:flex-col lg:justify-center lg:items-center'
+          )}
+          onMouseOver={() => setIsHover(true)}
+        >
           <span
             aria-label={navItem.alt}
             className={classNames(
@@ -134,13 +144,15 @@ export default function NavItem(props: NavItemProps): ReactElement {
             className={classNames(
               'bg-white w-full overflow-hidden',
               'transform transition-all duration-300',
-              'lg:w-44 lg:overflow-visible lg:opacity-0 lg:rounded-md lg:absolute lg:top-12 lg:-left-6 lg:-ml-1 lg:pt-2',
+              'lg:w-44 lg:overflow-visible lg:opacity-0 lg:rounded-md lg:absolute lg:top-12 lg:-ml-1 lg:pt-2',
               'lg:duration-500',
               'lg:group-hover:opacity-100 lg:group-hover:duration-700',
               (isSmall || isMedium) && IsDropdownExpanded
                 ? 'h-32 translate-y-0 -mb-3'
-                : 'h-0 translate-y-auto lg:h-auto lg:translate-y-0'
+                : 'h-0 translate-y-auto lg:h-0 lg:translate-y-0'
             )}
+            style={{ zIndex: zIndex ? zIndex : undefined }}
+            onMouseOut={() => setIsHover(false)}
           >
             {Object.entries(navItem.items).map(([key, value], index) => {
               return (
@@ -148,6 +160,7 @@ export default function NavItem(props: NavItemProps): ReactElement {
                   key={`${key}${index}`}
                   navItem={value}
                   title={key}
+                  classes={classNames(!isHover && 'hidden')}
                 />
               );
             })}

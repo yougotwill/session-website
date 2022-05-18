@@ -22,11 +22,6 @@ const NAV_ITEMS: INavList = {
     alt: `Link to Session's blogposts`,
     target: '_self',
   },
-  FAQ: {
-    href: '/faq',
-    alt: `Link to Session's FAQs`,
-    target: '_self',
-  },
   Technicals: {
     href: '/technicals',
     alt: 'Heading of Session Technical Links',
@@ -46,6 +41,20 @@ const NAV_ITEMS: INavList = {
       Documentation: {
         href: 'https://docs.oxen.io/products-built-on-oxen/session',
         alt: 'Link to Session Docs on the Oxen website',
+        target: '_blank',
+        rel: 'noopener noreferrer',
+      },
+    },
+  },
+  Help: {
+    href: '/help',
+    alt: 'Heading of Session Help Links',
+    target: '_self',
+    items: {
+      FAQ: { href: '/faq', alt: `Link to Session's FAQs`, target: '_self' },
+      Support: {
+        href: 'https://sessionapp.zendesk.com/hc/en-us',
+        alt: 'Link to Session Support via Zendesk',
         target: '_blank',
         rel: 'noopener noreferrer',
       },
