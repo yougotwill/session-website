@@ -9,7 +9,7 @@ import generateRSSFeed from '@/utils/rss';
 
 export default function Home() {
   return (
-    <Layout>
+    <Layout showBanner={true}>
       <Hero />
       <About />
       <Benefits />

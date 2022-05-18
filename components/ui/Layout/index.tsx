@@ -12,12 +12,14 @@ interface Props {
   title?: string;
   metadata?: IMetadata;
   children: ReactNode;
+  showBanner?: boolean;
 }
 
 export default function Layout({
   title,
   metadata,
   children,
+  showBanner = false,
 }: Props): ReactElement {
   const router = useRouter();
   const [locked, setLocked] = useState(false);
@@ -36,7 +38,7 @@ export default function Layout({
   return (
     <>
       <CustomHead title={title} metadata={metadata} />
-      <Banner />
+      {showBanner && <Banner />}
       <Nav />
       {locked ? <LockedPage /> : <main>{children}</main>}
       <EmailSignup />
