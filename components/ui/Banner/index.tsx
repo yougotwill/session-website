@@ -3,8 +3,10 @@ import Button from '../Button';
 import Link from 'next/link';
 import { ReactElement } from 'react';
 import classNames from 'classnames';
+import { useScreen } from '@/contexts/screen';
 
 export default function Banner(): ReactElement {
+  const { isSmall } = useScreen();
   return (
     <div
       className={classNames(
@@ -13,7 +15,7 @@ export default function Banner(): ReactElement {
       )}
     >
       <span className={classNames('text-center mb-4', 'lg:text-left lg:mb-0')}>
-        {BANNER.TEXT}
+        {isSmall ? BANNER.TEXT.MOBILE : BANNER.TEXT.DESKTOP}
       </span>
       <span className={classNames('flex justify-center items-center')}>
         <Link href="/download">
@@ -27,7 +29,7 @@ export default function Banner(): ReactElement {
             </Button>
           </a>
         </Link>
-        <Link href="#">
+        <Link href="/blog/session-network-and-client-update">
           <a>
             <Button
               fontWeight="bold"
