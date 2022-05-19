@@ -1,6 +1,7 @@
 import { Footer, Nav } from '@/components/navigation';
 import { ReactElement, ReactNode, useEffect, useState } from 'react';
 
+import { Banner } from '@/components/ui';
 import CustomHead from '@/components/CustomHead';
 import { EmailSignup } from '@/components/sections';
 import { IMetadata } from '@/constants/metadata';
@@ -11,15 +12,18 @@ interface Props {
   title?: string;
   metadata?: IMetadata;
   children: ReactNode;
+  showBanner?: boolean;
 }
 
 export default function Layout({
   title,
   metadata,
   children,
+  showBanner = false,
 }: Props): ReactElement {
   const router = useRouter();
   const [locked, setLocked] = useState(false);
+
   useEffect(() => {
     // deny access to the staging environment unless you login with the correct token
     if (
@@ -34,6 +38,7 @@ export default function Layout({
   return (
     <>
       <CustomHead title={title} metadata={metadata} />
+      {showBanner && <Banner />}
       <Nav />
       {locked ? <LockedPage /> : <main>{children}</main>}
       <EmailSignup />
