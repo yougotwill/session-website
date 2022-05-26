@@ -144,7 +144,7 @@ export default function Footer(): ReactElement {
                 'lg:block lg:w-1/3'
               )}
             >
-              <div className={classNames('w-1/2 mb-4')}>
+              <div className={classNames('w-1/2 mb-4', 'lg:w-full')}>
                 <h3 className={headingClasses}>Links</h3>
                 <div className={classNames('flex -ml-1')}>
                   <Link href="https://www.facebook.com/SessionMessenger/">
@@ -181,13 +181,18 @@ export default function Footer(): ReactElement {
                   </Link>
                 </div>
               </div>
-              <div className={classNames('flex flex-col w-1/2 mb-4')}>
-                <h3 className={headingClasses}>Contact</h3>
-                <Link href="mailto:support@getsession.org">
-                  <a className={classNames(linkClasses, 'text-primary')}>
-                    support@getsession.org
-                  </a>
-                </Link>
+              <div
+                className={classNames('flex flex-col w-1/2 mb-4', 'lg:w-full')}
+              >
+                <h3 className={headingClasses}>Support</h3>
+                <a
+                  href="https://sessionapp.zendesk.com/hc/en-us"
+                  className={classNames(linkClasses, 'pl-4', 'sm:pl-0')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit our Help Centre
+                </a>
               </div>
             </div>
           </div>
