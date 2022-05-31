@@ -1,18 +1,17 @@
-import { ReactElement } from 'react';
 import { GetStaticProps, GetStaticPropsContext } from 'next';
-import { useRouter } from 'next/router';
-import classNames from 'classnames';
-
-import { CMS } from '@/constants';
 import { IFAQItem, IFAQList } from '@/types/cms';
-import { fetchFAQItems } from '@/services/cms';
-import capitalize from '@/utils/capitalize';
 
-import Layout from '@/components/ui/Layout';
+import Accordion from '@/components/ui/Accordion';
+import { CMS } from '@/constants';
 import Container from '@/components/Container';
 import Headline from '@/components/ui/Headline';
-import Accordion from '@/components/ui/Accordion';
+import Layout from '@/components/ui/Layout';
 import METADATA from '@/constants/metadata';
+import { ReactElement } from 'react';
+import capitalize from '@/utils/capitalize';
+import classNames from 'classnames';
+import { fetchFAQItems } from '@/services/cms';
+import { useRouter } from 'next/router';
 
 interface Props {
   entries: IFAQList;
@@ -49,7 +48,11 @@ export default function FAQ(props: Props): ReactElement {
     return content;
   })();
   return (
-    <Layout title="Frequently Asked Questions" metadata={METADATA.FAQ_PAGE}>
+    <Layout
+      title="Frequently Asked Questions"
+      metadata={METADATA.FAQ_PAGE}
+      showBanner={true}
+    >
       <section>
         <Headline
           color="gray-dark"
