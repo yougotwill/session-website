@@ -26,7 +26,7 @@ function NavDropdown(props: DropdownProps): ReactElement {
 
   const navItemClasses = classNames(
     'bg-gray-dark block w-full px-5 py-2 uppercase border-transparent border-b-3',
-    'lg:px-2 lg:py-1 lg:mx-auto lg:text-center lg:w-auto lg:bg-transparent'
+    'lg:px-2 lg:py-1 lg:mx-auto lg:bg-transparent'
   );
 
   const navItemHoverClasses = classNames(
@@ -106,7 +106,7 @@ export default function NavItem(props: NavItemProps): ReactElement {
         <span
           className={classNames(
             'w-full relative group',
-            'lg:w-auto lg:flex lg:flex-col lg:justify-center lg:items-center'
+            'lg:w-auto lg:flex lg:flex-col lg:justify-center lg:items-start'
           )}
           onMouseOver={() => setIsHover(true)}
         >
@@ -144,7 +144,7 @@ export default function NavItem(props: NavItemProps): ReactElement {
             className={classNames(
               'bg-white w-full overflow-hidden',
               'transform transition-all duration-300',
-              'lg:w-44 lg:overflow-visible lg:opacity-0 lg:rounded-md lg:absolute lg:top-12 lg:-ml-1 lg:pt-2',
+              'lg:w-44 lg:overflow-visible lg:opacity-0 lg:rounded-md lg:absolute lg:top-12',
               'lg:duration-500',
               'lg:group-hover:opacity-100 lg:group-hover:duration-700',
               (isSmall || isMedium) && IsDropdownExpanded
