@@ -103,8 +103,8 @@ export default function Hero(): ReactElement {
               <Image
                 src="/assets/images/ui-direct-message.png"
                 alt="mobile app screenshot"
-                width="1148px"
-                height="2000px"
+                width="574px"
+                height="1000px"
                 layout="responsive"
                 priority={true}
               />
@@ -115,8 +115,8 @@ export default function Hero(): ReactElement {
               <Image
                 src="/assets/images/ui-showcase.png"
                 alt="mobile app ui showcase"
-                width="1112px"
-                height="1000px"
+                width="2224px"
+                height="2000px"
                 priority={true}
                 loading="eager"
               />
