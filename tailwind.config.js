@@ -70,6 +70,7 @@ module.exports = {
       backgroundColor: ['selection'],
       blur: ['hover'],
       borderWidth: ['first'],
+      borderRadius: ['last'],
       display: ['group-hover', 'hover'],
       filter: ['hover'],
       transitionDuration: ['group-hover'],

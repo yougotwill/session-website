@@ -82,7 +82,7 @@ export default function Nav(): ReactElement {
                 navItem={value}
                 title={key}
                 isExpanded={isExpanded}
-                zIndex={Object.entries(NAVIGATION.NAV_ITEMS).length - index}
+                zIndex={index}
               />
             );
           })}

@@ -26,27 +26,25 @@ function NavDropdown(props: DropdownProps): ReactElement {
 
   const navItemClasses = classNames(
     'bg-gray-dark block w-full px-5 py-2 uppercase border-transparent border-b-3',
-    'lg:px-2 lg:py-1 lg:mx-auto lg:bg-transparent'
+    'lg:px-2 lg:py-1 lg:mx-auto lg:bg-white lg:last:rounded-b-md'
   );
 
   const navItemHoverClasses = classNames(
     'transition-colors duration-300',
-    'hover:bg-gray-light lg:hover:text-primary lg:hover:bg-transparent'
+    'hover:bg-gray-light lg:hover:text-primary lg:hover:bg-white'
   );
 
   return (
-    <span className={classNames(classes)}>
-      <Link href={navItem.href}>
-        <a
-          aria-label={navItem.alt}
-          target={navItem.target}
-          ref={navItem.rel ?? undefined}
-          className={classNames(navItemClasses, navItemHoverClasses)}
-        >
-          {title}
-        </a>
-      </Link>
-    </span>
+    <Link href={navItem.href}>
+      <a
+        aria-label={navItem.alt}
+        target={navItem.target}
+        ref={navItem.rel ?? undefined}
+        className={classNames(navItemClasses, navItemHoverClasses)}
+      >
+        {title}
+      </a>
+    </Link>
   );
 }
 
@@ -70,9 +68,8 @@ export default function NavItem(props: NavItemProps): ReactElement {
     zIndex,
   } = props;
   const router = useRouter();
-  const { isSmall, isMedium } = useScreen();
+  const { isSmall, isMedium, isLarge, isHuge, isEnormous } = useScreen();
   const [IsDropdownExpanded, setIsDropdownExpanded] = useState(false);
-  const [isHover, setIsHover] = useState(false);
 
   const isActiveNavLink = (url: string) => {
     return (
@@ -108,7 +105,6 @@ export default function NavItem(props: NavItemProps): ReactElement {
             'w-full relative group',
             'lg:w-auto lg:flex lg:flex-col lg:justify-center lg:items-start'
           )}
-          onMouseOver={() => setIsHover(true)}
         >
           <span
             aria-label={navItem.alt}
@@ -120,7 +116,16 @@ export default function NavItem(props: NavItemProps): ReactElement {
               'lg:group-hover:border-primary',
               isActiveNavLink(`${navItem.href}/`)
             )}
-            onClick={() => setIsDropdownExpanded(!IsDropdownExpanded)}
+            onClick={() => {
+              if (isSmall || isMedium) {
+                setIsDropdownExpanded(!IsDropdownExpanded);
+              }
+            }}
+            onMouseOver={() => {
+              if (isLarge || isHuge || isEnormous) {
+                setIsDropdownExpanded(true);
+              }
+            }}
           >
             {title}
             {(isSmall || isMedium) && (
@@ -142,17 +147,27 @@ export default function NavItem(props: NavItemProps): ReactElement {
           </span>
           <div
             className={classNames(
-              'bg-white w-full overflow-hidden',
+              'w-full overflow-hidden',
               'transform transition-all duration-300',
-              'lg:w-44 lg:overflow-visible lg:opacity-0 lg:rounded-md lg:absolute lg:top-12',
+              'lg:bg-white lg:w-44 lg:overflow-visible lg:opacity-0 lg:absolute lg:top-12',
               'lg:duration-500',
               'lg:group-hover:opacity-100 lg:group-hover:duration-700',
               (isSmall || isMedium) && IsDropdownExpanded
                 ? 'h-32 translate-y-0 -mb-3'
-                : 'h-0 translate-y-auto lg:h-0 lg:translate-y-0'
+                : 'h-0 translate-y-auto lg:translate-y-0'
             )}
             style={{ zIndex: zIndex ? zIndex : undefined }}
-            onMouseOut={() => setIsHover(false)}
+            // onMouseOut={() => setIsHover(false)}
+            onMouseOver={() => {
+              if (isLarge || isHuge || isEnormous) {
+                setIsDropdownExpanded(true);
+              }
+            }}
+            onMouseLeave={() => {
+              if (isLarge || isHuge || isEnormous) {
+                setIsDropdownExpanded(false);
+              }
+            }}
           >
             {Object.entries(navItem.items).map(([key, value], index) => {
               return (
@@ -160,7 +175,6 @@ export default function NavItem(props: NavItemProps): ReactElement {
                   key={`${key}${index}`}
                   navItem={value}
                   title={key}
-                  classes={classNames(!isHover && 'hidden')}
                 />
               );
             })}
