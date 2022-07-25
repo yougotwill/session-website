@@ -71,8 +71,7 @@
           "type": "Symbol",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -96,8 +95,7 @@
           "type": "Link",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false,
           "linkType": "Asset"
@@ -108,8 +106,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -119,8 +116,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -130,8 +126,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -141,8 +136,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         }
@@ -205,8 +199,7 @@
           "type": "Symbol",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -230,8 +223,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -264,16 +256,10 @@
               "message": "Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, horizontal rule, quote, asset, link to Url, link to entry, link to asset, block entry, and inline entry nodes are allowed"
             },
             {
-              "nodes": {
-              }
+              "nodes": {}
             },
             {
-              "enabledMarks": [
-                "bold",
-                "italic",
-                "underline",
-                "code"
-              ],
+              "enabledMarks": ["bold", "italic", "underline", "code"],
               "message": "Only bold, italic, underline, and code marks are allowed"
             }
           ],
@@ -286,8 +272,7 @@
           "type": "Boolean",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "defaultValue": {
             "en-US": false
           },
@@ -353,8 +338,7 @@
           "type": "Symbol",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -364,8 +348,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -416,8 +399,7 @@
           "type": "Boolean",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -429,9 +411,7 @@
           "required": true,
           "validations": [
             {
-              "linkContentType": [
-                "author"
-              ]
+              "linkContentType": ["author"]
             }
           ],
           "disabled": false,
@@ -444,8 +424,7 @@
           "type": "Date",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -457,8 +436,7 @@
           "required": true,
           "validations": [
             {
-              "nodes": {
-              }
+              "nodes": {}
             },
             {
               "enabledNodeTypes": [
@@ -482,12 +460,7 @@
               "message": "Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, horizontal rule, quote, block entry, asset, link to Url, link to entry, link to asset, and inline entry nodes are allowed"
             },
             {
-              "enabledMarks": [
-                "bold",
-                "italic",
-                "underline",
-                "code"
-              ],
+              "enabledMarks": ["bold", "italic", "underline", "code"],
               "message": "Only bold, italic, underline, and code marks are allowed"
             }
           ],
@@ -514,8 +487,7 @@
           "type": "Boolean",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "defaultValue": {
             "en-US": false
           },
@@ -573,7 +545,7 @@
       },
       "displayField": "title",
       "name": "Link Preview",
-      "description": "Embed a link which will then show a preview. i.e. Quoting a social media post like a tweet in a blog post. This relies on https://noembed.com/",
+      "description": "Embed a link which will then show a preview. i.e. Quoting a social media post like a tweet in a blog post. This relies on https://www.noembed.com/",
       "fields": [
         {
           "id": "title",
@@ -581,8 +553,7 @@
           "type": "Symbol",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -609,8 +580,7 @@
           "type": "Text",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -622,10 +592,7 @@
           "required": false,
           "validations": [
             {
-              "in": [
-                "left",
-                "right"
-              ]
+              "in": ["left", "right"]
             }
           ],
           "disabled": false,
@@ -704,8 +671,7 @@
           "type": "Link",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false,
           "linkType": "Asset"
@@ -733,8 +699,7 @@
           "type": "Text",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -744,8 +709,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -755,8 +719,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -768,10 +731,7 @@
           "required": false,
           "validations": [
             {
-              "in": [
-                "left",
-                "right"
-              ]
+              "in": ["left", "right"]
             }
           ],
           "disabled": false,
@@ -850,8 +810,7 @@
           "type": "Symbol",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -863,8 +822,7 @@
           "required": true,
           "validations": [
             {
-              "nodes": {
-              }
+              "nodes": {}
             }
           ],
           "disabled": false,
@@ -982,8 +940,7 @@
           "type": "Text",
           "localized": false,
           "required": true,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -993,8 +950,7 @@
           "type": "Symbol",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -1004,8 +960,7 @@
           "type": "Boolean",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -1015,8 +970,7 @@
           "type": "Boolean",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         },
@@ -1026,8 +980,7 @@
           "type": "Boolean",
           "localized": false,
           "required": false,
-          "validations": [
-          ],
+          "validations": [],
           "disabled": false,
           "omitted": false
         }
@@ -2067,8 +2020,7 @@
   "entries": [
     {
       "metadata": {
-        "tags": [
-        ]
+        "tags": []
       },
       "sys": {
         "space": {
@@ -2149,8 +2101,7 @@
     },
     {
       "metadata": {
-        "tags": [
-        ]
+        "tags": []
       },
       "sys": {
         "space": {
@@ -2214,18 +2165,14 @@
         },
         "answer": {
           "en-US": {
-            "data": {
-            },
+            "data": {},
             "content": [
               {
-                "data": {
-                },
+                "data": {},
                 "content": [
                   {
-                    "data": {
-                    },
-                    "marks": [
-                    ],
+                    "data": {},
+                    "marks": [],
                     "value": "42.",
                     "nodeType": "text"
                   }
@@ -2352,18 +2299,14 @@
         },
         "body": {
           "en-US": {
-            "data": {
-            },
+            "data": {},
             "content": [
               {
-                "data": {
-                },
+                "data": {},
                 "content": [
                   {
-                    "data": {
-                    },
-                    "marks": [
-                    ],
+                    "data": {},
+                    "marks": [],
                     "value": "This is a blog post.",
                     "nodeType": "text"
                   }
@@ -2371,14 +2314,11 @@
                 "nodeType": "paragraph"
               },
               {
-                "data": {
-                },
+                "data": {},
                 "content": [
                   {
-                    "data": {
-                    },
-                    "marks": [
-                    ],
+                    "data": {},
+                    "marks": [],
                     "value": "Amet velit veniam et occaecat excepteur dolor tempor pariatur excepteur voluptate nulla. Fugiat do aliqua dolor aliquip fugiat irure aliquip officia tempor. Ipsum minim commodo eiusmod voluptate ea aliquip sunt deserunt quis ad duis occaecat. Occaecat adipisicing reprehenderit ea culpa minim labore aute. Reprehenderit ea culpa id elit sunt fugiat.\nExercitation ad dolor sint elit qui eu amet eiusmod sint irure eu. Dolore id tempor minim Lorem esse consequat et. Reprehenderit culpa nisi laboris ad occaecat incididunt commodo officia qui. Sunt labore do est cillum sunt. Velit minim ea excepteur laborum. Voluptate consequat dolore nulla sint dolor irure fugiat eu deserunt aute reprehenderit ipsum culpa quis.",
                     "nodeType": "text"
                   }
@@ -2386,14 +2326,11 @@
                 "nodeType": "paragraph"
               },
               {
-                "data": {
-                },
+                "data": {},
                 "content": [
                   {
-                    "data": {
-                    },
-                    "marks": [
-                    ],
+                    "data": {},
+                    "marks": [],
                     "value": "\nAmet veniam occaecat qui eiusmod elit aute ad ad anim. Eu culpa Lorem consectetur adipisicing amet ipsum reprehenderit excepteur. Ad occaecat consequat elit ullamco quis dolor. Ut ad anim aliquip aliquip ipsum nisi cillum fugiat eu. Esse dolore elit sunt consectetur pariatur excepteur irure esse quis officia est. Quis proident amet ea pariatur sunt non culpa minim velit pariatur deserunt ad aliquip non. Voluptate consequat aliqua anim qui aliqua commodo nostrud ad aliqua laboris ipsum dolor exercitation.\nNulla qui cupidatat commodo est consequat cillum amet irure eu dolor do incididunt cillum cupidatat. Lorem eiusmod veniam Lorem ut non velit eu aliquip do nisi excepteur pariatur nulla. Irure proident eu et aute laborum ullamco adipisicing duis irure anim deserunt ea. Minim fugiat aliquip Lorem mollit sint dolor dolore tempor minim ad cillum laborum adipisicing qui.",
                     "nodeType": "text"
                   }
@@ -2401,14 +2338,11 @@
                 "nodeType": "paragraph"
               },
               {
-                "data": {
-                },
+                "data": {},
                 "content": [
                   {
-                    "data": {
-                    },
-                    "marks": [
-                    ],
+                    "data": {},
+                    "marks": [],
                     "value": "\nVoluptate reprehenderit et sint amet adipisicing non ea dolore consequat anim. Enim aute laboris laboris sunt enim et. Nostrud ullamco amet pariatur labore deserunt reprehenderit dolore excepteur Lorem irure amet. Mollit ex magna do eu elit et sunt eiusmod pariatur velit ut officia fugiat aliqua. Exercitation anim incididunt nisi anim proident. Nisi nisi nulla labore qui cupidatat magna ipsum ipsum dolor reprehenderit adipisicing sint. Sit aliquip enim dolore sunt commodo ea ex duis cillum amet qui officia.",
                     "nodeType": "text"
                   }
@@ -2429,8 +2363,7 @@
     },
     {
       "metadata": {
-        "tags": [
-        ]
+        "tags": []
       },
       "sys": {
         "space": {
@@ -2498,8 +2431,7 @@
         "body": {
           "en-US": {
             "nodeType": "document",
-            "data": {
-            },
+            "data": {},
             "content": [
               {
                 "nodeType": "heading-1",
@@ -2507,14 +2439,11 @@
                   {
                     "nodeType": "text",
                     "value": "Session Terms of Service",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2527,12 +2456,10 @@
                         "type": "italic"
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2540,14 +2467,11 @@
                   {
                     "nodeType": "text",
                     "value": "These Terms of Service (“Terms”) govern your access to and use of our services that are fully owned and operated by the Oxen Privacy Tech Foundation (referred \nto as “we”, “our”, “OPTF”) including the Session website and the Session Private Messenger applications, including Linux, Windows, Mac OS, Android and Mac iOS (collectively, referred to as the “Services”) and any information, text, links, graphics, videos, audio or other material uploaded, downloaded or appearing on the Services (collectively, referred to as “Content”).",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2555,14 +2479,11 @@
                   {
                     "nodeType": "text",
                     "value": "These Terms and the Session Privacy Policy form the End User Agreement between you and the OPTF.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2570,14 +2491,11 @@
                   {
                     "nodeType": "text",
                     "value": "The Services are fully owned and delivered by the Oxen Privacy Tech \nFoundation (OPTF), a not-for-profit charity registered in Australia.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-2",
@@ -2585,14 +2503,11 @@
                   {
                     "nodeType": "text",
                     "value": "1. Who can use the Services",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2600,14 +2515,11 @@
                   {
                     "nodeType": "text",
                     "value": "Anyone who is not barred from using the Services under the laws of the \napplicable jurisdiction, and is at least 13 years of age can use the \nService. If you are living in the United Kingdom or a European Union \ncountry, you must be at least 16 years old.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2615,14 +2527,11 @@
                   {
                     "nodeType": "text",
                     "value": "By using these Services, you agree to form a binding End User Agreement between you and the OPTF.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2630,14 +2539,11 @@
                   {
                     "nodeType": "text",
                     "value": "If you are accepting these Terms and using the Services on behalf of a \ncompany, organization, government, or other legal entity, you represent \nand warrant that you are authorized to do so and have the authority to \nbind such entity to these Terms, in which case the words “you” and \n“your” as used in these Terms shall refer to such entity.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-2",
@@ -2645,14 +2551,11 @@
                   {
                     "nodeType": "text",
                     "value": "2. Our Privacy Policy",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2660,10 +2563,8 @@
                   {
                     "nodeType": "text",
                     "value": "Privacy is central to our purpose and mission. For more details, please refer to the Session ",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   },
                   {
                     "nodeType": "hyperlink",
@@ -2671,10 +2572,8 @@
                       {
                         "nodeType": "text",
                         "value": "Privacy Policy",
-                        "marks": [
-                        ],
-                        "data": {
-                        }
+                        "marks": [],
+                        "data": {}
                       }
                     ],
                     "data": {
@@ -2684,14 +2583,11 @@
                   {
                     "nodeType": "text",
                     "value": ".",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-2",
@@ -2699,14 +2595,11 @@
                   {
                     "nodeType": "text",
                     "value": "3. Our Services",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2714,14 +2607,11 @@
                   {
                     "nodeType": "text",
                     "value": "Our Services are intended to inform you and educate you about using our private and secure communications app (Session Website), and facilitate private and secure communications between two or more parties, or within a closed group or within an open group (Session, or Session App).",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-3",
@@ -2729,14 +2619,11 @@
                   {
                     "nodeType": "text",
                     "value": "3.1. Using the Session Website",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2744,14 +2631,11 @@
                   {
                     "nodeType": "text",
                     "value": "The purpose of the Session Website is primarily to provide you with \ninformation about the Session App and link to download of the Session \nApp. We have done our best to make sure this information is accurate and up-to-date, however, there may be unintentional errors that may mislead you. Therefore, we encourage you to contact us for any clarifications you may need.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2759,14 +2643,11 @@
                   {
                     "nodeType": "text",
                     "value": "The Session Website also enables you to submit your contact details, so we are able to keep you informed about our work.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-3",
@@ -2774,14 +2655,11 @@
                   {
                     "nodeType": "text",
                     "value": "3.2. Using the Session App",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2789,14 +2667,11 @@
                   {
                     "nodeType": "text",
                     "value": "The purpose of the Session App is to facilitate private and secure \ncommunications, without capturing or sharing any meta-data. It was \nintentionally created for use by individuals who require anonymity and \nsecurity.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2809,20 +2684,16 @@
                         "type": "bold"
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "text",
                     "value": " The Session App does not require you to identify yourself in any way or associate your personally identifiable information including phone numbers or email addresses with the account you create on the Session App (known as a \nSession ID). The onion-routing technology behind Session means that your communications are not only free of meta-data, but you can also be completely anonymous and untraceable. There is no way for us, or anyone else to link your Session ID with your real identity — unless you create such a link by indicating your real identity through your communications, or associating your real identity with your Session ID \nthrough some other means.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2835,20 +2706,16 @@
                         "type": "bold"
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "text",
                     "value": " The messages you create on your Session App are encrypted and only the destination Session ID can dy-encrypt the message. The encrypted messages are wrapped in multiple layers of onion encryption and routed \nfrom the Session App through our distributed onion network before reaching their destination. While we make every effort to ensure security, we cannot be held responsible for any interception or decryption using advanced technologies, now or in the future.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2856,14 +2723,11 @@
                   {
                     "nodeType": "text",
                     "value": "The Session App is a messaging app, and does not have the ability to \ncommunicate with non-Session Apps or services. Our Services do not \nprovide access to public emergency service providers like the police, \nfire department, hospitals, or other public safety organizations.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-2",
@@ -2871,14 +2735,11 @@
                   {
                     "nodeType": "text",
                     "value": "4. Our Responsibilities and Commitments to You",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2886,14 +2747,11 @@
                   {
                     "nodeType": "text",
                     "value": "We are committed to ensuring the delivery of our Services in a way that is accessible and reliable.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2901,14 +2759,11 @@
                   {
                     "nodeType": "text",
                     "value": "We will not sell or otherwise monetise your personal data or content in \nany way. We cannot access your data even if we wanted to, as Session \npreserves the privacy and secrecy of your messages. See our Privacy \nPolicy for more information.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2916,14 +2771,11 @@
                   {
                     "nodeType": "text",
                     "value": "Session’s License to You — Session grants you a limited, revocable, non-exclusive, and \nnon-transferable license to use our Services in accordance with these Terms.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2931,14 +2783,11 @@
                   {
                     "nodeType": "text",
                     "value": "Availability of Our Services — We strive to ensure that our Services are continuously available for use. However, there may be occasions when they are interrupted, including for maintenance, upgrades, or to resolve network or equipment failures. We may \ndiscontinue some or all of our Services, including certain features and the support for certain devices and platforms.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2946,14 +2795,11 @@
                   {
                     "nodeType": "text",
                     "value": "Keeping you informed — We continuously provide updates about our Services through \nvarious channels, including the Session Blog, Session Twitter Account and a number of community groups on Session and on Telegram. Where possible, we will strive to keep you updated about outages and service disruptions through these channels.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-2",
@@ -2961,14 +2807,11 @@
                   {
                     "nodeType": "text",
                     "value": "5. Your Responsibilities and Rights",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-3",
@@ -2976,14 +2819,11 @@
                   {
                     "nodeType": "text",
                     "value": "5.1. Account Management and General Use",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -2991,14 +2831,11 @@
                   {
                     "nodeType": "text",
                     "value": "Software and account — You are responsible for keeping your device, Session App \nand your account up-to-date, safe and secure, including being responsible for any passwords or recovery phrases.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3006,14 +2843,11 @@
                   {
                     "nodeType": "text",
                     "value": "Fees and Taxes — You are responsible for data and mobile carrier fees and taxes \nassociated with the devices on which you use our Services.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3021,14 +2855,11 @@
                   {
                     "nodeType": "text",
                     "value": "Terms and Policies — You must use our Services according to our Terms and \npolicies. If we block your device for a breach of our Terms, you will not create another account without our permission.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3036,14 +2867,11 @@
                   {
                     "nodeType": "text",
                     "value": "Legal and Acceptable Use — You agree to use our Services only for legal, authorized, and acceptable purposes. You will not use (or assist others in using) our Services in ways that: (a) violate or infringe the rights of Session, our users, or others, including privacy, publicity, intellectual property, or other rights; (b) involve sending illegal or impermissible communications such as bulk messaging, auto-messaging, and auto-dialing; (c) breach the Session Content Policy described further below.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3051,14 +2879,11 @@
                   {
                     "nodeType": "text",
                     "value": "Harm to Session — You must not (or assist others to) access, use, modify, distribute, transfer, or exploit our Services in unauthorised manners, or in ways that harm Session, our Services, or systems. For example you must not (a) gain or try to gain unauthorised \naccess to our Services or systems; (b) disrupt the integrity or performance of our Services; (c) create accounts for our Services through unauthorized or automated means; (d) collect information about other Session users in any unauthorised manner; or (e) sell, rent, or charge for our Services.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3066,14 +2891,11 @@
                   {
                     "nodeType": "text",
                     "value": "Third-party services — Our Services may allow you to access, use, or interact with third-party websites, apps, content, and other products and services run by third parties. When you use third-party services, their terms and privacy policies govern your use of those services. When using Open Groups operated by third-parties, these Terms as well as any terms or policies associated with the Open Group will govern your use.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3081,14 +2903,11 @@
                   {
                     "nodeType": "text",
                     "value": "Open Group by Session — You may use Open Groups run by Session in accordance with \nthese Terms of Service, however, you also agree to follow the rules of the specific Open Group.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3096,14 +2915,11 @@
                   {
                     "nodeType": "text",
                     "value": "Your Content — You own and/or take responsibility for the content (text messages, audio, video, images) you submit through our Services. We can not access this information unless you explicitly send it to us, or it is published in an Open Group.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3111,14 +2927,11 @@
                   {
                     "nodeType": "text",
                     "value": "Session’s Rights — You acknowledge that the OPTF owns all copyrights, trademarks, domains, logos, trade dress, trade secrets, patents, and other intellectual property rights associated with our Services. You may not use our copyrights, trademarks, domains, logos, trade dress, patents, and other intellectual property rights unless you have our written permission. To report copyright, trademark, or other intellectual property infringement, please contact support@78.47.201.78.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-3",
@@ -3126,14 +2939,11 @@
                   {
                     "nodeType": "text",
                     "value": "5.2. Session Content Policy",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3141,14 +2951,11 @@
                   {
                     "nodeType": "text",
                     "value": "OPTF exists to build private and secure technology, and defend your right to privacy and security in the digital world. We are also mission-driven to uphold key democratic, media freedom and human rights principles.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3156,14 +2963,11 @@
                   {
                     "nodeType": "text",
                     "value": "To enable us to uphold our mission principles, we have identified the following activities of Session as a clear breach of these Terms.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3176,12 +2980,10 @@
                         "type": "bold"
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3189,14 +2991,11 @@
                   {
                     "nodeType": "text",
                     "value": "Session cannot be used to:",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "unordered-list",
@@ -3210,18 +3009,14 @@
                           {
                             "nodeType": "text",
                             "value": "to glorify violence, or promote violence of any form (physical, psychological, sexual) against another individual or group, or incite harm or directly attack or threaten other people on the basis of race, ethnicity, national origin, caste, sexual orientation, gender, gender identity, religious affiliation, age, disability, or serious disease.",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "list-item",
@@ -3232,22 +3027,17 @@
                           {
                             "nodeType": "text",
                             "value": "by organisations, groups and individuals designated by the United Nations as terrorist organisations or terrorists.\n",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3260,12 +3050,10 @@
                         "type": "bold"
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3273,14 +3061,11 @@
                   {
                     "nodeType": "text",
                     "value": "Session cannot be used to organise or promote child sexual exploitation. A child is defined as anyone under the age of 18. Specifically, Session cannot be used to store or share:",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "unordered-list",
@@ -3294,18 +3079,14 @@
                           {
                             "nodeType": "text",
                             "value": "visual depictions of a child engaging in sexually explicit or sexually suggestive acts;",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "list-item",
@@ -3316,18 +3097,14 @@
                           {
                             "nodeType": "text",
                             "value": "illustrated, computer-generated or other forms of realistic depictions of a human child in a sexually explicit context, or engaging in sexually explicit acts;",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "list-item",
@@ -3338,18 +3115,14 @@
                           {
                             "nodeType": "text",
                             "value": "sexualized commentaries about or directed at a known or unknown minor;",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "list-item",
@@ -3360,18 +3133,14 @@
                           {
                             "nodeType": "text",
                             "value": "links to third-party sites that host child sexual exploitation material;",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "list-item",
@@ -3382,18 +3151,14 @@
                           {
                             "nodeType": "text",
                             "value": "fantasies about or promoting engagement in child sexual exploitation;",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "list-item",
@@ -3404,22 +3169,17 @@
                           {
                             "nodeType": "text",
                             "value": "recruiting, advertising or expressing an interest in a commercial sex act involving a child, or in harboring and/or transporting a child for sexual purposes.",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3432,12 +3192,10 @@
                         "type": "bold"
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3445,14 +3203,11 @@
                   {
                     "nodeType": "text",
                     "value": "Session cannot be used to store or share violent or gory content that is \nintended to shock or disgust others, or create harm or distress to the \nperson or persons represented in the content.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-2",
@@ -3460,14 +3215,11 @@
                   {
                     "nodeType": "text",
                     "value": "6.0 Monitoring Session Breaches",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3475,14 +3227,11 @@
                   {
                     "nodeType": "text",
                     "value": "Our Services have been created using a privacy-by-design approach which means that it is impossible for us to analyse or monitor your content you create and store on the Session App, or share it with other users.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3490,14 +3239,11 @@
                   {
                     "nodeType": "text",
                     "value": "Open Groups on Session, by their nature, are open to the public, and the content posted shared through Open Groups can be monitored. OPTF does not have the capacity to monitor all Open Groups, however, we do make a concerted effort to monitor and where necessary moderate Open Groups that have been created by us.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-3",
@@ -3505,14 +3251,11 @@
                   {
                     "nodeType": "text",
                     "value": "6.1 Third-party notification of breaches",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3520,14 +3263,11 @@
                   {
                     "nodeType": "text",
                     "value": "We may be notified by third-parties of breaches to these Terms. In such cases, the evidence presented by the third-parties will be accessed by our Board and Members, to determine the severity of the breach and the required outcomes. We may engage external experts to further assist and inform us. The decisions made by our Board and Members will be final.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3535,14 +3275,11 @@
                   {
                     "nodeType": "text",
                     "value": "All notifications, including requests for information or take down notices, will be documented in our Transparency Report that is updated every three months.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-2",
@@ -3550,14 +3287,11 @@
                   {
                     "nodeType": "text",
                     "value": "7.0 Disclaimers and Limitations",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3565,14 +3299,11 @@
                   {
                     "nodeType": "text",
                     "value": "Disclaimers — YOU USE OUR SERVICES AT YOUR OWN RISK AND SUBJECT TO THE FOLLOWING DISCLAIMERS. WE PROVIDE OUR SERVICES ON AN “AS IS” BASIS WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, AND FREEDOM FROM COMPUTER VIRUS OR OTHER HARMFUL CODE. Session DOES NOT WARRANT THAT ANY INFORMATION PROVIDED BY US IS ACCURATE, COMPLETE, OR USEFUL, THAT OUR SERVICES WILL BE OPERATIONAL, \nERROR-FREE, SECURE, OR SAFE, OR THAT OUR SERVICES WILL FUNCTION WITHOUT \nDISRUPTIONS, DELAYS, OR IMPERFECTIONS. WE DO NOT CONTROL, AND ARE NOT \nRESPONSIBLE FOR, CONTROLLING HOW OR WHEN OUR USERS USE OUR SERVICES. WE ARE NOT RESPONSIBLE FOR THE ACTIONS OR INFORMATION (INCLUDING CONTENT) OF OUR USERS OR OTHER THIRD PARTIES. YOU RELEASE US, AFFILIATES, \nDIRECTORS, OFFICERS, EMPLOYEES, PARTNERS, AND AGENTS (TOGETHER, “SESSION PARTIES”) FROM ANY CLAIM, COMPLAINT, CAUSE OF ACTION, CONTROVERSY, OR DISPUTE (TOGETHER, “CLAIM”) AND DAMAGES, KNOWN AND UNKNOWN, RELATING TO, ARISING OUT OF, OR IN ANY WAY CONNECTED WITH ANY SUCH CLAIM YOU HAVE AGAINST ANY THIRD PARTIES.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3580,14 +3311,11 @@
                   {
                     "nodeType": "text",
                     "value": "Limitation of Liability — THE SESSION PARTIES WILL NOT BE LIABLE TO YOU FOR ANY LOST PROFITS OR CONSEQUENTIAL, SPECIAL, PUNITIVE, INDIRECT, OR INCIDENTAL DAMAGES RELATING TO, ARISING OUT OF, OR IN ANY WAY IN CONNECTION WITH OUR TERMS, US, OR OUR SERVICES, EVEN IF THE SESSION PARTIES HAVE BEEN ADVISED OF \nTHE POSSIBILITY OF SUCH DAMAGES. OUR AGGREGATE LIABILITY RELATING TO, ARISING OUT OF, OR IN ANY WAY IN CONNECTION WITH OUR TERMS, US, OR OUR SERVICES WILL NOT EXCEED TEN DOLLARS ($10). THE FOREGOING DISCLAIMER OF \nCERTAIN DAMAGES AND LIMITATION OF LIABILITY WILL APPLY TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW. THE LAWS OF SOME STATES OR JURISDICTIONS MAY NOT ALLOW THE EXCLUSION OR LIMITATION OF CERTAIN DAMAGES, SO SOME OR ALL OF THE EXCLUSIONS AND LIMITATIONS SET FORTH ABOVE MAY NOT APPLY TO YOU. NOTWITHSTANDING ANYTHING TO THE CONTRARY IN OUR TERMS, IN SUCH CASES, THE LIABILITY OF THE SESSION PARTIES WILL BE LIMITED TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-2",
@@ -3595,14 +3323,11 @@
                   {
                     "nodeType": "text",
                     "value": "8.0. Resolving Disputes and Ending Terms",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3610,14 +3335,11 @@
                   {
                     "nodeType": "text",
                     "value": "Resolving disputes — You agree to resolve any Claim you have with us relating to or arising out of our Terms, us, or our Services exclusively in the state of Victoria, Australia. You also agree to submit to the personal jurisdiction of such courts for the purpose of litigating all such disputes. The laws of Australia govern our Terms, as well as any disputes, whether in court or arbitration, which might arise between Session and you, without regard to conflict of law provisions.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3625,14 +3347,11 @@
                   {
                     "nodeType": "text",
                     "value": "Ending these Terms — You may end these Terms with Session at any time by deleting Session from your device and discontinuing use of our Services. We may modify, suspend, or terminate your access to or use of our Services anytime for any reason, such as if you violate the letter or spirit of our Terms or create harm, risk, or possible legal exposure for Session. The following provisions will survive termination of your relationship with Session: “Licenses,” “Disclaimers,” “Limitation of Liability,” “Resolving dispute,” “Availability” and “Ending these Terms,” and “General”.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-2",
@@ -3640,14 +3359,11 @@
                   {
                     "nodeType": "text",
                     "value": "9.0 These Terms",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3655,14 +3371,11 @@
                   {
                     "nodeType": "text",
                     "value": "Session may update the Terms at any time. When we update our Terms, We will update the “Last Modified” date associated with the updated Terms. Your continued use of our Services confirms your acceptance of our updated Terms and supersedes any prior agreed Terms. You will comply with all applicable export control and trade sanctions laws. Our Terms cover the entire agreement between you and Session regarding our Services. If you do not agree with our Terms, you should stop using our Services.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3670,14 +3383,11 @@
                   {
                     "nodeType": "text",
                     "value": "If we fail to enforce our Terms, we do not waive the right to enforce them. If any provision of the Terms is deemed unlawful, void, or unenforceable, that provision shall be deemed severable from our Terms and shall not affect the enforceability of the remaining provisions. Our Services are not intended for distribution to or use in any country where such distribution or use would violate local law or would subject us to any regulations in another country. If you have specific questions about these Terms, please contact us at support@78.47.201.78.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-2",
@@ -3685,14 +3395,11 @@
                   {
                     "nodeType": "text",
                     "value": "Session iOS – End User License Agreement",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -3700,14 +3407,11 @@
                   {
                     "nodeType": "text",
                     "value": "By using the Session iOS app (“App”), you not only agree to the Terms of Service and Privacy Policy of Session, but also this End User License Agreement (“EULA”).",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "ordered-list",
@@ -3726,24 +3430,19 @@
                                 "type": "bold"
                               }
                             ],
-                            "data": {
-                            }
+                            "data": {}
                           },
                           {
                             "nodeType": "text",
                             "value": ": You acknowledge that this EULA is concluded between LAG Foundation Ltd (“Session”), and not with Apple, Inc (“Apple”), and Session, not Apple, is solely responsible for the Licensed Application and the content thereof.",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "list-item",
@@ -3759,24 +3458,19 @@
                                 "type": "bold"
                               }
                             ],
-                            "data": {
-                            }
+                            "data": {}
                           },
                           {
                             "nodeType": "text",
                             "value": ": Subject to your compliance with our Terms of Service, Session grants you a limited, non-exclusive, non-transferable, revocable license to download and use the App.",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "list-item",
@@ -3792,24 +3486,19 @@
                                 "type": "bold"
                               }
                             ],
-                            "data": {
-                            }
+                            "data": {}
                           },
                           {
                             "nodeType": "text",
                             "value": ": Session provides no guarantee that We will supply you with maintenance or support beyond what already exists on our documentation and github pages. Apple has no obligation whatsoever to furnish any maintenance and support services with respect to the App.",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "list-item",
@@ -3825,24 +3514,19 @@
                                 "type": "bold"
                               }
                             ],
-                            "data": {
-                            }
+                            "data": {}
                           },
                           {
                             "nodeType": "text",
                             "value": ": Our warrant can be found in our Terms of Service, which you agree to. In the event of any failure of the Licensed Application to conform to the warranty, You may notify Apple, and Apple will refund the purchase price for the App. To the maximum extent permitted by applicable law, Apple will have no other warranty obligation whatsoever with respect to the App, and any other claims, losses, liabilities, damages, costs or expenses attributable to any failure to conform to any warranty will be handled in accordance with the Session Terms of Service.",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "list-item",
@@ -3858,24 +3542,19 @@
                                 "type": "bold"
                               }
                             ],
-                            "data": {
-                            }
+                            "data": {}
                           },
                           {
                             "nodeType": "text",
                             "value": ": Session, and not Apple, is responsible for addressing any claims relating to the App or its use, including, but not limited to: (i) product liability claims; (ii) any claim that the Licensed Application fails to conform to any applicable legal or regulatory requirement; and (iii) claims arising under consumer protection, privacy, or similar legislation. This is handled in accordance with the Session Terms of Service.",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "list-item",
@@ -3891,24 +3570,19 @@
                                 "type": "bold"
                               }
                             ],
-                            "data": {
-                            }
+                            "data": {}
                           },
                           {
                             "nodeType": "text",
                             "value": ": Session, and not Apple, is responsible for all intellectual property issues associated with the app. This is covered in our Terms of Service.",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "list-item",
@@ -3924,24 +3598,19 @@
                                 "type": "bold"
                               }
                             ],
-                            "data": {
-                            }
+                            "data": {}
                           },
                           {
                             "nodeType": "text",
                             "value": ": You represent and warrant that (i) he/she is not located in a country \nthat is subject to a U.S. Government embargo, or that has been designated by the U.S. Government as a “terrorist supporting” country; and (ii) he/she is not listed on any U.S. Government list of prohibited or restricted parties.",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "list-item",
@@ -3957,24 +3626,19 @@
                                 "type": "bold"
                               }
                             ],
-                            "data": {
-                            }
+                            "data": {}
                           },
                           {
                             "nodeType": "text",
                             "value": ": If you have questions about the Terms of Service or this EULA, you may email support@78.47.201.78 (LAG Foundation Ltd, Level 1 452 Flinders Street Melbourne VIC 3000 Australia)",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "list-item",
@@ -3990,24 +3654,19 @@
                                 "type": "bold"
                               }
                             ],
-                            "data": {
-                            }
+                            "data": {}
                           },
                           {
                             "nodeType": "text",
                             "value": ": You must comply with applicable third party terms of agreement when using the App, if any such third party applications exist.",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "list-item",
@@ -4023,24 +3682,19 @@
                                 "type": "bold"
                               }
                             ],
-                            "data": {
-                            }
+                            "data": {}
                           },
                           {
                             "nodeType": "text",
                             "value": ": Session and You acknowledge and agree that Apple, and Apple’s subsidiaries, are third party beneficiaries of this EULA, and that, upon Your acceptance of the Terms of Service and this EULA, Apple will have the right (and will be deemed to have accepted the right) to enforce the EULA against You as a third party beneficiary thereof.",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   },
                   {
                     "nodeType": "list-item",
@@ -4056,28 +3710,22 @@
                                 "type": "bold"
                               }
                             ],
-                            "data": {
-                            }
+                            "data": {}
                           },
                           {
                             "nodeType": "text",
                             "value": ": You acknowledge that you are subject to acceptable content policies within Open Groups and other areas on the app and must not use the App to distribute objectionable content. If you are deemed an abusive user you may also be restricted or removed from Groups or the App if reported or discovered.",
-                            "marks": [
-                            ],
-                            "data": {
-                            }
+                            "marks": [],
+                            "data": {}
                           }
                         ],
-                        "data": {
-                        }
+                        "data": {}
                       }
                     ],
-                    "data": {
-                    }
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-2",
@@ -4085,14 +3733,11 @@
                   {
                     "nodeType": "text",
                     "value": "Conclusion",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -4100,14 +3745,11 @@
                   {
                     "nodeType": "text",
                     "value": "This page outlines the Terms of Service for the Session app, services, and website, as well as the End User License Agreement for iOS. If you’d like to read more about how we handle your privacy, you can check out the Session privacy policy. If you have any questions, opinions, or concerns about Session’s Terms, please get in touch with us via email at support@78.47.201.78.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               }
             ]
           }
@@ -4119,8 +3761,7 @@
     },
     {
       "metadata": {
-        "tags": [
-        ]
+        "tags": []
       },
       "sys": {
         "space": {
@@ -4188,8 +3829,7 @@
         "body": {
           "en-US": {
             "nodeType": "document",
-            "data": {
-            },
+            "data": {},
             "content": [
               {
                 "nodeType": "heading-1",
@@ -4197,14 +3837,11 @@
                   {
                     "nodeType": "text",
                     "value": "Session Privacy Policy",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -4212,14 +3849,11 @@
                   {
                     "nodeType": "text",
                     "value": "Session is underpinned by our privacy principles that intend to protect and defend your personal identity and information and the privacy of your communications at all times.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-2",
@@ -4227,14 +3861,11 @@
                   {
                     "nodeType": "text",
                     "value": "1.0 Session App",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -4242,14 +3873,11 @@
                   {
                     "nodeType": "text",
                     "value": "The Session App is designed to never know who you are, who you are talking to, or the contents of your communications (text messages, audio, video, images).",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -4257,14 +3885,11 @@
                   {
                     "nodeType": "text",
                     "value": "The Session App does not collect or share your information. That’s our policy in a nutshell.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -4272,14 +3897,11 @@
                   {
                     "nodeType": "text",
                     "value": "The Session App or its associated software doesn’t store any identifying information about your device, such as your IP address or your user agent (browser, device type). We don’t store or collect any information which could be used to track you.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -4287,14 +3909,11 @@
                   {
                     "nodeType": "text",
                     "value": "This means we don’t need your phone number, e-mail, or any information tied to your real identity to create a Session account. There are no special settings you need to set to be private. Session is preservices your privacy by default.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-2",
@@ -4302,14 +3921,11 @@
                   {
                     "nodeType": "text",
                     "value": "2.0 Session Website",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -4317,14 +3933,11 @@
                   {
                     "nodeType": "text",
                     "value": "The Session Website never attempts to link your usage of the website to your real identity or create a user profile based on your activity.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -4332,14 +3945,11 @@
                   {
                     "nodeType": "text",
                     "value": "The Session Website features an opt-in form that lets you subscribe to our email newsletter that is operated using the third party Campaign Monitor email newsletter platform. If you choose to subscribe, your e-mail will be stored by Campaign Monitor, under their Terms of Use and Privacy Policy. However, if you unsubscribe from our mailing list, your email will be deleted.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -4347,14 +3957,11 @@
                   {
                     "nodeType": "text",
                     "value": "To ensure that the opt-in form works effectively, a small cookie is used. The form is embedded into WordPress – the platform we use to manage the website, and it is not possible to disable this cookie. This cookie (fca_eoi_pagecount) is not used by us to track your use of the Session website or other websites, or to track your online activities in any way.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -4362,14 +3969,11 @@
                   {
                     "nodeType": "text",
                     "value": "We will never share or sell your personal details, including your email address, and will only use your email address to communicate our newsletters with you.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -4377,14 +3981,11 @@
                   {
                     "nodeType": "text",
                     "value": "We use Cloudflare services in order to serve the Session website. Cloudflare keeps logs about web requests for the Session website, which can be stored for up to 7 days.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-2",
@@ -4392,14 +3993,11 @@
                   {
                     "nodeType": "text",
                     "value": "3.0 Other Privacy Issues",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -4407,14 +4005,11 @@
                   {
                     "nodeType": "text",
                     "value": "You should be aware that the Google Play and the App Store may collect information and share information about you when you download Session for your Android or iOS device.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -4422,14 +4017,11 @@
                   {
                     "nodeType": "text",
                     "value": "To download Session as privately as possible, it is recommended that you utilise a privacy-preserving VPN or download Session from platforms that do not keep user analytic data.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -4437,14 +4029,11 @@
                   {
                     "nodeType": "text",
                     "value": "If you use Session on your Android or iOS phone, Google or Apple might store information about how you use the app. They may record when the app is closed, opened, how long you use it for, crash logs, and your device model. This user analytics data could also be associated with your Google or Apple account, and it is shared with us through the app store dashboard. This is a limitation of mobile operating systems, and applies to all apps used on your device. We do not share any of your information with Apple and Google, and any analytics data that is shared with us is not sold or shared with anyone else. If required, please read the Apple or Google’s privacy policies. If you’re using iOS, check out Apple’s App Store Review Guidelines. For Android, read the User Data section of Google’s Developer Policy Center.",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "heading-2",
@@ -4452,14 +4041,11 @@
                   {
                     "nodeType": "text",
                     "value": "Any more questions?",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               },
               {
                 "nodeType": "paragraph",
@@ -4467,10 +4053,8 @@
                   {
                     "nodeType": "text",
                     "value": "This is the way the Session app and website treat your privacy. If you would like more information, have suggestions about how we can better protect your privacy, or just want to say hello — please send us an email at ",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   },
                   {
                     "nodeType": "hyperlink",
@@ -4478,10 +4062,8 @@
                       {
                         "nodeType": "text",
                         "value": "team@oxen.io",
-                        "marks": [
-                        ],
-                        "data": {
-                        }
+                        "marks": [],
+                        "data": {}
                       }
                     ],
                     "data": {
@@ -4491,14 +4073,11 @@
                   {
                     "nodeType": "text",
                     "value": ".",
-                    "marks": [
-                    ],
-                    "data": {
-                    }
+                    "marks": [],
+                    "data": {}
                   }
                 ],
-                "data": {
-                }
+                "data": {}
               }
             ]
           }
@@ -4512,8 +4091,7 @@
   "assets": [
     {
       "metadata": {
-        "tags": [
-        ]
+        "tags": []
       },
       "sys": {
         "space": {
@@ -4583,8 +4161,7 @@
     },
     {
       "metadata": {
-        "tags": [
-        ]
+        "tags": []
       },
       "sys": {
         "space": {
@@ -4703,8 +4280,7 @@
       }
     }
   ],
-  "webhooks": [
-  ],
+  "webhooks": [],
   "roles": [
     {
       "name": "Editor",
@@ -4744,19 +4320,12 @@
         }
       ],
       "permissions": {
-        "ContentModel": [
-          "read"
-        ],
-        "Settings": [
-        ],
-        "ContentDelivery": [
-        ],
-        "Environments": [
-        ],
-        "EnvironmentAliases": [
-        ],
-        "Tags": [
-        ]
+        "ContentModel": ["read"],
+        "Settings": [],
+        "ContentDelivery": [],
+        "Environments": [],
+        "EnvironmentAliases": [],
+        "Tags": []
       },
       "sys": {
         "type": "Role",
