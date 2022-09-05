@@ -1,5 +1,6 @@
 import { ReactComponent as FacebookSVG } from '@/assets/svgs/facebook.svg';
 import { ReactComponent as GithubSVG } from '@/assets/svgs/github.svg';
+import { ReactComponent as InstagramSVG } from '@/assets/svgs/instagram.svg';
 import { GroupNotice } from '@/components/sections';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -146,7 +147,7 @@ export default function Footer(): ReactElement {
             >
               <div className={classNames('w-1/2 mb-4', 'lg:w-full')}>
                 <h3 className={headingClasses}>Links</h3>
-                <div className={classNames('flex -ml-1')}>
+                <div className={classNames('flex flex-wrap -ml-1')}>
                   <Link href="https://www.facebook.com/SessionMessenger/">
                     <a
                       className={socialLinkClasses}
@@ -154,6 +155,15 @@ export default function Footer(): ReactElement {
                       rel="noopener noreferrer"
                     >
                       <FacebookSVG className={svgClasses} />
+                    </a>
+                  </Link>
+                  <Link href="https://www.instagram.com/getsession">
+                    <a
+                      className={socialLinkClasses}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <InstagramSVG className={svgClasses} />
                     </a>
                   </Link>
                   <Link href="https://twitter.com/session_app">
@@ -187,7 +197,7 @@ export default function Footer(): ReactElement {
                 <h3 className={headingClasses}>Support</h3>
                 <a
                   href="https://sessionapp.zendesk.com/hc/en-us"
-                  className={classNames(linkClasses, 'pl-4', 'sm:pl-0')}
+                  className={classNames(linkClasses)}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
