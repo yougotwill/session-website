@@ -48,11 +48,7 @@ export default function FAQ(props: Props): ReactElement {
     return content;
   })();
   return (
-    <Layout
-      title="Frequently Asked Questions"
-      metadata={METADATA.FAQ_PAGE}
-      showBanner={true}
-    >
+    <Layout title="Frequently Asked Questions" metadata={METADATA.FAQ_PAGE}>
       <section>
         <Headline
           color="gray-dark"
