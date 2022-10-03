@@ -148,13 +148,22 @@ export default function Footer(): ReactElement {
               <div className={classNames('w-1/2 mb-4', 'lg:w-full')}>
                 <h3 className={headingClasses}>Links</h3>
                 <div className={classNames('flex flex-wrap -ml-1')}>
-                  <Link href="https://www.facebook.com/SessionMessenger/">
+                  {/*       <Link href="https://www.facebook.com/SessionMessenger/">
                     <a
                       className={socialLinkClasses}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       <FacebookSVG className={svgClasses} />
+                    </a>
+                  </Link> */}
+                  <Link href="https://twitter.com/session_app">
+                    <a
+                      className={socialLinkClasses}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <TwitterSVG className={svgClasses} />
                     </a>
                   </Link>
                   <Link href="https://www.instagram.com/getsession">
@@ -166,15 +175,7 @@ export default function Footer(): ReactElement {
                       <InstagramSVG className={svgClasses} />
                     </a>
                   </Link>
-                  <Link href="https://twitter.com/session_app">
-                    <a
-                      className={socialLinkClasses}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <TwitterSVG className={svgClasses} />
-                    </a>
-                  </Link>
+
                   <Link href="https://github.com/oxen-io">
                     <a
                       className={socialLinkClasses}
