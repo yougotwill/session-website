@@ -1,12 +1,12 @@
 import { BLOCKS, Document, INLINES, MARKS } from '@contentful/rich-text-types';
 /* eslint-disable react/display-name */
-import { Children, ReactElement, cloneElement } from 'react';
+import { Children, ReactElement, cloneElement, ReactNode } from 'react';
 import {
   Options,
   documentToReactComponents,
 } from '@contentful/rich-text-react-renderer';
 import { hasLocalID, isLocal } from '@/utils/links';
-
+import { direction } from 'direction';
 import Link from 'next/link';
 import SHORTCODES from '@/constants/shortcodes';
 import classNames from 'classnames';
@@ -20,29 +20,52 @@ interface Props {
   classes?: string; // custom styles for regular text (color, font weight, etc.)
 }
 
+interface DirectionObject {
+  props: { dir: string; children: any };
+}
+
 export default function RichBody(props: Props): ReactElement {
   const { body, headingClasses, classes } = props;
+
+  const onDirection = (obj: DirectionObject) => {
+    if (obj?.props?.dir) {
+      return obj.props.dir;
+    } else if (typeof obj?.props?.children === 'string') {
+      return direction(obj?.props?.children);
+    } else {
+      onDirection(obj?.props?.children);
+    }
+  };
+
   const options: Options = {
     renderMark: {
-      [MARKS.BOLD]: (text) => (
+      [MARKS.BOLD]: (text: any) => {
+        return (
+          <span dir={direction(text)}>
+            <strong dir={direction(text)} className="font-bold">
+              {text}
+            </strong>
+          </span>
+        );
+      },
+      [MARKS.ITALIC]: (text: any) => (
         <span>
-          <strong className="font-bold">{text}</strong>
+          <em dir={direction(text)} className="italic">
+            {text}
+          </em>
         </span>
       ),
-      [MARKS.ITALIC]: (text) => (
-        <span>
-          <em className="italic">{text}</em>
+      [MARKS.UNDERLINE]: (text: any) => (
+        <span dir={direction(text)} className={classNames('underline')}>
+          {text}
         </span>
-      ),
-      [MARKS.UNDERLINE]: (text) => (
-        <span className={classNames('underline')}>{text}</span>
       ),
       [MARKS.CODE]: (text) => (
         <code className={classNames('font-mono tracking-wide')}>{text}</code>
       ),
     },
     renderNode: {
-      [INLINES.HYPERLINK]: (node, children) => {
+      [INLINES.HYPERLINK]: (node, children: any) => {
         const url =
           node.data.uri.indexOf('://getsession.org') >= 0
             ? node.data.uri.split('://getsession.org')[1]
@@ -50,6 +73,7 @@ export default function RichBody(props: Props): ReactElement {
         return (
           <Link href={url} scroll={!isLocal(node.data.uri)}>
             <a
+              dir={direction(children)}
               aria-label={'Read more about this link'}
               className={classNames('text-primary-dark')}
               target={
@@ -67,7 +91,7 @@ export default function RichBody(props: Props): ReactElement {
       [INLINES.EMBEDDED_ENTRY]: (node, children) => {
         return renderEmbeddedEntry({ node, isInline: true });
       },
-      [BLOCKS.PARAGRAPH]: (node, children) => {
+      [BLOCKS.PARAGRAPH]: (node, children: any) => {
         let hasImage = false;
         Children.map(children, (child: any) => {
           if (child.type === 'figure') {
@@ -77,7 +101,10 @@ export default function RichBody(props: Props): ReactElement {
         });
         if (hasImage) {
           return (
-            <span className={classNames('leading-relaxed pb-6')}>
+            <span
+              dir={direction(children)}
+              className={classNames('leading-relaxed pb-6')}
+            >
               {children}
             </span>
           );
@@ -88,12 +115,22 @@ export default function RichBody(props: Props): ReactElement {
           return renderShortcode(plaintext);
         } else {
           return (
-            <p className={classNames('leading-relaxed pb-6')}>{children}</p>
+            <p
+              dir={
+                typeof children[0] === 'object'
+                  ? onDirection(children[0])
+                  : direction(children)
+              }
+              className={classNames('leading-relaxed pb-6')}
+            >
+              {children}
+            </p>
           );
         }
       },
-      [BLOCKS.HEADING_1]: (node, children) => (
+      [BLOCKS.HEADING_1]: (node, children: any) => (
         <h1
+          dir={direction(children)}
           id={hasLocalID(node)}
           className={classNames(
             'text-3xl leading-snug mb-5',
@@ -104,8 +141,9 @@ export default function RichBody(props: Props): ReactElement {
           {children}
         </h1>
       ),
-      [BLOCKS.HEADING_2]: (node, children) => (
+      [BLOCKS.HEADING_2]: (node, children: any) => (
         <h2
+          dir={direction(children)}
           id={hasLocalID(node)}
           className={classNames(
             'text-2xl leading-snug mb-5',
@@ -116,8 +154,9 @@ export default function RichBody(props: Props): ReactElement {
           {children}
         </h2>
       ),
-      [BLOCKS.HEADING_3]: (node, children) => (
+      [BLOCKS.HEADING_3]: (node, children: any) => (
         <h3
+          dir={direction(children)}
           id={hasLocalID(node)}
           className={classNames(
             'text-xl leading-snug mb-2',
@@ -128,8 +167,9 @@ export default function RichBody(props: Props): ReactElement {
           {children}
         </h3>
       ),
-      [BLOCKS.HEADING_4]: (node, children) => (
+      [BLOCKS.HEADING_4]: (node, children: any) => (
         <h4
+          dir={direction(children)}
           id={hasLocalID(node)}
           className={classNames(
             'text-md leading-snug mb-2',
@@ -143,11 +183,19 @@ export default function RichBody(props: Props): ReactElement {
       [BLOCKS.HR]: (node, children) => (
         <hr className={classNames('border-gray-300 w-24 mx-auto pb-6')} />
       ),
-      [BLOCKS.OL_LIST]: (node, children) => {
-        return <ol className="pb-5 ml-10 list-decimal">{children}</ol>;
+      [BLOCKS.OL_LIST]: (node, children: any) => {
+        return (
+          <ol dir={direction(children)} className="pb-5 ml-10 list-decimal">
+            {children}
+          </ol>
+        );
       },
-      [BLOCKS.UL_LIST]: (node, children) => {
-        return <ul className="pb-5 ml-10 list-disc">{children}</ul>;
+      [BLOCKS.UL_LIST]: (node, children: any) => {
+        return (
+          <ul dir={direction(children)} className="pb-5 ml-10 list-disc">
+            {children}
+          </ul>
+        );
       },
       [BLOCKS.LIST_ITEM]: (node, children) => {
         const renderChildren = Children.map(children, (child: any) => {
