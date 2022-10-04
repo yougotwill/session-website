@@ -1,6 +1,6 @@
 import { BLOCKS, Document, INLINES, MARKS } from '@contentful/rich-text-types';
 /* eslint-disable react/display-name */
-import { Children, ReactElement, cloneElement, ReactNode } from 'react';
+import { Children, ReactElement, cloneElement } from 'react';
 import {
   Options,
   documentToReactComponents,
