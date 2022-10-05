@@ -20,22 +20,22 @@ interface Props {
   classes?: string; // custom styles for regular text (color, font weight, etc.)
 }
 
-interface DirectionObject {
+interface NodeWithTextDirection {
   props: { dir: string; children: any };
 }
 
+const getTextDirection = (obj: NodeWithTextDirection) => {
+  if (obj?.props?.dir) {
+    return obj.props.dir;
+  } else if (typeof obj?.props?.children === 'string') {
+    return direction(obj?.props?.children);
+  } else {
+    getTextDirection(obj?.props?.children);
+  }
+};
+
 export default function RichBody(props: Props): ReactElement {
   const { body, headingClasses, classes } = props;
-
-  const onDirection = (obj: DirectionObject) => {
-    if (obj?.props?.dir) {
-      return obj.props.dir;
-    } else if (typeof obj?.props?.children === 'string') {
-      return direction(obj?.props?.children);
-    } else {
-      onDirection(obj?.props?.children);
-    }
-  };
 
   const options: Options = {
     renderMark: {
@@ -49,7 +49,7 @@ export default function RichBody(props: Props): ReactElement {
         );
       },
       [MARKS.ITALIC]: (text: any) => (
-        <span>
+        <span dir={direction(text)}>
           <em dir={direction(text)} className="italic">
             {text}
           </em>
@@ -60,8 +60,13 @@ export default function RichBody(props: Props): ReactElement {
           {text}
         </span>
       ),
-      [MARKS.CODE]: (text) => (
-        <code className={classNames('font-mono tracking-wide')}>{text}</code>
+      [MARKS.CODE]: (text: any) => (
+        <code
+          dir={direction(text)}
+          className={classNames('font-mono tracking-wide')}
+        >
+          {text}
+        </code>
       ),
     },
     renderNode: {
@@ -118,7 +123,7 @@ export default function RichBody(props: Props): ReactElement {
             <p
               dir={
                 typeof children[0] === 'object'
-                  ? onDirection(children[0])
+                  ? getTextDirection(children[0])
                   : direction(children)
               }
               className={classNames('leading-relaxed pb-6')}
@@ -209,13 +214,15 @@ export default function RichBody(props: Props): ReactElement {
         });
         return <li>{renderChildren}</li>;
       },
-      [BLOCKS.QUOTE]: (node, children) => (
+      [BLOCKS.QUOTE]: (node, children: any) => (
         <div
+          dir={direction(children)}
           className={classNames(
             'border-gray-100 border-l-6 py-6 px-4 mb-6 ml-10 mr-4'
           )}
         >
           <blockquote
+            dir={direction(children)}
             className={classNames(
               'text-base text-black italic -mb-6',
               'lg:text-lg'
