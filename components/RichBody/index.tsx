@@ -27,16 +27,23 @@ interface NodeWithTextDirection {
 const getDirection = (string: string) => {
   return direction(string) === 'neutral' ? 'auto' : direction(string);
 };
+const getTextDirectionFromNode = (children: NodeWithTextDirection[]) => {
+  return typeof children[0] === 'object'
+    ? recursiveTextDirectionFromNode(children[0])
+    : children[0] === '' && typeof children[1] === 'object'
+    ? recursiveTextDirectionFromNode(children[1])
+    : getDirection(children[0]);
+};
 
-const getTextDirectionFromNode = (obj: NodeWithTextDirection) => {
+const recursiveTextDirectionFromNode = (obj: NodeWithTextDirection) => {
   if (obj?.props?.dir) {
     return obj.props.dir;
   } else if (typeof obj?.props?.children === 'string') {
     return getDirection(obj?.props?.children);
   } else if (Array.isArray(obj?.props?.children)) {
-    getTextDirectionFromNode(obj?.props?.children[0]);
+    recursiveTextDirectionFromNode(obj?.props?.children[0]);
   } else {
-    getTextDirectionFromNode(obj?.props?.children);
+    recursiveTextDirectionFromNode(obj?.props?.children);
   }
 };
 
@@ -133,13 +140,7 @@ export default function RichBody(props: Props): ReactElement {
         } else {
           return (
             <p
-              dir={
-                typeof children[0] === 'object'
-                  ? getTextDirectionFromNode(children[0])
-                  : children[0] === '' && typeof children[1] === 'object'
-                  ? getTextDirectionFromNode(children[1])
-                  : getDirection(children)
-              }
+              dir={getTextDirectionFromNode(children)}
               className={classNames('leading-relaxed pb-6')}
             >
               {children}
@@ -207,7 +208,7 @@ export default function RichBody(props: Props): ReactElement {
           <ol
             dir={
               typeof children[0] === 'object'
-                ? getTextDirectionFromNode(children[0])
+                ? recursiveTextDirectionFromNode(children[0])
                 : getDirection(children)
             }
             className="pb-5 ml-10 list-decimal"
@@ -221,7 +222,7 @@ export default function RichBody(props: Props): ReactElement {
           <ul
             dir={
               typeof children[0] === 'object'
-                ? getTextDirectionFromNode(children[0])
+                ? recursiveTextDirectionFromNode(children[0])
                 : getDirection(children)
             }
             className="pb-5 ml-10 list-disc"
@@ -243,17 +244,7 @@ export default function RichBody(props: Props): ReactElement {
         });
 
         return (
-          <li
-            dir={
-              typeof children[0] === 'object'
-                ? getTextDirectionFromNode(children[0])
-                : children[0] === '' && typeof children[1] === 'object'
-                ? getTextDirectionFromNode(children[1])
-                : getDirection(children)
-            }
-          >
-            {renderChildren}
-          </li>
+          <li dir={getTextDirectionFromNode(children)}>{renderChildren}</li>
         );
       },
       [BLOCKS.QUOTE]: (node, children: any) => (

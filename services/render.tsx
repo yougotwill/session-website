@@ -58,7 +58,7 @@ function EmbeddedLink(
       />
       {node.caption && (
         <figcaption dir={textDirection} className={classNames(captionClasses)}>
-          <em>{node.caption} </em>
+          <em>{node.caption}</em>
         </figcaption>
       )}
     </figure>
