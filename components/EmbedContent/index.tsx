@@ -10,10 +10,11 @@ import classNames from 'classnames';
 interface Props {
   content: IEmbed | INoembed; // is sanitized in embed service
   classes?: string;
+  textDirection: string;
 }
 
 export default function EmbedContent(props: Props): ReactElement {
-  const { content, classes } = props;
+  const { content, classes, textDirection } = props;
   const htmlRef = useRef<HTMLDivElement>(null);
   const [allowExternalContent, setAllowExternalContent] = useState(false);
 
@@ -89,7 +90,7 @@ export default function EmbedContent(props: Props): ReactElement {
   } else {
     return (
       <Link href={content.url}>
-        <a target="_blank">
+        <a dir={textDirection} target="_blank">
           <div
             className={classNames(
               'embed-content',
