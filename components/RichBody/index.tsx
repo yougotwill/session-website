@@ -21,7 +21,7 @@ interface Props {
 }
 
 interface NodeWithTextDirection {
-  props: { dir: string; children: any; type: any };
+  props: { dir: string; children: any };
 }
 
 const getDirection = (string: string) => {
