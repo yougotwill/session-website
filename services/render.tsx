@@ -35,7 +35,11 @@ function Markup(node: any): ReactElement {
   );
 }
 
-function EmbeddedLink(node: any, isInline = false): ReactElement {
+function EmbeddedLink(
+  node: any,
+  isInline = false,
+  textDirection: string
+): ReactElement {
   const figureClasses = [
     isInline && node.position === 'left' && 'md:float-left',
     isInline && node.position === 'right' && 'md:float-right',
@@ -47,9 +51,13 @@ function EmbeddedLink(node: any, isInline = false): ReactElement {
   const captionClasses = [...inlineClasses, !isInline && 'pb-4'];
   return (
     <figure className={classNames(figureClasses)}>
-      <EmbedContent content={node.meta} classes={classNames(inlineClasses)} />
+      <EmbedContent
+        textDirection={textDirection}
+        content={node.meta}
+        classes={classNames(inlineClasses)}
+      />
       {node.caption && (
-        <figcaption className={classNames(captionClasses)}>
+        <figcaption dir={textDirection} className={classNames(captionClasses)}>
           <em>{node.caption}</em>
         </figcaption>
       )}
@@ -57,7 +65,11 @@ function EmbeddedLink(node: any, isInline = false): ReactElement {
   );
 }
 
-function EmbeddedMedia(node: any, isInline = false): ReactElement {
+function EmbeddedMedia(
+  node: any,
+  isInline = false,
+  textDirection: string
+): ReactElement {
   const { isSmall, isMedium } = useScreen();
   // is either an asset or entry
   const media = node.file.fields ?? node;
@@ -74,7 +86,10 @@ function EmbeddedMedia(node: any, isInline = false): ReactElement {
         isInline && !node.position && 'inline-block align-middle mx-1',
         isInline && node.position === 'left' && 'md:float-left',
         isInline && node.position === 'right' && 'md:float-right',
-        !isInline && 'text-center mb-8',
+        !isInline && textDirection === 'ltr' && 'text-center mb-8',
+        !isInline &&
+          textDirection === 'rtl' &&
+          'flex flex-col items-center mb-8',
       ];
       const captionClasses = [
         !node.position && 'mt-1',
@@ -87,37 +102,39 @@ function EmbeddedMedia(node: any, isInline = false): ReactElement {
         figureStyles.width = imageWidth;
       }
       return (
-        <figure className={classNames(figureClasses)} style={figureStyles}>
-          <Image
-            src={`${url}${isSmall ? '?w=300' : isMedium ? '?w=600' : ''}`}
-            alt={node.title}
-            width={imageWidth}
-            height={imageHeight}
-            priority={true}
-          />
-          {node.caption && (
-            <figcaption className={classNames(captionClasses)}>
-              <em>
-                {node.sourceUrl ? (
-                  <Link href={node.sourceUrl}>
-                    <a
-                      aria-label={node.caption}
-                      className={classNames(
-                        'text-primary-dark font-extralight'
-                      )}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {node.caption}
-                    </a>
-                  </Link>
-                ) : (
-                  <>{node.caption}</>
-                )}
-              </em>
-            </figcaption>
-          )}
-        </figure>
+        <span className={classNames(figureClasses)} style={figureStyles}>
+          <figure dir={textDirection}>
+            <Image
+              src={`${url}${isSmall ? '?w=300' : isMedium ? '?w=600' : ''}`}
+              alt={node.title}
+              width={imageWidth}
+              height={imageHeight}
+              priority={true}
+            />
+            {node.caption && (
+              <figcaption className={classNames(captionClasses)}>
+                <em>
+                  {node.sourceUrl ? (
+                    <Link href={node.sourceUrl}>
+                      <a
+                        aria-label={node.caption}
+                        className={classNames(
+                          'text-primary-dark font-extralight'
+                        )}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {node.caption}
+                      </a>
+                    </Link>
+                  ) : (
+                    <>{node.caption}</>
+                  )}
+                </em>
+              </figcaption>
+            )}
+          </figure>
+        </span>
       );
     default:
       return <></>;
@@ -129,7 +146,7 @@ interface IEmbedEntry {
   isInline?: boolean;
 }
 
-export function renderEmbeddedEntry(props: IEmbedEntry) {
+export function renderEmbeddedEntry(props: IEmbedEntry, textDirection: string) {
   const { node, isInline = false } = props;
   const target = node.data.target;
   const asset = target.fields;
@@ -137,8 +154,8 @@ export function renderEmbeddedEntry(props: IEmbedEntry) {
     return Markup(asset);
   }
   if (!asset.file) {
-    return EmbeddedLink(asset, isInline);
+    return EmbeddedLink(asset, isInline, textDirection);
   } else {
-    return EmbeddedMedia(asset, isInline);
+    return EmbeddedMedia(asset, isInline, textDirection);
   }
 }
