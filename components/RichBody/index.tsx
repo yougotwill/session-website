@@ -204,28 +204,35 @@ export default function RichBody(props: Props): ReactElement {
         <hr className={classNames('border-gray-300 w-24 mx-auto pb-6')} />
       ),
       [BLOCKS.OL_LIST]: (node, children: any) => {
+        const textDirection =
+          typeof children[0] === 'object'
+            ? recursiveTextDirectionFromNode(children[0])
+            : getDirection(children);
+
         return (
           <ol
-            dir={
-              typeof children[0] === 'object'
-                ? recursiveTextDirectionFromNode(children[0])
-                : getDirection(children)
-            }
-            className="pb-5 ml-10 list-decimal"
+            dir={textDirection}
+            className={classNames(
+              'pb-5 list-decimal',
+              textDirection === 'rtl' ? 'mr-10' : 'ml-10'
+            )}
           >
             {children}
           </ol>
         );
       },
       [BLOCKS.UL_LIST]: (node, children: any) => {
+        const textDirection =
+          typeof children[0] === 'object'
+            ? recursiveTextDirectionFromNode(children[0])
+            : getDirection(children);
         return (
           <ul
-            dir={
-              typeof children[0] === 'object'
-                ? recursiveTextDirectionFromNode(children[0])
-                : getDirection(children)
-            }
-            className="pb-5 ml-10 list-disc"
+            dir={textDirection}
+            className={classNames(
+              'pb-5 list-disc',
+              textDirection === 'rtl' ? 'mr-10' : 'ml-10'
+            )}
           >
             {children}
           </ul>
