@@ -52,8 +52,8 @@ export default function Features(): ReactElement {
               className={classNames('-mt-4 -ml-1 mb-12', 'md:mb-16 md:px-20')}
             >
               <Image
-                src="/assets/images/ui-create-account.png"
-                alt="mobile app create account screenshot"
+                src="/assets/images/ui-direct-message.png"
+                alt="mobile app direct message screenshot"
                 width="1148px"
                 height="2000px"
                 layout="responsive"

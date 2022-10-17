@@ -101,8 +101,8 @@ export default function Hero(): ReactElement {
           {(isSmall || isMedium) && (
             <div className={classNames('-mt-4 -ml-1')}>
               <Image
-                src="/assets/images/ui-direct-message.png"
-                alt="mobile app screenshot"
+                src="/assets/images/ui-create-account.png"
+                alt="mobile app creat account screenshot"
                 width="574px"
                 height="1000px"
                 layout="responsive"
