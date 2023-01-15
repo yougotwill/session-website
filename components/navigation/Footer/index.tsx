@@ -128,15 +128,6 @@ export default function Footer(): ReactElement {
               <Link href="/assets/downloads/Session-Brandmarks.zip">
                 <a className={linkClasses}>Media Kit</a>
               </Link>
-              <Link href="https://optf.ngo/transparency/">
-                <a
-                  className={linkClasses}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Transparency Report
-                </a>
-              </Link>
             </div>
             <div
               className={classNames(
