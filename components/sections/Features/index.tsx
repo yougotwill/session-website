@@ -72,10 +72,10 @@ export default function Features(): ReactElement {
           >
             <h3 className={headingClasses}>Group chats</h3>
             <p className={paragraphClasses}>
-              Talk to your friends or talk to the world. You decide. Closed
-              groups let you talk to up to 100 friends at once, with the same
+              Talk to your friends or talk to the world. You decide. 
+              Groups let you talk to up to 100 friends at once, with the same
               encrypted protections as one-on-one chats. Got a bigger crowd? Use
-              an open group to connect with as many people as you want.
+              a community to connect with as many people as you want.
             </p>
             <h3 className={headingClasses}>Voice messages</h3>
             <p className={paragraphClasses}>

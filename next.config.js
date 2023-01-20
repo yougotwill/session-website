@@ -110,6 +110,11 @@ const config = {
         destination: 'https://arxiv.org/pdf/2002.04609.pdf',
         permanent: true,
       },
+      {
+        source: '/session-open-group',
+        destination: '/community',
+        permanent: true,
+      },
     ],
   },
   async redirects() {
