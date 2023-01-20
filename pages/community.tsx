@@ -8,18 +8,18 @@ import METADATA from '@/constants/metadata';
 import classNames from 'classnames';
 import { copyToClipboard } from '@/utils/clipboard';
 
-export default function OpenGroup(): ReactElement {
+export default function Community(): ReactElement {
   const [isCopied, setIsCopied] = useState(false);
   const handleCopy = () => {
     if (isCopied) {
       setIsCopied(false);
       return;
     }
-    copyToClipboard(LINKS.SESSION.OPEN_GROUP_SERVER, setIsCopied);
+    copyToClipboard(LINKS.SESSION.COMMUNITY_SERVER, setIsCopied);
   };
 
   return (
-    <Layout title="Open Group Channel" metadata={METADATA.OPEN_GROUP_PAGE}>
+    <Layout title="Session Community" metadata={METADATA.COMMUNITY_PAGE}>
       <section>
         <Headline
           color="gray-dark"
@@ -34,7 +34,7 @@ export default function OpenGroup(): ReactElement {
             large: '62rem',
           }}
         >
-          Session Open Group Channel
+          Session Community
         </Headline>
         <Container
           classes={classNames(
@@ -49,7 +49,7 @@ export default function OpenGroup(): ReactElement {
               'md:text-4xl'
             )}
           >
-            Scan this QR code on Session to join our open group chat
+            Scan this QR code on Session to join our community
           </h1>
           <div className={classNames('text-gray-dark font-semibold mb-8')}>
             <span>To join, open Session and tap and hold on the </span>
@@ -69,9 +69,9 @@ export default function OpenGroup(): ReactElement {
               className={classNames('inline-block align-middle mx-1 w-7 h-7')}
             >
               <Image
-                src="/assets/images/session-ui-opengroup.png"
-                alt="session opengroup button"
-                title="session opengroup button"
+                src="/assets/images/session-ui-community.png"
+                alt="session community button"
+                title="session community button"
                 width="121px"
                 height="121px"
               />
@@ -82,7 +82,7 @@ export default function OpenGroup(): ReactElement {
           <div className={classNames('mx-auto mb-8')}>
             <Image
               src="/assets/images/qr-code.png"
-              alt="session open group qr code"
+              alt="session community qr code"
               width="208px"
               height="208px"
               priority={true}

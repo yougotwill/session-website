@@ -2606,7 +2606,7 @@
                 "content": [
                   {
                     "nodeType": "text",
-                    "value": "Our Services are intended to inform you and educate you about using our private and secure communications app (Session Website), and facilitate private and secure communications between two or more parties, or within a closed group or within an open group (Session, or Session App).",
+                    "value": "Our Services are intended to inform you and educate you about using our private and secure communications app (Session Website), and facilitate private and secure communications between two or more parties, or within a group or within a community (Session, or Session App).",
                     "marks": [],
                     "data": {}
                   }
@@ -2890,7 +2890,7 @@
                 "content": [
                   {
                     "nodeType": "text",
-                    "value": "Third-party services — Our Services may allow you to access, use, or interact with third-party websites, apps, content, and other products and services run by third parties. When you use third-party services, their terms and privacy policies govern your use of those services. When using Open Groups operated by third-parties, these Terms as well as any terms or policies associated with the Open Group will govern your use.",
+                    "value": "Third-party services — Our Services may allow you to access, use, or interact with third-party websites, apps, content, and other products and services run by third parties. When you use third-party services, their terms and privacy policies govern your use of those services. When using communities operated by third-parties, these Terms as well as any terms or policies associated with the community will govern your use.",
                     "marks": [],
                     "data": {}
                   }
@@ -2902,7 +2902,7 @@
                 "content": [
                   {
                     "nodeType": "text",
-                    "value": "Open Group by Session — You may use Open Groups run by Session in accordance with \nthese Terms of Service, however, you also agree to follow the rules of the specific Open Group.",
+                    "value": "Community by Session — You may use communities run by Session in accordance with \nthese Terms of Service, however, you also agree to follow the rules of the specific community.",
                     "marks": [],
                     "data": {}
                   }
@@ -2914,7 +2914,7 @@
                 "content": [
                   {
                     "nodeType": "text",
-                    "value": "Your Content — You own and/or take responsibility for the content (text messages, audio, video, images) you submit through our Services. We can not access this information unless you explicitly send it to us, or it is published in an Open Group.",
+                    "value": "Your Content — You own and/or take responsibility for the content (text messages, audio, video, images) you submit through our Services. We can not access this information unless you explicitly send it to us, or it is published in a community.",
                     "marks": [],
                     "data": {}
                   }
@@ -3238,7 +3238,7 @@
                 "content": [
                   {
                     "nodeType": "text",
-                    "value": "Open Groups on Session, by their nature, are open to the public, and the content posted shared through Open Groups can be monitored. OPTF does not have the capacity to monitor all Open Groups, however, we do make a concerted effort to monitor and where necessary moderate Open Groups that have been created by us.",
+                    "value": "Communities on Session, by their nature, are open to the public, and the content posted shared through Communities can be monitored. OPTF does not have the capacity to monitor all communities, however, we do make a concerted effort to monitor and where necessary moderate communities that have been created by us.",
                     "marks": [],
                     "data": {}
                   }
@@ -3714,7 +3714,7 @@
                           },
                           {
                             "nodeType": "text",
-                            "value": ": You acknowledge that you are subject to acceptable content policies within Open Groups and other areas on the app and must not use the App to distribute objectionable content. If you are deemed an abusive user you may also be restricted or removed from Groups or the App if reported or discovered.",
+                            "value": ": You acknowledge that you are subject to acceptable content policies within communities and other areas on the app and must not use the App to distribute objectionable content. If you are deemed an abusive user you may also be restricted or removed from Groups or the App if reported or discovered.",
                             "marks": [],
                             "data": {}
                           }

@@ -114,9 +114,9 @@ const METADATA = {
       'privacy',
     ],
   },
-  OPEN_GROUP_PAGE: {
+  COMMUNITY_PAGE: {
     DESCRIPTION:
-      'Join the movement to keep the internet private! Chat with like-minded individuals in Session Open Group Channel. Join Now',
+      'Join the movement to keep the internet private! Chat with like-minded individuals in the Session Community. Join Now',
     OG_IMAGE: {
       URL: '/assets/images/faq.png',
       WIDTH: 1024,

@@ -21,7 +21,7 @@ export default function GroupNotice(props: Props): ReactElement {
       </h4>
       <p className={classNames('leading-none')}>
         Chat with like-minded individuals in the{' '}
-        <Link href="/session-open-group">
+        <Link href="/community">
           <a
             className={classNames(
               'text-primary-dark',
@@ -29,7 +29,7 @@ export default function GroupNotice(props: Props): ReactElement {
               'hover:text-white'
             )}
           >
-            Session Open Group Channel.
+            Session Community.
           </a>
         </Link>
       </p>
