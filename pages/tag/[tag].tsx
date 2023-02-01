@@ -45,6 +45,10 @@ export default function Tag(props: Props): ReactElement {
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
+  console.log(
+    `Building: Results for tag "%c${context.params?.tag}"`,
+    'color: purple;'
+  );
   const tag = String(context.params?.tag);
 
   try {
