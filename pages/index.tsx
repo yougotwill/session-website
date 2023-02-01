@@ -23,18 +23,20 @@ export const getStaticProps: GetStaticProps = async (
 ) => {
   if (process.env.NEXT_PUBLIC_SITE_ENV !== 'development') {
     const posts: IPost[] = [];
+    let page = 1;
     let foundAllPosts = false;
 
-    // Contentful has limits built in
+    // Contentful only allows 100 at a time
     while (!foundAllPosts) {
-      const { entries, total } = await fetchBlogEntries();
+      const { entries: _posts } = await fetchBlogEntries(100, page);
 
-      if (posts.length === total) {
+      if (_posts.length === 0) {
         foundAllPosts = true;
         continue;
       }
 
-      posts.push(...entries);
+      posts.push(..._posts);
+      page++;
     }
 
     generateRSSFeed(posts);

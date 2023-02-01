@@ -28,6 +28,12 @@ export default function Page(props: Props): ReactElement {
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
+  console.log(
+    `Building: Page%c${
+      context.params?.slug ? ` /${context.params?.slug}` : ''
+    }`,
+    'color: purple;'
+  );
   const slug = String(context.params?.slug);
   const redirect = await hasRedirection(`/${slug}`);
   if (redirect) {

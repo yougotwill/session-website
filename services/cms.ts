@@ -39,12 +39,14 @@ export async function fetchTagList(): Promise<ITagList> {
 }
 
 export async function fetchBlogEntries(
-  quantity = 100
+  quantity = 100,
+  page = 1
 ): Promise<IFetchBlogEntriesReturn> {
   const _entries = await client.getEntries({
     content_type: 'post', // only fetch blog post entry
     order: '-fields.date',
     limit: quantity,
+    skip: (page - 1) * quantity,
   });
 
   const results = await generateEntries(_entries, 'post');
