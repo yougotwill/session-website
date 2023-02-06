@@ -1,12 +1,12 @@
-import { ReactComponent as FacebookSVG } from '@/assets/svgs/facebook.svg';
 import { ReactComponent as GithubSVG } from '@/assets/svgs/github.svg';
-import { ReactComponent as InstagramSVG } from '@/assets/svgs/instagram.svg';
 import { GroupNotice } from '@/components/sections';
 import Image from 'next/image';
+import { ReactComponent as InstagramSVG } from '@/assets/svgs/instagram.svg';
 import Link from 'next/link';
 import { ReactElement } from 'react';
 import { ReactComponent as RssSVG } from '@/assets/svgs/rss.svg';
 import { ReactComponent as TwitterSVG } from '@/assets/svgs/twitter.svg';
+import { ReactComponent as YouTubeSVG } from '@/assets/svgs/youtube.svg';
 import classNames from 'classnames';
 import redact from '@/utils/redact';
 import { useScreen } from '@/contexts/screen';
@@ -148,15 +148,6 @@ export default function Footer(): ReactElement {
               <div className={classNames('w-1/2 mb-4', 'lg:w-full')}>
                 <h3 className={headingClasses}>Links</h3>
                 <div className={classNames('flex flex-wrap -ml-1')}>
-                  {/*       <Link href="https://www.facebook.com/SessionMessenger/">
-                    <a
-                      className={socialLinkClasses}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FacebookSVG className={svgClasses} />
-                    </a>
-                  </Link> */}
                   <Link href="https://twitter.com/session_app">
                     <a
                       className={socialLinkClasses}
@@ -175,7 +166,15 @@ export default function Footer(): ReactElement {
                       <InstagramSVG className={svgClasses} />
                     </a>
                   </Link>
-
+                  <Link href="https://www.youtube.com/@sessionmessenger">
+                    <a
+                      className={socialLinkClasses}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <YouTubeSVG className={svgClasses} />
+                    </a>
+                  </Link>
                   <Link href="https://github.com/oxen-io">
                     <a
                       className={socialLinkClasses}
