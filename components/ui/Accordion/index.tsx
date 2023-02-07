@@ -50,8 +50,9 @@ export default function Accordion(props: Props): ReactElement {
     >
       <div
         className={classNames(
-          'bg-gray-100 text-gray-dark py-2 px-4 font-bold border-gray-300 border-b',
-          'lg:text-base'
+          ' transform transition duration-700 ease-in-out py-2 px-4 font-bold border-gray-300 border-b',
+          'lg:text-base',
+          isExpanded? "bg-gray-dark text-primary": "bg-gray-100 text-gray-dark",
         )}
         onClick={handleExpand}
       >

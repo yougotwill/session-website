@@ -30,14 +30,14 @@ export default function FAQ(props: Props): ReactElement {
         <div key={key} className="mb-10">
           <h2 className={headingClasses}>{capitalize(key, '/')}</h2>
           <div>
-            {faqItems[key].map((faqItem: IFAQItem, index) => {
+            {faqItems[key].map((faqItem: IFAQItem) => {
               return (
                 <Accordion
                   key={faqItem.id}
                   id={faqItem.slug ?? ''}
                   question={faqItem.question}
                   answer={faqItem.answer}
-                  expand={!slug ? index === 0 : slug === faqItem.slug}
+                  expand={!slug ? false : slug === faqItem.slug}
                 />
               );
             })}
