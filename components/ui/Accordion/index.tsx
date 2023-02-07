@@ -20,8 +20,8 @@ interface Props {
 export default function Accordion(props: Props): ReactElement {
   const { id, question, answer, expand, classes } = props;
   const content = useRef<HTMLDivElement>(null);
-  const [isExpanded, setIsExpanded] = useState(true);
-  const [height, setHeight] = useState(`${content?.current?.scrollHeight}px`);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [height, setHeight] = useState(`0px`);
   const [loaded, setLoaded] = useState(false);
   const handleExpand = () => {
     setIsExpanded(!isExpanded);
@@ -29,16 +29,13 @@ export default function Accordion(props: Props): ReactElement {
   };
   const svgClasses = classNames('w-3 h-3 fill-current mb-1 mr-2');
   useEffect(() => {
-    if (!expand) {
-      handleExpand();
-    } else {
-      setHeight(`${content?.current?.scrollHeight}px`);
-    }
     setLoaded(true);
   }, []);
   useEffect(() => {
-    if (loaded && expand) handleExpand();
-  }, [expand]);
+    if (loaded && expand) {
+      handleExpand();
+    }
+  }, [loaded, expand]);
   return (
     <div
       id={id}
@@ -50,9 +47,12 @@ export default function Accordion(props: Props): ReactElement {
     >
       <div
         className={classNames(
-          ' transform transition duration-700 ease-in-out py-2 px-4 font-bold border-gray-300 border-b',
+          'py-2 px-4 font-bold border-gray-300 border-b',
           'lg:text-base',
-          isExpanded? "bg-gray-dark text-primary": "bg-gray-100 text-gray-dark",
+          'transition-colors duration-700 ease-in-out',
+          isExpanded
+            ? 'bg-gray-dark text-primary'
+            : 'bg-gray-100 text-gray-dark'
         )}
         onClick={handleExpand}
       >
@@ -74,12 +74,16 @@ export default function Accordion(props: Props): ReactElement {
         )}
         {question}
         <Link href={`#${id}`}>
-          <a className="focus:outline-none">
+          <a
+            title={`Direct link to "${question}"`}
+            className="focus:outline-none"
+          >
             <LinkSVG
               className={classNames(
-                'inline w-4 h-4 fill-current mb-1 mr-2 mt-0.5 ml-2 opacity-0',
+                'inline w-4 h-4 fill-current mb-1 mr-2 mt-0.5 ml-2',
                 'transition-opacity duration-500',
-                'hover:opacity-100'
+                'hover:opacity-100',
+                isExpanded ? 'opacity-100' : 'opacity-20'
               )}
             />
           </a>
