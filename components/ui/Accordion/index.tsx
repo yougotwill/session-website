@@ -50,7 +50,7 @@ export default function Accordion(props: Props): ReactElement {
           'py-2 px-4 font-bold border-gray-300 border-b',
           'lg:text-base',
           'transition-colors duration-700 ease-in-out',
-          isExpanded
+         loaded && isExpanded
             ? 'bg-gray-dark text-primary'
             : 'bg-gray-100 text-gray-dark'
         )}
