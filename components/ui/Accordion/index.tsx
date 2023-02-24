@@ -36,14 +36,15 @@ export default function Accordion(props: Props): ReactElement {
     );
     const container = window?.document.getElementById(id + 'container')!;
 
-    const handleNewHeight = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleNewHeight = (e: Event) => {
       const oldHeight = Number(container?.style.height.slice(0, -2));
       if (
         document.querySelector(`#${id}container .showExternalVideoButton`) !==
         null
       ) {
+        const target = e.currentTarget as HTMLButtonElement;
         // adding the height of the video (500|240) - the height of the dissapearing container (185.5) = 314.5|54.5
-        if (e.currentTarget.getAttribute('data-video-site') === 'YouTube') {
+        if (target.getAttribute('data-video-site') === 'YouTube') {
           container.style.height = `${oldHeight + 314.5}px`;
         } else {
           container.style.height = `${oldHeight + 54.5}px`;
@@ -52,12 +53,12 @@ export default function Accordion(props: Props): ReactElement {
     };
 
     buttons.forEach((button) => {
-      button?.addEventListener('click', (e) => handleNewHeight(e));
+      button?.addEventListener('click', (e: Event) => handleNewHeight(e));
     });
 
     return () => {
       buttons.forEach((button) => {
-        button?.removeEventListener('click', (e) => handleNewHeight(e));
+        button?.removeEventListener('click', (e: Event) => handleNewHeight(e));
       });
     };
   }, []);
