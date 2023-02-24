@@ -20,22 +20,63 @@ interface Props {
 export default function Accordion(props: Props): ReactElement {
   const { id, question, answer, expand, classes } = props;
   const content = useRef<HTMLDivElement>(null);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [height, setHeight] = useState(`0px`);
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [height, setHeight] = useState(`${content?.current?.scrollHeight}px`);
   const [loaded, setLoaded] = useState(false);
+
   const handleExpand = () => {
     setIsExpanded(!isExpanded);
     setHeight(isExpanded ? '0px' : `${content?.current?.scrollHeight}px`);
   };
   const svgClasses = classNames('w-3 h-3 fill-current mb-1 mr-2');
+
   useEffect(() => {
+    const buttons = window?.document.querySelectorAll(
+      '.showExternalVideoButton'
+    );
+    const container = window?.document.getElementById(id + 'container')!;
+
+    const handleNewHeight = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const oldHeight = Number(container?.style.height.slice(0, -2));
+      if (
+        document.querySelector(`#${id}container .showExternalVideoButton`) !==
+        null
+      ) {
+        // adding the height of the video (500|240) - the height of the dissapearing container (185.5) = 314.5|54.5
+        if (e.currentTarget.getAttribute('data-video-site') === 'YouTube') {
+          container.style.height = `${oldHeight + 314.5}px`;
+        } else {
+          container.style.height = `${oldHeight + 54.5}px`;
+        }
+      }
+    };
+
+    buttons.forEach((button) => {
+      button?.addEventListener('click', (e) => handleNewHeight(e));
+    });
+
+    return () => {
+      buttons.forEach((button) => {
+        button?.removeEventListener('click', (e) => handleNewHeight(e));
+      });
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!expand) {
+      handleExpand();
+    } else {
+      setHeight(`${content?.current?.scrollHeight}px`);
+    }
     setLoaded(true);
   }, []);
+
   useEffect(() => {
     if (loaded && expand) {
       handleExpand();
     }
-  }, [loaded, expand]);
+  }, [expand]);
+
   return (
     <div
       id={id}
@@ -50,7 +91,7 @@ export default function Accordion(props: Props): ReactElement {
           'py-2 px-4 font-bold border-gray-300 border-b',
           'lg:text-base',
           'transition-colors duration-700 ease-in-out',
-         loaded && isExpanded
+          loaded && isExpanded
             ? 'bg-gray-dark text-primary'
             : 'bg-gray-100 text-gray-dark'
         )}
@@ -83,7 +124,7 @@ export default function Accordion(props: Props): ReactElement {
                 'inline w-4 h-4 fill-current mb-1 mr-2 mt-0.5 ml-2',
                 'transition-opacity duration-500',
                 'hover:opacity-100',
-                isExpanded ? 'opacity-100' : 'opacity-20'
+                loaded && isExpanded ? 'opacity-100' : 'opacity-20'
               )}
             />
           </a>
@@ -97,6 +138,7 @@ export default function Accordion(props: Props): ReactElement {
         )}
         ref={content}
         style={{ height: height }}
+        id={id + 'container'}
       >
         <RichBody
           body={answer}
