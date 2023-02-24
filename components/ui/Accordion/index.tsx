@@ -23,7 +23,7 @@ const handleNewHeight = (e: Event, container: HTMLElement, id: string) => {
     document.querySelector(`#${id}container .showExternalVideoButton`) !== null
   ) {
     const target = e.currentTarget as HTMLButtonElement;
-    // adding the height of the video (500|240) - the height of the dissapearing button's component (185.5) = 314.5|54.5
+    // adding the height of the video (500|240) - the height of the disappearing button's component (185.5) = 314.5|54.5
     const isYoutube = target.getAttribute('data-video-site') === 'YouTube';
     container.style.height = `${oldHeight + (isYoutube ? 314.5 : 54.5)}px`;
   }
