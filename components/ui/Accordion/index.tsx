@@ -17,6 +17,18 @@ interface Props {
   classes?: string;
 }
 
+const handleNewHeight = (e: Event, container: HTMLElement, id: string) => {
+  const oldHeight = Number(container?.style.height.slice(0, -2));
+  if (
+    document.querySelector(`#${id}container .showExternalVideoButton`) !== null
+  ) {
+    const target = e.currentTarget as HTMLButtonElement;
+    // adding the height of the video (500|240) - the height of the dissapearing button's component (185.5) = 314.5|54.5
+    const isYoutube = target.getAttribute('data-video-site') === 'YouTube';
+    container.style.height = `${oldHeight + (isYoutube ? 314.5 : 54.5)}px`;
+  }
+};
+
 export default function Accordion(props: Props): ReactElement {
   const { id, question, answer, expand, classes } = props;
   const content = useRef<HTMLDivElement>(null);
@@ -36,29 +48,17 @@ export default function Accordion(props: Props): ReactElement {
     );
     const container = window?.document.getElementById(id + 'container')!;
 
-    const handleNewHeight = (e: Event) => {
-      const oldHeight = Number(container?.style.height.slice(0, -2));
-      if (
-        document.querySelector(`#${id}container .showExternalVideoButton`) !==
-        null
-      ) {
-        const target = e.currentTarget as HTMLButtonElement;
-        // adding the height of the video (500|240) - the height of the dissapearing container (185.5) = 314.5|54.5
-        if (target.getAttribute('data-video-site') === 'YouTube') {
-          container.style.height = `${oldHeight + 314.5}px`;
-        } else {
-          container.style.height = `${oldHeight + 54.5}px`;
-        }
-      }
-    };
-
     buttons.forEach((button) => {
-      button?.addEventListener('click', (e: Event) => handleNewHeight(e));
+      button?.addEventListener('click', (e: Event) =>
+        handleNewHeight(e, container, id)
+      );
     });
 
     return () => {
       buttons.forEach((button) => {
-        button?.removeEventListener('click', (e: Event) => handleNewHeight(e));
+        button?.removeEventListener('click', (e: Event) =>
+          handleNewHeight(e, container, id)
+        );
       });
     };
   }, []);
