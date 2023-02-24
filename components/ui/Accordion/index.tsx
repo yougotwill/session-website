@@ -17,17 +17,52 @@ interface Props {
   classes?: string;
 }
 
+const handleNewHeight = (e: Event, container: HTMLElement, id: string) => {
+  const oldHeight = Number(container?.style.height.slice(0, -2));
+  if (
+    document.querySelector(`#${id}container .showExternalVideoButton`) !== null
+  ) {
+    const target = e.currentTarget as HTMLButtonElement;
+    // adding the height of the video (500|240) - the height of the disappearing button's component (185.5) = 314.5|54.5
+    const isYoutube = target.getAttribute('data-video-site') === 'YouTube';
+    container.style.height = `${oldHeight + (isYoutube ? 314.5 : 54.5)}px`;
+  }
+};
+
 export default function Accordion(props: Props): ReactElement {
   const { id, question, answer, expand, classes } = props;
   const content = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(true);
   const [height, setHeight] = useState(`${content?.current?.scrollHeight}px`);
   const [loaded, setLoaded] = useState(false);
+
   const handleExpand = () => {
     setIsExpanded(!isExpanded);
     setHeight(isExpanded ? '0px' : `${content?.current?.scrollHeight}px`);
   };
   const svgClasses = classNames('w-3 h-3 fill-current mb-1 mr-2');
+
+  useEffect(() => {
+    const buttons = window?.document.querySelectorAll(
+      '.showExternalVideoButton'
+    );
+    const container = window?.document.getElementById(id + 'container')!;
+
+    buttons.forEach((button) => {
+      button?.addEventListener('click', (e: Event) =>
+        handleNewHeight(e, container, id)
+      );
+    });
+
+    return () => {
+      buttons.forEach((button) => {
+        button?.removeEventListener('click', (e: Event) =>
+          handleNewHeight(e, container, id)
+        );
+      });
+    };
+  }, []);
+
   useEffect(() => {
     if (!expand) {
       handleExpand();
@@ -36,9 +71,13 @@ export default function Accordion(props: Props): ReactElement {
     }
     setLoaded(true);
   }, []);
+
   useEffect(() => {
-    if (loaded && expand) handleExpand();
+    if (loaded && expand) {
+      handleExpand();
+    }
   }, [expand]);
+
   return (
     <div
       id={id}
@@ -50,8 +89,12 @@ export default function Accordion(props: Props): ReactElement {
     >
       <div
         className={classNames(
-          'bg-gray-100 text-gray-dark py-2 px-4 font-bold border-gray-300 border-b',
-          'lg:text-base'
+          'py-2 px-4 font-bold border-gray-300 border-b',
+          'lg:text-base',
+          'transition-colors duration-700 ease-in-out',
+          loaded && isExpanded
+            ? 'bg-gray-dark text-primary'
+            : 'bg-gray-100 text-gray-dark'
         )}
         onClick={handleExpand}
       >
@@ -73,12 +116,16 @@ export default function Accordion(props: Props): ReactElement {
         )}
         {question}
         <Link href={`#${id}`}>
-          <a className="focus:outline-none">
+          <a
+            title={`Direct link to "${question}"`}
+            className="focus:outline-none"
+          >
             <LinkSVG
               className={classNames(
-                'inline w-4 h-4 fill-current mb-1 mr-2 mt-0.5 ml-2 opacity-0',
+                'inline w-4 h-4 fill-current mb-1 mr-2 mt-0.5 ml-2',
                 'transition-opacity duration-500',
-                'hover:opacity-100'
+                'hover:opacity-100',
+                loaded && isExpanded ? 'opacity-100' : 'opacity-20'
               )}
             />
           </a>
@@ -92,6 +139,7 @@ export default function Accordion(props: Props): ReactElement {
         )}
         ref={content}
         style={{ height: height }}
+        id={id + 'container'}
       >
         <RichBody
           body={answer}

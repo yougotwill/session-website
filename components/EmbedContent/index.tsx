@@ -67,16 +67,21 @@ export default function EmbedContent(props: Props): ReactElement {
             )}
             .
           </p>
-          <Button
-            fontWeight="bold"
-            size="large"
-            onClick={() => {
-              setAllowExternalContent(true);
-            }}
-            classes={'block ml-auto'}
+          <div
+            data-video-site={content.site_name}
+            className="showExternalVideoButton"
           >
-            Show
-          </Button>
+            <Button
+              fontWeight="bold"
+              size="large"
+              onClick={() => {
+                setAllowExternalContent(true);
+              }}
+              classes={'block ml-auto'}
+            >
+              Show
+            </Button>
+          </div>
         </div>
       );
     } else {
