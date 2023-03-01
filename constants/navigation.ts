@@ -11,12 +11,6 @@ interface INavList {
 }
 
 const NAV_ITEMS: INavList = {
-    Merch: {
-    href: 'https://store.getsession.org',
-    alt: 'Link to Session Merch store',
-    target: '_blank',
-    rel: 'noopener noreferrer',
-  },
   GitHub: {
     href: 'https://github.com/oxen-io',
     alt: 'Link to Oxen GitHub page',
