@@ -153,7 +153,9 @@ export default function NavItem(props: NavItemProps): ReactElement {
               'lg:duration-500',
               'lg:group-hover:opacity-100 lg:group-hover:duration-700',
               (isSmall || isMedium) && IsDropdownExpanded
-                ? 'h-32 translate-y-0 -mb-3'
+                ? Object.keys(navItem.items).length > 2
+                  ? 'h-32 -mb-3'
+                  : 'h-20 -mb-1'
                 : 'h-0 translate-y-auto lg:translate-y-0'
             )}
             style={{ zIndex: zIndex ? zIndex : undefined }}
