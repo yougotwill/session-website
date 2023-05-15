@@ -10,7 +10,7 @@ export interface IRedirection {
 const redirects: IRedirection[] = getConfig().serverRuntimeConfig.redirects;
 
 async function fetchLatestVersion(repo: string) {
-  const fallbackVersion = '1.8.6'; // NOTE should update periodcally
+  const fallbackVersion = '1.10.8'; // NOTE should update periodically
   const res = await fetch(
     `https://api.github.com/repos/oxen-io/${repo}/releases/latest`
   );
