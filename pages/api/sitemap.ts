@@ -5,6 +5,7 @@ import { IRedirection } from '@/services/redirect';
 import { METADATA } from '@/constants';
 import getConfig from 'next/config';
 import { readdirSync } from 'fs';
+import { IPost } from '@/types/cms';
 
 export default async function handler(
   req: NextApiRequest,
@@ -55,8 +56,23 @@ export default async function handler(
     return `${baseUrl}/${page.slug}`;
   });
 
-  const { entries: _blogPages, total: totalBlogPages } =
-    await fetchBlogEntries();
+  const _blogPages: IPost[] = [];
+  let currentPage = 1;
+  let foundAllPosts = false;
+
+  // Contentful only allows 100 at a time
+  while (!foundAllPosts) {
+    const { entries: _posts } = await fetchBlogEntries(100, currentPage);
+
+    if (_posts.length === 0) {
+      foundAllPosts = true;
+      continue;
+    }
+
+    _blogPages.push(..._posts);
+    currentPage++;
+  }
+
   const blogPages = _blogPages.map((page) => {
     return {
       url: `${baseUrl}/blog/${page.slug}`,

@@ -84,7 +84,23 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
   });
 
-  const { entries: posts, total: totalPosts } = await fetchBlogEntries();
+  const posts: IPost[] = [];
+  let currentPage = 1;
+  let foundAllPosts = false;
+
+  // Contentful only allows 100 at a time
+  while (!foundAllPosts) {
+    const { entries: _posts } = await fetchBlogEntries(100, currentPage);
+
+    if (_posts.length === 0) {
+      foundAllPosts = true;
+      continue;
+    }
+
+    posts.push(..._posts);
+    currentPage++;
+  }
+
   const postPaths = posts.map((post) => {
     return {
       params: {
