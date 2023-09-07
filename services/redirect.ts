@@ -7,28 +7,48 @@ export interface IRedirection {
   permanent: boolean;
 }
 
+// NOTE should update periodically
+let fallbackVersion = '1.11.1';
+let lastChecked = 1694059030086; // 2023-09-07 03:57
+
 const redirects: IRedirection[] = getConfig().serverRuntimeConfig.redirects;
 
 async function fetchLatestVersion(repo: string) {
-  const fallbackVersion = '1.11.0'; // NOTE should update periodically
-  const res = await fetch(
-    `https://api.github.com/repos/oxen-io/${repo}/releases/latest`
-  );
-  const data = await res.json();
-  if (!data) return fallbackVersion;
+  // Only update once per 15 minutes
+  if (lastChecked > Date.now() - 1000 * 60 * 15) {
+    const res = await fetch(
+      `https://api.github.com/repos/oxen-io/${repo}/releases/latest`
+    );
+    const data = await res.json();
+    if (!data) return fallbackVersion;
 
-  if (res.status !== 200) {
-    console.warn(
-      `Redirect Service: Code ${res.status} | ${data.message}`,
-      `${data.documentation && `| See ${data.documentation}`}`
-    );
-    console.log(
-      `Redirect Service: Falling back to version ${fallbackVersion}.`
-    );
-    return fallbackVersion;
+    if (res.status !== 200) {
+      console.warn(
+        `Redirect Service: Code ${res.status} | ${data.message}`,
+        `${data.documentation && `| See ${data.documentation}`}`
+      );
+      console.log(
+        `Redirect Service: Falling back to version ${fallbackVersion}. Last checked on ${new Date(
+          lastChecked
+        ).toUTCString()}.}`
+      );
+      return fallbackVersion;
+    }
+
+    const foundVersion = data['tag_name'].split('v')[1];
+
+    if (foundVersion && foundVersion !== fallbackVersion) {
+      fallbackVersion = foundVersion;
+      lastChecked = Date.now();
+      console.log(
+        `Redirect Service: Fetched new version from GitHub ${fallbackVersion} at ${new Date(
+          lastChecked
+        ).toUTCString()}.`
+      );
+    }
   }
 
-  return data['tag_name'].split('v')[1];
+  return fallbackVersion;
 }
 
 async function fetchDynamicRedirects() {
@@ -41,12 +61,12 @@ async function fetchDynamicRedirects() {
     },
     {
       source: '/mac',
-      destination: `https://github.com/oxen-io/session-desktop/releases/download/v${desktopVersion}/session-desktop-mac-${desktopVersion}.dmg`,
+      destination: `https://github.com/oxen-io/session-desktop/releases/download/v${desktopVersion}/session-desktop-mac-x64-${desktopVersion}.dmg`,
       permanent: true,
     },
     {
       source: '/windows',
-      destination: `https://github.com/oxen-io/session-desktop/releases/download/v${desktopVersion}/session-desktop-win-${desktopVersion}.exe`,
+      destination: `https://github.com/oxen-io/session-desktop/releases/download/v${desktopVersion}/session-desktop-win-x64-${desktopVersion}.exe`,
       permanent: true,
     },
   ];
