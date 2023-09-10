@@ -8,8 +8,8 @@ export interface IRedirection {
 }
 
 // NOTE should update periodically
-let fallbackVersion = '1.11.1';
-let lastChecked = 1694059030086; // 2023-09-07 03:57
+let fallbackVersion = '1.11.2';
+let lastChecked = 1694387876404; // 2023-09-11 09:18
 
 const redirects: IRedirection[] = getConfig().serverRuntimeConfig.redirects;
 
