@@ -1,3 +1,4 @@
+import { CMS } from '@/constants';
 import getConfig from 'next/config';
 
 // https://nextjs.org/docs/api-reference/next.config.js/redirects
@@ -9,13 +10,15 @@ export interface IRedirection {
 
 // NOTE should update periodically
 let fallbackVersion = '1.11.2';
-let lastChecked = 1694387876404; // 2023-09-11 09:18
+// NOTE begin checking from when server is started
+let lastChecked = Date.now();
 
 const redirects: IRedirection[] = getConfig().serverRuntimeConfig.redirects;
 
 async function fetchLatestVersion(repo: string) {
-  // Only update once per 15 minutes
-  if (lastChecked > Date.now() - 1000 * 60 * 15) {
+  const now = Date.now();
+  // Only update once per revalidation
+  if (now - lastChecked > 1000 * CMS.CONTENT_REVALIDATE_RATE) {
     const res = await fetch(
       `https://api.github.com/repos/oxen-io/${repo}/releases/latest`
     );
@@ -47,6 +50,14 @@ async function fetchLatestVersion(repo: string) {
       );
     }
   }
+  // NOTE used for debugging purposes
+  // else {
+  //   console.log(
+  //     'Too early to revalidate. Revalidating in',
+  //     (1000 * CMS.CONTENT_REVALIDATE_RATE - (now - lastChecked)) / 1000,
+  //     'seconds.'
+  //   );
+  // }
 
   return fallbackVersion;
 }
@@ -57,17 +68,17 @@ async function fetchDynamicRedirects() {
     {
       source: '/linux',
       destination: `https://github.com/oxen-io/session-desktop/releases/download/v${desktopVersion}/session-desktop-linux-x86_64-${desktopVersion}.AppImage`,
-      permanent: true,
+      permanent: false,
     },
     {
       source: '/mac',
       destination: `https://github.com/oxen-io/session-desktop/releases/download/v${desktopVersion}/session-desktop-mac-x64-${desktopVersion}.dmg`,
-      permanent: true,
+      permanent: false,
     },
     {
       source: '/windows',
       destination: `https://github.com/oxen-io/session-desktop/releases/download/v${desktopVersion}/session-desktop-win-x64-${desktopVersion}.exe`,
-      permanent: true,
+      permanent: false,
     },
   ];
   return redirects;
