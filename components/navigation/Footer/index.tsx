@@ -2,6 +2,7 @@ import { ReactComponent as GithubSVG } from '@/assets/svgs/github.svg';
 import { GroupNotice } from '@/components/sections';
 import Image from 'next/image';
 import { ReactComponent as InstagramSVG } from '@/assets/svgs/instagram.svg';
+import { ReactComponent as MastodonSVG } from '@/assets/svgs/mastodon.svg';
 import Link from 'next/link';
 import { ReactElement } from 'react';
 import { ReactComponent as RssSVG } from '@/assets/svgs/rss.svg';
@@ -155,6 +156,21 @@ export default function Footer(): ReactElement {
                       rel="noopener noreferrer"
                     >
                       <TwitterSVG className={svgClasses} />
+                    </a>
+                  </Link>
+                  <Link href="https://mastodon.social/@session">
+                    <a
+                      className={classNames(socialLinkClasses, '')}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MastodonSVG
+                        className={classNames(
+                          svgClasses,
+                          'border-primary border-2.5 rounded-full py-1',
+                          'hover:border-white duration-300'
+                        )}
+                      />
                     </a>
                   </Link>
                   <Link href="https://www.instagram.com/getsession">
