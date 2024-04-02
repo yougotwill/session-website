@@ -10,7 +10,7 @@ export default function Banner(): ReactElement {
   return (
     <div
       className={classNames(
-        'bg-gray-dark text-white py-4 px-8 flex flex-col justify-center items-center leading-relaxed align-middle',
+        'bg-gray-dark text-white py-4 px-8 flex flex-col justify-center items-center leading-relaxed align-middle gap-2',
         'lg:flex-row',
         '2xl:items-center'
       )}
