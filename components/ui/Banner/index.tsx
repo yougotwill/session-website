@@ -15,7 +15,7 @@ export default function Banner(): ReactElement {
         '2xl:items-center'
       )}
     >
-      <span className={classNames('text-center', 'lg:text-left lg:mb-0')}>
+      <span className={classNames('text-center', 'lg:text-left')}>
         {isSmall ? BANNER.TEXT.MOBILE : BANNER.TEXT.DESKTOP}
       </span>
       <span
