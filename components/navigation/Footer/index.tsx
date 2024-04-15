@@ -182,7 +182,7 @@ export default function Footer(): ReactElement {
                       <InstagramSVG className={svgClasses} />
                     </a>
                   </Link>
-                  <Link href="https://www.youtube.com/@sessionmessenger">
+                  <Link href="https://www.youtube.com/@SessionTV">
                     <a
                       className={socialLinkClasses}
                       target="_blank"
