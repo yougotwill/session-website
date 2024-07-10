@@ -88,7 +88,7 @@ export default function Community(): ReactElement {
             <CustomQRCode
               id="session-community-qr-code"
               value={LINKS.SESSION.COMMUNITY_SERVER}
-              size={208}
+              size={300}
               logoImage="/assets/images/qr-logo.png"
               logoSize={896}
             />

@@ -33,7 +33,7 @@ export function CustomQRCode(props: SessionQRCodeProps) {
     : 250;
 
   const handleOnClick = () => {
-    qrRef.current?.download();
+    qrRef.current?.download('png', 'session-community-qr-code.png');
   };
 
   useEffect(() => {
