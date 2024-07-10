@@ -7,6 +7,7 @@ import { LINKS } from '@/constants';
 import METADATA from '@/constants/metadata';
 import classNames from 'classnames';
 import { copyToClipboard } from '@/utils/clipboard';
+import { CustomQRCode } from '@/components/CustomQRCode';
 
 export default function Community(): ReactElement {
   const [isCopied, setIsCopied] = useState(false);
@@ -79,13 +80,17 @@ export default function Community(): ReactElement {
             <span> option.</span>
           </div>
 
-          <div className={classNames('mx-auto mb-8')}>
-            <Image
-              src="/assets/images/qr-code.png"
-              alt="session community qr code"
-              width="208px"
-              height="208px"
-              priority={true}
+          <div
+            className={classNames(
+              'mx-auto mb-8 flex justify-center items-center'
+            )}
+          >
+            <CustomQRCode
+              id="session-community-qr-code"
+              value={LINKS.SESSION.COMMUNITY_SERVER}
+              size={208}
+              logoImage="/assets/images/qr-logo.png"
+              logoSize={896}
             />
           </div>
 
