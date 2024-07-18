@@ -115,6 +115,11 @@ const config = {
         destination: '/community',
         permanent: true,
       },
+      {
+        source: '/translate',
+        destination: 'https://crowdin.com/project/session-crossplatform-strings',
+        permanent: false,
+      },
     ],
   },
   async redirects() {
