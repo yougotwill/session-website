@@ -120,6 +120,11 @@ const config = {
         destination: 'https://crowdin.com/project/session-crossplatform-strings',
         permanent: false,
       },
+      {
+        source: '/blog/session-translation-help',
+        destination: 'https://docs.getsession.org/session-messenger/localisations',
+        permanent: false,
+      }
     ],
   },
   async redirects() {
