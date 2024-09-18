@@ -124,6 +124,16 @@ const config = {
         source: '/blog/session-translation-help',
         destination: 'https://docs.getsession.org/session-messenger/localisations',
         permanent: false,
+      },
+      {
+        source: '/lightpaper',
+        destination: '/litepaper',
+        permanent: false,
+      },
+      {
+        source: '/lightpaper/pdf',
+        destination: '/litepaper/pdf',
+        permanent: false,
       }
     ],
   },
@@ -149,8 +159,8 @@ const config = {
         destination: '/api/download/linux',
       },
       {
-        source: '/lightpaper/pdf',
-        destination: '/api/lightpaper',
+        source: '/litepaper/pdf',
+        destination: '/api/litepaper',
       },
       {
         source: '/login',

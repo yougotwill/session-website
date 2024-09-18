@@ -5,15 +5,15 @@ import { METADATA } from '@/constants';
 import RedirectPage from '@/components/RedirectPage';
 import { useRouter } from 'next/router';
 
-export default function Lightpaper(): ReactElement {
+export default function Litepaper(): ReactElement {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/lightpaper/pdf');
+    router.push('/litepaper/pdf');
   }, [router]);
 
   return (
-    <Layout title="Lightpaper" metadata={METADATA.LIGHTPAPER_PAGE}>
+    <Layout title="Litepaper" metadata={METADATA.LITEPAPER_PAGE}>
       <RedirectPage />
     </Layout>
   );
