@@ -89,17 +89,18 @@ const METADATA = {
   HELP_PAGE: {
     DESCRIPTION: 'How you can help. A Session Community Help Guide Document.',
   },
-  LIGHTPAPER_PAGE: {
+  LITEPAPER_PAGE: {
     DESCRIPTION:
       'Session is a decentralised messenger that supports completely private, secure, and anonymous communications.',
     OG_IMAGE: {
-      URL: '/assets/images/lightpaper.jpg',
+      URL: '/assets/images/litepaper.png',
       WIDTH: 1200,
       HEIGHT: 627,
-      ALT: 'Black background with a neon white Session logo with Lightpaper written as a heading',
+      ALT: 'Black background with a neon white Session logo with Litepaper written as a heading',
     },
     TAGS: [
       'Session',
+      'litepaper',
       'lightpaper',
       'metadata',
       'messenger',

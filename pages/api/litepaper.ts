@@ -10,7 +10,7 @@ export default async function handler(
   res.setHeader('content-type', 'application/pdf');
   res.end(
     readFileSync(
-      './public/assets/papers/Lightpaper_Session_private_messenger.pdf'
+      './public/assets/papers/Litepaper_Session_private_messenger.pdf'
     )
   );
 }

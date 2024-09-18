@@ -27,9 +27,9 @@ const NAV_ITEMS: INavList = {
     alt: 'Heading of Session Technical Links',
     target: '_self',
     items: {
-      Lightpaper: {
-        href: '/lightpaper',
-        alt: 'Link to Session Lightpaper',
+      Litepaper: {
+        href: '/litepaper',
+        alt: 'Link to Session Litepaper',
         target: '_self',
       },
       Whitepaper: {
