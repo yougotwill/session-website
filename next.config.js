@@ -91,7 +91,8 @@ const config = {
       },
       {
         source: '/apk',
-        destination: 'https://github.com/oxen-io/session-android/releases',
+        destination:
+          'https://github.com/session-foundation/session-android/releases',
         permanent: true,
       },
       {
@@ -117,12 +118,14 @@ const config = {
       },
       {
         source: '/translate',
-        destination: 'https://crowdin.com/project/session-crossplatform-strings',
+        destination:
+          'https://crowdin.com/project/session-crossplatform-strings',
         permanent: false,
       },
       {
         source: '/blog/session-translation-help',
-        destination: 'https://docs.getsession.org/session-messenger/localisations',
+        destination:
+          'https://docs.getsession.org/session-messenger/localisations',
         permanent: false,
       },
       {
@@ -134,7 +137,7 @@ const config = {
         source: '/lightpaper/pdf',
         destination: '/litepaper/pdf',
         permanent: false,
-      }
+      },
     ],
   },
   async redirects() {
