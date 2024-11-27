@@ -5,7 +5,7 @@ import {
   Options,
   documentToReactComponents,
 } from '@contentful/rich-text-react-renderer';
-import { hasLocalID, isLocal } from '@/utils/links';
+import { hasLocalID, isLocal, parseUrl } from '@/utils/links';
 import { direction } from 'direction';
 import Link from 'next/link';
 import SHORTCODES from '@/constants/shortcodes';
@@ -84,10 +84,7 @@ export default function RichBody(props: Props): ReactElement {
     },
     renderNode: {
       [INLINES.HYPERLINK]: (node, children: any) => {
-        const url =
-          node.data.uri.indexOf('://getsession.org') >= 0
-            ? node.data.uri.split('://getsession.org')[1]
-            : node.data.uri;
+        const url = parseUrl(node.data.uri);
         return (
           <span dir={getDirection(children)}>
             <Link href={url} scroll={!isLocal(node.data.uri)}>
