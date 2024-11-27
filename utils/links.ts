@@ -1,6 +1,5 @@
 import { Block, Inline } from '@contentful/rich-text-types';
 import METADATA from '../constants/metadata';
-import * as fs from 'node:fs';
 
 // utils for checking if hyperlinks are for the current site
 // are there any links to id's i.e. #mac, #linux, #windows
