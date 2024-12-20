@@ -100,6 +100,7 @@ const METADATA = {
     },
     TAGS: [
       'Session',
+      'Session Foundation',
       'litepaper',
       'lightpaper',
       'metadata',

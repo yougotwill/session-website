@@ -9,7 +9,7 @@ export interface IRedirection {
 }
 
 // NOTE should update periodically
-let fallbackVersion = '1.11.2';
+let fallbackVersion = '1.14.5';
 // NOTE begin checking from when server is started
 let lastChecked = Date.now();
 
@@ -20,7 +20,7 @@ async function fetchLatestVersion(repo: string) {
   // Only update once per revalidation
   if (now - lastChecked > 1000 * CMS.CONTENT_REVALIDATE_RATE) {
     const res = await fetch(
-      `https://api.github.com/repos/oxen-io/${repo}/releases/latest`
+      `https://api.github.com/repos/session-foundation/${repo}/releases/latest`
     );
     const data = await res.json();
     if (!data) return fallbackVersion;
@@ -67,17 +67,17 @@ async function fetchDynamicRedirects() {
   const redirects: IRedirection[] = [
     {
       source: '/linux',
-      destination: `https://github.com/oxen-io/session-desktop/releases/download/v${desktopVersion}/session-desktop-linux-x86_64-${desktopVersion}.AppImage`,
+      destination: `https://github.com/session-foundation/session-desktop/releases/download/v${desktopVersion}/session-desktop-linux-x86_64-${desktopVersion}.AppImage`,
       permanent: false,
     },
     {
       source: '/mac',
-      destination: `https://github.com/oxen-io/session-desktop/releases/download/v${desktopVersion}/session-desktop-mac-x64-${desktopVersion}.dmg`,
+      destination: `https://github.com/session-foundation/session-desktop/releases/download/v${desktopVersion}/session-desktop-mac-x64-${desktopVersion}.dmg`,
       permanent: false,
     },
     {
       source: '/windows',
-      destination: `https://github.com/oxen-io/session-desktop/releases/download/v${desktopVersion}/session-desktop-win-x64-${desktopVersion}.exe`,
+      destination: `https://github.com/session-foundation/session-desktop/releases/download/v${desktopVersion}/session-desktop-win-x64-${desktopVersion}.exe`,
       permanent: false,
     },
   ];

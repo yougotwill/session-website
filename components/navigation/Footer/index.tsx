@@ -182,7 +182,7 @@ export default function Footer(): ReactElement {
                       <YouTubeSVG className={svgClasses} />
                     </a>
                   </Link>
-                  <Link href="https://github.com/oxen-io">
+                  <Link href="https://github.com/session-foundation">
                     <a
                       className={socialLinkClasses}
                       target="_blank"

@@ -12,8 +12,8 @@ interface INavList {
 
 const NAV_ITEMS: INavList = {
   GitHub: {
-    href: 'https://github.com/oxen-io',
-    alt: 'Link to Oxen GitHub page',
+    href: 'https://github.com/session-foundation',
+    alt: 'Link to Session Foundation GitHub page',
     target: '_blank',
     rel: 'noopener noreferrer',
   },
