@@ -142,7 +142,7 @@ const config = {
         source: '/groups',
         destination: 'https://sessionapp.zendesk.com/hc/en-us/articles/42848534131097-How-do-I-upgrade-my-Session-group-chats-to-Groups-v2',
         permanent: false,
-      }
+      },
     ],
   },
   async redirects() {
