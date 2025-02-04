@@ -140,7 +140,14 @@ const config = {
       },
       {
         source: '/groups',
-        destination: 'https://sessionapp.zendesk.com/hc/en-us/articles/42848534131097-How-do-I-upgrade-my-Session-group-chats-to-Groups-v2',
+        destination:
+          'https://sessionapp.zendesk.com/hc/en-us/articles/42848534131097-How-do-I-upgrade-my-Session-group-chats-to-Groups-v2',
+        permanent: false,
+      },
+      {
+        source: '/account-ids',
+        destination:
+          'https://sessionapp.zendesk.com/hc/en-us/articles/4439132747033-How-do-Account-ID-usernames-work',
         permanent: false,
       },
     ],
