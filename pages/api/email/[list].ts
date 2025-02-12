@@ -95,7 +95,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method !== 'POST') {
-    res.status(400).json({
+    res.status(405).json({
       message: 'Email API: Invalid http method. | Only POST is accepted.',
     });
   }
@@ -122,7 +122,7 @@ export default async function handler(
       res.status(201).json({ email });
     } else {
       const result = await response.json();
-      res.status(result.code).json({ email, message: result.error.message });
+      res.status(result.code).json({ email, message: result.message });
     }
   }
 }
