@@ -11,26 +11,28 @@ interface INavList {
 }
 
 const NAV_ITEMS: INavList = {
-  GitHub: {
-    href: 'https://github.com/session-foundation',
-    alt: 'Link to Session Foundation GitHub page',
-    target: '_blank',
-    rel: 'noopener noreferrer',
-  },
   Blog: {
     href: '/blog',
     alt: `Link to Session's blogposts`,
     target: '_self',
   },
-  Technicals: {
-    href: '/technicals',
-    alt: 'Heading of Session Technical Links',
+  Resources: {
+    href: '/resources',
+    alt: 'Heading of Session Resources Links',
     target: '_self',
     items: {
-      Litepaper: {
-        href: '/litepaper',
-        alt: 'Link to Session Litepaper',
-        target: '_self',
+      GitHub: {
+        href: 'https://github.com/session-foundation',
+        alt: 'Link to Session Foundation GitHub page',
+        target: '_blank',
+        rel: 'noopener noreferrer',
+      },
+      // TODO: Confirm this link
+      Docs: {
+        href: 'https://docs.getsession.org',
+        alt: 'Link to Session Docs website',
+        target: '_blank',
+        rel: 'noopener noreferrer',
       },
       Whitepaper: {
         href: '/whitepaper',
@@ -38,9 +40,36 @@ const NAV_ITEMS: INavList = {
         target: '_blank',
         rel: 'noopener noreferrer',
       },
-      Documentation: {
-        href: 'https://docs.oxen.io/products-built-on-oxen/session',
-        alt: 'Link to Session Docs on the Oxen website',
+      Litepaper: {
+        href: '/litepaper',
+        alt: 'Link to Session Litepaper',
+        target: '_self',
+      },
+    },
+  },
+  Web3: {
+    href: '/web3',
+    alt: 'Heading of Session Web3 Links',
+    target: '_self',
+    items: {
+      'Session Network': {
+        // TODO: Update this link
+        href: 'https://token.getsession.org/',
+        alt: 'Link to Session Network',
+        target: '_blank',
+        rel: 'noopener noreferrer',
+      },
+      'Session Token': {
+        // TODO: Update this
+        href: 'https://token.getsession.org/',
+        alt: 'Link to Session Token website',
+        target: '_blank',
+        rel: 'noopener noreferrer',
+      },
+      'Network Status': {
+        // TODO: Update this
+        href: 'https://token.getsession.org/',
+        alt: 'Link to Network Status website',
         target: '_blank',
         rel: 'noopener noreferrer',
       },
