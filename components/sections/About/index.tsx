@@ -129,12 +129,11 @@ export default function About(): ReactElement {
           ref={textRef}
         >
           Session is an <span className={redactedClasses}>end-to-end</span>{' '}
-          encrypted messenger that minimises{' '}
-          <span className={redactedClasses}>sensitive</span> metadata,{' '}
-          <span className={redactedClasses}>designed and built</span> for people
-          who want <span className={redactedClasses}>absolute</span> privacy and
-          freedom from <span className={redactedClasses}>any form of</span>{' '}
-          surveillance.
+          encrypted messenger that protects your{' '}
+          <span className={redactedClasses}>personal</span> data. Take back
+          control with a messaging app designed, built, and operated by a{' '}
+          <span className={redactedClasses}>global</span> community of{' '}
+          <span className={redactedClasses}>privacy</span> experts.
         </p>
         <DynamicVideoPlayer {...videoProps} />
       </Container>
