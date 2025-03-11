@@ -49,7 +49,7 @@ export default function Footer(): ReactElement {
         {!isSmall && (
           <GroupNotice
             classes={classNames(
-              'lg:flex lg:flex-col lg:justify-center lg:w-full lg:max-w-xl lg:px-0 lg:border-b-0 lg:border-r lg:my-2'
+              'lg:flex lg:flex-col lg:justify-center lg:w-full lg:max-w-xl xl:px-0 lg:border-b-0 lg:border-r lg:my-2'
             )}
           />
         )}
