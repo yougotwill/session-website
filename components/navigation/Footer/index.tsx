@@ -98,7 +98,7 @@ export default function Footer(): ReactElement {
                 'lg:w-1/3'
               )}
             >
-              <h3 className={headingClasses}>Links</h3>
+              <h3 className={headingClasses}>Other</h3>
               <Link href="https://session.foundation">
                 <a
                   className={linkClasses}
@@ -106,6 +106,15 @@ export default function Footer(): ReactElement {
                   rel="noopener noreferrer"
                 >
                   Session Technology Foundation
+                </a>
+              </Link>
+              <Link href="https://token.getsession.org">
+                <a
+                  className={linkClasses}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Session Token
                 </a>
               </Link>
               <Link href="https://lokinet.org/">

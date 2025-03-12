@@ -27,7 +27,6 @@ const NAV_ITEMS: INavList = {
         target: '_blank',
         rel: 'noopener noreferrer',
       },
-      // TODO: Confirm this link
       Docs: {
         href: 'https://docs.getsession.org',
         alt: 'Link to Session Docs website',
