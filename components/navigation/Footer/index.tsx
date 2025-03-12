@@ -53,7 +53,7 @@ export default function Footer(): ReactElement {
             )}
           />
         )}
-        <footer className={classNames('text-primary-dark', 'lg:w-1/2 lg:mt-2')}>
+        <footer className={classNames('text-primary-dark', 'lg:w-1/2 lg:my-2')}>
           <div
             className={classNames(
               'flex flex-wrap pt-6 pb-4 px-8 border-b border-primary border-dashed',
@@ -217,7 +217,8 @@ export default function Footer(): ReactElement {
             className={classNames(
               'py-6 px-8',
               'md:p-10 md:w-full md:max-w-3xl',
-              'lg:py-5 lg:px-7 lg:mb-2 lg:max-w-lg'
+              'lg:py-5 lg:px-7 lg:mb-2 lg:max-w-lg',
+              '2xl:pr-5'
             )}
           >
             <Image
@@ -232,16 +233,20 @@ export default function Footer(): ReactElement {
               )}
             >
               Session is an <span className={redactedClasses}>end-to-end</span>{' '}
-              encrypted messenger that removes{' '}
-              <span className={redactedClasses}>sensitive</span> metadata
-              collection,
+              encrypted messenger that protects your{' '}
+              <span className={redactedClasses}>personal data.</span> Take back{' '}
+              <span className={redactedClasses}>control</span> with a messaging
+              app designed, built, and operated by{' '}
               <br
-                className={classNames('hidden', 'md:inline', 'lg:hidden')}
-              />{' '}
-              <span className={redactedClasses}>and is designed</span> for
-              people who want privacy and freedom from{' '}
-              <span className={redactedClasses}>any forms of</span>{' '}
-              surveillance.
+                className={classNames(
+                  'inline',
+                  'md:hidden',
+                  'lg:inline',
+                  'xl:hidden'
+                )}
+              />
+              <span className={redactedClasses}>experts and advocates</span>{' '}
+              from around the world.
             </p>
           </div>
         </footer>
