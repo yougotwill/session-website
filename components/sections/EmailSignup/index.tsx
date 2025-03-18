@@ -64,15 +64,10 @@ export default function EmailSignup(): ReactElement {
             'lg:text-3xl lg:mb-0'
           )}
         >
-          <p className={classNames('leading-snug')}>
-            Every project update, delivered straight to your inbox.
-          </p>
-          <p className={classNames('leading-snug')}>
-            Expect an email about once a month.
-          </p>
+          Every project update, delivered straight to your inbox.
         </h3>
-        <p className={classNames('leading-snug mt-1 mb-4', 'lg:text-xl')}>
-          Sign up to the mailing list and start taking action!
+        <p className={classNames('leading-snug mt-1 mb-6', 'lg:text-xl')}>
+          Expect an email about once a month.
         </p>
         <form onSubmit={handleSubscription}>
           <input

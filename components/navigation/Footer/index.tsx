@@ -243,19 +243,10 @@ export default function Footer(): ReactElement {
             >
               Session is an <span className={redactedClasses}>end-to-end</span>{' '}
               encrypted messenger that protects your{' '}
-              <span className={redactedClasses}>personal data.</span> Take back{' '}
-              <span className={redactedClasses}>control</span> with a messaging
-              app designed, built, and operated by{' '}
-              <br
-                className={classNames(
-                  'inline',
-                  'md:hidden',
-                  'lg:inline',
-                  'xl:hidden'
-                )}
-              />
-              <span className={redactedClasses}>experts and advocates</span>{' '}
-              from around the world.
+              <span className={redactedClasses}>personal</span> data. Take back
+              control with a messaging app designed, built, and operated by a{' '}
+              <span className={redactedClasses}>global</span> community of{' '}
+              <span className={redactedClasses}>privacy</span> experts.
             </p>
           </div>
         </footer>

@@ -46,9 +46,9 @@ const NAV_ITEMS: INavList = {
       },
     },
   },
-  Web3: {
-    href: '/web3',
-    alt: 'Heading of Session Web3 Links',
+  Network: {
+    href: '/network',
+    alt: 'Heading of Session Network Links',
     target: '_self',
     items: {
       'Session Token': {
