@@ -99,15 +99,6 @@ export default function Footer(): ReactElement {
               )}
             >
               <h3 className={headingClasses}>Other</h3>
-              <Link href="https://session.foundation">
-                <a
-                  className={linkClasses}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Session Technology Foundation
-                </a>
-              </Link>
               <Link href="https://token.getsession.org">
                 <a
                   className={linkClasses}
@@ -136,6 +127,15 @@ export default function Footer(): ReactElement {
                   rel="noopener noreferrer"
                 >
                   Transparency Report
+                </a>
+              </Link>
+              <Link href="https://session.foundation">
+                <a
+                  className={linkClasses}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Foundation
                 </a>
               </Link>
             </div>

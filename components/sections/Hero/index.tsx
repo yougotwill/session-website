@@ -47,7 +47,6 @@ export default function Hero(): ReactElement {
               <span className="block">Not Metadata.</span>
             </h1>
             <p className={classNames(subHeadingClasses)}>
-              {/* TODO confirm is this is for all copy going forward */}
               Find your freedom with Session
             </p>
             <div

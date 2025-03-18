@@ -47,7 +47,7 @@ export default function Benefits(): ReactElement {
           <BenefitsCard
             title="No Phone Numbers"
             description={[
-              "Protect your identity with Session's secure Account IDs.",
+              "Protect your identity with Session's Account IDs.",
               'No phone number or email required to sign up.',
             ]}
             images={[
@@ -107,7 +107,7 @@ export default function Benefits(): ReactElement {
           <BenefitsCard
             title="People powered"
             description={[
-              'Thousands of nodes run by a global community of privacy experts,',
+              'Thousands of nodes run by a global community.',
               'Session is by the people, for the people.',
             ]}
             images={[

@@ -51,24 +51,9 @@ const NAV_ITEMS: INavList = {
     alt: 'Heading of Session Web3 Links',
     target: '_self',
     items: {
-      'Session Network': {
-        // TODO: Update this link
-        href: 'https://token.getsession.org/',
-        alt: 'Link to Session Network',
-        target: '_blank',
-        rel: 'noopener noreferrer',
-      },
       'Session Token': {
-        // TODO: Update this
         href: 'https://token.getsession.org/',
         alt: 'Link to Session Token website',
-        target: '_blank',
-        rel: 'noopener noreferrer',
-      },
-      'Network Status': {
-        // TODO: Update this
-        href: 'https://token.getsession.org/',
-        alt: 'Link to Network Status website',
         target: '_blank',
         rel: 'noopener noreferrer',
       },
