@@ -75,7 +75,7 @@ export default function Benefits(): ReactElement {
             classes={classNames(cardClasses, 'lg:mb-32')}
           />
           <BenefitsCard
-            title="Safe paths"
+            title="Safe Paths"
             description={[
               'Onion-routed paths protect your conversations ',
               'from hackers and eavesdroppers.',
@@ -105,7 +105,7 @@ export default function Benefits(): ReactElement {
             classes={classNames(cardClasses, 'lg:mb-24')}
           />
           <BenefitsCard
-            title="People powered"
+            title="People Powered"
             description={[
               'Thousands of nodes run by a global community.',
               'Session is by the people, for the people.',
