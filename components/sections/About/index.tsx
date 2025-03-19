@@ -100,32 +100,28 @@ export default function About(): ReactElement {
       >
         <h2>What is Session?</h2>
       </Headline>
-      {/* Full screen height - Headline height */}
       <Container
-        hasMinHeight={true}
         heights={{
           small: '100%',
           medium: '100%',
-          large: '100vh - 8rem',
-          huge: '100vh - 2rem',
-          enormous: '100vh - 2rem',
+          large: '100%',
         }}
         classes={classNames(
-          'flex flex-col justify-center items-center pb-24',
-          'lg:items-start lg:mt-20 lg:pb-24',
+          'flex flex-col justify-start items-start',
+          'lg:items-start lg:mt-16 lg:pb-16',
           'xl:mt-16',
           '2xl:mt-0 2xl:justify-start',
-          '3xl:-mt-8'
+          '3xl:-mt-8  3xl:pb-24'
         )}
       >
         <p
           className={classNames(
-            'group text-white text-lg font-light leading-10 mt-12 mb-20',
-            'md:text-4xl md:leading-relaxed md:mt-0 md:mb-20',
-            'lg:mt-0 lg:ml-0 lg:max-w-3xl',
+            'group text-white text-lg font-light leading-10 mt-8 mb-20',
+            'md:text-3xl md:leading-relaxed md:mt-0 md:mb-20 md:max-w-xl',
+            'lg:text-4xl lg:max-w-3xl lg:leading-relaxed',
             'xl:mb-8',
-            '2xl:mb-20 2xl:max-w-4xl 2xl:mt-24',
-            '3xl:mb-16 3xl:max-w-5xl 3xl:mt-40'
+            '2xl:mb-20 2xl:max-w-3xl 2xl:mt-24',
+            '3xl:mb-16 3xl:max-w-3xl 3xl:mt-40'
           )}
           ref={textRef}
         >
