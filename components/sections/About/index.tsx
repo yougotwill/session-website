@@ -3,14 +3,13 @@ import { ReactElement, useEffect, useRef, useState } from 'react';
 
 import Container from '@/components/Container';
 import { Headline } from '@/components/ui';
-import { VideoPlayerProps } from '@/components/VideoPlayer';
 import classNames from 'classnames';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import redact from '@/utils/redact';
 import { useScreen } from '@/contexts/screen';
 
 // optimise build sizes by loading dynamically
-const DynamicVideoPlayer = dynamic(() => import('@/components/VideoPlayer'));
+// const DynamicVideoPlayer = dynamic(() => import('@/components/VideoPlayer'));
 
 export default function About(): ReactElement {
   const textRef = useRef<HTMLDivElement>(null);
@@ -24,44 +23,44 @@ export default function About(): ReactElement {
   const [redactedClasses, setRedactedClasses] = useState(
     redact(redactedOptions)
   );
-  const videoProps: VideoPlayerProps = {
-    hasQualityLevels: true,
-    shape: 'square',
-    poster: '/assets/videos/this-is-session/thumbnail.webp',
-    sources: [
-      {
-        src: '/assets/videos/this-is-session/1080p.mp4',
-        type: 'video/mp4',
-        label: '1080p',
-      },
-      {
-        src: '/assets/videos/this-is-session/720p.mp4',
-        type: 'video/mp4',
-        label: '720p',
-        selected: true,
-      },
-      {
-        src: '/assets/videos/this-is-session/480p.mp4',
-        type: 'video/mp4',
-        label: '480p',
-      },
-      {
-        src: '/assets/videos/this-is-session/360p.mp4',
-        type: 'video/mp4',
-        label: '360p',
-      },
-      {
-        src: '/assets/videos/this-is-session/240p.mp4',
-        type: 'video/mp4',
-        label: '240p',
-      },
-      {
-        src: '/assets/videos/this-is-session/144p.mp4',
-        type: 'video/mp4',
-        label: '144p',
-      },
-    ],
-  };
+  // const videoProps: VideoPlayerProps = {
+  //   hasQualityLevels: true,
+  //   shape: 'square',
+  //   poster: '/assets/videos/this-is-session/thumbnail.webp',
+  //   sources: [
+  //     {
+  //       src: '/assets/videos/this-is-session/1080p.mp4',
+  //       type: 'video/mp4',
+  //       label: '1080p',
+  //     },
+  //     {
+  //       src: '/assets/videos/this-is-session/720p.mp4',
+  //       type: 'video/mp4',
+  //       label: '720p',
+  //       selected: true,
+  //     },
+  //     {
+  //       src: '/assets/videos/this-is-session/480p.mp4',
+  //       type: 'video/mp4',
+  //       label: '480p',
+  //     },
+  //     {
+  //       src: '/assets/videos/this-is-session/360p.mp4',
+  //       type: 'video/mp4',
+  //       label: '360p',
+  //     },
+  //     {
+  //       src: '/assets/videos/this-is-session/240p.mp4',
+  //       type: 'video/mp4',
+  //       label: '240p',
+  //     },
+  //     {
+  //       src: '/assets/videos/this-is-session/144p.mp4',
+  //       type: 'video/mp4',
+  //       label: '144p',
+  //     },
+  //   ],
+  // };
 
   useEffect(() => {
     if (isSmall || isMedium) {
@@ -137,7 +136,7 @@ export default function About(): ReactElement {
           <span className={redactedClasses}>global</span> community of{' '}
           <span className={redactedClasses}>privacy</span> experts.
         </p>
-        <DynamicVideoPlayer {...videoProps} />
+        {/* <DynamicVideoPlayer {...videoProps} /> */}
       </Container>
     </section>
   );
