@@ -1,9 +1,9 @@
 const BANNER = {
   TEXT: {
     MOBILE:
-      'Session is upgrading to the new Session Network and migrating to Session Token',
+      'Groups have been upgraded! Update now to recreate your groups and stay connected.',
     DESKTOP:
-      'Session is upgrading to the new Session Network and migrating to Session Token.',
+      'Groups have been upgraded! Update now to recreate your groups and stay connected.',
   },
 };
 
