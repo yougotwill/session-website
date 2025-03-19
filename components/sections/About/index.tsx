@@ -106,25 +106,27 @@ export default function About(): ReactElement {
         hasMinHeight={true}
         heights={{
           small: '100%',
-          medium: '100vh + 2rem',
-          large: '100vh + 2rem',
+          medium: '100%',
+          large: '100vh - 8rem',
+          huge: '100vh - 2rem',
+          enormous: '100vh - 2rem',
         }}
         classes={classNames(
           'flex flex-col justify-center items-center pb-24',
-          'md:pb-0 md:-mt-24',
-          'lg:items-start',
-          'xl:-mt-16',
-          '3xl:-mt-24'
+          'lg:items-start lg:mt-20 lg:pb-24',
+          'xl:mt-16',
+          '2xl:mt-0 2xl:justify-start',
+          '3xl:-mt-8'
         )}
       >
         <p
           className={classNames(
             'group text-white text-lg font-light leading-10 mt-12 mb-20',
-            'md:text-4xl md:leading-relaxed md:ml-16',
-            'lg:mt-0 lg:ml-0 lg:max-w-2xl',
+            'md:text-4xl md:leading-relaxed md:mt-0 md:mb-20',
+            'lg:mt-0 lg:ml-0 lg:max-w-3xl',
             'xl:mb-8',
-            '2xl:mb-20',
-            '3xl:mb-16'
+            '2xl:mb-20 2xl:max-w-4xl 2xl:mt-24',
+            '3xl:mb-16 3xl:max-w-5xl 3xl:mt-40'
           )}
           ref={textRef}
         >

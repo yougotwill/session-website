@@ -15,7 +15,7 @@ export default function Features(): ReactElement {
     'md:mb-12'
   );
   return (
-    <section className={classNames(' text-gray-dark')}>
+    <section className={classNames('text-gray-dark')}>
       <Headline
         color="gray-dark"
         classes={classNames('text-lg font-bold pt-16', 'lg:pt-20')}
