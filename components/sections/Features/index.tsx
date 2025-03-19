@@ -42,9 +42,9 @@ export default function Features(): ReactElement {
       >
         <div
           className={classNames(
-            'lg:mx-auto lg:flex lg:justify-between lg:items-center lg:mt-36',
-            '2xl:mt-0 2xl:w-full',
-            '3xl:-mt-24'
+            'lg:mx-auto lg:flex lg:justify-between lg:items-center lg:mt-24',
+            '2xl:mt-12 2xl:w-full',
+            '3xl:-mt-16'
           )}
         >
           {(isSmall || isMedium) && (
