@@ -266,7 +266,30 @@ export default function Download(): ReactElement {
                         'md:w-6 md:h-6'
                       )}
                     />
-                    <span>Mac</span>
+                    <span>Mac (Apple Silicon)</span>
+                  </a>
+                </div>
+                <div
+                  className={classNames(
+                    downloadContainerClasses,
+                    'lg:border-white'
+                  )}
+                >
+                  <a
+                    className={classNames(
+                      downloadLinkClasses,
+                      'lg:hover:bg-white lg:hover:text-gray-dark'
+                    )}
+                    href="/mac-x64"
+                  >
+                    <AppleSVG
+                      className={classNames(
+                        downloadSVGClasses,
+                        'w-4 h-4',
+                        'md:w-6 md:h-6'
+                      )}
+                    />
+                    <span>Mac (Intel)</span>
                   </a>
                 </div>
                 <div

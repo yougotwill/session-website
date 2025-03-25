@@ -71,7 +71,12 @@ async function fetchDynamicRedirects() {
       permanent: false,
     },
     {
-      source: '/mac',
+      source: '/mac-arm64',
+      destination: `https://github.com/session-foundation/session-desktop/releases/download/v${desktopVersion}/session-desktop-mac-arm64-${desktopVersion}.dmg`,
+      permanent: false,
+    },
+    {
+      source: '/mac-x64',
       destination: `https://github.com/session-foundation/session-desktop/releases/download/v${desktopVersion}/session-desktop-mac-x64-${desktopVersion}.dmg`,
       permanent: false,
     },
