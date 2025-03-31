@@ -9,7 +9,7 @@ export interface IRedirection {
 }
 
 // NOTE should update periodically
-let fallbackVersion = '1.14.5';
+let fallbackVersion = '1.15.2';
 // NOTE begin checking from when server is started
 let lastChecked = Date.now();
 
@@ -18,7 +18,7 @@ const redirects: IRedirection[] = getConfig().serverRuntimeConfig.redirects;
 async function fetchLatestVersion(repo: string) {
   const now = Date.now();
   // Only update once per revalidation
-  if (now - lastChecked > 1000 * CMS.CONTENT_REVALIDATE_RATE) {
+  if (now - lastChecked > 1000 * CMS.GITHUB_API_RATE) {
     const res = await fetch(
       `https://api.github.com/repos/session-foundation/${repo}/releases/latest`
     );
@@ -54,7 +54,7 @@ async function fetchLatestVersion(repo: string) {
   // else {
   //   console.log(
   //     'Too early to revalidate. Revalidating in',
-  //     (1000 * CMS.CONTENT_REVALIDATE_RATE - (now - lastChecked)) / 1000,
+  //     (1000 * CMS.GITHUB_API_RATE - (now - lastChecked)) / 1000,
   //     'seconds.'
   //   );
   // }
