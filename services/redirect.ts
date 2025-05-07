@@ -9,7 +9,7 @@ export interface IRedirection {
 }
 
 // NOTE should update periodically
-let fallbackVersion = '1.15.2';
+let fallbackVersion = '1.16.0';
 // NOTE begin checking from when server is started
 let lastChecked = Date.now();
 
