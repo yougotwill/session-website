@@ -20,15 +20,14 @@ export default function Download(): ReactElement {
   const headingClasses = 'text-5xl font-semibold';
   const subtitleClasses = classNames('text-2xl', 'lg:text-3xl');
   const linkContainerClasses = classNames(
-    'grid grid-cols-2 gap-2 mb-4',
-    'lg:w-max',
-    'xl:w-full'
+    'grid grid-cols-2 gap-2 mb-4 mx-auto',
+    'lg:w-max'
   );
   const downloadContainerClasses = classNames('pb-2 lg:py-3 z-10');
   const downloadLinkClasses = classNames(
     'text-lg font-bold rounded-3xl py-2',
-    'md:text-3xl',
-    'lg:pr-3 lg:ml-2 lg::mr-4',
+    'md:text-3xl md:whitespace-nowrap',
+    'lg:pr-3 lg:ml-2',
     'transition-colors duration-300'
   );
   const downloadSVGClasses = 'inline-block mx-3 -mt-2 fill-current';
@@ -291,7 +290,8 @@ export default function Download(): ReactElement {
                 className={classNames(
                   linkContainerClasses,
                   'md:-mt-8',
-                  'lg:pb-0'
+                  'lg:pb-0 lg:-mt-6',
+                  '3xl:-mt-8'
                 )}
               >
                 <div className={classNames(downloadContainerClasses)}>
