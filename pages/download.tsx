@@ -20,19 +20,34 @@ export default function Download(): ReactElement {
   const headingClasses = 'text-5xl font-semibold';
   const subtitleClasses = classNames('text-2xl', 'lg:text-3xl');
   const linkContainerClasses = classNames(
-    'flex flex-wrap justify-center pb-12',
-    'lg:items-center'
+    'grid grid-cols-2 gap-2 mb-4',
+    'lg:w-max',
+    'xl:w-full'
   );
-  const downloadContainerClasses = classNames(
-    'pb-2 lg:py-3 lg:border-r lg:border-dashed z-10'
-  );
+  const downloadContainerClasses = classNames('pb-2 lg:py-3 z-10');
   const downloadLinkClasses = classNames(
-    'text-lg font-bold rounded-3xl py-1 mr-4',
+    'text-lg font-bold rounded-3xl py-2',
     'md:text-3xl',
-    'lg:pr-2 lg:ml-2',
+    'lg:pr-3 lg:ml-2 lg::mr-4',
     'transition-colors duration-300'
   );
   const downloadSVGClasses = 'inline-block mx-3 -mt-2 fill-current';
+  const noteContainerClasses = classNames(
+    'flex flex-col justify-evenly items-center',
+    'md:pt-4',
+    'lg:w-full',
+    'xl:pt-0'
+  );
+  const notesClasses = classNames(
+    'text-base flex justify-center items-center gap-1',
+    'md:text-2xl',
+    'lg:text-lg',
+    'xl:text-xl'
+  );
+  const notesLinkClasses = classNames(
+    'font-bold py-1 px-4 rounded-3xl cursor-pointer',
+    'transition-colors duration-300'
+  );
   return (
     <Layout title="Download" metadata={METADATA.DOWNLOAD_PAGE}>
       <section>
@@ -67,10 +82,11 @@ export default function Download(): ReactElement {
               <p
                 className={classNames(
                   subtitleClasses,
-                  'pt-20',
+                  'pt-12',
+                  'md:pt-8',
                   'lg:pt-20',
                   'xl:pt-8',
-                  '2xl:pt-20'
+                  '2xl:pt-12'
                 )}
               >
                 Download Session for
@@ -94,12 +110,7 @@ export default function Download(): ReactElement {
                 />
               </div>
               <div className={classNames(linkContainerClasses)}>
-                <div
-                  className={classNames(
-                    downloadContainerClasses,
-                    'lg:border-gray-dark'
-                  )}
-                >
+                <div className={classNames(downloadContainerClasses)}>
                   <Link href="/android">
                     <a
                       className={classNames(
@@ -118,12 +129,7 @@ export default function Download(): ReactElement {
                     </a>
                   </Link>
                 </div>
-                <div
-                  className={classNames(
-                    downloadContainerClasses,
-                    'lg:border-gray-dark'
-                  )}
-                >
+                <div className={classNames(downloadContainerClasses)}>
                   <Link href="/apk">
                     <a
                       className={classNames(
@@ -142,12 +148,7 @@ export default function Download(): ReactElement {
                     </a>
                   </Link>
                 </div>
-                <div
-                  className={classNames(
-                    downloadContainerClasses,
-                    'lg:border-gray-dark'
-                  )}
-                >
+                <div className={classNames(downloadContainerClasses)}>
                   <Link href="/f-droid">
                     <a
                       className={classNames(
@@ -166,12 +167,7 @@ export default function Download(): ReactElement {
                     </a>
                   </Link>
                 </div>
-                <div
-                  className={classNames(
-                    downloadContainerClasses,
-                    'lg:border-primary'
-                  )}
-                >
+                <div className={classNames(downloadContainerClasses)}>
                   <Link href="/iphone">
                     <a
                       className={classNames(
@@ -190,6 +186,58 @@ export default function Download(): ReactElement {
                     </a>
                   </Link>
                 </div>
+              </div>
+              <div className={classNames(noteContainerClasses, 'pb-12')}>
+                <p className={classNames(notesClasses)}>
+                  Verify Signatures:
+                  <a
+                    href="https://github.com/session-foundation/session-android/tree/master#verifying-signatures"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={classNames(
+                      notesLinkClasses,
+                      'lg:hover:bg-gray-dark lg:hover:text-primary'
+                    )}
+                  >
+                    Android
+                  </a>
+                  <a
+                    href="https://github.com/session-foundation/session-ios/tree/master#verifying-signatures"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={classNames(
+                      notesLinkClasses,
+                      'lg:hover:bg-gray-dark lg:hover:text-primary'
+                    )}
+                  >
+                    iOS
+                  </a>
+                </p>
+                <p className={classNames(notesClasses)}>
+                  Release Notes:
+                  <a
+                    href="https://github.com/session-foundation/session-android/releases/latest"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={classNames(
+                      notesLinkClasses,
+                      'lg:hover:bg-gray-dark lg:hover:text-primary'
+                    )}
+                  >
+                    Android
+                  </a>
+                  <a
+                    href="https://github.com/session-foundation/session-ios/releases/latest"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={classNames(
+                      notesLinkClasses,
+                      'lg:hover:bg-gray-dark lg:hover:text-primary'
+                    )}
+                  >
+                    iOS
+                  </a>
+                </p>
               </div>
             </div>
           </div>
@@ -210,10 +258,10 @@ export default function Download(): ReactElement {
               <p
                 className={classNames(
                   subtitleClasses,
-                  'pt-20',
+                  'pt-12',
                   'lg:pt-20',
                   'xl:pt-8',
-                  '2xl:pt-20'
+                  '2xl:pt-12'
                 )}
               >
                 Download Session for
@@ -225,7 +273,7 @@ export default function Download(): ReactElement {
                 className={classNames(
                   'px-3 -ml-1 z-0',
                   'md:px-16',
-                  'lg:px-0 lg:mt-2 lg:ml-0 lg:-mr-6 lg:mb-auto',
+                  'lg:px-0 lg:-mt-2 lg:ml-0 lg:-mr-6 lg:mb-auto',
                   'xl:-mr-8'
                 )}
               >
@@ -242,16 +290,11 @@ export default function Download(): ReactElement {
               <div
                 className={classNames(
                   linkContainerClasses,
-                  'md:-mt-8 md:pb-32',
-                  'lg:pb-12'
+                  'md:-mt-8',
+                  'lg:pb-0'
                 )}
               >
-                <div
-                  className={classNames(
-                    downloadContainerClasses,
-                    'lg:border-white'
-                  )}
-                >
+                <div className={classNames(downloadContainerClasses)}>
                   <a
                     className={classNames(
                       downloadLinkClasses,
@@ -266,15 +309,15 @@ export default function Download(): ReactElement {
                         'md:w-6 md:h-6'
                       )}
                     />
-                    <span>Mac (Apple Silicon)</span>
+                    <span>
+                      Mac{' '}
+                      <span className={classNames('sm:text-xs md:text-base')}>
+                        (Apple Silicon)
+                      </span>
+                    </span>
                   </a>
                 </div>
-                <div
-                  className={classNames(
-                    downloadContainerClasses,
-                    'lg:border-white'
-                  )}
-                >
+                <div className={classNames(downloadContainerClasses)}>
                   <a
                     className={classNames(
                       downloadLinkClasses,
@@ -289,15 +332,15 @@ export default function Download(): ReactElement {
                         'md:w-6 md:h-6'
                       )}
                     />
-                    <span>Mac (Intel)</span>
+                    <span>
+                      Mac{' '}
+                      <span className={classNames('sm:text-xs md:text-base')}>
+                        (Intel)
+                      </span>
+                    </span>
                   </a>
                 </div>
-                <div
-                  className={classNames(
-                    downloadContainerClasses,
-                    'lg:border-white'
-                  )}
-                >
+                <div className={classNames(downloadContainerClasses)}>
                   <a
                     className={classNames(
                       downloadLinkClasses,
@@ -315,12 +358,7 @@ export default function Download(): ReactElement {
                     <span>Windows</span>
                   </a>
                 </div>
-                <div
-                  className={classNames(
-                    downloadContainerClasses,
-                    'lg:border-gray-dark'
-                  )}
-                >
+                <div className={classNames(downloadContainerClasses)}>
                   <a
                     className={classNames(
                       downloadLinkClasses,
@@ -338,6 +376,36 @@ export default function Download(): ReactElement {
                     <span>Linux</span>
                   </a>
                 </div>
+              </div>
+              <div className={classNames(noteContainerClasses, 'md:pb-16')}>
+                <p className={classNames(notesClasses)}>
+                  Verify Signatures:
+                  <a
+                    href="https://github.com/session-foundation/session-desktop/tree/master#verifying-signatures"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={classNames(
+                      notesLinkClasses,
+                      'lg:hover:bg-white lg:hover:text-gray-dark'
+                    )}
+                  >
+                    Desktop
+                  </a>
+                </p>
+                <p className={classNames(notesClasses)}>
+                  Release Notes:
+                  <a
+                    href="https://github.com/session-foundation/session-desktop/releases/latest"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={classNames(
+                      notesLinkClasses,
+                      'lg:hover:bg-white lg:hover:text-gray-dark'
+                    )}
+                  >
+                    Desktop
+                  </a>
+                </p>
               </div>
             </div>
           </div>
