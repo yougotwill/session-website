@@ -52,7 +52,6 @@ export default function Features(): ReactElement {
               'md:max-w-xl md:pt-16',
               'lg:max-w-sm lg:px-0 lg:pt-8',
               'xl:pt-0 xl:max-w-md'
-              // '2xl:mt-0'
             )}
           >
             <h3

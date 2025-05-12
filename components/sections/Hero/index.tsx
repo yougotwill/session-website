@@ -58,7 +58,16 @@ export default function Hero(): ReactElement {
             </Link>
           </div>
 
-          <div className={classNames('ml-auto mr-auto', 'md:max-w-xl', 'lg:-mr-8', 'xl:-ml-8 xl:max-w-3xl', '2xl:max-w-2xl', '3xl:max-w-4xl')}>
+          <div
+            className={classNames(
+              'ml-auto mr-auto',
+              'md:max-w-xl',
+              'lg:-mr-8',
+              'xl:-ml-8 xl:max-w-3xl',
+              '2xl:max-w-2xl',
+              '3xl:max-w-4xl'
+            )}
+          >
             <Image
               src="/assets/images/hero.png"
               alt="mobile app ui showcase"
