@@ -189,7 +189,15 @@ const config = {
       },
       {
         source: '/mac',
-        destination: '/api/download/mac',
+        destination: '/api/download/mac-arm64',
+      },
+      {
+        source: '/mac-arm64',
+        destination: '/api/download/mac-arm64',
+      },
+      {
+        source: '/mac-x64',
+        destination: '/api/download/mac-x64',
       },
       {
         source: '/windows',

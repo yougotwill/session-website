@@ -1,6 +1,5 @@
 import { BANNER } from '@/constants';
 import Button from '../Button';
-import Link from 'next/link';
 import { ReactElement } from 'react';
 import classNames from 'classnames';
 import { useScreen } from '@/contexts/screen';
@@ -21,17 +20,19 @@ export default function Banner(): ReactElement {
       <span
         className={classNames('flex justify-center items-center', '2xl:ml-4')}
       >
-        <Link href="/blog/upgrading-to-session-network">
-          <a>
-            <Button
-              fontWeight="bold"
-              size="medium"
-              classes="whitespace-nowrap mx-2"
-            >
-              Learn more
-            </Button>
-          </a>
-        </Link>
+        <a
+          href="https://getsession.org/groups"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <Button
+            fontWeight="bold"
+            size="medium"
+            classes="whitespace-nowrap mx-2"
+          >
+            Learn more
+          </Button>
+        </a>
       </span>
     </div>
   );
