@@ -81,10 +81,10 @@ export default function Benefits(): ReactElement {
               'from hackers and eavesdroppers.',
             ]}
             images={[
-              '/assets/svgs/no-footprint.svg',
-              '/assets/svgs/no-footprint-redacted.svg',
+              '/assets/svgs/safe-paths.svg',
+              '/assets/svgs/safe-paths-grey.svg',
             ]}
-            imageAlt="footprint stop sign"
+            imageAlt="a node based path"
             imageWidth={imageWidth}
             imageHeight={imageHeight}
             classes={classNames(cardClasses, 'lg:mb-32')}
