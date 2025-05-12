@@ -119,6 +119,21 @@ export default function Benefits(): ReactElement {
             imageHeight={imageHeight}
             classes={classNames(cardClasses, 'lg:mb-24')}
           />
+          <BenefitsCard
+            title="No Trackers"
+            description={[
+              'Your data is never collected, never tracked, and',
+              'never sold to third parties.',
+            ]}
+            images={[
+              '/assets/svgs/no-trackers.svg',
+              '/assets/svgs/no-trackers-grey.svg',
+            ]}
+            imageAlt="silenced person"
+            imageWidth={imageWidth}
+            imageHeight={imageHeight}
+            classes={classNames(cardClasses, 'lg:mb-24')}
+          />
         </div>
       </Container>
     </section>
