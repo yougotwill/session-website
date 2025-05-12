@@ -111,8 +111,8 @@ export default function Benefits(): ReactElement {
               'Session is by the people, for the people.',
             ]}
             images={[
-              '/assets/svgs/censorship-resistant.svg',
-              '/assets/svgs/censorship-resistant-redacted.svg',
+              '/assets/svgs/people-powered.svg',
+              '/assets/svgs/people-powered-grey.svg',
             ]}
             imageAlt="silenced person"
             imageWidth={imageWidth}
