@@ -5,7 +5,7 @@ import { ReactElement } from 'react';
 import classNames from 'classnames';
 
 export default function Benefits(): ReactElement {
-  const cardClasses = classNames('w-1/2 mb-5', 'lg:w-full lg:max-w-sm lg:px-8');
+  const cardClasses = classNames('w-full mb-5');
   const imageWidth = '500px';
   const imageHeight = '500px';
   return (
@@ -30,18 +30,17 @@ export default function Benefits(): ReactElement {
           huge: '100%',
           enormous: '100vh - 84px',
         }}
-        classes={classNames(
-          'px-4 lg:max-w-none',
-          '2xl:flex 2xl:flex-col 2xl:justify-center 2xl:items-center'
-        )}
+        // NOTE max-w-6xl is the global container's max width
+        classes={classNames('px-4 lg:max-w-none', '2xl:max-w-6xl')}
       >
         <div
           className={classNames(
-            'flex flex-wrap justify-center items-center -mx-3 max-w-screen-md',
-            'md:mx-auto',
-            'lg:max-w-screen-xl lg:pt-16',
-            '2xl:mt-12',
-            '3xl:-mt-16'
+            'grid grid-cols-2 mx-auto gap-4 mt-4',
+            'md:gap-x-8',
+            'lg:grid-cols-3 lg:mt-16',
+            'xl:mt-20',
+            '2xl:mt-24',
+            '3xl:mt-32'
           )}
         >
           <BenefitsCard
