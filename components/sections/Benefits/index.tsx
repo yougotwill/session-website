@@ -28,7 +28,7 @@ export default function Benefits(): ReactElement {
           medium: '100%',
           large: '100%',
           huge: '100%',
-          enormous: '100vh - 84px',
+          enormous: '100%',
         }}
         // NOTE max-w-6xl is the global container's max width
         classes={classNames('px-4 lg:max-w-none', '2xl:max-w-6xl')}

@@ -6,9 +6,9 @@ import classNames from 'classnames';
 import { useScreen } from '@/contexts/screen';
 
 export default function Features(): ReactElement {
-  const { isSmall, isMedium, isLarge, isHuge, isEnormous } = useScreen();
   const headingClasses = classNames(
-    'font-helvetica text-4xl font-bold text-gray-dark mb-1'
+    'font-helvetica text-3xl font-bold text-gray-dark mb-1',
+    'md:text-4xl'
   );
   const paragraphClasses = classNames(
     'text-gray-lighter leading-6 mb-8',
@@ -32,45 +32,37 @@ export default function Features(): ReactElement {
         heights={{
           small: '100%',
           medium: '100%',
-          large: '100vh - 12rem',
-          huge: '100vh - 84px',
-          enormous: '100vh - 84px',
+          large: '100%',
+          huge: '100%',
+          enormous: '100%',
         }}
-        classes={classNames(
-          '2xl:flex 2xl:flex-col 2xl:justify-center 2xl:items-center'
-        )}
       >
         <div
           className={classNames(
-            'lg:mx-auto lg:flex lg:justify-between lg:items-center lg:mt-24',
-            '2xl:mt-12 2xl:w-full',
-            '3xl:-mt-16'
+            'flex flex-col-reverse mx-auto',
+            'lg:flex-row lg:justify-between lg:items-center lg:mt-24',
+            'xl:mt-16',
+            '2xl:mt-32',
+            '3xl:mt-64'
           )}
         >
-          {(isSmall || isMedium) && (
-            <div
-              className={classNames('-mt-4 -ml-1 mb-12', 'md:mb-16 md:px-20')}
-            >
-              <Image
-                src="/assets/images/ui-direct-message.png"
-                alt="mobile app direct message screenshot"
-                width="1148px"
-                height="2000px"
-                layout="responsive"
-                priority={true}
-                loading="eager"
-              />
-            </div>
-          )}
           <div
             className={classNames(
-              'px-3',
-              'md:max-w-xl',
-              'lg:max-w-sm lg:px-0 lg:-mt-8 lg:mr-8',
-              '2xl:mt-0'
+              'px-3 pt-8',
+              'md:max-w-xl md:pt-16',
+              'lg:max-w-sm lg:px-0 lg:pt-8',
+              'xl:pt-0 xl:max-w-md'
+              // '2xl:mt-0'
             )}
           >
-            <h3 className={classNames(headingClasses, 'pb-8')}>
+            <h3
+              className={classNames(
+                headingClasses,
+                'pb-8',
+                'lg:-mr-24',
+                'xl:pb-12'
+              )}
+            >
               Enjoy the features you love and the security you need.
             </h3>
             <h3 className={headingClasses}>Speak freely</h3>
@@ -92,24 +84,24 @@ export default function Features(): ReactElement {
               Community (100+ members) chats.
             </p>
           </div>
-          {(isLarge || isHuge || isEnormous) && (
-            <div
-              className={classNames(
-                'w-full -mt-12',
-                'xl:ml-8 xl:-mr-8',
-                '3xl:-mr-16'
-              )}
-            >
-              <Image
-                src="/assets/images/mockup-desktop.png"
-                alt="desktop app screenshot"
-                width="2477px"
-                height="3000px"
-                layout="responsive"
-                loading="eager"
-              />
-            </div>
-          )}
+          <div
+            className={classNames(
+              'w-full my-4',
+              'md:max-w-lg',
+              'xl:max-w-xl xl:-mr-8',
+              '2xl:max-w-2xl 2xl:-mr-48 2xl:-mt-16'
+            )}
+          >
+            <Image
+              src="/assets/images/mockup-desktop.png"
+              alt="session desktop running on a macbook pro"
+              width="1130px"
+              height="1000px"
+              layout="responsive"
+              loading="eager"
+              priority={true}
+            />
+          </div>
         </div>
       </Container>
     </section>
